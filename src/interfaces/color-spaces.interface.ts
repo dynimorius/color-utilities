@@ -62,7 +62,7 @@ export interface HWB {
 export interface HCG {
   hue: number;
   chroma: number;
-  grayness: number;
+  grayscale: number;
 }
 
 export interface LCH {
