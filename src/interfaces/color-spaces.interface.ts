@@ -65,6 +65,12 @@ export interface HCG {
   grayscale: number;
 }
 
+export interface HCL {
+  hue: number;
+  chroma: number;
+  luminance: number;
+}
+
 export interface LCH {
   lightness: number;
   chroma: number;

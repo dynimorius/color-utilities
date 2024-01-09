@@ -89,8 +89,7 @@ export const rgbToSrgb = (rgb: RGB): RGB => {
   };
 };
 
-export const srgbToLuminance = (rgb: RGB): number => {
-  const { red, green, blue } = rgb;
+export const srgbToLuminance = ({ red, green, blue }: RGB): number => {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 };
 
@@ -196,7 +195,7 @@ export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
 
 export const rgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
-  
+
   let k = Math.min(1 - red, 1 - green, 1 - blue);
   let c = (1 - red - k) / (1 - k) || 0;
   let m = (1 - green - k) / (1 - k) || 0;
@@ -313,7 +312,7 @@ export const rgbToHex = ({ red, green, blue }: RGB): string => {
   return "000000".substring(string.length) + string;
 };
 
-export const rgbaToHex = ({ red, green, blue, alpha } : RGBA): string => {
+export const rgbaToHex = ({ red, green, blue, alpha }: RGBA): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +

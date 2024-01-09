@@ -1,4 +1,4 @@
 import { RGBResolver } from "./resolvers/rgb-resolver";
 
-const color = new RGBResolver({ red: 251, green: 189, blue: 3 });
+const color = new RGBResolver({ red: 65, green: 251, blue: 3 });
 console.log(color.data())
