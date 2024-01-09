@@ -328,3 +328,11 @@ export const rgbToHcg = (rgb: RGB): HCG => {
   let hue = rgbToHue(red, green, blue, max, delta);
   return { hue, chroma: delta * 100, grayscale: grayscale * 100 };
 };
+
+export const rgbToHcgPrefactored = (rgb: RGB, hue: number): HCG => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  const { min, delta } = getRange(red, green, blue);
+  const grayscale = delta < 1 ? min / (1 - delta) : 0;
+
+  return { hue, chroma: delta * 100, grayscale: grayscale * 100 };
+};
