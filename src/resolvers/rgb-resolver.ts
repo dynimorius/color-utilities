@@ -1,6 +1,7 @@
 import { isWebSafe } from './../helpers/index';
 import { getRange, rgbToAnsi16, rgbToAnsi256, rgbToCmyk, rgbToHcgPrefactored, rgbToHex, rgbToHslPrefactored, rgbToHsvPrefactored, rgbToHue, rgbToHwbPrefactored, rgbToLab, rgbToSrgb, rgbToXyz } from "../converters/rgb-converter";
 import { CMYK, HCG, HSL, HSV, HWB, LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
+import { labToLch } from '../converters/lab-converter';
 
 export class RGBResolver {
   alpha!: number;
@@ -34,7 +35,7 @@ export class RGBResolver {
     this.hsv = rgbToHsvPrefactored(rgb, hue);
     this.hwb = rgbToHwbPrefactored(rgb, hue);
     this.lab = rgbToLab(rgb);
-    //this.lch = rgbToLch(rgb); TODO
+    this.lch = labToLch(this.lab);
     this.srgb = rgbToSrgb(rgb);
     this.xyz = rgbToXyz(rgb);
     this.webSafe = isWebSafe(rgb);

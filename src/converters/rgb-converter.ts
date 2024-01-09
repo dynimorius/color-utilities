@@ -25,6 +25,12 @@ export const normalizeRgba = ({ red, green, blue, alpha }: RGBA): RGBA => ({
   alpha,
 });
 
+export const rgbInvert = ({ red, green, blue }: RGB): RGB => ({
+  red: 255 - red,
+  green: 255 - green,
+  blue: 255 - blue,
+});
+
 export const formatValue = (value: number): number => Math.round(value * 100);
 
 export const getRange = (
@@ -275,10 +281,9 @@ export const rgbToAnsi16 = (
   return ansi;
 };
 
-export const rgbToAnsi256 = (rgb: RGB): number => {
-  const { red, green, blue } = rgb;
+export const rgbToAnsi256 = ({ red, green, blue }: RGB): number => {
   if (red >> 4 === green >> 4 && green >> 4 === blue >> 4) {
-    if (rgb.red < 8) {
+    if (red < 8) {
       return 16;
     }
 
@@ -298,8 +303,7 @@ export const rgbToAnsi256 = (rgb: RGB): number => {
   return ansi;
 };
 
-export const rgbToHex = (rgb: RGB): string => {
-  const { red, green, blue } = rgb;
+export const rgbToHex = ({ red, green, blue }: RGB): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
@@ -309,8 +313,7 @@ export const rgbToHex = (rgb: RGB): string => {
   return "000000".substring(string.length) + string;
 };
 
-export const rgbaToHex = (rgba: RGBA): string => {
-  const { red, green, blue, alpha } = rgba;
+export const rgbaToHex = ({ red, green, blue, alpha } : RGBA): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
