@@ -196,22 +196,22 @@ export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
 
 export const rgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
+  
+  let k = Math.min(1 - red, 1 - green, 1 - blue);
+  let c = (1 - red - k) / (1 - k) || 0;
+  let m = (1 - green - k) / (1 - k) || 0;
+  let y = (1 - blue - k) / (1 - k) || 0;
 
-  let key = Math.min(1 - red, 1 - green, 1 - blue);
-  let cyan = (1 - red - key) / (1 - key) || 0;
-  let magenta = (1 - green - key) / (1 - key) || 0;
-  let yellow = (1 - blue - key) / (1 - key) || 0;
+  c = (c <= 0 ? 0 : c) * 100;
+  m = (m <= 0 ? 0 : m) * 100;
+  y = (y <= 0 ? 0 : y) * 100;
+  k = k * 100;
 
-  cyan = (cyan <= 0 ? 0 : cyan) * 100;
-  magenta = (magenta <= 0 ? 0 : magenta) * 100;
-  yellow = (yellow <= 0 ? 0 : yellow) * 100;
-  key = key * 100;
+  c = c >= 100 ? 100 : c;
+  m = m >= 100 ? 100 : m;
+  y = y >= 100 ? 100 : y;
 
-  cyan = cyan >= 100 ? 100 : cyan;
-  magenta = magenta >= 100 ? 100 : magenta;
-  yellow = yellow >= 100 ? 100 : yellow;
-
-  return { cyan, magenta, yellow, key };
+  return { cyan: c, magenta: m, yellow: y, key: k };
 };
 
 export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {

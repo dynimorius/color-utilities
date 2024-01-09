@@ -1,7 +1,32 @@
-import { isWebSafe } from './../helpers/index';
-import { getRange, rgbToAnsi16, rgbToAnsi256, rgbToCmyk, rgbToHcgPrefactored, rgbToHex, rgbToHslPrefactored, rgbToHsvPrefactored, rgbToHue, rgbToHwbPrefactored, rgbToLab, rgbToSrgb, rgbToXyz } from "../converters/rgb-converter";
-import { CMYK, HCG, HSL, HSV, HWB, LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
-import { labToLch } from '../converters/lab-converter';
+import { isWebSafe } from "./../helpers/index";
+import {
+  getRange,
+  rgbToAnsi16,
+  rgbToAnsi256,
+  rgbToCmyk,
+  rgbToHcgPrefactored,
+  rgbToHex,
+  rgbToHslPrefactored,
+  rgbToHsvPrefactored,
+  rgbToHue,
+  rgbToHwbPrefactored,
+  rgbToLab,
+  rgbToSrgb,
+  rgbToXyz,
+} from "../converters/rgb-converter";
+import {
+  CMYK,
+  HCG,
+  HSL,
+  HSV,
+  HWB,
+  LAB,
+  LCH,
+  RGB,
+  XYZ,
+} from "../interfaces/color-spaces.interface";
+import { labToLch } from "../converters/lab-converter";
+import { ColorExtendedData } from "../interfaces/color-data.interface";
 
 export class RGBResolver {
   alpha!: number;
@@ -40,5 +65,26 @@ export class RGBResolver {
     this.xyz = rgbToXyz(rgb);
     this.webSafe = isWebSafe(rgb);
     // this.outOfGamut = isisOutOfGamut(rgb);
+  }
+
+  data(): ColorExtendedData {
+    return {
+      alpha: this.alpha,
+      ansi16: this.ansi16,
+      ansi256: this.ansi256,
+      cmyk: this.cmyk,
+      hcg: this.hcg,
+      hex: this.hex,
+      hsl: this.hsl,
+      hsv: this.hsv,
+      hwb: this.hwb,
+      lab: this.lab,
+      lch: this.lch,
+      outOfGamut: this.outOfGamut,
+      rgb: this.rgb,
+      srgb: this.srgb,
+      webSafe: this.webSafe,
+      xyz: this.xyz
+    }
   }
 }

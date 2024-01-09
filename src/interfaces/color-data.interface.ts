@@ -27,7 +27,7 @@ export interface ColorExtendedData {
   cmyk: CMYK;
   hcg: HCG;
   hex: string;
-  hsb: HSB;
+  hsb?: HSB;
   hsl: HSL;
   hsv: HSV;
   hwb: HWB;
