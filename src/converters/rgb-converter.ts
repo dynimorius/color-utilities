@@ -122,6 +122,22 @@ export const rgbToHsl = (rgb: RGB): HSL => {
   return { hue, saturation, lightness };
 };
 
+export const rgbToHslPrefactored = (rgb: RGB, hue: number): HSL => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  const { min, max, delta } = getRange(red, green, blue);
+  let lightness = (max + min) / 2;
+  let saturation = 0;
+  if (!delta) {
+    return { hue, saturation, lightness };
+  } else {
+    saturation = formatValue(
+      lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
+    );
+  }
+  lightness = formatValue(lightness);
+  return { hue, saturation, lightness };
+};
+
 export const rgbToHsv = (rgb: RGB): HSV => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { max, delta } = getRange(red, green, blue);
@@ -138,10 +154,32 @@ export const rgbToHsv = (rgb: RGB): HSV => {
   return { hue, saturation, value };
 };
 
+export const rgbToHsvPrefactored = (rgb: RGB, hue: number): HSV => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  const { max, delta } = getRange(red, green, blue);
+
+  let value = formatValue(max);
+  let saturation = formatValue(max === 0 ? 0 : delta / max);
+
+  if (!delta) {
+    return { hue, saturation, value };
+  }
+  return { hue, saturation, value };
+};
+
 export const rgbToHwb = (rgb: RGB): HWB => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { max, delta } = getRange(red, green, blue);
   const hue = rgbToHue(red, green, blue, max, delta);
+  const whiteness =
+    (1 / 255) * Math.min(rgb.red, Math.min(rgb.green, rgb.blue)) * 100;
+  const blackness =
+    (1 - (1 / 255) * Math.max(rgb.red, Math.max(rgb.green, rgb.blue))) * 100;
+
+  return { hue, whiteness, blackness };
+};
+
+export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
   const whiteness =
     (1 / 255) * Math.min(rgb.red, Math.min(rgb.green, rgb.blue)) * 100;
   const blackness =
