@@ -1,25 +1,16 @@
+import { LAB_FT } from "../constants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
-import { LAB_FT } from "../shared";
+
 
 export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
-  let x;
-  let y;
-  let z;
-
-  y = (luminance + 16) / 116;
-  x = a / 500 + y;
-  z = y - b / 200;
-
-  const y2 = y ** 3;
-  const x2 = x ** 3;
-  const z2 = z ** 3;
-  y = y2 > LAB_FT ? y2 : (y - 16 / 116) / 7.787;
-  x = x2 > LAB_FT ? x2 : (x - 16 / 116) / 7.787;
-  z = z2 > LAB_FT ? z2 : (z - 16 / 116) / 7.787;
-
-  x *= 95.047;
-  y *= 100;
-  z *= 108.883;
+  const f = (t: number): number => {
+    const t3 = t ** 3;
+    return t3 > LAB_FT ? t3 : (t - 0.137) / 7.787;
+  };
+  const y2 = (luminance + 16) / 116;
+  const x = f(a / 500 + y2) * 95.047;
+  const z = f(y2 - b / 200) * 108.883;
+  const y = f(y2) * 100;
 
   return { x, y, z };
 };

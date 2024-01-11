@@ -1,5 +1,5 @@
 import { HCG, HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
-import { hueToRorGorB } from "./hue-converter";
+import { hueToRGB } from "./hue-converter";
 
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   hue = hue / 360;
@@ -15,10 +15,10 @@ export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
       ? lightness * (1 + saturation)
       : lightness + saturation - lightness * saturation;
   const p = 2 * lightness - q;
-  const red = hueToRorGorB(p, q, hue + 1 / 3) * 255;
-  const green = hueToRorGorB(p, q, hue) * 255;
-  const blue = hueToRorGorB(p, q, hue - 1 / 3) * 255;
-  
+  const red = hueToRGB(p, q, hue + 1 / 3) * 255;
+  const green = hueToRGB(p, q, hue) * 255;
+  const blue = hueToRGB(p, q, hue - 1 / 3) * 255;
+
   return { red, green, blue };
 };
 
@@ -32,14 +32,14 @@ export const hslToSrgb = ({ hue, saturation, lightness }: HSL): RGB => {
   saturation /= 100;
   lightness /= 100;
 
-  function f (n: number) {
+  function f(n: number) {
     let k = (n + hue / 30) % 12;
     let a = saturation * Math.min(lightness, 1 - lightness);
     return lightness - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
   }
 
   return { red: f(0), green: f(8), blue: f(4) };
-}
+};
 
 export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   saturation = saturation / 100;

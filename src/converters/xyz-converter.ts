@@ -1,5 +1,20 @@
+import { LAB_FT, TRISTIMULUS_D50 } from "../constants";
 import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
-import { LAB_FT } from "../shared";
+import { ColorArray } from "../types";
+
+const from_CIE_XYZ_D50_to_CIE_LAB = (
+  x: number,
+  y: number,
+  z: number
+): ColorArray => {
+  const f = (t: number): number => {
+    return t > (6 / 29) ** 3 ? Math.cbrt(t) : t / (3 * (6 / 29) ** 2) + 4 / 29;
+  };
+  const fx = f(x / TRISTIMULUS_D50[0]);
+  const fy = f(y / TRISTIMULUS_D50[1]);
+  const fz = f(z / TRISTIMULUS_D50[2]);
+  return [116 * fy - 16, 500 * (fx - fy), 200 * (fy - fz)];
+};
 
 export const xyzToRgb = ({ x, y, z }: XYZ): RGB => {
   x = x / 100;

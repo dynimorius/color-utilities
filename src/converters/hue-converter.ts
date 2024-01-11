@@ -1,23 +1,19 @@
-export const hueToRorGorB = (p: number, q: number, t: number): number => {
-  if (t < 0) {
-    t += 1;
-  }
+import { round } from "../helpers";
 
-  if (t > 1) {
-    t -= 1;
+export const hueToRGB = (t1: number, t2: number, hue: number): number => {
+  if (hue < 0) {
+    hue += 6;
   }
-
-  if (t < 1 / 6) {
-    return p + (q - p) * (6 * t);
+  if (hue >= 6) {
+    hue -= 6;
   }
-
-  if (t < 1 / 2) {
-    return q;
+  if (hue < 1) {
+    return round(((t2 - t1) * hue + t1) * 255);
+  } else if (hue < 3) {
+    return round(t2 * 255);
+  } else if (hue < 4) {
+    return round(((t2 - t1) * (4 - hue) + t1) * 255);
+  } else {
+    return round(t1 * 255);
   }
-
-  if (t < 2 / 3) {
-    return p + (q - p) * (2 / 3 - t) * 6;
-  }
-
-  return p;
 };

@@ -1,6 +1,6 @@
 import { RGB } from "../interfaces/color-spaces.interface";
+import { Spaces } from "../types";
 import { ColorResolver } from "./color-resolver";
-import { Spaces } from "../types/space-union";
 
 export class RGBResolver extends ColorResolver {
   constructor(color: RGB, resolv?: Spaces[]) {

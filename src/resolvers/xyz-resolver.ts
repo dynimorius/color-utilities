@@ -1,5 +1,5 @@
 import { XYZ } from "../interfaces/color-spaces.interface";
-import { Spaces } from "../types/space-union";
+import { Spaces } from "../types";
 import { ColorResolver } from "./color-resolver";
 
 export class XYZResolver extends ColorResolver {

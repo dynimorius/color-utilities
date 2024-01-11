@@ -1,14 +1,16 @@
 import { rgbConverters, toRgbConverters } from "./convertor-map";
-import { RGB } from "../interfaces/color-spaces.interface";
-import { ColorSpaceUnion, Spaces } from "../types/space-union";
+import { LAB, RGB } from "../interfaces/color-spaces.interface";
+
 import {
   RGBConverters,
   ToRGBConverters,
 } from "../interfaces/converters.interface";
 import { ColorExtendedData } from "../interfaces/color-data.interface";
+import { ColorSpaceUnion, Spaces } from "../types";
 
 export class ColorResolver {
-  rgb?: RGB;
+  rgb!: RGB;
+  lab?: LAB;
 
   constructor(space: Spaces, color: ColorSpaceUnion, resolv?: Spaces[]) {
     resolv = resolv
@@ -36,7 +38,8 @@ export class ColorResolver {
     }
     for (let resolution of resolv) {
       const fun = rgbConverters[resolution as keyof RGBConverters] as Function;
-      if (fun) this[resolution as keyof this] = fun(this.rgb);
+      if (resolution === 'lch' && fun && this.lab) this[resolution as keyof this] = fun(this.lab) 
+      else if (fun && resolution !== 'lch') this[resolution as keyof this] = fun(this.rgb);
     }
   }
 

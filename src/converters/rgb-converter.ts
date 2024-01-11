@@ -1,3 +1,5 @@
+import { LAB_FT, MATRIX_LRGB_XYZ_D50, NORMALIZED_BELOW_10 } from "../constants";
+import { round } from "../helpers";
 import {
   CMYK,
   HCG,
@@ -9,7 +11,7 @@ import {
   RGBA,
   XYZ,
 } from "../interfaces/color-spaces.interface";
-import { LAB_FT, NORMALIZED_BELOW_10 } from "../shared";
+import { ColorArray } from "../types";
 import { decimalToHex } from "./number-converter";
 
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
@@ -74,6 +76,19 @@ export const rgbToHue = (
   hue = Math.round(hue);
   return hue;
 };
+
+// RGB to linear-light RGB
+export const rgbToLinearLightRGB = (value: number): number => {
+  return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
+};
+
+export const linearLightRGBToRGB = (value: number): number => {
+  return value <= 0.0031308
+    ? 12.92 * value
+    : 1.055 * value ** (1 / 2.4) - 0.055;
+};
+
+
 
 //TODO fix incorect
 export const tosRBG = (value: number): number =>
@@ -198,21 +213,13 @@ export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
 export const rgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
 
-  let k = Math.min(1 - red, 1 - green, 1 - blue);
-  let c = (1 - red - k) / (1 - k) || 0;
-  let m = (1 - green - k) / (1 - k) || 0;
-  let y = (1 - blue - k) / (1 - k) || 0;
-
-  c = (c <= 0 ? 0 : c) * 100;
-  m = (m <= 0 ? 0 : m) * 100;
-  y = (y <= 0 ? 0 : y) * 100;
-  k = k * 100;
-
-  c = c >= 100 ? 100 : c;
-  m = m >= 100 ? 100 : m;
-  y = y >= 100 ? 100 : y;
-
-  return { cyan: c, magenta: m, yellow: y, key: k };
+  let key = 1 - Math.max(red, green, blue);
+  const K1 = 1 - key;
+  const cyan = round((K1 && (K1 - red) / K1) * 100);
+  const magenta = round((K1 && (K1 - green) / K1) * 100);
+  const yellow = round((K1 && (K1 - blue) / K1) * 100);
+  key = key * 100;
+  return { cyan, magenta, yellow, key };
 };
 
 export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
@@ -283,7 +290,6 @@ export const rgbToAnsi16 = (
   return ansi;
 };
 
-//TODO fix incorect
 export const rgbToAnsi256 = ({ red, green, blue }: RGB): number => {
   if (red >> 4 === green >> 4 && green >> 4 === blue >> 4) {
     if (red < 8) {

@@ -56,3 +56,5 @@ export type initialSpaces =
   | "hwb"
   | "rgb"
   | "xyz";
+  
+export type ColorArray = [number, number, number];
