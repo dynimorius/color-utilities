@@ -1,5 +1,5 @@
 import { rgbConverters, toRgbConverters } from "./convertor-map";
-import { LAB, RGB } from "../interfaces/color-spaces.interface";
+import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import {
   RGBConverters,
@@ -10,7 +10,8 @@ import { ColorSpaceUnion, Spaces } from "../types";
 
 export class ColorResolver {
   rgb!: RGB;
-  lab?: LAB;
+  lab!: LAB;
+  xyz!: XYZ;
 
   constructor(space: Spaces, color: ColorSpaceUnion, resolv?: Spaces[]) {
     resolv = resolv

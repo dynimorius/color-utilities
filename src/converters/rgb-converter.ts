@@ -1,4 +1,4 @@
-import { LAB_FT, MATRIX_LRGB_XYZ_D50, NORMALIZED_BELOW_10 } from "../constants";
+import { LAB_FT, NORMALIZED_BELOW_10 } from "../constants";
 import { round } from "../helpers";
 import {
   CMYK,
@@ -11,7 +11,6 @@ import {
   RGBA,
   XYZ,
 } from "../interfaces/color-spaces.interface";
-import { ColorArray } from "../types";
 import { decimalToHex } from "./number-converter";
 
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
@@ -76,19 +75,6 @@ export const rgbToHue = (
   hue = Math.round(hue);
   return hue;
 };
-
-// RGB to linear-light RGB
-export const rgbToLinearLightRGB = (value: number): number => {
-  return value <= 0.04045 ? value / 12.92 : ((value + 0.055) / 1.055) ** 2.4;
-};
-
-export const linearLightRGBToRGB = (value: number): number => {
-  return value <= 0.0031308
-    ? 12.92 * value
-    : 1.055 * value ** (1 / 2.4) - 0.055;
-};
-
-
 
 //TODO fix incorect
 export const tosRBG = (value: number): number =>
@@ -232,11 +218,12 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 
 export const rgbToXyz = (rgb: RGB): XYZ => {
   let { red, green, blue } = normalizeRgb(rgb);
-
-  // Assume sRGB
-  red = red > 0.04045 ? ((red + 0.055) / 1.055) ** 2.4 : red / 12.92;
-  green = green > 0.04045 ? ((green + 0.055) / 1.055) ** 2.4 : green / 12.92;
-  blue = blue > 0.04045 ? ((blue + 0.055) / 1.055) ** 2.4 : blue / 12.92;
+  const f = (t: number): number => {
+    return t > 0.04045 ? ((t + 0.055) / 1.055) ** 2.4 : t / 12.92;
+  };
+  red = f(red);
+  green = f(green);
+  blue = f(blue);
 
   const x = (red * 0.4124564 + green * 0.3575761 + blue * 0.1804375) * 100;
   const y = (red * 0.2126729 + green * 0.7151522 + blue * 0.072175) * 100;
@@ -247,14 +234,13 @@ export const rgbToXyz = (rgb: RGB): XYZ => {
 
 export const rgbToLab = (rgb: RGB): LAB => {
   let { x, y, z } = rgbToXyz(rgb);
+  const f = (t: number): number => {
+    return t > LAB_FT ? t ** 0.333333 : 7.787 * x + 16 / 116;
+  };
 
-  x /= 95.047;
-  y /= 100;
-  z /= 108.883;
-
-  x = x > LAB_FT ? x ** (1 / 3) : 7.787 * x + 16 / 116;
-  y = y > LAB_FT ? y ** (1 / 3) : 7.787 * y + 16 / 116;
-  z = z > LAB_FT ? z ** (1 / 3) : 7.787 * z + 16 / 116;
+  x = f(x / 95.047);
+  y = f(y / 100);
+  z = f(z / 108.883);
 
   const luminance = 116 * y - 16;
   const a = 500 * (x - y);
