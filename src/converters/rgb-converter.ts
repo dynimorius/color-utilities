@@ -1,5 +1,5 @@
-import { LAB_FT, NORMALIZED_BELOW_10 } from "../constants";
-import { round } from "../helpers";
+import { NORMALIZED_BELOW_10 } from "../constants";
+import { formatValue, round } from "../helpers";
 import {
   CMYK,
   HCG,
@@ -7,11 +7,14 @@ import {
   HSV,
   HWB,
   LAB,
+  LCH,
   RGB,
   RGBA,
   XYZ,
 } from "../interfaces/color-spaces.interface";
+import { labToLch } from "./lab-converter";
 import { decimalToHex } from "./number-converter";
+import { xyzToLab } from "./xyz-converter";
 
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
   red: red / 255,
@@ -31,8 +34,6 @@ export const rgbInvert = ({ red, green, blue }: RGB): RGB => ({
   green: 255 - green,
   blue: 255 - blue,
 });
-
-export const formatValue = (value: number): number => Math.round(value * 100);
 
 export const getRange = (
   red: number,
@@ -92,24 +93,13 @@ export const rgbToSrgb = (rgb: RGB): RGB => {
   };
 };
 
-export const sRgbToLuminance = ({ red, green, blue }: RGB): number => {
-  return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
-};
+export const sRgbToLuminance = ({ red, green, blue }: RGB): number =>
+  0.2126 * red + 0.7152 * green + 0.0722 * blue;
 
 export const rgbToLuminance = (rgb: RGB): number =>
   sRgbToLuminance(rgbToSrgb(rgb));
 
-export const rgbToRgba = (rgb: RGB): RGBA => {
-  const { red, green, blue } = normalizeRgb(rgb);
-  return {
-    red,
-    green,
-    blue,
-    alpha: 1,
-  };
-};
-
-export const rgbToHsl = (rgb: RGB): HSL => {
+export const rgbToHsl = (rgb: RGB, pHue?: number): HSL => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { min, max, delta } = getRange(red, green, blue);
 
@@ -117,36 +107,19 @@ export const rgbToHsl = (rgb: RGB): HSL => {
   let hue = 0;
   let saturation = 0;
 
-  if (!delta) {
-    return { hue, saturation, lightness };
-  } else {
-    saturation = formatValue(
+  if (!delta) return { hue, saturation, lightness };
+  else saturation = formatValue(
       lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
-    );
-  }
+  );
+  
+  if (!pHue) hue = rgbToHue(red, green, blue, max, delta);
+  else hue = pHue;
 
-  hue = rgbToHue(red, green, blue, max, delta);
   lightness = formatValue(lightness);
   return { hue, saturation, lightness };
 };
 
-export const rgbToHslPrefactored = (rgb: RGB, hue: number): HSL => {
-  const { red, green, blue } = normalizeRgb(rgb);
-  const { min, max, delta } = getRange(red, green, blue);
-  let lightness = (max + min) / 2;
-  let saturation = 0;
-  if (!delta) {
-    return { hue, saturation, lightness };
-  } else {
-    saturation = formatValue(
-      lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
-    );
-  }
-  lightness = formatValue(lightness);
-  return { hue, saturation, lightness };
-};
-
-export const rgbToHsv = (rgb: RGB): HSV => {
+export const rgbToHsv = (rgb: RGB, pHue?: number): HSV => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { max, delta } = getRange(red, green, blue);
 
@@ -154,40 +127,22 @@ export const rgbToHsv = (rgb: RGB): HSV => {
   let value = formatValue(max);
   let saturation = formatValue(max === 0 ? 0 : delta / max);
 
-  if (!delta) {
-    return { hue, saturation, value };
-  }
-  hue = rgbToHue(red, green, blue, max, delta);
+  if (!delta) return { hue, saturation, value };
+
+  if (!pHue) hue = rgbToHue(red, green, blue, max, delta);
+  else hue = pHue;
 
   return { hue, saturation, value };
 };
 
-export const rgbToHsvPrefactored = (rgb: RGB, hue: number): HSV => {
+export const rgbToHwb = (rgb: RGB, pHue?: number): HWB => {
   const { red, green, blue } = normalizeRgb(rgb);
-  const { max, delta } = getRange(red, green, blue);
+  let hue!: number;
+  if (!pHue) {
+    const { max, delta } = getRange(red, green, blue);
+    hue = rgbToHue(red, green, blue, max, delta);
+  } else hue = pHue;
 
-  let value = formatValue(max);
-  let saturation = formatValue(max === 0 ? 0 : delta / max);
-
-  if (!delta) {
-    return { hue, saturation, value };
-  }
-  return { hue, saturation, value };
-};
-
-export const rgbToHwb = (rgb: RGB): HWB => {
-  const { red, green, blue } = normalizeRgb(rgb);
-  const { max, delta } = getRange(red, green, blue);
-  const hue = rgbToHue(red, green, blue, max, delta);
-  const whiteness =
-    (1 / 255) * Math.min(rgb.red, Math.min(rgb.green, rgb.blue)) * 100;
-  const blackness =
-    (1 - (1 / 255) * Math.max(rgb.red, Math.max(rgb.green, rgb.blue))) * 100;
-
-  return { hue, whiteness, blackness };
-};
-
-export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
   const whiteness =
     (1 / 255) * Math.min(rgb.red, Math.min(rgb.green, rgb.blue)) * 100;
   const blackness =
@@ -198,14 +153,11 @@ export const rgbToHwbPrefactored = (rgb: RGB, hue: number): HWB => {
 
 export const rgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
-
   let key = 1 - Math.max(red, green, blue);
   const K1 = 1 - key;
-  const cyan = round((K1 && (K1 - red) / K1) * 100);
-  const magenta = round((K1 && (K1 - green) / K1) * 100);
-  const yellow = round((K1 && (K1 - blue) / K1) * 100);
-  key = key * 100;
-  return { cyan, magenta, yellow, key };
+  const f = (t: number): number => round((K1 && (K1 - t) / K1) * 100);
+
+  return { cyan: f(red), magenta: f(green), yellow: f(blue), key: key * 100 };
 };
 
 export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
@@ -218,9 +170,9 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 
 export const rgbToXyz = (rgb: RGB): XYZ => {
   let { red, green, blue } = normalizeRgb(rgb);
-  const f = (t: number): number => {
-    return t > 0.04045 ? ((t + 0.055) / 1.055) ** 2.4 : t / 12.92;
-  };
+  const f = (t: number): number =>
+    t > 0.04045 ? ((t + 0.055) / 1.055) ** 2.4 : t / 12.92;
+
   red = f(red);
   green = f(green);
   blue = f(blue);
@@ -233,20 +185,17 @@ export const rgbToXyz = (rgb: RGB): XYZ => {
 };
 
 export const rgbToLab = (rgb: RGB): LAB => {
-  let { x, y, z } = rgbToXyz(rgb);
-  const f = (t: number): number => {
-    return t > LAB_FT ? t ** 0.333333 : 7.787 * x + 16 / 116;
-  };
-
-  x = f(x / 95.047);
-  y = f(y / 100);
-  z = f(z / 108.883);
-
-  const luminance = 116 * y - 16;
-  const a = 500 * (x - y);
-  const b = 200 * (y - z);
+  let xyz = rgbToXyz(rgb);
+  const { luminance, a, b } = xyzToLab(xyz);
 
   return { luminance, a, b };
+};
+
+export const rgbToLch = (rgb: RGB): LCH => {
+  let xyz = rgbToXyz(rgb);
+  const lab = xyzToLab(xyz);
+
+  return labToLch(lab);
 };
 
 //TODO fix incorect

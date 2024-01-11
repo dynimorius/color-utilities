@@ -1,5 +1,5 @@
 import { rgbConverters, toRgbConverters } from "./convertor-map";
-import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
+import { CMYK, LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import {
   RGBConverters,
@@ -11,7 +11,10 @@ import { ColorSpaceUnion, Spaces } from "../types";
 export class ColorResolver {
   rgb!: RGB;
   lab!: LAB;
+  lch!: LCH;
   xyz!: XYZ;
+  cmyk!: CMYK;
+
 
   constructor(space: Spaces, color: ColorSpaceUnion, resolv?: Spaces[]) {
     resolv = resolv
@@ -37,10 +40,16 @@ export class ColorResolver {
       ] as Function;
       this.rgb = toRGBConFun(color);
     }
+    if (resolv.some(i => ['xyz', 'lab', 'lch'].includes(i))) {
+      this.xyz = (rgbConverters.xyz as Function)(this.rgb);
+      this.lab = (rgbConverters.lab as Function)(this.xyz);
+      this.lch = (rgbConverters.lch as Function)(this.lab);
+    } 
     for (let resolution of resolv) {
-      const fun = rgbConverters[resolution as keyof RGBConverters] as Function;
-      if (resolution === 'lch' && fun && this.lab) this[resolution as keyof this] = fun(this.lab) 
-      else if (fun && resolution !== 'lch') this[resolution as keyof this] = fun(this.rgb);
+      if (resolution !== "xyz" && resolution !== "lch" && resolution !== 'lab') {
+        const fun = rgbConverters[resolution as keyof RGBConverters] as Function;
+        this[resolution as keyof this] = fun(this.rgb);
+      }
     }
   }
 
