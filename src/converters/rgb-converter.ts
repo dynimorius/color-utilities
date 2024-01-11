@@ -75,11 +75,13 @@ export const rgbToHue = (
   return hue;
 };
 
+//TODO fix incorect
 export const tosRBG = (value: number): number =>
   value > NORMALIZED_BELOW_10
     ? Math.pow((value + 0.055) / 1.055, 2.4)
     : value / 12.92;
 
+//TODO fix incorect
 export const rgbToSrgb = (rgb: RGB): RGB => {
   const { red, green, blue } = normalizeRgb(rgb);
   return {
@@ -89,12 +91,12 @@ export const rgbToSrgb = (rgb: RGB): RGB => {
   };
 };
 
-export const srgbToLuminance = ({ red, green, blue }: RGB): number => {
+export const sRgbToLuminance = ({ red, green, blue }: RGB): number => {
   return 0.2126 * red + 0.7152 * green + 0.0722 * blue;
 };
 
 export const rgbToLuminance = (rgb: RGB): number =>
-  srgbToLuminance(rgbToSrgb(rgb));
+  sRgbToLuminance(rgbToSrgb(rgb));
 
 export const rgbToRgba = (rgb: RGB): RGBA => {
   const { red, green, blue } = normalizeRgb(rgb);
@@ -254,6 +256,7 @@ export const rgbToLab = (rgb: RGB): LAB => {
   return { luminance, a, b };
 };
 
+//TODO fix incorect
 export const rgbToAnsi16 = (
   rgb: RGB,
   saturation: number | null = null
@@ -280,6 +283,7 @@ export const rgbToAnsi16 = (
   return ansi;
 };
 
+//TODO fix incorect
 export const rgbToAnsi256 = ({ red, green, blue }: RGB): number => {
   if (red >> 4 === green >> 4 && green >> 4 === blue >> 4) {
     if (red < 8) {
