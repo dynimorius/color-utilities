@@ -184,15 +184,19 @@ export const rgbToXyz = (rgb: RGB): XYZ => {
   return { x, y, z };
 };
 
-export const rgbToLab = (rgb: RGB): LAB => {
-  let xyz = rgbToXyz(rgb);
+export const rgbToLab = (rgb: RGB, pXyz?: XYZ): LAB => {
+  let xyz!: XYZ;
+  if (pXyz) xyz = pXyz;
+  else xyz = rgbToXyz(rgb);
   const { luminance, a, b } = xyzToLab(xyz);
 
   return { luminance, a, b };
 };
 
-export const rgbToLch = (rgb: RGB): LCH => {
-  let xyz = rgbToXyz(rgb);
+export const rgbToLch = (rgb: RGB, pXyz?: XYZ): LCH => {
+  let xyz!: XYZ;
+  if (pXyz) xyz = pXyz;
+  else xyz = rgbToXyz(rgb);
   const lab = xyzToLab(xyz);
 
   return labToLch(lab);

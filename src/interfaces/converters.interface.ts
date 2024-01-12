@@ -3,14 +3,10 @@ export interface RGBConverters {
   ansi256?: Function;
   cmyk?: Function;
   hcg?: Function;
-  alt_hcg?: Function;
   hex?: Function;
   hsl?: Function;
-  alt_hsl?: Function;
   hsv?: Function;
-  alt_hsv?: Function;
   hwb?: Function;
-  alt_hwb?: Function;
   lab?: Function;
   lch?: Function;
   rgb?:  Function;
@@ -18,6 +14,7 @@ export interface RGBConverters {
   webSafe?:  Function;
   xyz?:  Function;
 }
+
 
 export interface ToRGBConverters {
   hex: Function;

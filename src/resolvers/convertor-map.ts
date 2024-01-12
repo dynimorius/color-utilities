@@ -5,34 +5,33 @@ import {
   rgbToAnsi256,
   rgbToCmyk,
   rgbToHcg,
-  rgbToHcgPrefactored,
   rgbToHex,
   rgbToHsl,
   rgbToHsv,
   rgbToHwb,
+  rgbToLab,
+  rgbToLch,
   rgbToSrgb,
   rgbToXyz,
 } from "../converters/rgb-converter";
-import { labToLch } from "../converters/lab-converter";
 import { isWebSafeRGB } from "../helpers";
 import { hexToRgb } from "../converters/hex-converter";
 import { cmykToRgb } from "../converters/cmyk-converter";
 import { hslToRgb } from "../converters/hsl-converter";
 import { hsvToRgb } from "../converters/hsv-converter";
-import { xyzToLab, xyzToRgb } from '../converters/xyz-converter';
+import { xyzToRgb } from '../converters/xyz-converter';
 
 export const rgbConverters: RGBConverters = {
   ansi16: rgbToAnsi16,
   ansi256: rgbToAnsi256,
   cmyk: rgbToCmyk,
   hcg: rgbToHcg,
-  alt_hcg: rgbToHcgPrefactored,
   hex: rgbToHex,
   hsl: rgbToHsl,
   hsv: rgbToHsv,
   hwb: rgbToHwb,
-  lab: xyzToLab,
-  lch: labToLch,
+  lab: rgbToLab,
+  lch: rgbToLch,
   srgb: rgbToSrgb,
   xyz: rgbToXyz,
   webSafe: isWebSafeRGB,
