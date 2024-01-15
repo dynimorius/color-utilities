@@ -1,4 +1,4 @@
-import { LAB_FT } from "../constants";
+import { LAB_FT, RGB_MULTIPLIERS } from "../constants";
 import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 export const xyzToRgb = ({ x, y, z }: XYZ): RGB => {
@@ -9,9 +9,9 @@ export const xyzToRgb = ({ x, y, z }: XYZ): RGB => {
   y = y / 100;
   z = z / 100;
 
-  let red = x * 3.2404542 + y * -1.5371385 + z * -0.4985314;
-  let green = x * -0.969266 + y * 1.8760108 + z * 0.041556;
-  let blue = x * 0.0556434 + y * -0.2040259 + z * 1.0572252;
+  let red = x * RGB_MULTIPLIERS.R.x + y * RGB_MULTIPLIERS.R.y + z * RGB_MULTIPLIERS.R.z;
+  let green = x * RGB_MULTIPLIERS.G.x + y * RGB_MULTIPLIERS.G.y + z * RGB_MULTIPLIERS.G.z;
+  let blue = x * RGB_MULTIPLIERS.B.x + y * RGB_MULTIPLIERS.B.y + z * RGB_MULTIPLIERS.B.z;
 
   red = Math.round(Math.min(Math.max(0, f(red)), 1) * 255);
   green = Math.round(Math.min(Math.max(0, f(green)), 1) * 255);

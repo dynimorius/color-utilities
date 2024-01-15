@@ -1,5 +1,5 @@
-import { NORMALIZED_BELOW_10 } from "../constants";
-import { formatValue, round } from "../helpers";
+import { NORMALIZED_BELOW_10, XYZ_MULTIPLIERS } from "../constants";
+import { formatValue } from "../helpers";
 import {
   CMYK,
   HCG,
@@ -155,7 +155,7 @@ export const rgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
   let key = 1 - Math.max(red, green, blue);
   const K1 = 1 - key;
-  const f = (t: number): number => round((K1 && (K1 - t) / K1) * 100);
+  const f = (t: number): number => Math.round((K1 && (K1 - t) / K1) * 100);
 
   return { cyan: f(red), magenta: f(green), yellow: f(blue), key: key * 100 };
 };
@@ -177,9 +177,9 @@ export const rgbToXyz = (rgb: RGB): XYZ => {
   green = f(green);
   blue = f(blue);
 
-  const x = (red * 0.4124564 + green * 0.3575761 + blue * 0.1804375) * 100;
-  const y = (red * 0.2126729 + green * 0.7151522 + blue * 0.072175) * 100;
-  const z = (red * 0.0193339 + green * 0.119192 + blue * 0.9503041) * 100;
+  const x = (red * XYZ_MULTIPLIERS.X.r + green * XYZ_MULTIPLIERS.X.g + blue * XYZ_MULTIPLIERS.X.b) * 100;
+  const y = (red * XYZ_MULTIPLIERS.Y.r + green * XYZ_MULTIPLIERS.Y.g + blue * XYZ_MULTIPLIERS.Y.b) * 100;
+  const z = (red * XYZ_MULTIPLIERS.Z.r + green * XYZ_MULTIPLIERS.Z.g + blue * XYZ_MULTIPLIERS.Z.b) * 100;
 
   return { x, y, z };
 };

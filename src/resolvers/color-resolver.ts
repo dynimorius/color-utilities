@@ -6,7 +6,7 @@ import {
   ToRGBConverters,
 } from "../interfaces/converters.interface";
 import { ColorExtendedData } from "../interfaces/color-data.interface";
-import { ColorSpaceUnion, Spaces,} from "../types";
+import { ColorSpaceUnion, Spaces } from "../types";
 
 export class ColorResolver {
   rgb!: RGB;
@@ -15,23 +15,24 @@ export class ColorResolver {
   xyz?: XYZ;
   cmyk!: CMYK;
 
-  constructor(space: Spaces, color: ColorSpaceUnion, resolv?: Spaces[]) {
-    resolv = resolv
-      ? resolv
-      : [
-          "ansi16",
-          "ansi256",
-          "cmyk",
-          "hcg",
-          "hex",
-          "hsl",
-          "hsv",
-          "hwb",
-          "lab",
-          "lch",
-          "xyz",
-          "webSafe",
-        ];
+  constructor(
+    space: Spaces,
+    color: ColorSpaceUnion,
+    resolv: Spaces[] = [
+      "ansi16",
+      "ansi256",
+      "cmyk",
+      "hcg",
+      "hex",
+      "hsl",
+      "hsv",
+      "hwb",
+      "lab",
+      "lch",
+      "xyz",
+      "webSafe",
+    ]
+  ) {
     this[space as keyof this] = color as any;
 
     if (!this.rgb)
