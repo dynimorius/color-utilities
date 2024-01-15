@@ -1,4 +1,4 @@
-import { CIE_ϵ, SPACE_MATRICES } from "../constants";
+import { CIE_κ, CIE_ϵ, REFERENCE_WHITES, SPACE_MATRICES } from "../constants";
 import { gammaAdobeRgb, gammaSrbg } from "../helpers";
 import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
@@ -39,12 +39,12 @@ export const xyzToAdobeRgb = ({ x, y, z }: XYZ): RGB => {
 
 export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
   const f = (t: number): number => {
-    return t > CIE_ϵ ? Math.cbrt(t) : 7.787 * t + 0.13793;
+    return t > CIE_ϵ ? Math.cbrt(t) : (CIE_κ * t + 16) / 116;
   };
 
-  x = f(x / 95.047);
-  y = f(y / 100);
-  z = f(z / 108.883);
+  x = f(x / (REFERENCE_WHITES.D65.X * 100));
+  y = f(y / (REFERENCE_WHITES.D65.Y * 100));
+  z = f(z / (REFERENCE_WHITES.D65.Z * 100));
 
   const luminance = 116 * y - 16;
   const a = 500 * (x - y);
