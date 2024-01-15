@@ -1,21 +1,38 @@
-import { LAB_FT, RGB_MULTIPLIERS } from "../constants";
+import { LAB_FT, SPACE_MATRICES } from "../constants";
+import { gammaAdobeRgb, gammaSrbg } from "../helpers";
 import { LAB, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 export const xyzToRgb = ({ x, y, z }: XYZ): RGB => {
-  const f = (t: number): number => {
-    return t > 0.0031308 ? 1.055 * t ** 0.416666 - 0.055 : t * 12.92;
-  };
+  x = x / 100;
+  y = y / 100;
+  z = z / 100;
+  
+  const { R, G, B } = SPACE_MATRICES.SRGB.XYZ_TO_RGB;
+  let red = x * R.x + y * R.y + z * R.z;
+  let green = x * G.x + y * G.y + z * G.z;
+  let blue = x * B.x + y * B.y + z * B.z; 
+
+  red = Math.round(gammaSrbg(red));
+  green = Math.round(gammaSrbg(green));
+  blue = Math.round(gammaSrbg(blue));
+
+  return { red, green, blue };
+};
+
+export const xyzToAdobeRgb = ({ x, y, z }: XYZ): RGB => {
   x = x / 100;
   y = y / 100;
   z = z / 100;
 
-  let red = x * RGB_MULTIPLIERS.R.x + y * RGB_MULTIPLIERS.R.y + z * RGB_MULTIPLIERS.R.z;
-  let green = x * RGB_MULTIPLIERS.G.x + y * RGB_MULTIPLIERS.G.y + z * RGB_MULTIPLIERS.G.z;
-  let blue = x * RGB_MULTIPLIERS.B.x + y * RGB_MULTIPLIERS.B.y + z * RGB_MULTIPLIERS.B.z;
+  const { R, G, B } = SPACE_MATRICES.ADOBE_RGB_1998.XYZ_TO_RGB;
 
-  red = Math.round(Math.min(Math.max(0, f(red)), 1) * 255);
-  green = Math.round(Math.min(Math.max(0, f(green)), 1) * 255);
-  blue = Math.round(Math.min(Math.max(0, f(blue)), 1) * 255);
+  let red = x * R.x + y * R.y + z * R.z;
+  let green = x * G.x + y * G.y + z * G.z;
+  let blue = x * B.x + y * B.y + z * B.z;
+
+  red = Math.round(gammaAdobeRgb(red));
+  green = Math.round(gammaAdobeRgb(green));
+  blue = Math.round(gammaAdobeRgb(blue));
 
   return { red, green, blue };
 };
@@ -35,3 +52,4 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
 
   return { luminance, a, b };
 };
+

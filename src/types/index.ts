@@ -33,6 +33,7 @@ export type ColorSpaceUnion =
   | string;
 
 export type Spaces =
+  | "adobeRgb"
   | "ansi16"
   | "ansi256"
   | "cmyk"
@@ -43,8 +44,8 @@ export type Spaces =
   | "hwb"
   | "lab"
   | "lch"
-  | "rgb"
-  | "srgb"
+  | "rgb_0_1"
+  | "rgb_0_255"
   | "xyz"
   | "webSafe";
 
