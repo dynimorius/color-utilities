@@ -1,17 +1,15 @@
-import { LAB_FT } from "../constants";
+import { CIE_κ, CIE_ϵ, REFERENCE_WHITES } from "../constants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
-
 
 export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
   const f = (t: number): number => {
-    const t3 = t ** 3;
-    return t3 > LAB_FT ? t3 : (t - 0.137) / 7.787;
+    const tQR = Math.cbrt(t);
+    return tQR > CIE_ϵ ? tQR : (116 * t - 16) / CIE_κ;
   };
-  const y2 = (luminance + 16) / 116;
-  const x = f(a / 500 + y2) * 95.047;
-  const z = f(y2 - b / 200) * 108.883;
-  const y = f(y2) * 100;
-
+  const Fy = (luminance + 16) / 116;
+  const x = f(a / 500 + Fy) * (REFERENCE_WHITES.D65.X * 10);
+  const z = f(Fy - b / 200) * (REFERENCE_WHITES.D65.Z * 10);
+  const y = (luminance > CIE_κ * CIE_ϵ ? Math.cbrt(Fy) : luminance / CIE_κ) * (REFERENCE_WHITES.D65.Y * 10);
   return { x, y, z };
 };
 

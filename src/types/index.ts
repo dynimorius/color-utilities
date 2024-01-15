@@ -45,7 +45,7 @@ export type Spaces =
   | "lab"
   | "lch"
   | "rgb_0_1"
-  | "rgb_0_255"
+  | "rgb"
   | "xyz"
   | "webSafe";
 
