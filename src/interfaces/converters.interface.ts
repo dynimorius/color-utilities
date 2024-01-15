@@ -1,4 +1,5 @@
 export interface RGBConverters {
+  adobeRgb?: Function;
   ansi16?: Function;
   ansi256?: Function;
   cmyk?: Function;
@@ -10,7 +11,8 @@ export interface RGBConverters {
   lab?: Function;
   lch?: Function;
   rgb?:  Function;
-  srgb?:  Function;
+  rgb_0_1?: Function;
+  rgb_0_255?:  Function;
   webSafe?:  Function;
   xyz?:  Function;
 }

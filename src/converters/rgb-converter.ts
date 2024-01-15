@@ -1,5 +1,5 @@
-import { NORMALIZED_BELOW_10, XYZ_MULTIPLIERS } from "../constants";
-import { formatValue } from "../helpers";
+import { SPACE_MATRICES } from "../constants";
+import { formatValue, linearSRGB } from "../helpers";
 import {
   CMYK,
   HCG,
@@ -14,7 +14,7 @@ import {
 } from "../interfaces/color-spaces.interface";
 import { labToLch } from "./lab-converter";
 import { decimalToHex } from "./number-converter";
-import { xyzToLab } from "./xyz-converter";
+import { xyzToAdobeRgb, xyzToLab } from "./xyz-converter";
 
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
   red: red / 255,
@@ -77,27 +77,22 @@ export const rgbToHue = (
   return hue;
 };
 
-//TODO fix incorect
-export const tosRBG = (value: number): number =>
-  value > NORMALIZED_BELOW_10
-    ? Math.pow((value + 0.055) / 1.055, 2.4)
-    : value / 12.92;
-
-//TODO fix incorect
-export const rgbToSrgb = (rgb: RGB): RGB => {
+export const rgbTo1_0rgb = (rgb: RGB): RGB => {
   const { red, green, blue } = normalizeRgb(rgb);
   return {
-    red: tosRBG(red),
-    green: tosRBG(green),
-    blue: tosRBG(blue),
+    red,
+    green,
+    blue,
   };
+};
+
+export const rgbToAdobeRgb = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): RGB => {
+  const { red, green, blue } = xyzToAdobeRgb(xyz);
+  return { red, green, blue };
 };
 
 export const sRgbToLuminance = ({ red, green, blue }: RGB): number =>
   0.2126 * red + 0.7152 * green + 0.0722 * blue;
-
-export const rgbToLuminance = (rgb: RGB): number =>
-  sRgbToLuminance(rgbToSrgb(rgb));
 
 export const rgbToHsl = (rgb: RGB, pHue?: number): HSL => {
   const { red, green, blue } = normalizeRgb(rgb);
@@ -108,10 +103,11 @@ export const rgbToHsl = (rgb: RGB, pHue?: number): HSL => {
   let saturation = 0;
 
   if (!delta) return { hue, saturation, lightness };
-  else saturation = formatValue(
+  else
+    saturation = formatValue(
       lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
-  );
-  
+    );
+
   if (!pHue) hue = rgbToHue(red, green, blue, max, delta);
   else hue = pHue;
 
@@ -168,19 +164,14 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
   );
 };
 
-export const rgbToXyz = (rgb: RGB): XYZ => {
-  let { red, green, blue } = normalizeRgb(rgb);
-  const f = (t: number): number =>
-    t > 0.04045 ? ((t + 0.055) / 1.055) ** 2.4 : t / 12.92;
-
-  red = f(red);
-  green = f(green);
-  blue = f(blue);
-
-  const x = (red * XYZ_MULTIPLIERS.X.r + green * XYZ_MULTIPLIERS.X.g + blue * XYZ_MULTIPLIERS.X.b) * 100;
-  const y = (red * XYZ_MULTIPLIERS.Y.r + green * XYZ_MULTIPLIERS.Y.g + blue * XYZ_MULTIPLIERS.Y.b) * 100;
-  const z = (red * XYZ_MULTIPLIERS.Z.r + green * XYZ_MULTIPLIERS.Z.g + blue * XYZ_MULTIPLIERS.Z.b) * 100;
-
+export const rgbToXyz = ({ red, green, blue }: RGB): XYZ => {
+  const Rlin = linearSRGB(red);
+  const Glin = linearSRGB(green);
+  const Blin = linearSRGB(blue);
+  const { X, Y, Z } = SPACE_MATRICES.SRGB.RGB_TO_XYZ;
+  const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
+  const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;
+  const z = (Rlin * Z.r + Glin * Z.g + Blin * Z.b) * 100;
   return { x, y, z };
 };
 
@@ -202,7 +193,6 @@ export const rgbToLch = (rgb: RGB, pXyz?: XYZ): LCH => {
   return labToLch(lab);
 };
 
-//TODO fix incorect
 export const rgbToAnsi16 = (
   rgb: RGB,
   saturation: number | null = null
