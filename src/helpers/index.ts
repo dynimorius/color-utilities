@@ -29,15 +29,11 @@ export const gammaSrbg = (value: number): number => {
     : 1.055 * Math.pow(value, 0.416666) - 0.055) * 255;
 };
 
-export const linearAdobeRgb = (value: number) => {
+export const linearRgb = (value: number, gamma: number) => {
   value = value / 255;
-  return Math.pow(value, 2.199);
+  return Math.pow(value, gamma);
 };
 
-export const gammaAdobeRgb = (value: number): number => {
-  return Math.pow(value, 0.454752) * 255;
-};
-
-export const chromaticAdaptation = () => {
-  
+export const gammaRgb = (value: number, gamma: number) => { 
+  return Math.pow(value, 1 / gamma) * 255;
 }
