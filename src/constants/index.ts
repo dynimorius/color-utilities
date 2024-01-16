@@ -217,6 +217,7 @@ export const SPACE_MATRICES = {
   },
 };
 
+
 export const REFERENCE_WHITES = {
   A: { X: 1.0985, Y: 1, Z: 0.35585 },
   B: { X: 0.99072, Y: 1, Z: 0.85223 },
@@ -230,3 +231,4 @@ export const REFERENCE_WHITES = {
   E7: { X: 0.95041, Y: 1, Z: 1.08747 },
   E11: { X: 1.00962, Y: 1, Z: 0.6435 },
 };
+
