@@ -1,5 +1,6 @@
 import { CIE_κ, CIE_ϵ, REFERENCE_WHITES } from "../constants";
 import { LCH, LUV, XYZ } from "../interfaces/color-spaces.interface";
+import { Fu, Fv } from "./xyz-converter";
 
 export const luvToLch_uv = ({ L, u, v }: LUV): LCH => {
   const chroma = Math.sqrt(u * u + v * v);
@@ -9,11 +10,8 @@ export const luvToLch_uv = ({ L, u, v }: LUV): LCH => {
 };
 
 export const luvToXyz = ({ L, u, v }: LUV): XYZ => {
-  const Xn = REFERENCE_WHITES.D65.X;
-  const Yn = REFERENCE_WHITES.D65.Y;
-  const Zn = REFERENCE_WHITES.D65.Z;
-  const v0 = 9 * Yn / (Xn + 15 * Yn + 3 * Zn);
-  const u0 = 4 * Xn / (Xn + 15 * Yn + 3 * Zn);
+  const v0 = Fv({x: REFERENCE_WHITES.D65.X, y: REFERENCE_WHITES.D65.Y, z: REFERENCE_WHITES.D65.Z});
+  const u0 = Fu({x: REFERENCE_WHITES.D65.X, y: REFERENCE_WHITES.D65.Y, z: REFERENCE_WHITES.D65.Z});
   const y = (L > CIE_κ * CIE_ϵ) ? Math.pow((L + 16) / 116, 3) : L / CIE_κ;
   const d = y * (39 * L / (v + 13 * L * v0) - 5) || 0;
   const c = -1 / 3;
@@ -24,3 +22,4 @@ export const luvToXyz = ({ L, u, v }: LUV): XYZ => {
   // Add zero to prevent signed zeros (force 0 rather than -0)
   return { x: x * 100 + 0, y: y * 100 + 0, z: z * 100 + 0};
 };
+
