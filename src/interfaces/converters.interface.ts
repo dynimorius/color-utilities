@@ -9,7 +9,9 @@ export interface RGBConverters {
   hsv?: Function;
   hwb?: Function;
   lab?: Function;
-  lch?: Function;
+  lch_ab?: Function;
+  lch_uv?: Function;
+  luv?: Function;
   rgb?:  Function;
   rgb_0_1?: Function;
   rgb_0_255?:  Function;

@@ -77,6 +77,13 @@ export interface LCH {
   hue: number;
 }
 
+//"L" represents brightness, "U" and "V" represent chroma.
+export interface LUV {
+  L: number;
+  u: number;
+  v: number;
+}
+
 
 
 

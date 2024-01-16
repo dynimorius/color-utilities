@@ -10,6 +10,7 @@ import {
   HWB,
   LAB,
   LCH,
+  LUV,
   RGB,
   RGBA,
   XYZ,
@@ -28,6 +29,7 @@ export type ColorSpaceUnion =
   | HCL
   | LAB
   | LCH
+  | LUV
   | CMYK
   | XYZ
   | string;
@@ -43,7 +45,9 @@ export type Spaces =
   | "hsv"
   | "hwb"
   | "lab"
-  | "lch"
+  | "lch_ab"
+  | "lch_uv"
+  | "luv"
   | "rgb_0_1"
   | "rgb_0_255"
   | "xyz"
