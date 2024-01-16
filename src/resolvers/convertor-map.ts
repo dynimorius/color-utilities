@@ -12,7 +12,9 @@ import {
   rgbToHsv,
   rgbToHwb,
   rgbToLab,
-  rgbToLch,
+  rgbToLch_ab,
+  rgbToLch_uv,
+  rgbToLuv,
   rgbToXyz,
 } from "../converters/rgb-converter";
 import { isWebSafeRGB } from "../helpers";
@@ -33,7 +35,9 @@ export const rgbConverters: RGBConverters = {
   hsv: rgbToHsv,
   hwb: rgbToHwb,
   lab: rgbToLab,
-  lch: rgbToLch,
+  lch_ab: rgbToLch_ab,
+  lch_uv: rgbToLch_uv,
+  luv: rgbToLuv,
   rgb_0_1: rgbTo1_0rgb,
   rgb_0_255: xyzToRgb,
   xyz: rgbToXyz,

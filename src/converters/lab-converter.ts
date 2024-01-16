@@ -15,16 +15,9 @@ export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
   return { x, y, z };
 };
 
-export const labToLch = ({ luminance, a, b }: LAB): LCH => {
-  let hue;
-
+export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
   const hr = Math.atan2(b, a);
-  hue = (hr * 360) / 2 / Math.PI;
-
-  if (hue < 0) {
-    hue += 360;
-  }
-
+  const hue = hr < 0 ? ((hr * 360) / 2 / Math.PI) + 360 : (hr * 360) / 2 / Math.PI;
   const chroma = Math.sqrt(a * a + b * b);
 
   return { lightness: luminance, chroma, hue };

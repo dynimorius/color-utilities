@@ -8,13 +8,15 @@ import {
   HWB,
   LAB,
   LCH,
+  LUV,
   RGB,
   RGBA,
   XYZ,
 } from "../interfaces/color-spaces.interface";
-import { labToLch } from "./lab-converter";
+import { labToLch_ab } from "./lab-converter";
+import { luvToLch_uv } from "./luv-converter";
 import { decimalToHex } from "./number-converter";
-import { xyzToAdobeRgb, xyzToLab } from "./xyz-converter";
+import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-converter";
 
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
   red: red / 255,
@@ -175,23 +177,22 @@ export const rgbToXyz = ({ red, green, blue }: RGB): XYZ => {
   return { x, y, z };
 };
 
-export const rgbToLab = (rgb: RGB, pXyz?: XYZ): LAB => {
-  let xyz!: XYZ;
-  if (pXyz) xyz = pXyz;
-  else xyz = rgbToXyz(rgb);
-  const { luminance, a, b } = xyzToLab(xyz);
-
-  return { luminance, a, b };
+export const rgbToLab = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): LAB => {
+  return xyzToLab(xyz);
 };
 
-export const rgbToLch = (rgb: RGB, pXyz?: XYZ): LCH => {
-  let xyz!: XYZ;
-  if (pXyz) xyz = pXyz;
-  else xyz = rgbToXyz(rgb);
-  const lab = xyzToLab(xyz);
-
-  return labToLch(lab);
+export const rgbToLuv = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): LUV => {
+  return xyzToLuv(xyz);
 };
+
+export const rgbToLch_ab = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): LCH => {
+  return labToLch_ab(xyzToLab(xyz));
+};
+
+export const rgbToLch_uv = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): LCH => {
+  return luvToLch_uv(xyzToLuv(xyz));
+};
+
 
 export const rgbToAnsi16 = (
   rgb: RGB,
