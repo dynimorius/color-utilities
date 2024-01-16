@@ -1,4 +1,4 @@
-import { LAB_FT, SPACE_MATRICES } from "../constants";
+import { CIE_κ, CIE_ϵ, REFERENCE_WHITES, SPACE_MATRICES } from "../constants";
 import { gammaAdobeRgb, gammaSrbg } from "../helpers";
 import { LAB, LUV, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
@@ -6,11 +6,11 @@ export const xyzToRgb = ({ x, y, z }: XYZ): RGB => {
   x = x / 100;
   y = y / 100;
   z = z / 100;
-  
+
   const { R, G, B } = SPACE_MATRICES.SRGB.XYZ_TO_RGB;
   let red = x * R.x + y * R.y + z * R.z;
   let green = x * G.x + y * G.y + z * G.z;
-  let blue = x * B.x + y * B.y + z * B.z; 
+  let blue = x * B.x + y * B.y + z * B.z;
 
   red = Math.round(gammaSrbg(red));
   green = Math.round(gammaSrbg(green));
@@ -39,12 +39,12 @@ export const xyzToAdobeRgb = ({ x, y, z }: XYZ): RGB => {
 
 export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
   const f = (t: number): number => {
-    return t > LAB_FT ? t ** 0.33333 : 7.787 * t + 0.13793;
+    return t > CIE_ϵ ? Math.cbrt(t) : (CIE_κ * t + 16) / 116;
   };
 
-  x = f(x / 95.047);
-  y = f(y / 100);
-  z = f(z / 108.883);
+  x = f(x / (REFERENCE_WHITES.D65.X * 100));
+  y = f(y / (REFERENCE_WHITES.D65.Y * 100));
+  z = f(z / (REFERENCE_WHITES.D65.Z * 100));
 
   const luminance = 116 * y - 16;
   const a = 500 * (x - y);
@@ -53,8 +53,6 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
   return { luminance, a, b };
 };
 
-<<<<<<< Updated upstream
-=======
 export const xyzToLuv = ({ x, y, z }: XYZ): LUV => {
   const refWhite = REFERENCE_WHITES.D65;
   x = x > 1 ? x / 100 : x;
@@ -78,4 +76,4 @@ export const Fu = ({ x, y, z }: XYZ): number => {
 const Fv = ({ x, y, z }: XYZ): number => {
   return (9 * y) / (x + 15 * y + 3 * z);
 };
->>>>>>> Stashed changes
+

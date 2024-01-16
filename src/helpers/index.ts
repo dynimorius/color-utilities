@@ -37,3 +37,7 @@ export const linearAdobeRgb = (value: number) => {
 export const gammaAdobeRgb = (value: number): number => {
   return Math.pow(value, 0.454752) * 255;
 };
+
+export const chromaticAdaptation = () => {
+  
+}

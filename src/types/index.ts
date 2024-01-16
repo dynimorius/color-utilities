@@ -49,7 +49,7 @@ export type Spaces =
   | "lch_uv"
   | "luv"
   | "rgb_0_1"
-  | "rgb_0_255"
+  | "rgb"
   | "xyz"
   | "webSafe";
 

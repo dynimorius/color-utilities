@@ -1,4 +1,5 @@
-export const LAB_FT = 0.008856451679035631;
+export const CIE_ϵ = 0.008856;
+export const CIE_κ = 903.3;
 
 export const LINEAR_NORMALIZED_BELOW = 0.04045;
 export const GAMMA_NORMALIZED_BELOW = 0.0031308;
@@ -198,7 +199,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0556434, y: -0.2040259, z: 1.0572252 },
     },
     REFERENCE_WHITE: "D65",
-    GAMMA: 2.2,
+    GAMMA: 2.4,
   },
   WIDE_GAMUT_RGB: {
     RGB_TO_XYZ: {
@@ -215,8 +216,7 @@ export const SPACE_MATRICES = {
     GAMMA: 2.2,
   },
 };
-<<<<<<< Updated upstream
-=======
+
 
 export const REFERENCE_WHITES = {
   A: { X: 1.0985, Y: 1, Z: 0.35585 },
@@ -232,4 +232,3 @@ export const REFERENCE_WHITES = {
   E11: { X: 1.00962, Y: 1, Z: 0.6435 },
 };
 
->>>>>>> Stashed changes
