@@ -1,5 +1,5 @@
 import { rgbConverters, toRgbConverters } from "./convertor-map";
-import { CMYK, LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
+import { CMYK, LAB, LCH, LUV, RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import {
   RGBConverters,
@@ -12,6 +12,7 @@ export class ColorResolver {
   rgb!: RGB;
   lab?: LAB;
   lch?: LCH;
+  luv?: LUV;
   xyz?: XYZ;
   cmyk!: CMYK;
 
