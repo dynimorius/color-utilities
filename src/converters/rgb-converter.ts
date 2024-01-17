@@ -1,5 +1,6 @@
 import { SPACE_MATRICES } from "../constants";
-import { formatValue, linearRgb, linearSRGB } from "../helpers";
+import { formatValue } from "../helpers";
+import { inverseGammaCompanding, inverseSrbgCompanding } from "../helpers/companding";
 import {
   CMYK,
   HCG,
@@ -158,9 +159,9 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 };
 
 export const rgbToXyz = ({ red, green, blue }: RGB): XYZ => {
-  const Rlin = linearSRGB(red);
-  const Glin = linearSRGB(green);
-  const Blin = linearSRGB(blue);
+  const Rlin = inverseSrbgCompanding(red);
+  const Glin = inverseSrbgCompanding(green);
+  const Blin = inverseSrbgCompanding(blue);
   const { X, Y, Z } = SPACE_MATRICES.SRGB.RGB_TO_XYZ;
   const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
   const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;
@@ -271,9 +272,9 @@ export const rgbToHcgPrefactored = (rgb: RGB, hue: number): HCG => {
 };
 
 export const rgbSpaceToXyz = ({ red, green, blue }: RGB, ref: SpaceData): XYZ => {
-  const Rlin = linearRgb(red, ref.GAMMA);
-  const Glin = linearRgb(green, ref.GAMMA);
-  const Blin = linearRgb(blue, ref.GAMMA);
+  const Rlin = inverseGammaCompanding(red, ref.GAMMA);
+  const Glin = inverseGammaCompanding(green, ref.GAMMA);
+  const Blin = inverseGammaCompanding(blue, ref.GAMMA);
   const { X, Y, Z } = ref.RGB_TO_XYZ;
   const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
   const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;

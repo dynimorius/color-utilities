@@ -15,7 +15,7 @@ import { ColorExtendedData } from "../interfaces/color-data.interface";
 import { ColorSpaceUnion, Spaces } from "../types";
 import { colorCheckerMap } from "./color-checker-map";
 import { rgbToXyz } from "../converters/rgb-converter";
-import { xyzToRgb } from "../converters/xyz-converter";
+import { xyzToSrgb } from "../converters/xyz-converter";
 
 export class ColorResolver {
   xyz!: XYZ;
@@ -67,7 +67,7 @@ export class ColorResolver {
 
     if (!this.xyz && !!(new RegExp(/rgb|lab|luv|ps5/g)).exec(space)) {
       this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
-      if(!this.rgb) this.rgb = xyzToRgb(this.xyz);
+      if(!this.rgb) this.rgb = xyzToSrgb(this.xyz);
     }
     else this.xyz = toXyzConverters.rgb(this.rgb);
 
