@@ -63,7 +63,8 @@ export const gammaRgb = (value: number, gamma: number) => {
   return Math.pow(value, 1 / gamma) * 255;
 };
 
-export const matriceMultiplication = (a: number[][], b: number[][]): number[][] => {
+export const matrice3x3Multiplication = (a: number[][], b: number[][]): number[][] => {
+  if (a.length !== 3 || b.length !== 3) throw new Error('Not a 3 x 3 matrix.');
   return [
     [
       (a[0][0] * b[0][0]) + (a[0][1] * b[1][0]) + (a[0][2] * b[2][0]),
@@ -84,6 +85,8 @@ export const matriceMultiplication = (a: number[][], b: number[][]): number[][] 
 }
 
 export const matriceByVectorMultiplication = (matrix: number[][], vector: number[]): number[] => {
+  if (matrix.length !== 3) throw new Error('Not a 3 x 3 matrix.');
+  if (vector.length !== 3) throw new Error('Not a 3 x vector.');
   return [
     (matrix[0][0] * vector[0]) + (matrix[0][1] * vector[1]) + (matrix[0][2] * vector[2]),
     (matrix[1][0] * vector[0]) + (matrix[1][1] * vector[1]) + (matrix[1][2] * vector[2]),
@@ -102,7 +105,7 @@ export const chromaticAdaptation = (sourceWhite: number[], destinationWhite: num
     [0, 0, PsYsβs[2] / PdYdβd[2]]
   ];
 
-  return matriceMultiplication(matriceMultiplication(Ma_1, diff), Ma);
+  return matrice3x3Multiplication(matrice3x3Multiplication(Ma_1, diff), Ma);
 }
 
 export const xyzChromaticAdaptation = (xyz: XYZ, sourceWhite: number[], destinationWhite: number[]): XYZ => {
