@@ -14,6 +14,8 @@ import {
 import { ColorExtendedData } from "../interfaces/color-data.interface";
 import { ColorSpaceUnion, Spaces } from "../types";
 import { colorCheckerMap } from "./color-checker-map";
+import { rgbToXyz } from "../converters/rgb-converter";
+import { xyzToRgb } from "../converters/xyz-converter";
 
 export class ColorResolver {
   xyz!: XYZ;
@@ -57,14 +59,16 @@ export class ColorResolver {
   ) {
     color = this.checkAndFormat(space, color);
     this[space as keyof this] = color as any;
-    
-    const initRgbCheck = new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g);
-    if (!this.rgb && !!initRgbCheck.exec(space as string))
-      this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
 
-    const initXyzCheck = new RegExp(/rgb|lab|luv|ps5/g);
-    if (!this.xyz && !!initXyzCheck.exec(space as string))
+    if (!this.rgb && !!(new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g)).exec(space)) {
+      this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
+      if(this.xyz) this.xyz = rgbToXyz(this.rgb);
+    }
+
+    if (!this.xyz && !!(new RegExp(/rgb|lab|luv|ps5/g)).exec(space)) {
       this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
+      if(!this.rgb) this.rgb = xyzToRgb(this.xyz);
+    }
     else this.xyz = toXyzConverters.rgb(this.rgb);
 
     for (let resolution of resolv) {
@@ -78,9 +82,9 @@ export class ColorResolver {
 
   checkAndFormat(space: Spaces, color: ColorSpaceUnion): ColorSpaceUnion {
     const rgbCheck = new RegExp(/rgb|ps5/g);
-    if (rgbCheck.exec(space as string)) return colorCheckerMap.rgb(color);
+    if (rgbCheck.exec(space)) return colorCheckerMap.rgb(color);
     const lchCheck = new RegExp(/lch/g);
-    if (lchCheck.exec(space as string)) return colorCheckerMap.lch(color);
+    if (lchCheck.exec(space)) return colorCheckerMap.lch(color);
     else return colorCheckerMap[space as keyof ColorCheckers](color);
   }
 

@@ -115,7 +115,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0078207, y: -0.0347411, z: 1.2447743 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 1.8,
+    GAMMA: 2.2,
   },
   ETKA_SPACE_PS5: {
     RGB_TO_XYZ: {
@@ -217,7 +217,6 @@ export const SPACE_MATRICES = {
   },
 };
 
-
 export const REFERENCE_WHITES = {
   A: { X: 1.0985, Y: 1, Z: 0.35585 },
   B: { X: 0.99072, Y: 1, Z: 0.85223 },
@@ -232,3 +231,15 @@ export const REFERENCE_WHITES = {
   E11: { X: 1.00962, Y: 1, Z: 0.6435 },
 };
 
+export const BRADFORD_CONE_RESPONCE_DOMAINS = {
+  MA: [
+    [0.8951, 0.2664, -0.1614],
+    [-0.7502, 1.7135, 0.0367],
+    [0.0389, -0.0685, 1.0296],
+  ],
+  MA_1: [
+    [0.9869929, -0.1470543, 0.1599627],
+    [0.4323053, 0.5183603, 0.0492912],
+    [-0.0085287, 0.0400428, 0.9684867],
+  ],
+};

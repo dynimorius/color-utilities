@@ -1,4 +1,4 @@
-import { GAMMA_NORMALIZED_BELOW, LINEAR_NORMALIZED_BELOW } from "../constants";
+import { BRADFORD_CONE_RESPONCE_DOMAINS, GAMMA_NORMALIZED_BELOW, LINEAR_NORMALIZED_BELOW } from "../constants";
 import {
   CMYK,
   CMYK_M,
@@ -62,6 +62,55 @@ export const linearRgb = (value: number, gamma: number) => {
 export const gammaRgb = (value: number, gamma: number) => {
   return Math.pow(value, 1 / gamma) * 255;
 };
+
+export const matriceMultiplication = (a: number[][], b: number[][]): number[][] => {
+  return [
+    [
+      (a[0][0] * b[0][0]) + (a[0][1] * b[1][0]) + (a[0][2] * b[2][0]),
+      (a[0][0] * b[0][1]) + (a[0][1] * b[1][1]) + (a[0][2] * b[2][1]),
+      (a[0][0] * b[0][2]) + (a[0][1] * b[1][2]) + (a[0][2] * b[2][2])
+    ],
+    [
+      (a[1][0] * b[0][0]) + (a[1][1] * b[1][0]) + (a[1][2] * b[2][0]),
+      (a[1][0] * b[0][1]) + (a[1][1] * b[1][1]) + (a[1][2] * b[2][1]),
+      (a[1][0] * b[0][2]) + (a[1][1] * b[1][2]) + (a[1][2] * b[2][2])
+    ],
+    [
+      (a[2][0] * b[0][0]) + (a[2][1] * b[1][0]) + (a[2][2] * b[2][0]),
+      (a[2][0] * b[0][1]) + (a[2][1] * b[1][1]) + (a[2][2] * b[2][1]),
+      (a[2][0] * b[0][2]) + (a[2][1] * b[1][2]) + (a[2][2] * b[2][2])
+    ]
+  ]
+}
+
+export const matriceByVectorMultiplication = (matrix: number[][], vector: number[]): number[] => {
+  return [
+    (matrix[0][0] * vector[0]) + (matrix[0][1] * vector[1]) + (matrix[0][2] * vector[2]),
+    (matrix[1][0] * vector[0]) + (matrix[1][1] * vector[1]) + (matrix[1][2] * vector[2]),
+    (matrix[2][0] * vector[0]) + (matrix[2][1] * vector[1]) + (matrix[2][2] * vector[2])
+  ]
+}
+
+export const chromaticAdaptation = (sourceWhite: number[], destinationWhite: number[]): number[][] => {
+  const Ma = BRADFORD_CONE_RESPONCE_DOMAINS.MA;
+  const Ma_1 = BRADFORD_CONE_RESPONCE_DOMAINS.MA_1;
+  const PsYsβs = matriceByVectorMultiplication(Ma, sourceWhite)
+  const PdYdβd = matriceByVectorMultiplication(Ma, destinationWhite);
+  const diff = [
+    [PsYsβs[0] / PdYdβd[0], 0, 0],
+    [0, PsYsβs[1] / PdYdβd[1], 0],
+    [0, 0, PsYsβs[2] / PdYdβd[2]]
+  ];
+
+  return matriceMultiplication(matriceMultiplication(Ma_1, diff), Ma);
+}
+
+export const xyzChromaticAdaptation = (xyz: XYZ, sourceWhite: number[], destinationWhite: number[]): XYZ => {
+  const S = [xyz.x, xyz.y, xyz.z];
+  const M = chromaticAdaptation(sourceWhite, destinationWhite);
+  const D = matriceByVectorMultiplication(M, S);
+  return { x: D[0], y: D[1], z: D[2] }
+}
 
 export const colorCheck = (color: ColorSpaceUnion): ColorSpaceUnion => {
   const entries = Object.entries(color);
