@@ -25,7 +25,7 @@ import { RGBResolver } from "./resolvers/rgb-resolver";
 // const color7 = new ColorResolver('hwb',{h: 270, w: 20, b: 40});
 // console.log(color7.data());
 
-const color8 = new ColorResolver('don_rgb_4',{r: 72, g: 47, b: 150}); //There is a loss in conversion
+const color8 = new ColorResolver('don_rgb_4',{r: 91, g: 64, b: 165}); 
 console.log(color8.data());
 
 

@@ -271,7 +271,7 @@ export const rgbToHcgPrefactored = (rgb: RGB, hue: number): HCG => {
   return { hue, chroma: delta * 100, grayscale: grayscale * 100 };
 };
 
-export const rgbSpaceToXyz = ({ red, green, blue }: RGB, ref: SpaceData): XYZ => {
+export const gammaRgbToXyz = ({ red, green, blue }: RGB, ref: SpaceData): XYZ => {
   const Rlin = inverseGammaCompanding(red, ref.GAMMA);
   const Glin = inverseGammaCompanding(green, ref.GAMMA);
   const Blin = inverseGammaCompanding(blue, ref.GAMMA);
@@ -291,96 +291,96 @@ export const rgbToAdobeRgb = (rgb: RGB, xyz: XYZ = rgbToXyz(rgb)): RGB => {
 };
 
 export const adobeRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.ADOBE_RGB_1998);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.ADOBE_RGB_1998);
 }
 
 /*******************************************************************
  *                          APPLE RGB
  * *****************************************************************/ 
 export const appleRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.APPLE_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.APPLE_RGB);
 }
 
 /*******************************************************************
  *                           BEST RGB
  * *****************************************************************/
 export const bestRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.BEST_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.BEST_RGB);
 }
 
 /*******************************************************************
  *                           BETA RGB
  * *****************************************************************/
 export const betaRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.BETA_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.BETA_RGB);
 }
 
 /*******************************************************************
  *                          BRUCE RGB
  * *****************************************************************/
 export const bruceRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.BRUCE_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.BRUCE_RGB);
 }
 
 /*******************************************************************
  *                            CIE RGB
  * *****************************************************************/
 export const cieRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.CIE_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.CIE_RGB);
 }
 
 /*******************************************************************
  *                        COLOR MATCH RGB
  * *****************************************************************/
 export const colorMatchRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.COLOR_MATCH_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.COLOR_MATCH_RGB);
 }
 
 /*******************************************************************
  *                           DON RGB 4
  * *****************************************************************/
 export const donRgb4ToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.DON_RGB_4);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.DON_RGB_4);
 }
 
 /*******************************************************************
  *                        ETKA SPACE PS5
  * *****************************************************************/
 export const etkaSpacePs5ToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.ETKA_SPACE_PS5);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.ETKA_SPACE_PS5);
 }
 
 /*******************************************************************
  *                           NTSC RGB
  * *****************************************************************/
 export const ntscRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.NTSC_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.NTSC_RGB);
 }
 
 /*******************************************************************
  *                        PAL/SECAM RGB
  * *****************************************************************/
 export const palSecamRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.PAL_SECAM_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.PAL_SECAM_RGB);
 }
 
 /*******************************************************************
  *                        PRO PHOTO RGB
  * *****************************************************************/
 export const proPhotoRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.PRO_PHOTO_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.PRO_PHOTO_RGB);
 }
 
 /*******************************************************************
  *                          SMPTE-C RGB
  * *****************************************************************/
 export const smpteCRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.SMPTE_C_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.SMPTE_C_RGB);
 }
 
 /*******************************************************************
  *                        WIDE GAMUT RGB
  * *****************************************************************/
 export const wideGamutRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbSpaceToXyz(rgb, SPACE_MATRICES.WIDE_GAMUT_RGB);
+  return gammaRgbToXyz (rgb, SPACE_MATRICES.WIDE_GAMUT_RGB);
 }
