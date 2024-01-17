@@ -170,7 +170,7 @@ export const xyzToPalSecamRgb = (xyz: XYZ): RGB => {
 };
 
 /*******************************************************************
- *                        PAL/SECAM RGB
+ *                        PRO PHOTO RGB
  * *****************************************************************/
 export const xyzToProPhotoRgb = (xyz: XYZ): RGB => {
   return xyzToSpaceRgb(xyz, SPACE_MATRICES.PRO_PHOTO_RGB);
