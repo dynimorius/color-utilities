@@ -84,6 +84,25 @@ export interface LUV {
   v: number;
 }
 
+export interface SpaceData {
+  RGB_TO_XYZ: RgbToXyzMatrice;
+  XYZ_TO_RGB: XyzToRgbMatrice;
+  REFERENCE_WHITE: string;
+  GAMMA: number;
+}
+
+export interface RgbToXyzMatrice {
+  X: { r: number; g: number; b: number};
+  Y: { r: number; g: number; b: number};
+  Z: { r: number; g: number; b: number};
+}
+
+export interface XyzToRgbMatrice {
+  R: XYZ;
+  G: XYZ;
+  B: XYZ;
+}
+
 
 
 

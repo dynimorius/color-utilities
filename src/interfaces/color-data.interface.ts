@@ -7,6 +7,7 @@ import {
   HWB,
   LAB,
   LCH,
+  LUV,
   RGB,
   XYZ,
 } from "./color-spaces.interface";
@@ -32,7 +33,9 @@ export interface ColorExtendedData {
   hsv: HSV;
   hwb: HWB;
   lab: LAB;
-  lch: LCH;
+  lch_ab: LCH;
+  lch_uv: LCH;
+  luv: LUV;
   outOfGamut: boolean;
   rgb: RGB;
   srgb: RGB;
