@@ -38,6 +38,8 @@ export interface ConverterInfo {
 }
 
 export interface ToRGBConverters {
+  ansi16: Function;
+  ansi265: Function;
   hex: Function;
   cmyk: Function;
   hsl: Function;
@@ -64,4 +66,19 @@ export interface ToXyzConverters {
   rgb: Function;
   smpte_c_rgb: Function;
   wide_gamut_rgb: Function;
+}
+
+export interface ColorCheckers {
+  hex: Function;
+  cmyk: Function;
+  hsl: Function;
+  hsv: Function;
+  hwb: Function;
+  hcg: Function;
+  hcl: Function;
+  xyz: Function;
+  lab: Function;
+  luv: Function;
+  lch: Function;
+  rgb: Function;
 }

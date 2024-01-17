@@ -36,6 +36,7 @@ import { hsvToRgb } from "../converters/hsv-converter";
 import { xyzToAdobeRgb, xyzToAppleRgb, xyzToBestRgb, xyzToBetaRgb, xyzToBruceRgb, xyzToCieRgb, xyzToColorMatchRgb, xyzToDonRgb4, xyzToEtkaSpacePs5, xyzToLab, xyzToLuv, xyzToNtscRgb, xyzToPalSecamRgb, xyzToProPhotoRgb, xyzToRgb, xyzToSmpteCRgb, xyzToWideGamutRgb } from '../converters/xyz-converter';
 import { labToXyz } from '../converters/lab-converter';
 import { luvToXyz } from '../converters/luv-converter';
+import { ansi16ToRgb, ansi256ToRgb } from '../converters/ansi-converter';
 
 export const rgbConverters: ColorConverters = {
   adobe_98_rgb: { fun: xyzToAdobeRgb, from: 'xyz' },
@@ -71,6 +72,8 @@ export const rgbConverters: ColorConverters = {
 };
 
 export const toRgbConverters: ToRGBConverters = {
+  ansi16: ansi16ToRgb,
+  ansi265: ansi256ToRgb,
   hex: hexToRgb,
   cmyk: cmykToRgb,
   hsl: hslToRgb,

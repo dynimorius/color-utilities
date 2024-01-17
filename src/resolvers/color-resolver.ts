@@ -6,12 +6,14 @@ import {
 import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import {
+  ColorCheckers,
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
 } from "../interfaces/converters.interface";
 import { ColorExtendedData } from "../interfaces/color-data.interface";
 import { ColorSpaceUnion, Spaces } from "../types";
+import { colorCheckerMap } from "./color-checker-map";
 
 export class ColorResolver {
   xyz!: XYZ;
@@ -20,7 +22,7 @@ export class ColorResolver {
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: Spaces[] = [
+    resolv: (Spaces | 'web_safe')[] = [
       "adobe_98_rgb",
       "apple_rgb",
       "ansi16",
@@ -53,16 +55,17 @@ export class ColorResolver {
       "xyz",
     ]
   ) {
+    color = this.checkAndFormat(space, color);
     this[space as keyof this] = color as any;
-    const initXyzCheck = new RegExp(/rgb|lab|luv|ps5/g);
-    if (!this.xyz && initXyzCheck.exec(space)) 
-      this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
     
     const initRgbCheck = new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g);
-    if (!this.rgb && initRgbCheck.exec(space))
+    if (!this.rgb && !!initRgbCheck.exec(space as string))
       this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
 
-    const initLabCheck = new RegExp(/lch/g);
+    const initXyzCheck = new RegExp(/rgb|lab|luv|ps5/g);
+    if (!this.xyz && !!initXyzCheck.exec(space as string))
+      this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
+    else this.xyz = toXyzConverters.rgb(this.rgb);
 
     for (let resolution of resolv) {
       if (!this[resolution as keyof this]) {
@@ -70,8 +73,15 @@ export class ColorResolver {
         const param = rgbConverters[resolution as keyof ColorConverters]?.from as string;
         this[resolution as keyof this] = fun(this[param as keyof this]);
       }
- 
     }
+  }
+
+  checkAndFormat(space: Spaces, color: ColorSpaceUnion): ColorSpaceUnion {
+    const rgbCheck = new RegExp(/rgb|ps5/g);
+    if (rgbCheck.exec(space as string)) return colorCheckerMap.rgb(color);
+    const lchCheck = new RegExp(/lch/g);
+    if (lchCheck.exec(space as string)) return colorCheckerMap.lch(color);
+    else return colorCheckerMap[space as keyof ColorCheckers](color);
   }
 
   data(): Partial<ColorExtendedData> {

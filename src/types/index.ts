@@ -1,36 +1,53 @@
 import {
   CMYK,
+  CMYK_M,
   HCG,
+  HCG_M,
   HCL,
+  HCL_M,
   HSB,
   HSL,
   HSLA,
+  HSL_M,
   HSV,
   HSVA,
+  HSV_M,
   HWB,
+  HWB_M,
   LAB,
+  LAB_M,
   LCH,
+  LCH_M,
   LUV,
   RGB,
   RGBA,
+  RGB_M,
   XYZ,
 } from "../interfaces/color-spaces.interface";
 
 export type ColorSpaceUnion =
   | RGB
   | RGBA
+  | RGB_M
   | HSL
   | HSLA
+  | HSL_M
   | HSV
   | HSVA
-  | HSB
+  | HSV_M
   | HWB
+  | HWB_M
   | HCG
+  | HCG_M
   | HCL
+  | HCL_M
   | LAB
+  | LAB_M
   | LCH
+  | LCH_M
   | LUV
   | CMYK
+  | CMYK_M
   | XYZ
   | string;
 
@@ -62,7 +79,6 @@ export type Spaces =
   | 'rgb_0_1'
   | 'rgb'
   | 'smpte_c_rgb'
-  | 'web_safe'
   | 'wide_gamut_rgb'
   | 'xyz'
 

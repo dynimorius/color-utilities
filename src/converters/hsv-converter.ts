@@ -12,9 +12,9 @@ export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
   const q = value * (1 - f * saturation);
   const t = value * (1 - (1 - f) * saturation);
   const mod = i % 6;
-  const red = [value, q, p, p, t, value][mod] * 255;
-  const green = [t, value, value, q, p, p][mod] * 255;
-  const blue = [p, p, t, value, value, q][mod] * 255;
+  const red = Math.ceil([value, q, p, p, t, value][mod] * 255);
+  const green = Math.ceil([t, value, value, q, p, p][mod] * 255);
+  const blue = Math.ceil([p, p, t, value, value, q][mod] * 255);
 
   return { red, green, blue };
 };
