@@ -85,4 +85,5 @@ export interface ColorCheckers {
   luv: Function;
   lch: Function;
   rgb: Function;
+  ryb: Function;
 }
