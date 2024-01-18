@@ -1,8 +1,9 @@
 export const CIE_ϵ = 0.008856;
 export const CIE_κ = 903.3;
 
-export const LINEAR_NORMALIZED_BELOW = 0.04045;
-export const GAMMA_NORMALIZED_BELOW = 0.0031308;
+export const SRGB_INVERSE_NORMALIZED_BELOW = 0.04045;
+export const SRGB_NORMALIZED_BELOW = 0.0031308;
+export const L_INVERSE_NORMALIZED_BELOW = 0.08;
 
 export const SPACE_MATRICES = {
   ADOBE_RGB_1998: {
@@ -115,7 +116,21 @@ export const SPACE_MATRICES = {
       B: { x: 0.0078207, y: -0.0347411, z: 1.2447743 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 1.8,
+    GAMMA: 2.2,
+  },
+  ECI_RGB_V2: {
+    RGB_TO_XYZ: {
+      X: { r: 0.6502043, g: 0.1780774, b: 0.1359384 },
+      Y: { r: 0.3202499, g: 0.6020711, b: 0.0776791 },
+      Z: { r: 0.0, g: 0.067839, b: 0.757371 },
+    },
+    XYZ_TO_RGB: {
+      R: { x: 1.7827618, y: -0.4969847, z: -0.2690101 },
+      G: { x: -0.9593623, y: 1.9477962, z: -0.0275807 },
+      B: { x: 0.0859317, y: -0.1744674, z: 1.3228273 },
+    },
+    REFERENCE_WHITE: "D50",
+    GAMMA: 0,
   },
   ETKA_SPACE_PS5: {
     RGB_TO_XYZ: {
@@ -217,7 +232,6 @@ export const SPACE_MATRICES = {
   },
 };
 
-
 export const REFERENCE_WHITES = {
   A: { X: 1.0985, Y: 1, Z: 0.35585 },
   B: { X: 0.99072, Y: 1, Z: 0.85223 },
@@ -232,3 +246,15 @@ export const REFERENCE_WHITES = {
   E11: { X: 1.00962, Y: 1, Z: 0.6435 },
 };
 
+export const BRADFORD_CONE_RESPONCE_DOMAINS = {
+  MA: [
+    [0.8951, 0.2664, -0.1614],
+    [-0.7502, 1.7135, 0.0367],
+    [0.0389, -0.0685, 1.0296],
+  ],
+  MA_1: [
+    [0.9869929, -0.1470543, 0.1599627],
+    [0.4323053, 0.5183603, 0.0492912],
+    [-0.0085287, 0.0400428, 0.9684867],
+  ],
+};

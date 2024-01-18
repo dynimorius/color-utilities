@@ -10,6 +10,7 @@ export interface ColorConverters {
   color_match_rgb?: ConverterInfo;
   cmyk?: ConverterInfo;
   don_rgb_4?: ConverterInfo;
+  eci_rgb_v2?: ConverterInfo;
   etka_space_ps5?: ConverterInfo;
   hcg?: ConverterInfo;
   hex?: ConverterInfo;
@@ -26,10 +27,12 @@ export interface ColorConverters {
   rgb?: ConverterInfo;
   rgb_0_1?: ConverterInfo;
   rgb_0_255?: ConverterInfo;
+  ryb?: ConverterInfo;
   web_safe?: ConverterInfo;
   smpte_c_rgb?: ConverterInfo;
   wide_gamut_rgb?: ConverterInfo;
   xyz?: ConverterInfo;
+  xyy?: ConverterInfo;
 }
 
 export interface ConverterInfo {
@@ -38,11 +41,14 @@ export interface ConverterInfo {
 }
 
 export interface ToRGBConverters {
+  ansi16: Function;
+  ansi265: Function;
   hex: Function;
   cmyk: Function;
   hsl: Function;
   hsv: Function;
   hwb: Function;
+  ryb: Function;
   xyz: Function;
 }
 
@@ -55,6 +61,7 @@ export interface ToXyzConverters {
   cie_rgb: Function;
   color_match_rgb: Function;
   don_rgb_4: Function;
+  eci_rgb_v2: Function;
   etka_space_ps5: Function;
   lab: Function;
   luv: Function;
@@ -64,4 +71,22 @@ export interface ToXyzConverters {
   rgb: Function;
   smpte_c_rgb: Function;
   wide_gamut_rgb: Function;
+  xyy: Function;
+}
+
+export interface ColorCheckers {
+  hex: Function;
+  cmyk: Function;
+  hsl: Function;
+  hsv: Function;
+  hwb: Function;
+  hcg: Function;
+  hcl: Function;
+  xyz: Function;
+  lab: Function;
+  luv: Function;
+  lch: Function;
+  rgb: Function;
+  ryb: Function;
+  xyy: Function;
 }

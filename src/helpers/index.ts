@@ -1,5 +1,9 @@
-import { GAMMA_NORMALIZED_BELOW, LINEAR_NORMALIZED_BELOW } from "../constants";
-import { RGB } from "../interfaces/color-spaces.interface";
+import { BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants";
+import {
+  RGB,
+  XYZ,
+} from "../interfaces/color-spaces.interface";
+import { matrixMlutiVector, matrixMulti3x3 } from "./matrix";
 
 export const isWebSafeRGB = (rgb: RGB): boolean => {
   return rgb.red % 51 === 0 && rgb.green % 51 === 0 && rgb.blue % 51 === 0;
@@ -16,24 +20,27 @@ export const isWebSafeHex = (color: string) => {
 
 export const formatValue = (value: number): number => Math.round(value * 100);
 
-export const linearSRGB = (value: number) => {
-  value = value / 255;
-  return value <= LINEAR_NORMALIZED_BELOW
-    ? value / 12.92
-    : Math.pow((value + 0.055) / 1.055, 2.4);
-};
 
-export const gammaSrbg = (value: number): number => {
-  return (value <= GAMMA_NORMALIZED_BELOW
-    ? 12.92 * value
-    : 1.055 * Math.pow(value, 0.416666) - 0.055) * 255;
-};
 
-export const linearRgb = (value: number, gamma: number) => {
-  value = value / 255;
-  return Math.pow(value, gamma);
-};
+export const chromaticAdaptation = (sourceWhite: number[], destinationWhite: number[]): number[][] => {
+  const Ma = BRADFORD_CONE_RESPONCE_DOMAINS.MA;
+  const Ma_1 = BRADFORD_CONE_RESPONCE_DOMAINS.MA_1;
+  const PsYsβs = matrixMlutiVector(Ma, sourceWhite)
+  const PdYdβd = matrixMlutiVector(Ma, destinationWhite);
+  const diff = [
+    [PsYsβs[0] / PdYdβd[0], 0, 0],
+    [0, PsYsβs[1] / PdYdβd[1], 0],
+    [0, 0, PsYsβs[2] / PdYdβd[2]]
+  ];
 
-export const gammaRgb = (value: number, gamma: number) => { 
-  return Math.pow(value, 1 / gamma) * 255;
+  return matrixMulti3x3(matrixMulti3x3(Ma_1, diff), Ma);
 }
+
+export const xyzChromaticAdaptation = (xyz: XYZ, sourceWhite: number[], destinationWhite: number[]): XYZ => {
+  const S = [xyz.x, xyz.y, xyz.z];
+  const M = chromaticAdaptation(sourceWhite, destinationWhite);
+  const D = matrixMlutiVector(M, S);
+  return { x: D[0], y: D[1], z: D[2] }
+}
+
+

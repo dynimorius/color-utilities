@@ -2,7 +2,7 @@ import { HCG, HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
 import { hueToRGB } from "./hue-converter";
 
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
-  hue = hue / 360;
+  hue = hue / 60;
   saturation = saturation / 100;
   lightness = lightness / 100;
 
@@ -13,11 +13,11 @@ export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   const q =
     lightness < 0.5
       ? lightness * (1 + saturation)
-      : lightness + saturation - lightness * saturation;
+      : lightness + saturation - (lightness * saturation);
   const p = 2 * lightness - q;
-  const red = hueToRGB(p, q, hue + 1 / 3) * 255;
-  const green = hueToRGB(p, q, hue) * 255;
-  const blue = hueToRGB(p, q, hue - 1 / 3) * 255;
+  const red = hueToRGB(p, q, hue + 2);
+  const green = hueToRGB(p, q, hue);
+  const blue = hueToRGB(p, q, hue - 2);
 
   return { red, green, blue };
 };

@@ -5,7 +5,6 @@ export const hexToRgb = (hex: string): RGB => {
   if (!hexRegExp) {
     return { red: 0, green: 0, blue: 0 };
   }
-
   let colorString = hexRegExp[0];
 
   if (hexRegExp[0].length === 3) {
