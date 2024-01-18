@@ -5,7 +5,6 @@ import {
   HCG_M,
   HCL,
   HCL_M,
-  HSB,
   HSL,
   HSLA,
   HSL_M,

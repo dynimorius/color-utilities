@@ -1,3 +1,5 @@
+import { ResponceDomain } from "../interfaces/responce-domain";
+
 export const CIE_ϵ = 0.008856;
 export const CIE_κ = 903.3;
 
@@ -246,7 +248,7 @@ export const REFERENCE_WHITES = {
   E11: { X: 1.00962, Y: 1, Z: 0.6435 },
 };
 
-export const BRADFORD_CONE_RESPONCE_DOMAINS = {
+export const BRADFORD_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.8951, 0.2664, -0.1614],
     [-0.7502, 1.7135, 0.0367],
