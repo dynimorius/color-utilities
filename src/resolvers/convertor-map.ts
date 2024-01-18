@@ -58,11 +58,13 @@ import {
   xyzToSmpteCRgb,
   xyzToSrgb,
   xyzToWideGamutRgb,
+  xyzToXyY,
 } from "../converters/xyz-converter";
 import { labToXyz } from "../converters/lab-converter";
 import { luvToXyz } from "../converters/luv-converter";
 import { ansi16ToRgb, ansi256ToRgb } from "../converters/ansi-converter";
 import { rybToRgb } from "../converters/ryb-converter";
+import { xyYToXyz } from "../converters/xyy-converter";
 
 export const rgbConverters: ColorConverters = {
   adobe_98_rgb: { fun: xyzToAdobeRgb, from: "xyz" },
@@ -76,7 +78,7 @@ export const rgbConverters: ColorConverters = {
   color_match_rgb: { fun: xyzToColorMatchRgb, from: "xyz" },
   cmyk: { fun: rgbToCmyk, from: "rgb" },
   don_rgb_4: { fun: xyzToDonRgb4, from: "xyz" },
-  eci_rgb_v2: {fun: xyzToEciRgbV2, from: 'xyz'},
+  eci_rgb_v2: { fun: xyzToEciRgbV2, from: "xyz" },
   etka_space_ps5: { fun: xyzToEtkaSpacePs5, from: "xyz" },
   hcg: { fun: rgbToHcg, from: "rgb" },
   hex: { fun: rgbToHex, from: "rgb" },
@@ -92,9 +94,10 @@ export const rgbConverters: ColorConverters = {
   pro_photo_rgb: { fun: xyzToProPhotoRgb, from: "xyz" },
   rgb_0_1: { fun: rgbTo1_0rgb, from: "rgb" },
   rgb: { fun: xyzToSrgb, from: "xyz" },
-  ryb: {fun: rgbToRyb, from: 'rgb'},
+  ryb: { fun: rgbToRyb, from: "rgb" },
   smpte_c_rgb: { fun: xyzToSmpteCRgb, from: "xyz" },
   xyz: { fun: rgbToXyz, from: "rgb" },
+  xyy: { fun: xyzToXyY, from: "xyz" },
   web_safe: { fun: isWebSafeRGB, from: "rgb" },
   wide_gamut_rgb: { fun: xyzToWideGamutRgb, from: "xyz" },
 };
@@ -130,4 +133,5 @@ export const toXyzConverters: ToXyzConverters = {
   rgb: rgbToXyz,
   smpte_c_rgb: smpteCRgbToXyz,
   wide_gamut_rgb: wideGamutRgbToXyz,
+  xyy: xyYToXyz,
 };

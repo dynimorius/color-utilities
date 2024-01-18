@@ -11,7 +11,7 @@ export const sRgbCompanding = (value: number): number => {
   );
 };
 
-export const gammaCompanding = (value: number, gamma: number) => {
+export const gammaCompanding = (value: number, gamma: number): number => {
   return Math.pow(value, 1 / gamma) * 255;
 };
 
@@ -30,7 +30,7 @@ export const inverseSrbgCompanding = (value: number): number => {
     : Math.pow((value + 0.055) / 1.055, 2.4);
 };
 
-export const inverseGammaCompanding = (value: number, gamma: number) => {
+export const inverseGammaCompanding = (value: number, gamma: number): number => {
   value = value / 255;
   return Math.pow(value, gamma);
 };

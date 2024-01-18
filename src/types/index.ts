@@ -86,6 +86,7 @@ export type Spaces =
   | 'ryb'
   | 'smpte_c_rgb'
   | 'wide_gamut_rgb'
+  | 'xyy'
   | 'xyz'
 
 export type initialSpaces =

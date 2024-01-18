@@ -20,6 +20,7 @@ import {
   RGB_M,
   RYB,
   RYB_M,
+  XYY,
   XYZ,
 } from "../interfaces/color-spaces.interface";
 import { FULL_HEX, HEX } from "../regex";
@@ -102,6 +103,11 @@ export const cmykColorCheck = (color: CMYK | CMYK_M): boolean | CMYK => {
 export const xyzColorCheck = (color: XYZ): XYZ => {
   const values = Object.values(color);
   return { x: values[0], y: values[1], z: values[2] };
+};
+
+export const xyYColorCheck = (color: XYY): XYY => {
+  const values = Object.values(color);
+  return { x: values[0], y: values[1], Y: values[2] };
 };
 
 export const rybColorCheck = (color: RYB | RYB_M): RYB => {

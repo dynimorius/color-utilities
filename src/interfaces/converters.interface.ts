@@ -32,6 +32,7 @@ export interface ColorConverters {
   smpte_c_rgb?: ConverterInfo;
   wide_gamut_rgb?: ConverterInfo;
   xyz?: ConverterInfo;
+  xyy?: ConverterInfo;
 }
 
 export interface ConverterInfo {
@@ -70,6 +71,7 @@ export interface ToXyzConverters {
   rgb: Function;
   smpte_c_rgb: Function;
   wide_gamut_rgb: Function;
+  xyy: Function;
 }
 
 export interface ColorCheckers {
@@ -86,4 +88,5 @@ export interface ColorCheckers {
   lch: Function;
   rgb: Function;
   ryb: Function;
+  xyy: Function;
 }

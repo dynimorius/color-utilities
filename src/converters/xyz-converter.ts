@@ -9,6 +9,7 @@ import {
   LUV,
   RGB,
   SpaceData,
+  XYY,
   XYZ,
 } from "../interfaces/color-spaces.interface";
 
@@ -98,7 +99,7 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_MATRICES.ECI_RGB_V2, LCompanding);
 };
 
-export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData): RGB => { 
+export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData): RGB => {
   return xyzToRgb(xyz, ref, gammaCompanding, true);
 };
 
@@ -205,4 +206,12 @@ export const xyzToWideGamutRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 export const xyzToEciRgbV2 = (xyz: XYZ): RGB => {
   return xyzToLRgb(xyz);
+};
+
+/*******************************************************************
+ *                             xyY
+ * *****************************************************************/
+export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
+  const devider = x + y + z;
+  return { x: x / devider, y: y / devider, Y: y };
 };

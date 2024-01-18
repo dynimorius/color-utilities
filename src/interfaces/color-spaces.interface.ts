@@ -82,12 +82,6 @@ export interface HSB_M {
   b: number;
 }
 
-export interface XYZ {
-  x: number;
-  y: number;
-  z: number;
-}
-
 export interface CMYK {
   cyan: number;
   magenta: number;
@@ -169,6 +163,22 @@ export interface RYB_M {
   b: number;
 }
 
+export interface XYZ {
+  x: number;
+  y: number;
+  z: number;
+}
+
+/*************************************************************
+ * xy values can be seen as a representation of the color's 
+ * chromaticity while the Y values can be seen as a 
+ * representation of the color's intensity or brightness value
+ *************************************************************/
+export interface XYY {
+  x: number;
+  y: number;
+  Y: number;
+}
 export interface SpaceData {
   RGB_TO_XYZ: RgbToXyzMatrice;
   XYZ_TO_RGB: XyzToRgbMatrice;

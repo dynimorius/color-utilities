@@ -57,6 +57,7 @@ export class ColorResolver {
       "web_safe",
       "wide_gamut_rgb",
       "xyz",
+      "xyy"
     ]
   ) {
     color = this.checkAndFormat(space, color);

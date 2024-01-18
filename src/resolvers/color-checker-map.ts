@@ -1,4 +1,19 @@
-import { cmykColorCheck, hcgColorCheck, hclColorCheck, hexColorCheck, hslColorCheck, hsvColorCheck, hwbColorCheck, labColorCheck, lchColorCheck, luvColorCheck, rgbColorCheck, rybColorCheck, xyzColorCheck } from "../helpers/color-checks";
+import {
+  cmykColorCheck,
+  hcgColorCheck,
+  hclColorCheck,
+  hexColorCheck,
+  hslColorCheck,
+  hsvColorCheck,
+  hwbColorCheck,
+  labColorCheck,
+  lchColorCheck,
+  luvColorCheck,
+  rgbColorCheck,
+  rybColorCheck,
+  xyYColorCheck,
+  xyzColorCheck,
+} from "../helpers/color-checks";
 import { ColorCheckers } from "../interfaces/converters.interface";
 
 export const colorCheckerMap: ColorCheckers = {
@@ -13,6 +28,7 @@ export const colorCheckerMap: ColorCheckers = {
   lch: lchColorCheck,
   luv: luvColorCheck,
   cmyk: cmykColorCheck,
-  ryb: rybColorCheck, 
-  xyz: xyzColorCheck
-}
+  ryb: rybColorCheck,
+  xyz: xyzColorCheck,
+  xyy: xyYColorCheck,
+};

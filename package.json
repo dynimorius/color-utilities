@@ -31,6 +31,8 @@
     "LCH(uv)",
     "CMYK",
     "XYZ",
+    "XYY",
+    "xyY",
     "Ansi16",
     "Ansi256",
     "Adobe 98 RGB",
