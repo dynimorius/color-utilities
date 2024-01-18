@@ -63,6 +63,7 @@ export type Spaces =
   | 'color_match_rgb'
   | 'cmyk'
   | 'don_rgb_4'
+  | 'eci_rgb_v2'
   | 'etka_space_ps5'
   | 'hcg'
   | 'hex'

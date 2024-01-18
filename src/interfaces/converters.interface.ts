@@ -10,6 +10,7 @@ export interface ColorConverters {
   color_match_rgb?: ConverterInfo;
   cmyk?: ConverterInfo;
   don_rgb_4?: ConverterInfo;
+  eci_rgb_v2?: ConverterInfo;
   etka_space_ps5?: ConverterInfo;
   hcg?: ConverterInfo;
   hex?: ConverterInfo;
@@ -57,6 +58,7 @@ export interface ToXyzConverters {
   cie_rgb: Function;
   color_match_rgb: Function;
   don_rgb_4: Function;
+  eci_rgb_v2: Function;
   etka_space_ps5: Function;
   lab: Function;
   luv: Function;

@@ -1,5 +1,9 @@
 import { CIE_κ, CIE_ϵ, REFERENCE_WHITES, SPACE_MATRICES } from "../constants";
-import { gammaCompanding, sRgbCompanding } from "../helpers/companding";
+import {
+  LCompanding,
+  gammaCompanding,
+  sRgbCompanding,
+} from "../helpers/companding";
 import {
   LAB,
   LUV,
@@ -57,54 +61,57 @@ export const Fv = ({ x, y, z }: XYZ): number => {
   return (9 * y) / (x + 15 * y + 3 * z);
 };
 
-export const xyzToSrgb = ({ x, y, z }: XYZ): RGB => {
+export const xyzToRgb = (
+  { x, y, z }: XYZ,
+  space: SpaceData,
+  compandingFun: Function,
+  gamma?: boolean
+): RGB => {
   x = x > 1 ? x / 100 : x;
   y = y > 1 ? y / 100 : y;
   z = z > 1 ? z / 100 : z;
 
   //Get linear RGB
-  const { R, G, B } = SPACE_MATRICES.SRGB.XYZ_TO_RGB;
+  const { R, G, B } = space.XYZ_TO_RGB;
   let red = x * R.x + y * R.y + z * R.z;
   let green = x * G.x + y * G.y + z * G.z;
   let blue = x * B.x + y * B.y + z * B.z;
 
   //Companding
-  red = Math.round(sRgbCompanding(red));
-  green = Math.round(sRgbCompanding(green));
-  blue = Math.round(sRgbCompanding(blue));
-
+  if (gamma) {
+    red = Math.round(compandingFun(red, space.GAMMA));
+    green = Math.round(compandingFun(green, space.GAMMA));
+    blue = Math.round(compandingFun(blue, space.GAMMA));
+  } else {
+    red = Math.round(compandingFun(red));
+    green = Math.round(compandingFun(green));
+    blue = Math.round(compandingFun(blue));
+  }
   return { red, green, blue };
 };
 
-export const xyzToGammaRgb = ({ x, y, z }: XYZ, ref: SpaceData): RGB => {
-  x = x > 1 ? x / 100 : x;
-  y = y > 1 ? y / 100 : y;
-  z = z > 1 ? z / 100 : z;
+export const xyzToSrgb = (xyz: XYZ): RGB => {
+  return xyzToRgb(xyz, SPACE_MATRICES.SRGB, sRgbCompanding);
+};
 
-   //Get linear RGB
-  const { R, G, B } = ref.XYZ_TO_RGB;
-  let red = x * R.x + y * R.y + z * R.z;
-  let green = x * G.x + y * G.y + z * G.z;
-  let blue = x * B.x + y * B.y + z * B.z;
+export const xyzToLRgb = (xyz: XYZ): RGB => {
+  return xyzToRgb(xyz, SPACE_MATRICES.ECI_RGB_V2, LCompanding);
+};
 
-  //Companding
-  red = Math.round(gammaCompanding(red, ref.GAMMA));
-  green = Math.round(gammaCompanding(green, ref.GAMMA));
-  blue = Math.round(gammaCompanding(blue, ref.GAMMA));
-
-  return { red, green, blue };
+export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData): RGB => { 
+  return xyzToRgb(xyz, ref, gammaCompanding, true);
 };
 
 /*******************************************************************
  *                        ADOBE 1998 RGB
- * *****************************************************************/ 
+ * *****************************************************************/
 export const xyzToAdobeRgb = (xyz: XYZ): RGB => {
   return xyzToGammaRgb(xyz, SPACE_MATRICES.ADOBE_RGB_1998);
 };
 
 /*******************************************************************
  *                          APPLE RGB
- * *****************************************************************/ 
+ * *****************************************************************/
 export const xyzToAppleRgb = (xyz: XYZ): RGB => {
   return xyzToGammaRgb(xyz, SPACE_MATRICES.APPLE_RGB);
 };
@@ -191,4 +198,11 @@ export const xyzToSmpteCRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 export const xyzToWideGamutRgb = (xyz: XYZ): RGB => {
   return xyzToGammaRgb(xyz, SPACE_MATRICES.WIDE_GAMUT_RGB);
+};
+
+/*******************************************************************
+ *                         ECI RGB V2
+ * *****************************************************************/
+export const xyzToEciRgbV2 = (xyz: XYZ): RGB => {
+  return xyzToLRgb(xyz);
 };

@@ -1,8 +1,9 @@
 export const CIE_ϵ = 0.008856;
 export const CIE_κ = 903.3;
 
-export const LINEAR_NORMALIZED_BELOW = 0.04045;
-export const GAMMA_NORMALIZED_BELOW = 0.0031308;
+export const SRGB_INVERSE_NORMALIZED_BELOW = 0.04045;
+export const SRGB_NORMALIZED_BELOW = 0.0031308;
+export const L_INVERSE_NORMALIZED_BELOW = 0.08;
 
 export const SPACE_MATRICES = {
   ADOBE_RGB_1998: {
@@ -117,7 +118,7 @@ export const SPACE_MATRICES = {
     REFERENCE_WHITE: "D50",
     GAMMA: 2.2,
   },
-  ERC_RGB_V2: {
+  ECI_RGB_V2: {
     RGB_TO_XYZ: {
       X: { r: 0.6502043, g: 0.1780774, b: 0.1359384 },
       Y: { r: 0.3202499, g: 0.6020711, b: 0.0776791 },
@@ -129,7 +130,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0859317, y: -0.1744674, z: 1.3228273 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: "L*",
+    GAMMA: 0,
   },
   ETKA_SPACE_PS5: {
     RGB_TO_XYZ: {
