@@ -22,6 +22,8 @@ import {
   RGB,
   RGBA,
   RGB_M,
+  RYB,
+  RYB_M,
   XYZ,
 } from "../interfaces/color-spaces.interface";
 
@@ -29,6 +31,8 @@ export type ColorSpaceUnion =
   | RGB
   | RGBA
   | RGB_M
+  | RYB
+  | RYB_M
   | HSL
   | HSLA
   | HSL_M
@@ -79,6 +83,7 @@ export type Spaces =
   | 'pro_photo_rgb'
   | 'rgb_0_1'
   | 'rgb'
+  | 'ryb'
   | 'smpte_c_rgb'
   | 'wide_gamut_rgb'
   | 'xyz'
@@ -90,5 +95,6 @@ export type initialSpaces =
   | 'hsv'
   | 'hwb'
   | 'rgb'
+  | 'ryb'
   | 'xyz';
 

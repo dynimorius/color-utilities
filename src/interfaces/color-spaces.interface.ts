@@ -157,6 +157,18 @@ export interface LUV {
   v: number;
 }
 
+export interface RYB {
+  red: number;
+  yellow: number;
+  blue: number;
+}
+
+export interface RYB_M {
+  r: number;
+  y: number;
+  b: number;
+}
+
 export interface SpaceData {
   RGB_TO_XYZ: RgbToXyzMatrice;
   XYZ_TO_RGB: XyzToRgbMatrice;

@@ -27,6 +27,7 @@ export interface ColorConverters {
   rgb?: ConverterInfo;
   rgb_0_1?: ConverterInfo;
   rgb_0_255?: ConverterInfo;
+  ryb?: ConverterInfo;
   web_safe?: ConverterInfo;
   smpte_c_rgb?: ConverterInfo;
   wide_gamut_rgb?: ConverterInfo;
@@ -46,6 +47,7 @@ export interface ToRGBConverters {
   hsl: Function;
   hsv: Function;
   hwb: Function;
+  ryb: Function;
   xyz: Function;
 }
 

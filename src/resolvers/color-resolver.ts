@@ -12,7 +12,7 @@ import {
   ToXyzConverters,
 } from "../interfaces/converters.interface";
 import { ColorExtendedData } from "../interfaces/color-data.interface";
-import { ColorSpaceUnion, Spaces } from "../types";
+import { ColorSpaceUnion, Spaces } from "../types"
 import { colorCheckerMap } from "./color-checker-map";
 import { sRgbToXyz } from "../converters/rgb-converter";
 import { xyzToSrgb } from "../converters/xyz-converter";
@@ -52,6 +52,7 @@ export class ColorResolver {
       "pro_photo_rgb",
       "rgb_0_1",
       "rgb",
+      "ryb",
       "smpte_c_rgb",
       "web_safe",
       "wide_gamut_rgb",

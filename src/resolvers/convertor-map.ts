@@ -29,6 +29,7 @@ import {
   rgbToHwb,
   rgbToLch_ab,
   rgbToLch_uv,
+  rgbToRyb,
   rgbToXyz,
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
@@ -61,6 +62,7 @@ import {
 import { labToXyz } from "../converters/lab-converter";
 import { luvToXyz } from "../converters/luv-converter";
 import { ansi16ToRgb, ansi256ToRgb } from "../converters/ansi-converter";
+import { rybToRgb } from "../converters/ryb-converter";
 
 export const rgbConverters: ColorConverters = {
   adobe_98_rgb: { fun: xyzToAdobeRgb, from: "xyz" },
@@ -90,6 +92,7 @@ export const rgbConverters: ColorConverters = {
   pro_photo_rgb: { fun: xyzToProPhotoRgb, from: "xyz" },
   rgb_0_1: { fun: rgbTo1_0rgb, from: "rgb" },
   rgb: { fun: xyzToSrgb, from: "xyz" },
+  ryb: {fun: rgbToRyb, from: 'rgb'},
   smpte_c_rgb: { fun: xyzToSmpteCRgb, from: "xyz" },
   xyz: { fun: rgbToXyz, from: "rgb" },
   web_safe: { fun: isWebSafeRGB, from: "rgb" },
@@ -104,6 +107,7 @@ export const toRgbConverters: ToRGBConverters = {
   hsl: hslToRgb,
   hsv: hsvToRgb,
   hwb: hwbToRgb,
+  ryb: rybToRgb,
   xyz: xyzToSrgb,
 };
 
