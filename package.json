@@ -50,7 +50,8 @@
     "ProPhoto RGB",
     "SMPTE-C RGB",
     "Wide Gamut RGB",
-    "Web Safe"  
+    "Web Safe",
+    "Out of Gamut"  
   ],
   "author": "Slavko Mihajlovic - dynimorius",
   "license": "ISC",
