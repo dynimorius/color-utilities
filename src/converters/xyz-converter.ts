@@ -90,16 +90,16 @@ export const xyzToRgb = (
   }
 
   return {
-    red: !gamutCheck(red) ? 0 : red,
-    green: !gamutCheck(green) ? 0 : green,
-    blue: !gamutCheck(blue) ? 0 : blue,
+    red: !gamutCheck(red) ? 0 : red > 255 ? 255 : red,
+    green: !gamutCheck(green) ? 0 : green > 255 ? 255 : green,
+    blue: !gamutCheck(blue) ? 0 : blue > 255 ? 255 : blue,
     inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
   };
 };
 
 const gamutCheck = (value: number): boolean => {
-  return !isNaN(value) && value <= 255;
-};
+  return !isNaN(value) && value >= 0 && value <= 255;
+}
 
 export const xyzToSrgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_MATRICES.SRGB, sRgbCompanding);
