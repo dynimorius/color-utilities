@@ -2,6 +2,7 @@ export interface RGB {
   red: number;
   green: number;
   blue: number;
+  inGamut?: boolean;
 }
 
 export interface RGBA extends RGB {

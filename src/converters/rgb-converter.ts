@@ -116,7 +116,7 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 /*******************************************************************
  *                              XYZ
  * *****************************************************************/
-export const rgbToXyz = (
+const rgbToXyz = (
   { red, green, blue }: RGB,
   space: SpaceData,
   inverseCompandingFun: Function,

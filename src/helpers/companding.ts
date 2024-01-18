@@ -12,7 +12,8 @@ export const sRgbCompanding = (value: number): number => {
 };
 
 export const gammaCompanding = (value: number, gamma: number): number => {
-  return Math.pow(value, 1 / gamma) * 255;
+  if(value < 0) console.log(value, value ** (1 / gamma))
+  return (value ** (1 / gamma)) * 255;
 };
 
 export const LCompanding = (value: number): number => { 

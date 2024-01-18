@@ -88,7 +88,17 @@ export const xyzToRgb = (
     green = Math.round(compandingFun(green));
     blue = Math.round(compandingFun(blue));
   }
-  return { red, green, blue };
+
+  return {
+    red: !gamutCheck(red) ? 0 : red,
+    green: !gamutCheck(green) ? 0 : green,
+    blue: !gamutCheck(blue) ? 0 : blue,
+    inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
+  };
+};
+
+const gamutCheck = (value: number): boolean => {
+  return !isNaN(value) && value <= 255;
 };
 
 export const xyzToSrgb = (xyz: XYZ): RGB => {

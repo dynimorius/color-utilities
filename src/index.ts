@@ -4,8 +4,8 @@ import { RGBResolver } from "./resolvers/rgb-resolver";
 // const color = new RGBResolver({ red: 102, green: 51, blue: 153 });
 // console.log(color.data());
 
-// const color2 = new ColorResolver('rgb',{ r: 102, g: 51, b: 153 });
-// console.log(color2.data());
+const color2 = new ColorResolver('rgb',{ r: 238, g: 200, b: 27 });
+console.log(color2.data());
 
 // const color3 = new ColorResolver('hex','#663399');
 // console.log(color3.data());
@@ -25,7 +25,7 @@ import { RGBResolver } from "./resolvers/rgb-resolver";
 // const color7 = new ColorResolver('hwb',{h: 270, w: 20, b: 40});
 // console.log(color7.data());
 
-const color8 = new ColorResolver('don_rgb_4',{r: 91, g: 64, b: 165}); 
-console.log(color8.data());
+// const color8 = new ColorResolver('don_rgb_4',{r: 91, g: 64, b: 165}); 
+// console.log(color8.data());
 
 
