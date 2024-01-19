@@ -1,4 +1,4 @@
-import { BRADFORD_CONE_RESPONCE_DOMAINS, REFERENCE_WHITES } from "../constants";
+import { ADAPTIVE_MATRICES, BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants";
 import { XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
 import { matrix3x3Multi, matrixVectorMulti, matrixVectorMultiAsXyz, } from "./matrix";
@@ -32,26 +32,30 @@ export const chromaticAdaptation = (
   return matrixVectorMultiAsXyz(M, xyz);
 };
 
+export const chromaticAdaptationPreCal = (xyz: XYZ, matrix: Matrix3x3) => {
+  return matrixVectorMultiAsXyz(matrix, xyz);
+}
+
 export const D50toD65Adaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.D50, REFERENCE_WHITES.D65);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_D65 as Matrix3x3);
 };
 
 export const D65toD50Adaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.D65, REFERENCE_WHITES.D50);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_D50 as Matrix3x3);
 };
 
 export const CtoD65Adaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.C, REFERENCE_WHITES.D65);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_D65 as Matrix3x3);
 };
 
 export const D65toCAdaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.D65, REFERENCE_WHITES.C);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_C as Matrix3x3);
 };
 
 export const EtoD65Adaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.E, REFERENCE_WHITES.D65);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_D65 as Matrix3x3);
 };
 
 export const D65toEAdaptation = (xyz: XYZ) => {
-  return chromaticAdaptation(xyz, REFERENCE_WHITES.D65, REFERENCE_WHITES.E);
+  return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_E as Matrix3x3);
 };

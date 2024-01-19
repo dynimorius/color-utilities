@@ -75,3 +75,4 @@ export const matrixByVectorObjMulti = (
       matrix[2][2] * entries[2][1],
   };
 };
+
