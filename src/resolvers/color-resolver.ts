@@ -68,7 +68,7 @@ export class ColorResolver {
       if(this.xyz) this.xyz = sRgbToXyz(this.rgb);
     }
 
-    if (!this.xyz && !!(new RegExp(/rgb|lab|luv|ps5/g)).exec(space)) {
+    if (!this.xyz && !!(new RegExp(/rgb|lab|luv|lch|ps5/g)).exec(space)) {
       this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if(!this.rgb) this.rgb = xyzToSrgb(this.xyz);
     }

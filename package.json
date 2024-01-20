@@ -4,8 +4,8 @@
   "description": "Library to format, convert and work with colors.",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --build && node ./lib/index.js",
-    "test-to-file": "tsc --build && node ./lib/index.js > test.txt"
+    "test": "tsc --build && node ./lib/test.js",
+    "test-to-file": "tsc --build && node ./lib/test.js > test.txt"
   },
   "repository": {
     "type": "git",

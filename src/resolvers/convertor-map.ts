@@ -1,3 +1,4 @@
+import { lch_abToXyz, lch_uvToLuv, lch_uvToXyz } from './../converters/lch-converter';
 import { hwbToRgb } from "./../converters/hcg-converter";
 import {
   ColorConverters,
@@ -127,6 +128,8 @@ export const toXyzConverters: ToXyzConverters = {
   etka_space_ps5: etkaSpacePs5ToXyz,
   lab: labToXyz,
   luv: luvToXyz,
+  lch_ab: lch_abToXyz,
+  lch_uv: lch_uvToXyz,
   ntsc_rgb: ntscRgbToXyz,
   pal_secam_rgb: palSecamRgbToXyz,
   pro_photo_rgb: proPhotoRgbToXyz,
