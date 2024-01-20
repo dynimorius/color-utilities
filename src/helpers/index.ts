@@ -1,3 +1,4 @@
+import { MAX_DECIMALS } from "../constants";
 import {
   RGB,
 } from "../interfaces/color-spaces.interface";
@@ -15,4 +16,9 @@ export const isWebSafeHex = (color: string) => {
 };
 
 export const formatValue = (value: number): number => Math.round(value * 100);
+
+export const round = (value: number, decimals = MAX_DECIMALS): number => {
+  const exp = Math.pow(10, decimals);
+  return Math.round(+value * exp) / exp;
+};
 
