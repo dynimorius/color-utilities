@@ -65,6 +65,8 @@ export interface ToXyzConverters {
   etka_space_ps5: Function;
   lab: Function;
   luv: Function;
+  lch_ab: Function;
+  lch_uv: Function;
   ntsc_rgb: Function;
   pal_secam_rgb: Function;
   pro_photo_rgb: Function;
