@@ -9,8 +9,8 @@ import {
   RGB,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { ColorResolver } from "./resolvers/color-resolver";
-import { RGBResolver } from "./resolvers/rgb-resolver";
+import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
+import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
 
 const testColor = { red: 238, green: 200, blue: 27 };
 // const testColor = { red: 217, green: 122, blue: 37 };
@@ -55,15 +55,9 @@ const color10 = new ColorResolver(
   checkColor.data?.adobe_98_rgb as RGB
 );
 
-const color11 = new ColorResolver(
-  "best_rgb",
-  checkColor.data?.best_rgb as RGB
-);
+const color11 = new ColorResolver("best_rgb", checkColor.data?.best_rgb as RGB);
 
-const color12 = new ColorResolver(
-  "beta_rgb",
-  checkColor.data?.beta_rgb as RGB
-);
+const color12 = new ColorResolver("beta_rgb", checkColor.data?.beta_rgb as RGB);
 
 const color13 = new ColorResolver(
   "bruce_rgb",
@@ -87,10 +81,7 @@ const color17 = new ColorResolver(
   checkColor.data?.etka_space_ps5 as RGB
 );
 
-const color18 = new ColorResolver(
-  "ntsc_rgb",
-  checkColor.data?.ntsc_rgb as RGB
-);
+const color18 = new ColorResolver("ntsc_rgb", checkColor.data?.ntsc_rgb as RGB);
 
 const color19 = new ColorResolver(
   "pal_secam_rgb",
@@ -143,11 +134,13 @@ const printData = (colors: ColorResolver[]) => {
         `{ red: ${(color.data.rgb as RGB).red - testColor.red}, green: ${
           (color.data.rgb as RGB).green - testColor.green
         }, blue: ${(color.data.rgb as RGB).blue - testColor.blue}} \n`,
-        `{ x: ${(color.data.xyz as XYZ).x - (checkColor.data.xyz as XYZ).x}, y: ${
+        `{ x: ${
+          (color.data.xyz as XYZ).x - (checkColor.data.xyz as XYZ).x
+        }, y: ${
           (color.data.xyz as XYZ).y - (checkColor.data.xyz as XYZ).y
-        }, z: ${(color.data.xyz as XYZ).z - (checkColor.data.xyz as XYZ).z}} \n ${
-          checkColor.data.hex
-        } - ${color.data.hex} 
+        }, z: ${
+          (color.data.xyz as XYZ).z - (checkColor.data.xyz as XYZ).z
+        }} \n ${checkColor.data.hex} - ${color.data.hex} 
         `,
         `\n----------------------------------------------\n`
       );

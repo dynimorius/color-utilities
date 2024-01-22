@@ -1,21 +1,21 @@
+import { RGB, XYZ } from "../../interfaces/color-spaces.interface";
 import {
   rgbConverters,
   toRgbConverters,
   toXyzConverters,
 } from "./convertor-map";
-import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
+import { sRgbToXyz } from "../../converters/rgb-converter";
+import { xyzToSrgb } from "../../converters/xyz-converter";
+import { ColorExtendedData } from "../../interfaces/color-data.interface";
 import {
   ColorCheckers,
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
-} from "../interfaces/converters.interface";
-import { ColorExtendedData } from "../interfaces/color-data.interface";
-import { ColorSpaceUnion, Spaces } from "../types";
+} from "../../interfaces/converters.interface";
+import { ColorSpaceUnion, Spaces } from "../../types";
 import { colorCheckerMap } from "./color-checker-map";
-import { sRgbToXyz } from "../converters/rgb-converter";
-import { xyzToSrgb } from "../converters/xyz-converter";
 
 export class ColorResolver {
   data: ColorExtendedData = {};
@@ -74,7 +74,7 @@ export class ColorResolver {
       this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
     } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);
-    
+
     for (let resolution of resolv) {
       if (!this.data[resolution as keyof ColorExtendedData]) {
         const fun = rgbConverters[resolution as keyof ColorConverters]

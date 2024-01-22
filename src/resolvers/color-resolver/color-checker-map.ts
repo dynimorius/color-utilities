@@ -13,8 +13,8 @@ import {
   rybColorCheck,
   xyYColorCheck,
   xyzColorCheck,
-} from "../helpers/color-checks";
-import { ColorCheckers } from "../interfaces/converters.interface";
+} from "../../helpers/color-checks";
+import { ColorCheckers } from "../../interfaces/converters.interface";
 
 export const colorCheckerMap: ColorCheckers = {
   hex: hexColorCheck,
