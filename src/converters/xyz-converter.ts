@@ -83,6 +83,7 @@ export const xyzToRgb = (
   let green = x * G.x + y * G.y + z * G.z;
   let blue = x * B.x + y * B.y + z * B.z;
 
+
   //Companding
   if (gamma) {
     red = Math.round(compandingFun(red, space.GAMMA));
@@ -115,7 +116,7 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
 };
 
 export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData, whitInBounds?: boolean): RGB => {
-  return xyzToRgb(xyz, ref, gammaCompanding, whitInBounds);
+  return xyzToRgb(xyz, ref, gammaCompanding, true, whitInBounds);
 };
 
 /*******************************************************************

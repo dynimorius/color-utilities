@@ -1,15 +1,16 @@
-import { CIE_κ, CIE_ϵ, REFERENCE_WHITES } from "../constants";
+import { CIE_κ, CIE_ϵ } from "../constants";
+import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
 
 export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
   const fY = (luminance + 16) / 116;
-  const z = f(fY - b / 200) * REFERENCE_WHITES.D65.Z * 100 + 0;
-  const x = f(a / 500 + fY) * REFERENCE_WHITES.D65.X * 100 + 0;
+  const z = f(fY - b / 200) * REFERENCE_ILLUMINANT.D65.Z * 100 + 0;
+  const x = f(a / 500 + fY) * REFERENCE_ILLUMINANT.D65.X * 100 + 0;
   const y =
     (luminance > CIE_κ * CIE_ϵ
       ? Math.pow((luminance + 16) / 116, 3)
       : luminance / CIE_κ) *
-    REFERENCE_WHITES.D65.Y *
+    REFERENCE_ILLUMINANT.D65.Y *
     100 + 0;
   return { x, y, z };
 };

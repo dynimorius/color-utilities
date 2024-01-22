@@ -97,7 +97,7 @@ export const rgbTo1_0rgb = (rgb: RGB): RGB => {
 export const sRgbToLuminance = ({ red, green, blue }: RGB): number =>
   0.2126 * red + 0.7152 * green + 0.0722 * blue;
 
-export const rgbToCmyk = (rgb: RGB): CMYK => {
+export const sRgbToCmyk = (rgb: RGB): CMYK => {
   const { red, green, blue } = normalizeRgb(rgb);
   let key = 1 - Math.max(red, green, blue);
   const K1 = 1 - key;
@@ -268,12 +268,12 @@ export const sRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                             ANSI
  * *****************************************************************/
-export const rgbToAnsi16 = (
+export const sRgbToAnsi16 = (
   rgb: RGB,
   saturation: number | null = null
 ): number => {
   // Hsv -> ansi16 optimization
-  let value = saturation ?? rgbToHsv(rgb).value;
+  let value = saturation ?? sRgbToHsv(rgb).value;
 
   value = Math.round(value / 50);
 
@@ -294,7 +294,7 @@ export const rgbToAnsi16 = (
   return ansi;
 };
 
-export const rgbToAnsi256 = ({ red, green, blue }: RGB): number => {
+export const sRgbToAnsi256 = ({ red, green, blue }: RGB): number => {
   if (red >> 4 === green >> 4 && green >> 4 === blue >> 4) {
     if (red < 8) {
       return 16;
@@ -319,32 +319,32 @@ export const rgbToAnsi256 = ({ red, green, blue }: RGB): number => {
 /*******************************************************************
  *                             LAB
  * *****************************************************************/
-export const rgbToLab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LAB => {
+export const sRgbToLab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LAB => {
   return xyzToLab(xyz);
 };
 
 /*******************************************************************
  *                             LUV
  * *****************************************************************/
-export const rgbToLuv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LUV => {
+export const sRgbToLuv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LUV => {
   return xyzToLuv(xyz);
 };
 
 /*******************************************************************
  *                             LCH
  * *****************************************************************/
-export const rgbToLch_ab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
+export const sRgbToLch_ab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
   return labToLch_ab(xyzToLab(xyz));
 };
 
-export const rgbToLch_uv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
+export const sRgbToLch_uv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
   return luvToLch_uv(xyzToLuv(xyz));
 };
 
 /*******************************************************************
  *                             HEX
  * *****************************************************************/
-export const rgbToHex = ({ red, green, blue }: RGB): string => {
+export const sRgbToHex = ({ red, green, blue }: RGB): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
@@ -354,7 +354,7 @@ export const rgbToHex = ({ red, green, blue }: RGB): string => {
   return "000000".substring(string.length) + string;
 };
 
-export const rgbaToHex = ({ red, green, blue, alpha }: RGBA): string => {
+export const sRgbaToHex = ({ red, green, blue, alpha }: RGBA): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
@@ -367,7 +367,7 @@ export const rgbaToHex = ({ red, green, blue, alpha }: RGBA): string => {
 /*******************************************************************
  *                             HSL
  * *****************************************************************/
-export const rgbToHsl = (rgb: RGB, pHue?: number): HSL => {
+export const sRgbToHsl = (rgb: RGB, pHue?: number): HSL => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { min, max, delta } = getRange(red, green, blue);
 
@@ -391,7 +391,7 @@ export const rgbToHsl = (rgb: RGB, pHue?: number): HSL => {
 /*******************************************************************
  *                             HSV
  * *****************************************************************/
-export const rgbToHsv = (rgb: RGB, pHue?: number): HSV => {
+export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { max, delta } = getRange(red, green, blue);
 
@@ -410,7 +410,7 @@ export const rgbToHsv = (rgb: RGB, pHue?: number): HSV => {
 /*******************************************************************
  *                             HCG
  * *****************************************************************/
-export const rgbToHcg = (rgb: RGB, hue?: number): HCG => {
+export const sRgbToHcg = (rgb: RGB, hue?: number): HCG => {
   const { red, green, blue } = normalizeRgb(rgb);
   const { min, max, delta } = getRange(red, green, blue);
   const grayscale = delta < 1 ? min / (1 - delta) : 0;
@@ -422,7 +422,7 @@ export const rgbToHcg = (rgb: RGB, hue?: number): HCG => {
 /*******************************************************************
  *                             HWG
  * *****************************************************************/
-export const rgbToHwb = (rgb: RGB, pHue?: number): HWB => {
+export const sRgbToHwb = (rgb: RGB, pHue?: number): HWB => {
   const { red, green, blue } = normalizeRgb(rgb);
   let hue!: number;
   if (!pHue) {
@@ -441,7 +441,7 @@ export const rgbToHwb = (rgb: RGB, pHue?: number): HWB => {
 /*******************************************************************
  *                             RYB
  * *****************************************************************/
-export const rgbToRyb = ({ red, green, blue }: RGB): RYB => {
+export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
   const Iw = Math.min(red, green, blue);
   const Ib = Math.min(255 - red, 255 - green, 255 - blue);
   const rRGB = red - Iw;

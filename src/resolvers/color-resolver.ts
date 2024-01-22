@@ -74,7 +74,7 @@ export class ColorResolver {
       this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
     } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);
-
+    
     for (let resolution of resolv) {
       if (!this.data[resolution as keyof ColorExtendedData]) {
         const fun = rgbConverters[resolution as keyof ColorConverters]

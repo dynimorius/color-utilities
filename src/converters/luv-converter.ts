@@ -1,4 +1,5 @@
-import { CIE_κ, CIE_ϵ, REFERENCE_WHITES } from "../constants";
+import { CIE_κ, CIE_ϵ } from "../constants";
+import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { LCH, LUV, XYZ } from "../interfaces/color-spaces.interface";
 import { Fu, Fv } from "./xyz-converter";
 
@@ -10,8 +11,8 @@ export const luvToLch_uv = ({ L, u, v }: LUV): LCH => {
 };
 
 export const luvToXyz = ({ L, u, v }: LUV): XYZ => {
-  const v0 = Fv({x: REFERENCE_WHITES.D65.X, y: REFERENCE_WHITES.D65.Y, z: REFERENCE_WHITES.D65.Z});
-  const u0 = Fu({x: REFERENCE_WHITES.D65.X, y: REFERENCE_WHITES.D65.Y, z: REFERENCE_WHITES.D65.Z});
+  const v0 = Fv({x: REFERENCE_ILLUMINANT.D65.X, y: REFERENCE_ILLUMINANT.D65.Y, z: REFERENCE_ILLUMINANT.D65.Z});
+  const u0 = Fu({x: REFERENCE_ILLUMINANT.D65.X, y: REFERENCE_ILLUMINANT.D65.Y, z: REFERENCE_ILLUMINANT.D65.Z});
   const y = (L > CIE_κ * CIE_ϵ) ? Math.pow((L + 16) / 116, 3) : L / CIE_κ;
   const d = y * (39 * L / (v + 13 * L * v0) - 5) || 0;
   const c = -1 / 3;
