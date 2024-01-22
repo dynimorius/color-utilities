@@ -1,42 +1,39 @@
 import { HCG, HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
 import { hueToRGB } from "./hue-converter";
 
+// export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
+//   hue = hue / 60;
+//   saturation = saturation / 100;
+//   lightness = lightness / 100;
+
+//   if (saturation === 0) {
+//     return { red: lightness, green: lightness, blue: lightness };
+//   }
+
+//   const q =
+//     lightness < 0.5
+//       ? lightness * (1 + saturation)
+//       : lightness + saturation - lightness * saturation;
+//   const p = 2 * lightness - q;
+//   const red = hueToRGB(p, q, hue + 2);
+//   const green = hueToRGB(p, q, hue);
+//   const blue = hueToRGB(p, q, hue - 2);
+
+//   return { red, green, blue };
+// };
+
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
-  hue = hue / 60;
-  saturation = saturation / 100;
-  lightness = lightness / 100;
-
-  if (saturation === 0) {
-    return { red: lightness, green: lightness, blue: lightness };
-  }
-
-  const q =
-    lightness < 0.5
-      ? lightness * (1 + saturation)
-      : lightness + saturation - (lightness * saturation);
-  const p = 2 * lightness - q;
-  const red = hueToRGB(p, q, hue + 2);
-  const green = hueToRGB(p, q, hue);
-  const blue = hueToRGB(p, q, hue - 2);
-
-  return { red, green, blue };
-};
-
-export const hslToSrgb = ({ hue, saturation, lightness }: HSL): RGB => {
-  hue = hue % 360;
-
-  if (hue < 0) {
-    hue += 360;
-  }
-
   saturation /= 100;
   lightness /= 100;
 
-  function f(n: number) {
-    let k = (n + hue / 30) % 12;
-    let a = saturation * Math.min(lightness, 1 - lightness);
-    return lightness - a * Math.max(-1, Math.min(k - 3, 9 - k, 1));
-  }
+  const k = (n: number) => (n + hue / 30) % 12;
+  const a = saturation * Math.min(lightness, 1 - lightness);
+  const f = (n: number) =>
+    Math.round(
+      (lightness -
+        a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))) *
+        255
+    );
 
   return { red: f(0), green: f(8), blue: f(4) };
 };

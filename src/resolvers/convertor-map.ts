@@ -1,5 +1,5 @@
 import { lch_abToXyz, lch_uvToLuv, lch_uvToXyz } from './../converters/lch-converter';
-import { hwbToRgb } from "./../converters/hcg-converter";
+import { hwbToRgb } from "../converters/hwb-converter";
 import {
   ColorConverters,
   ToRGBConverters,
