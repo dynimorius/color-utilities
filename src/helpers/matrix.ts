@@ -38,23 +38,6 @@ export const matrixVectorMulti = (
   ];
 };
 
-export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
-  return {
-    x:
-      matrix[0][0] * vector.x +
-      matrix[0][1] * vector.y +
-      matrix[0][2] * vector.z,
-    y:
-      matrix[1][0] * vector.x +
-      matrix[1][1] * vector.y +
-      matrix[1][2] * vector.z,
-    z:
-      matrix[2][0] * vector.x +
-      matrix[2][1] * vector.y +
-      matrix[2][2] * vector.z,
-  };
-};
-
 export const matrixByVectorObjMulti = (
   matrix: Matrix3x3,
   vector: { [key: string]: number }
@@ -73,6 +56,23 @@ export const matrixByVectorObjMulti = (
       matrix[2][0] * entries[0][1] +
       matrix[2][1] * entries[1][1] +
       matrix[2][2] * entries[2][1],
+  };
+};
+
+export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
+  return {
+    x:
+      matrix[0][0] * vector.x +
+      matrix[0][1] * vector.y +
+      matrix[0][2] * vector.z,
+    y:
+      matrix[1][0] * vector.x +
+      matrix[1][1] * vector.y +
+      matrix[1][2] * vector.z,
+    z:
+      matrix[2][0] * vector.x +
+      matrix[2][1] * vector.y +
+      matrix[2][2] * vector.z,
   };
 };
 
