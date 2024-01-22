@@ -3,7 +3,7 @@ import {
   toRgbConverters,
   toXyzConverters,
 } from "./convertor-map";
-import { CMYK, HCG, HSL, HSV, HWB, LAB, LCH, LUV, RGB, RYB, XYY, XYZ } from "../interfaces/color-spaces.interface";
+import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import {
   ColorCheckers,
@@ -12,50 +12,18 @@ import {
   ToXyzConverters,
 } from "../interfaces/converters.interface";
 import { ColorExtendedData } from "../interfaces/color-data.interface";
-import { ColorSpaceUnion, Spaces } from "../types"
+import { ColorSpaceUnion, Spaces } from "../types";
 import { colorCheckerMap } from "./color-checker-map";
 import { sRgbToXyz } from "../converters/rgb-converter";
 import { xyzToSrgb } from "../converters/xyz-converter";
 
 export class ColorResolver {
-  adobe_98_rgb!: RGB;
-  apple_rgb!: RGB;
-  ansi16!: number;
-  ansi256!: number;
-  best_rgb!: RGB;
-  beta_rgb!: RGB;
-  bruce_rgb!: RGB;
-  cie_rgb!: RGB;
-  color_match_rgb!: RGB;
-  cmyk!: CMYK;
-  don_rgb_4!: RGB;
-  eci_rgb_v2!: RGB;
-  etka_space_ps5!: RGB;
-  hcg!: HCG;
-  hex!: string;
-  hsl!: HSL;
-  hsv!: HSV;
-  hwb!: HWB;
-  lab!: LAB;
-  lch_ab!: LCH;
-  lch_uv!: LCH;
-  luv!: LUV;
-  ntsc_rgb!: RGB;
-  pal_secam_rgb!: RGB;
-  pro_photo_rgb!: RGB;
-  rgb_0_1!: RGB;
-  rgb!: RGB;
-  ryb!: RYB;
-  smpte_c_rgb!: RGB;
-  web_safe!: boolean;
-  wide_gamut_rgb!: RGB;
-  xyz!: XYZ;
-  xyY!: XYY;
+  data: ColorExtendedData = {};
 
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: (Spaces | 'web_safe')[] = [
+    resolv: (Spaces | "web_safe")[] = [
       "adobe_98_rgb",
       "apple_rgb",
       "ansi16",
@@ -88,28 +56,34 @@ export class ColorResolver {
       "web_safe",
       "wide_gamut_rgb",
       "xyz",
-      "xyy"
+      "xyy",
     ]
   ) {
     color = this.checkAndFormat(space, color);
-    this[space as keyof this] = color as any;
+    this.data[space as keyof ColorExtendedData] = color as any;
 
-    if (!this.rgb && !!(new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g)).exec(space)) {
-      this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
-      if(this.xyz) this.xyz = sRgbToXyz(this.rgb);
+    if (
+      !this.data.rgb &&
+      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g).exec(space)
+    ) {
+      this.data.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
+      if (this.data.xyz) this.data.xyz = sRgbToXyz(this.data.rgb as RGB);
     }
 
-    if (!this.xyz && !!(new RegExp(/rgb|lab|luv|lch|ps5/g)).exec(space)) {
-      this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
-      if(!this.rgb) this.rgb = xyzToSrgb(this.xyz);
-    }
-    else this.xyz = toXyzConverters.rgb(this.rgb);
+    if (!this.data.xyz && !!new RegExp(/rgb|lab|luv|lch|ps5/g).exec(space)) {
+      this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
+      if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
+    } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);
 
     for (let resolution of resolv) {
-      if (!this[resolution as keyof this]) {
-        const fun = rgbConverters[resolution as keyof ColorConverters]?.fun as Function;
-        const param = rgbConverters[resolution as keyof ColorConverters]?.from as string;
-        this[resolution as keyof this] = fun(this[param as keyof this]);
+      if (!this.data[resolution as keyof ColorExtendedData]) {
+        const fun = rgbConverters[resolution as keyof ColorConverters]
+          ?.fun as Function;
+        const param = rgbConverters[resolution as keyof ColorConverters]
+          ?.from as string;
+        this.data[resolution as keyof ColorExtendedData] = fun(
+          this.data[param as keyof ColorExtendedData]
+        );
       }
     }
   }
@@ -120,9 +94,5 @@ export class ColorResolver {
     const lchCheck = new RegExp(/lch/g);
     if (lchCheck.exec(space)) return colorCheckerMap.lch(color);
     else return colorCheckerMap[space as keyof ColorCheckers](color);
-  }
-
-  data(): Partial<ColorExtendedData> {
-    return { ...this };
   }
 }
