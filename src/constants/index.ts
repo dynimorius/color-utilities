@@ -1,5 +1,6 @@
 export const MAX_DECIMALS = 6;
 
+//Actual CIE standard
 export const CIE_ϵ = 0.008856;
 export const CIE_κ = 903.3;
 

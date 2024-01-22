@@ -1,3 +1,9 @@
+/******************************************************************
+ * RGB Working Space Matrices and Gamma values
+ * credit: 
+ * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ * http://www.brucelindbloom.com/index.html?WorkingSpaceInfo.html
+ ******************************************************************/
 export const SPACE_DATASETS = {
   ADOBE_RGB_1998: {
     RGB_TO_XYZ: {

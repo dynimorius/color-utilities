@@ -1,4 +1,11 @@
-export const REFERENCE_WHITES = {
+/**************************************************************** 
+ *  Reference illuminant tristimulus values
+ *  B is from Wyszecki & Stiles and the rest are 
+ *  from  ASTM E308-01
+ *  credit:
+ *  http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+ *****************************************************************/
+export const REFERENCE_ILLUMINANT = {
   A: { X: 1.0985, Y: 1, Z: 0.35585 },
   B: { X: 0.99072, Y: 1, Z: 0.85223 },
   C: { X: 0.98074, Y: 1, Z: 1.18232 },

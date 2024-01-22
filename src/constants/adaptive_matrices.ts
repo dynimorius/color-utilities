@@ -1,3 +1,12 @@
+/*****************************************************************
+ *  Chromatic adaptation matrices using the 
+ *  Bradford method and reference illuminant 
+ *  tristimulus values from ASTM E308-01 whit 
+ *  the exception of B which came from 
+ *  Wyszecki & Stiles.
+ *  credits: 
+ *  http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
+ *****************************************************************/
 export const ADAPTIVE_MATRICES = {
   A_B: [
     [0.8905163, -0.0829136, 0.2680945],

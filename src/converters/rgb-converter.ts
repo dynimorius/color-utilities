@@ -1,5 +1,4 @@
 import { CtoD65Adaptation, EtoD65Adaptation, D50toD65Adaptation  } from './../helpers/chromatic-adaptation';
-import { SPACE_MATRICES } from "../constants";
 import { formatValue } from "../helpers";
 import {
   inverseGammaCompanding,
@@ -25,6 +24,7 @@ import { labToLch_ab } from "./lab-converter";
 import { luvToLch_uv } from "./luv-converter";
 import { decimalToHex } from "./number-converter";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-converter";
+import { SPACE_DATASETS } from '../constants/space-datasets';
 
 /*******************************************************************
  *                           HELPERS
@@ -142,7 +142,7 @@ const rgbToXyz = (
 };
 
 export const lRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbToXyz(rgb, SPACE_MATRICES.ECI_RGB_V2, inverseLCompanding);
+  return rgbToXyz(rgb, SPACE_DATASETS.ECI_RGB_V2, inverseLCompanding);
 };
 
 export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
@@ -157,98 +157,98 @@ export const rgbToAdobeRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
 };
 
 export const adobeRgbToXyz = (rgb: RGB): XYZ => {
-  return gammaRgbToXyz(rgb, SPACE_MATRICES.ADOBE_RGB_1998);
+  return gammaRgbToXyz(rgb, SPACE_DATASETS.ADOBE_RGB_1998);
 };
 
 /*******************************************************************
  *                          APPLE RGB
  * *****************************************************************/
 export const appleRgbToXyz = (rgb: RGB): XYZ => {
-  return gammaRgbToXyz(rgb, SPACE_MATRICES.APPLE_RGB);
+  return gammaRgbToXyz(rgb, SPACE_DATASETS.APPLE_RGB);
 };
 
 /*******************************************************************
  *                           BEST RGB
  * *****************************************************************/
 export const bestRgbToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.BEST_RGB));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.BEST_RGB));
 };
 
 /*******************************************************************
  *                           BETA RGB
  * *****************************************************************/
 export const betaRgbToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.BETA_RGB));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.BETA_RGB));
 };
 
 /*******************************************************************
  *                          BRUCE RGB
  * *****************************************************************/
 export const bruceRgbToXyz = (rgb: RGB): XYZ => {
-  return gammaRgbToXyz(rgb, SPACE_MATRICES.BRUCE_RGB);
+  return gammaRgbToXyz(rgb, SPACE_DATASETS.BRUCE_RGB);
 };
 
 /*******************************************************************
  *                            CIE RGB
  * *****************************************************************/
 export const cieRgbToXyz = (rgb: RGB): XYZ => {
-  return EtoD65Adaptation (gammaRgbToXyz(rgb, SPACE_MATRICES.CIE_RGB));
+  return EtoD65Adaptation (gammaRgbToXyz(rgb, SPACE_DATASETS.CIE_RGB));
 };
 
 /*******************************************************************
  *                        COLOR MATCH RGB
  * *****************************************************************/
 export const colorMatchRgbToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.COLOR_MATCH_RGB));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.COLOR_MATCH_RGB));
 };
 
 /*******************************************************************
  *                           DON RGB 4
  * *****************************************************************/
 export const donRgb4ToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.DON_RGB_4));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.DON_RGB_4));
 };
 
 /*******************************************************************
  *                        ETKA SPACE PS5
  * *****************************************************************/
 export const etkaSpacePs5ToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.ETKA_SPACE_PS5));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.ETKA_SPACE_PS5));
 };
 
 /*******************************************************************
  *                           NTSC RGB
  * *****************************************************************/
 export const ntscRgbToXyz = (rgb: RGB): XYZ => {
-  return CtoD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.NTSC_RGB));
+  return CtoD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.NTSC_RGB));
 };
 
 /*******************************************************************
  *                        PAL/SECAM RGB
  * *****************************************************************/
 export const palSecamRgbToXyz = (rgb: RGB): XYZ => {
-  return gammaRgbToXyz(rgb, SPACE_MATRICES.PAL_SECAM_RGB);
+  return gammaRgbToXyz(rgb, SPACE_DATASETS.PAL_SECAM_RGB);
 };
 
 /*******************************************************************
  *                        PRO PHOTO RGB
  * *****************************************************************/
 export const proPhotoRgbToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.PRO_PHOTO_RGB));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.PRO_PHOTO_RGB));
 };
 
 /*******************************************************************
  *                          SMPTE-C RGB
  * *****************************************************************/
 export const smpteCRgbToXyz = (rgb: RGB): XYZ => {
-  return gammaRgbToXyz(rgb, SPACE_MATRICES.SMPTE_C_RGB);
+  return gammaRgbToXyz(rgb, SPACE_DATASETS.SMPTE_C_RGB);
 };
 
 /*******************************************************************
  *                        WIDE GAMUT RGB
  * *****************************************************************/
 export const wideGamutRgbToXyz = (rgb: RGB): XYZ => {
-  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_MATRICES.WIDE_GAMUT_RGB));
+  return D50toD65Adaptation(gammaRgbToXyz(rgb, SPACE_DATASETS.WIDE_GAMUT_RGB));
 };
 
 /*******************************************************************
@@ -262,7 +262,7 @@ export const eciRgbV2ToXyz = (rgb: RGB): XYZ => {
  *                             SRGB
  * *****************************************************************/
 export const sRgbToXyz = (rgb: RGB): XYZ => {
-  return rgbToXyz(rgb, SPACE_MATRICES.SRGB, inverseSrbgCompanding);
+  return rgbToXyz(rgb, SPACE_DATASETS.SRGB, inverseSrbgCompanding);
 };
 
 /*******************************************************************

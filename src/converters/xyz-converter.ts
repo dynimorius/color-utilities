@@ -1,5 +1,5 @@
 import { CIE_κ, CIE_ϵ } from "../constants";
-import { REFERENCE_WHITES } from "../constants/reference-whites";
+import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import { bound } from "../helpers";
 import { D65toCAdaptation, D65toD50Adaptation, D65toEAdaptation } from "../helpers/chromatic-adaptation";
@@ -22,9 +22,9 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
     return t > CIE_ϵ ? Math.cbrt(t) : (CIE_κ * t + 16) / 116;
   };
 
-  x = f(x / (REFERENCE_WHITES.D65.X * 100));
-  y = f(y / (REFERENCE_WHITES.D65.Y * 100));
-  z = f(z / (REFERENCE_WHITES.D65.Z * 100));
+  x = f(x / (REFERENCE_ILLUMINANT.D65.X * 100));
+  y = f(y / (REFERENCE_ILLUMINANT.D65.Y * 100));
+  z = f(z / (REFERENCE_ILLUMINANT.D65.Z * 100));
 
   const luminance = 116 * y - 16;
   const a = 500 * (x - y);
@@ -38,18 +38,18 @@ export const xyzToLuv = ({ x, y, z }: XYZ): LUV => {
   y = y > 1 ? y / 100 : y;
   z = z > 1 ? z / 100 : z;
 
-  const yr = y / REFERENCE_WHITES.D65.Y;
+  const yr = y / REFERENCE_ILLUMINANT.D65.Y;
   const uP = Fu({ x, y, z });
   const vP = Fv({ x, y, z });
   const uRef = Fu({
-    x: REFERENCE_WHITES.D65.X,
-    y: REFERENCE_WHITES.D65.Y,
-    z: REFERENCE_WHITES.D65.Z,
+    x: REFERENCE_ILLUMINANT.D65.X,
+    y: REFERENCE_ILLUMINANT.D65.Y,
+    z: REFERENCE_ILLUMINANT.D65.Z,
   });
   const vRef = Fv({
-    x: REFERENCE_WHITES.D65.X,
-    y: REFERENCE_WHITES.D65.Y,
-    z: REFERENCE_WHITES.D65.Z,
+    x: REFERENCE_ILLUMINANT.D65.X,
+    y: REFERENCE_ILLUMINANT.D65.Y,
+    z: REFERENCE_ILLUMINANT.D65.Z,
   });
   const L = yr > CIE_ϵ ? 116 * Math.cbrt(yr) - 16 : CIE_κ * yr;
   const u = 13 * L * (uP - uRef);

@@ -1,3 +1,11 @@
+/***************************************************************
+ *  Cone response domains utilized for chromatic 
+ *  adaptation algorithms.
+ *  The Bradford method is the newest of the three methods, 
+ *  and is considered by most experts to be the best of them.
+ *  credit: 
+ *  http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
+ ***************************************************************/
 import { ResponceDomain } from "../interfaces/responce-domain";
 
 export const BRADFORD_CONE_RESPONCE_DOMAINS: ResponceDomain = {
