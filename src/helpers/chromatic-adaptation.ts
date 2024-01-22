@@ -1,4 +1,5 @@
-import { ADAPTIVE_MATRICES, BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants";
+import { BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants";
+import { ADAPTIVE_MATRICES } from "../constants/adaptive_matrices";
 import { XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
 import { matrix3x3Multi, matrixVectorMulti, matrixVectorMultiAsXyz, } from "./matrix";

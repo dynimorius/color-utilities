@@ -1,4 +1,5 @@
-import { CIE_κ, CIE_ϵ, REFERENCE_WHITES, SPACE_MATRICES } from "../constants";
+import { CIE_κ, CIE_ϵ, SPACE_MATRICES } from "../constants";
+import { REFERENCE_WHITES } from "../constants/reference-whites";
 import { bound } from "../helpers";
 import { D65toCAdaptation, D65toD50Adaptation, D65toEAdaptation } from "../helpers/chromatic-adaptation";
 import {
@@ -112,8 +113,8 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_MATRICES.ECI_RGB_V2, LCompanding);
 };
 
-export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData): RGB => {
-  return xyzToRgb(xyz, ref, gammaCompanding, true);
+export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData, whitInBounds?: boolean): RGB => {
+  return xyzToRgb(xyz, ref, gammaCompanding, whitInBounds);
 };
 
 /*******************************************************************

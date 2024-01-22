@@ -12,7 +12,8 @@ import {
 import { ColorResolver } from "./resolvers/color-resolver";
 import { RGBResolver } from "./resolvers/rgb-resolver";
 
-const testColor = { red: 217, green: 122, blue: 37 };
+const testColor = { red: 238, green: 200, blue: 27 };
+// const testColor = { red: 217, green: 122, blue: 37 };
 const checkColor = new ColorResolver("rgb", testColor);
 console.log(checkColor.data, `\n\n\n`);
 
@@ -126,8 +127,8 @@ const color27 = new ColorResolver("cmyk", checkColor.data?.cmyk as CMYK);
 
 const printData = (colors: ColorResolver[]) => {
   colors.forEach((color) => {
+    const name = Object.keys(color.data)[0].replace(/_/g, " ").toUpperCase();
     if (!checkRgb(color.data.rgb as RGB)) {
-      const name = Object.keys(color)[0].replace("_", " ").toUpperCase();
       console.log(
         `\n${name}\n`,
         `----------------------------------------------\n`,
@@ -151,7 +152,6 @@ const printData = (colors: ColorResolver[]) => {
         `\n----------------------------------------------\n`
       );
     } else {
-      const name = Object.keys(color)[0].replace("_", " ").toUpperCase();
       console.log(
         `\n${name}\n`,
         `----------------------------------------------\n`,
