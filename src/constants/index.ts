@@ -101,7 +101,7 @@ export const SPACE_MATRICES = {
   BEST_RGB: {
     RGB_TO_XYZ: {
       X: { r: 0.6326696, g: 0.2045558, b: 0.1269946 },
-      Y: { r: 0.2284569, g: 0.7373523, b: 0.0341908 },
+      Y: { r: 0.2284569, g: 0.7373523, b: 0.04 },
       Z: { r: 0.0, g: 0.0095142, b: 0.8156958 },
     },
     XYZ_TO_RGB: {
@@ -110,7 +110,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0063467, y: -0.0175761, z: 1.2256959 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 2.2,
+    GAMMA: 2.215,
   },
   BETA_RGB: {
     RGB_TO_XYZ: {
@@ -124,7 +124,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0400013, y: -0.0885376, z: 1.272364 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 2.2,
+    GAMMA: 2.215,
   },
   BRUCE_RGB: {
     RGB_TO_XYZ: {
@@ -152,7 +152,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0052982, y: -0.0146949, z: 1.0093968 },
     },
     REFERENCE_WHITE: "E",
-    GAMMA: 2.2,
+    GAMMA: 2.19,
   },
   COLOR_MATCH_RGB: {
     RGB_TO_XYZ: {
@@ -208,7 +208,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0381263, y: -0.086878, z: 1.2725438 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 2.2,
+    GAMMA: 2.19,
   },
   NTSC_RGB: {
     RGB_TO_XYZ: {
@@ -250,7 +250,7 @@ export const SPACE_MATRICES = {
       B: { x: 0.0, y: 0.0, z: 1.2118128 },
     },
     REFERENCE_WHITE: "D50",
-    GAMMA: 1.8,
+    GAMMA: 1.81,
   },
   SMPTE_C_RGB: {
     RGB_TO_XYZ: {
@@ -282,7 +282,7 @@ export const SPACE_MATRICES = {
   },
   WIDE_GAMUT_RGB: {
     RGB_TO_XYZ: {
-      X: { r: 0.7161046, g: 0.1009296, b: 0.1471858 },
+      X: { r: 0.714, g: 0.1009296, b: 0.1471858 },
       Y: { r: 0.2581874, g: 0.7249378, b: 0.0168748 },
       Z: { r: 0.0, g: 0.0517813, b: 0.7734287 },
     },

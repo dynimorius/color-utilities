@@ -137,6 +137,7 @@ const rgbToXyz = (
   const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
   const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;
   const z = (Rlin * Z.r + Glin * Z.g + Blin * Z.b) * 100;
+
   return { x, y, z };
 };
 

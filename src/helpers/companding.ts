@@ -12,11 +12,8 @@ export const sRgbCompanding = (value: number): number => {
 };
 
 export const gammaCompanding = (value: number, gamma: number): number => {
-  if (value < 0) {
-    value = Math.abs(value);
-    return -Math.pow(value,(1 / gamma)) * 255;
-  }
-  return Math.pow(value,(1 / gamma)) * 255;
+  return value < 0 ?
+    -Math.pow(Math.abs(value), (1 / gamma)) * 255 : Math.pow(value, (1 / gamma)) * 255;
 };
 
 export const LCompanding = (value: number): number => { 
@@ -36,11 +33,7 @@ export const inverseSrbgCompanding = (value: number): number => {
 
 export const inverseGammaCompanding = (value: number, gamma: number): number => {
   value = value / 255;
-  if (value < 0) {
-    value = Math.abs(value);
-    return -Math.pow(value, gamma);
-  }
-  return Math.pow(value, gamma);
+  return value < 0 ? -Math.pow(Math.abs(value), gamma) : Math.pow(value, gamma);
 };
 
 export const inverseLCompanding = (value: number): number => { 

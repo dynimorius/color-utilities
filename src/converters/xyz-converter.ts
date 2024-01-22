@@ -1,4 +1,5 @@
 import { CIE_κ, CIE_ϵ, REFERENCE_WHITES, SPACE_MATRICES } from "../constants";
+import { bound } from "../helpers";
 import { D65toCAdaptation, D65toD50Adaptation, D65toEAdaptation } from "../helpers/chromatic-adaptation";
 import {
   LCompanding,
@@ -67,7 +68,8 @@ export const xyzToRgb = (
   { x, y, z }: XYZ,
   space: SpaceData,
   compandingFun: Function,
-  gamma?: boolean
+  gamma?: boolean,
+  whitInBounds?:boolean
 ): RGB => {
   x = x > 1 ? x / 100 : x;
   y = y > 1 ? y / 100 : y;
@@ -91,9 +93,9 @@ export const xyzToRgb = (
   }
 
   return {
-    red: !gamutCheck(red) ? 0 : red > 255 ? 255 : red,
-    green: !gamutCheck(green) ? 0 : green > 255 ? 255 : green,
-    blue: !gamutCheck(blue) ? 0 : blue > 255 ? 255 : blue,
+    red: whitInBounds ? bound(red) : red,
+    green: whitInBounds ? bound(green) : green,
+    blue: whitInBounds ? bound(blue) : blue,
     inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
   };
 };

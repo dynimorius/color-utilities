@@ -1,7 +1,6 @@
 import {
   CMYK,
   HCG,
-  HSB,
   HSL,
   HSV,
   HWB,
@@ -9,6 +8,8 @@ import {
   LCH,
   LUV,
   RGB,
+  RYB,
+  XYY,
   XYZ,
 } from "./color-spaces.interface";
 
@@ -22,13 +23,21 @@ export interface ColorData {
   webSafe: boolean;
 }
 export interface ColorExtendedData {
-  alpha: number;
+  adobe_98_rgb: RGB;
+  apple_rgb: RGB;
   ansi16: number;
   ansi256: number;
+  best_rgb: RGB;
+  beta_rgb: RGB;
+  bruce_rgb: RGB;
+  cie_rgb: RGB;
+  color_match_rgb: RGB;
   cmyk: CMYK;
+  don_rgb_4: RGB;
+  eci_rgb_v2: RGB;
+  etka_space_ps5: RGB;
   hcg: HCG;
   hex: string;
-  hsb: HSB;
   hsl: HSL;
   hsv: HSV;
   hwb: HWB;
@@ -36,11 +45,17 @@ export interface ColorExtendedData {
   lch_ab: LCH;
   lch_uv: LCH;
   luv: LUV;
-  outOfGamut: boolean;
+  ntsc_rgb: RGB;
+  pal_secam_rgb: RGB;
+  pro_photo_rgb: RGB;
+  rgb_0_1: RGB;
   rgb: RGB;
-  srgb: RGB;
-  webSafe: boolean;
+  ryb: RYB;
+  smpte_c_rgb: RGB;
+  web_safe: boolean;
+  wide_gamut_rgb: RGB;
   xyz: XYZ;
+  xyY: XYY;
 }
 
 export interface ColorBreakdown {
