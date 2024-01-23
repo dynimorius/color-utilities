@@ -1,6 +1,5 @@
 import {
   cmykColorCheck,
-  hcgColorCheck,
   hclColorCheck,
   hexColorCheck,
   hslColorCheck,
@@ -22,7 +21,6 @@ export const colorCheckerMap: ColorCheckers = {
   hsl: hslColorCheck,
   hsv: hsvColorCheck,
   hwb: hwbColorCheck,
-  hcg: hcgColorCheck,
   hcl: hclColorCheck,
   lab: labColorCheck,
   lch: lchColorCheck,

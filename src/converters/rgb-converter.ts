@@ -7,7 +7,6 @@ import {
 } from "../helpers/companding";
 import {
   CMYK,
-  HCG,
   HSL,
   HSV,
   HWB,
@@ -405,18 +404,6 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
   else hue = pHue;
 
   return { hue, saturation, value };
-};
-
-/*******************************************************************
- *                             HCG
- * *****************************************************************/
-export const sRgbToHcg = (rgb: RGB, hue?: number): HCG => {
-  const { red, green, blue } = normalizeRgb(rgb);
-  const { min, max, delta } = getRange(red, green, blue);
-  const grayscale = delta < 1 ? min / (1 - delta) : 0;
-
-  hue = hue ? hue : rgbToHue(red, green, blue, max, delta);
-  return { hue, chroma: delta * 100, grayscale: grayscale * 100 };
 };
 
 /*******************************************************************

@@ -37,7 +37,6 @@ export class ColorResolver {
       "don_rgb_4",
       "eci_rgb_v2",
       "etka_space_ps5",
-      "hcg",
       "hex",
       "hsl",
       "hsv",
@@ -61,16 +60,15 @@ export class ColorResolver {
   ) {
     color = this.checkAndFormat(space, color);
     this.data[space as keyof ColorExtendedData] = color as any;
-
     if (
       !this.data.rgb &&
-      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|xyz/g).exec(space)
+      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|ryb|xyz/g).exec(space)
     ) {
       this.data.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
       if (this.data.xyz) this.data.xyz = sRgbToXyz(this.data.rgb as RGB);
     }
 
-    if (!this.data.xyz && !!new RegExp(/rgb|lab|luv|lch|ps5/g).exec(space)) {
+    if (!this.data.xyz && !!new RegExp(/rgb|lab|luv|lch|ps5|xyy/g).exec(space)) {
       this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
     } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);

@@ -1,26 +1,4 @@
-import { HCG, HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
-import { hueToRGB } from "./hue-converter";
-
-// export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
-//   hue = hue / 60;
-//   saturation = saturation / 100;
-//   lightness = lightness / 100;
-
-//   if (saturation === 0) {
-//     return { red: lightness, green: lightness, blue: lightness };
-//   }
-
-//   const q =
-//     lightness < 0.5
-//       ? lightness * (1 + saturation)
-//       : lightness + saturation - lightness * saturation;
-//   const p = 2 * lightness - q;
-//   const red = hueToRGB(p, q, hue + 2);
-//   const green = hueToRGB(p, q, hue);
-//   const blue = hueToRGB(p, q, hue - 2);
-
-//   return { red, green, blue };
-// };
+import { HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
 
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   saturation /= 100;
@@ -56,19 +34,3 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   return { hue, saturation: hsvSaturation, value };
 };
 
-export const hslToHcg = ({ hue, saturation, lightness }: HSL): HCG => {
-  saturation = saturation / 100;
-  lightness = lightness / 100;
-
-  const chroma =
-    lightness < 0.5
-      ? 2.0 * saturation * lightness
-      : 2.0 * saturation * (1.0 - lightness);
-
-  let grayscale = 0;
-  if (chroma < 1.0) {
-    grayscale = (lightness - 0.5 * chroma) / (1.0 - chroma);
-  }
-
-  return { hue, chroma: chroma * 100, grayscale: grayscale * 100 };
-};

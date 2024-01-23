@@ -1,6 +1,5 @@
 import {
   CMYK,
-  HCG,
   HSL,
   HSV,
   HWB,
@@ -36,7 +35,6 @@ export interface ColorExtendedData {
   don_rgb_4?: RGB;
   eci_rgb_v2?: RGB;
   etka_space_ps5?: RGB;
-  hcg?: HCG;
   hex?: string;
   hsl?: HSL;
   hsv?: HSV;
@@ -55,7 +53,7 @@ export interface ColorExtendedData {
   web_safe?: boolean;
   wide_gamut_rgb?: RGB;
   xyz?: XYZ;
-  xyY?: XYY;
+  xyy?: XYY;
 }
 
 export interface ColorBreakdown {

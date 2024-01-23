@@ -12,7 +12,6 @@ export interface ColorConverters {
   don_rgb_4?: ConverterInfo;
   eci_rgb_v2?: ConverterInfo;
   etka_space_ps5?: ConverterInfo;
-  hcg?: ConverterInfo;
   hex?: ConverterInfo;
   hsl?: ConverterInfo;
   hsv?: ConverterInfo;
@@ -82,7 +81,6 @@ export interface ColorCheckers {
   hsl: Function;
   hsv: Function;
   hwb: Function;
-  hcg: Function;
   hcl: Function;
   xyz: Function;
   lab: Function;

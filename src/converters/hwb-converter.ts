@@ -1,4 +1,4 @@
-import { HCG, HWB, RGB } from "../interfaces/color-spaces.interface";
+import { HWB, RGB } from "../interfaces/color-spaces.interface";
 
 export const hwbToRgb = ({ hue, whiteness, blackness }: HWB): RGB => {
   hue = hue / 360;
@@ -23,16 +23,3 @@ export const hwbToRgb = ({ hue, whiteness, blackness }: HWB): RGB => {
   return { red, green, blue };
 };
 
-export const hwbToHcg = ({ hue, whiteness, blackness }: HWB): HCG => {
-  whiteness = whiteness / 100;
-  blackness = blackness / 100;
-  const v = 1 - blackness;
-  const chroma = v - whiteness;
-  let grayscale = 0;
-
-  if (chroma < 1) {
-    grayscale = ((v - chroma) / (1 - chroma)) * 100;
-  }
-
-  return { hue, chroma: chroma * 100, grayscale };
-};

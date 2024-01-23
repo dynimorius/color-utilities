@@ -1,8 +1,6 @@
 import {
   CMYK,
   CMYK_M,
-  HCG,
-  HCG_M,
   HCL,
   HCL_M,
   HSL,
@@ -63,11 +61,6 @@ export const hsvColorCheck = (color: HSV | HSV_M): HSV => {
 export const hwbColorCheck = (color: HWB | HWB_M): HWB => {
   const values = Object.values(colorCheck(color));
   return { hue: values[0], whiteness: values[1], blackness: values[2] };
-};
-
-export const hcgColorCheck = (color: HCG | HCG_M): HCG => {
-  const values = Object.values(colorCheck(color));
-  return { hue: values[0], chroma: values[1], grayscale: values[2] };
 };
 
 export const hclColorCheck = (color: HCL | HCL_M): HCL => {

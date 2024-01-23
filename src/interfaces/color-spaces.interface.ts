@@ -109,18 +109,6 @@ export interface HWB_M {
   b: number;
 }
 
-export interface HCG {
-  hue: number;
-  chroma: number;
-  grayscale: number;
-}
-
-export interface HCG_M {
-  h: number;
-  c: number;
-  g: number;
-}
-
 export interface HCL {
   hue: number;
   chroma: number;

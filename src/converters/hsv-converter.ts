@@ -1,4 +1,4 @@
-import { HCG, HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
+import { HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
 import { sRgbToAnsi16 } from "./rgb-converter";
 
 export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
@@ -41,16 +41,3 @@ export const hsvToAnsi16 = (hsv: HSV): number => {
   return sRgbToAnsi16(rgb, hsv.value);
 };
 
-export const hsvToHcg = ({ hue, saturation, value }: HSV): HCG => {
-  saturation = saturation / 100;
-  value = value / 100;
-
-  const chroma = saturation * value;
-  let grayscale = 0;
-
-  if (chroma < 1.0) {
-    grayscale = ((value - chroma) / (1 - chroma)) * 100;
-  }
-
-  return { hue, chroma: chroma * 100, grayscale };
-};

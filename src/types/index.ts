@@ -1,8 +1,6 @@
 import {
   CMYK,
   CMYK_M,
-  HCG,
-  HCG_M,
   HCL,
   HCL_M,
   HSL,
@@ -23,6 +21,7 @@ import {
   RGB_M,
   RYB,
   RYB_M,
+  XYY,
   XYZ,
 } from "../interfaces/color-spaces.interface";
 
@@ -40,8 +39,6 @@ export type ColorSpaceUnion =
   | HSV_M
   | HWB
   | HWB_M
-  | HCG
-  | HCG_M
   | HCL
   | HCL_M
   | LAB
@@ -52,6 +49,7 @@ export type ColorSpaceUnion =
   | CMYK
   | CMYK_M
   | XYZ
+  | XYY
   | string;
 
 export type Spaces =
@@ -68,7 +66,6 @@ export type Spaces =
   | 'don_rgb_4'
   | 'eci_rgb_v2'
   | 'etka_space_ps5'
-  | 'hcg'
   | 'hex'
   | 'hsl'
   | 'hsv'
