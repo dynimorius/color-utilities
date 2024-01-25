@@ -1,3 +1,4 @@
+import { fourToneCWHarmonyHsl } from './utilities/harmony';
 import {
   CMYK,
   HSL,
@@ -11,11 +12,9 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { hslToHex } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
-import { fiveToneAHarmonyHsl } from "./utilities/harmony";
-
+import { getShades } from "./utilities/mixer";
 let pass = 0;
 let fail = 0;
 
@@ -50,7 +49,7 @@ const color7 = new ColorResolver("hwb", checkColor.data?.hwb as HWB);
 
 const color8 = new ColorResolver("luv", checkColor.data?.luv as LUV);
 
-const color9  = new ColorResolver("lab", checkColor.data?.lab as LAB);
+const color9 = new ColorResolver("lab", checkColor.data?.lab as LAB);
 
 const color10 = new ColorResolver("lch_ab", checkColor.data?.lch_ab as LCH);
 
@@ -127,7 +126,6 @@ const color30 = new ColorResolver(
   checkColor.data?.wide_gamut_rgb as RGB
 );
 
-
 const printData = (colors: ColorResolver[]) => {
   colors.forEach((color) => {
     const name = Object.keys(color.data)[0].replace(/_/g, " ").toUpperCase();
@@ -166,7 +164,7 @@ const printData = (colors: ColorResolver[]) => {
       );
     }
   });
-  console.log(`\n Passed: ${pass} \n Failed: ${fail}\n`)
+  console.log(`\n Passed: ${pass} \n Failed: ${fail}\n`);
 };
 
 printData([
@@ -198,7 +196,8 @@ printData([
   color27,
   color28,
   color29,
-  color30
+  color30,
 ]);
 
-console.log(fiveToneAHarmonyHsl(checkColor.data?.hsl as HSL));
+console.log(getShades(testColor));
+console.log(fourToneCWHarmonyHsl(checkColor.data.hsl as HSL))
