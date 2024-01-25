@@ -1,4 +1,4 @@
-import { fourToneCWHarmonyHsl } from './utilities/harmony';
+import { complementaryHarmonyHsl, splitComplementaryCCWHarmonyHsl, splitComplementaryCWHarmonyHsl, splitComplementaryHarmonyHsl, squareHarmonyHsl, triadicHarmonyHsl } from './utilities/harmony';
 import {
   CMYK,
   HSL,
@@ -14,7 +14,6 @@ import {
 } from "./interfaces/color-spaces.interface";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
-import { getShades } from "./utilities/mixer";
 let pass = 0;
 let fail = 0;
 
@@ -198,6 +197,3 @@ printData([
   color29,
   color30,
 ]);
-
-console.log(getShades(testColor, {prefexed: true}));
-console.log(fourToneCWHarmonyHsl(checkColor.data.hsl as HSL, true))
