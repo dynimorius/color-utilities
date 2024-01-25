@@ -36,7 +36,6 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
 
 export const hslToHex = (hsl: HSL | HSLA, prefixed?: boolean): string => {
   let { hue, saturation, lightness } = hsl;
-
   lightness /= 100;
   const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
   const f = (n: number) => {

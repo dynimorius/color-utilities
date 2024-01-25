@@ -95,3 +95,20 @@ export type initialSpaces =
   | 'ryb'
   | 'xyz';
 
+
+export type BlenderColor = 
+| RGB
+| RGBA
+| RGB_M
+| RYB
+| RYB_M
+| HSL
+| HSLA
+| HSL_M
+| HSV
+| HSVA
+| HSV_M
+| CMYK
+| CMYK_M
+| XYZ
+| string;

@@ -21,8 +21,17 @@ import {
   XYY,
   XYZ,
 } from "../interfaces/color-spaces.interface";
+import { ColorCheckers } from "../interfaces/converters.interface";
 import { FULL_HEX, HEX } from "../regex";
 import { ColorSpaceUnion } from "../types";
+
+export const checkAndFormat = (space: string, color: ColorSpaceUnion): ColorSpaceUnion => {
+  const rgbCheck = new RegExp(/rgb|ps5/g);
+  if (rgbCheck.exec(space)) return rgbColorCheck(color as RGB | RGB_M);
+  const lchCheck = new RegExp(/lch/g);
+  if (lchCheck.exec(space)) return lchColorCheck(color as LCH | LCH_M);
+  else return colorCheckerMap[space as keyof ColorCheckers](color);
+}
 
 export const colorCheck = (color: ColorSpaceUnion): ColorSpaceUnion => {
   const entries = Object.entries(color);
@@ -68,12 +77,12 @@ export const hclColorCheck = (color: HCL | HCL_M): HCL => {
   return { hue: values[0], chroma: values[1], luminance: values[2] };
 };
 
-export const labColorCheck = (color: LAB | LAB_M): boolean | LAB => {
+export const labColorCheck = (color: LAB | LAB_M): LAB => {
   const values = Object.values(colorCheck(color));
   return { luminance: values[0], a: values[1], b: values[2] };
 };
 
-export const lchColorCheck = (color: LCH | LCH_M): boolean | LCH => {
+export const lchColorCheck = (color: LCH | LCH_M):| LCH => {
   const values = Object.values(colorCheck(color));
   return { lightness: values[0], chroma: values[1], hue: values[2] };
 };
@@ -83,7 +92,7 @@ export const luvColorCheck = (color: LUV): LUV => {
   return { L: values[0], u: values[1], v: values[2] };
 };
 
-export const cmykColorCheck = (color: CMYK | CMYK_M): boolean | CMYK => {
+export const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
   const values = Object.values(colorCheck(color));
   return {
     cyan: values[0],
@@ -107,3 +116,19 @@ export const rybColorCheck = (color: RYB | RYB_M): RYB => {
   const values = Object.values(colorCheck(color));
   return { red: values[0], yellow: values[1], blue: values[2] };
 };
+
+const colorCheckerMap: ColorCheckers = {
+  hex: hexColorCheck,
+  rgb: rgbColorCheck,
+  hsl: hslColorCheck,
+  hsv: hsvColorCheck,
+  hwb: hwbColorCheck,
+  hcl: hclColorCheck,
+  lab: labColorCheck,
+  lch: lchColorCheck,
+  luv: luvColorCheck,
+  cmyk: cmykColorCheck,
+  ryb: rybColorCheck,
+  xyz: xyzColorCheck,
+  xyy: xyYColorCheck,
+}

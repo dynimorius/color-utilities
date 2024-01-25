@@ -268,3 +268,5 @@ WIDE GAMUT RGB
  Failed: 8
 
 [ '#EEC71B', '#1BEE5E', '#1B42EE', '#EE1BAB' ]
+{ red: 255, green: 159, blue: 0 }
+rgb

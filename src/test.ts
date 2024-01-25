@@ -13,6 +13,7 @@ import {
 } from "./interfaces/color-spaces.interface";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
+import { Blender, blend } from "./utilities/blender";
 import { squareHarmony } from "./utilities/harmony";
 let pass = 0;
 let fail = 0;
@@ -198,4 +199,47 @@ printData([
   color30,
 ]);
 
-console.log(squareHarmony(checkColor.data.hsl as HSL, true))
+console.log(squareHarmony(checkColor.data.hsl as HSL, true));
+console.log(
+  blend(
+    { red: 255, green: 237, blue: 0 },
+    { red: 255, green: 0, blue: 0 },
+    0.67
+  )
+);
+
+const newColor = new Blender(
+  { red: 255, green: 237, blue: 0 },
+  { red: 255, green: 0, blue: 0 },
+  { weight: 0.67 }
+);
+
+console.log(newColor.color);
+
+const newColor2 = new Blender("#FFED00", "#FF0000", { weight: 0.67 });
+
+console.log(newColor2.color);
+
+const newColor3 = new Blender(
+  { c: 0, m: 7, y: 100, k: 0 },
+  { c: 0, m: 100, y: 100, k: 0 },
+  { weight: 0.67 }
+);
+
+console.log(newColor3.color);
+
+const newColor4 = new Blender(
+  { h: 56, s: 100, l: 50 },
+  { h: 0, s: 100, l: 50 },
+  { weight: 0.67 }
+);
+
+console.log(newColor4.blendData);
+
+const newColor5 = new Blender(
+  { h: 56, s: 100, v: 100 },
+  { h: 0, s: 100, v: 100 },
+  { weight: 0.67, returnType: 'hsl' }
+);
+
+console.log(newColor5.blendData);

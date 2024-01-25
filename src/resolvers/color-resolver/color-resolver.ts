@@ -16,6 +16,7 @@ import {
 } from "../../interfaces/converters.interface";
 import { ColorSpaceUnion, Spaces } from "../../types";
 import { colorCheckerMap } from "./color-checker-map";
+import { checkAndFormat } from "../../helpers/color-checks";
 
 export class ColorResolver {
   data: ColorExtendedData = {};
@@ -58,7 +59,7 @@ export class ColorResolver {
       "xyy",
     ]
   ) {
-    color = this.checkAndFormat(space, color);
+    color = checkAndFormat(space, color);
     this.data[space as keyof ColorExtendedData] = color as any;
     if (
       !this.data.rgb &&
@@ -84,13 +85,5 @@ export class ColorResolver {
         );
       }
     }
-  }
-
-  checkAndFormat(space: Spaces, color: ColorSpaceUnion): ColorSpaceUnion {
-    const rgbCheck = new RegExp(/rgb|ps5/g);
-    if (rgbCheck.exec(space)) return colorCheckerMap.rgb(color);
-    const lchCheck = new RegExp(/lch/g);
-    if (lchCheck.exec(space)) return colorCheckerMap.lch(color);
-    else return colorCheckerMap[space as keyof ColorCheckers](color);
   }
 }
