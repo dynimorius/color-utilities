@@ -34,7 +34,9 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   return { hue, saturation: hsvSaturation, value };
 };
 
-export const hslToHex = ({ hue, saturation, lightness }: HSL, prefixed?: boolean): string => {
+export const hslToHex = (hsl: HSL | HSLA, prefixed?: boolean): string => {
+  let { hue, saturation, lightness } = hsl;
+
   lightness /= 100;
   const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
   const f = (n: number) => {
@@ -45,27 +47,11 @@ export const hslToHex = ({ hue, saturation, lightness }: HSL, prefixed?: boolean
       .padStart(2, "0");
   };
 
-  return (prefixed ? '#' : '') + `${f(0)}${f(8)}${f(4)}`.toLocaleUpperCase();
-};
-
-export const hslaToHex = ({
-  hue,
-  saturation,
-  lightness,
-  alpha,
-}: HSLA, prefixed?: boolean): string => {
-  lightness /= 100;
-  const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
-  const f = (n: number) => {
-    const k = (n + hue / 30) % 12;
-    const color = lightness - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
-    return Math.round(255 * color)
-      .toString(16)
-      .padStart(2, "0");
-  };
-  const alphaHex = Math.round(alpha * 255)
-    .toString(16)
-    .padStart(2, "0");
-
-  return (prefixed ? '#' : '') + `${f(0)}${f(8)}${f(4)}${alphaHex}`.toLocaleUpperCase();
+  const alphaHex: string = (hsl as HSLA).alpha
+    ? Math.round((hsl as HSLA).alpha * 255)
+        .toString(16)
+        .padStart(2, "0")
+    : "";
+  const prefix = prefixed ? "#" : "";
+  return `${prefix}${f(0)}${f(8)}${f(4)}${alphaHex}`.toLocaleUpperCase();
 };

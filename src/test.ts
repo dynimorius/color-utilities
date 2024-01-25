@@ -1,4 +1,3 @@
-import { complementaryHarmonyHsl, splitComplementaryCCWHarmonyHsl, splitComplementaryCWHarmonyHsl, splitComplementaryHarmonyHsl, squareHarmonyHsl, triadicHarmonyHsl } from './utilities/harmony';
 import {
   CMYK,
   HSL,
@@ -14,6 +13,7 @@ import {
 } from "./interfaces/color-spaces.interface";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
+import { squareHarmony } from "./utilities/harmony";
 let pass = 0;
 let fail = 0;
 
@@ -197,3 +197,5 @@ printData([
   color29,
   color30,
 ]);
+
+console.log(squareHarmony(checkColor.data.hsl as HSL, true))
