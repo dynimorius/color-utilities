@@ -11,6 +11,7 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
+import { hslToHex } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
 
@@ -198,3 +199,5 @@ printData([
   color29,
   color30
 ]);
+
+console.log(hslToHex(checkColor.data?.hsl as HSL));

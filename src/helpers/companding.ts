@@ -24,7 +24,7 @@ export const LCompanding = (value: number): number => {
 /*************************************************************
  *                    INVERSE COMPANDING
  ************************************************************/
-export const inverseSrbgCompanding = (value: number): number => {
+export const inverseSrbgCompanding = (value: number): number => { 
   value = value / 255;
   return value <= SRGB_INVERSE_NORMALIZED_BELOW
     ? value / 12.92

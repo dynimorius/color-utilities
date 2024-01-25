@@ -1,4 +1,4 @@
-import { HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
+import { HSL, HSLA, HSV, RGB } from "../interfaces/color-spaces.interface";
 
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   saturation /= 100;
@@ -34,3 +34,38 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   return { hue, saturation: hsvSaturation, value };
 };
 
+export const hslToHex = ({ hue, saturation, lightness }: HSL): string => {
+  lightness /= 100;
+  const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
+  const f = (n: number) => {
+    const k = (n + hue / 30) % 12;
+    const color = lightness - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0");
+  };
+
+  return `#${f(0)}${f(8)}${f(4)}`.toLocaleUpperCase();
+};
+
+export const hslaToHex = ({
+  hue,
+  saturation,
+  lightness,
+  alpha,
+}: HSLA): string => {
+  lightness /= 100;
+  const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
+  const f = (n: number) => {
+    const k = (n + hue / 30) % 12;
+    const color = lightness - a * Math.max(Math.min(k - 3, 9 - k, 1), -1);
+    return Math.round(255 * color)
+      .toString(16)
+      .padStart(2, "0");
+  };
+  const alphaHex = Math.round(alpha * 255)
+    .toString(16)
+    .padStart(2, "0");
+
+  return `#${f(0)}${f(8)}${f(4)}${alphaHex}`.toLocaleUpperCase();
+};
