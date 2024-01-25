@@ -14,6 +14,7 @@ import {
 import { hslToHex } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
+import { fiveToneAHarmonyHsl } from "./utilities/harmony";
 
 let pass = 0;
 let fail = 0;
@@ -200,4 +201,4 @@ printData([
   color30
 ]);
 
-console.log(hslToHex(checkColor.data?.hsl as HSL));
+console.log(fiveToneAHarmonyHsl(checkColor.data?.hsl as HSL));
