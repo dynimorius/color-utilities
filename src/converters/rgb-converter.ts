@@ -343,24 +343,24 @@ export const sRgbToLch_uv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
 /*******************************************************************
  *                             HEX
  * *****************************************************************/
-export const sRgbToHex = ({ red, green, blue }: RGB): string => {
+export const sRgbToHex = ({ red, green, blue }: RGB, prefixed?: boolean): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
     (Math.round(blue) & 0xff);
 
   const string = integer.toString(16).toUpperCase();
-  return "000000".substring(string.length) + string;
+  return (prefixed ? '#' : '') + '000000'.substring(string.length) + string;
 };
 
-export const sRgbaToHex = ({ red, green, blue, alpha }: RGBA): string => {
+export const sRgbaToHex = ({ red, green, blue, alpha }: RGBA, prefixed?: boolean): string => {
   const integer =
     ((Math.round(red) & 0xff) << 16) +
     ((Math.round(green) & 0xff) << 8) +
     (Math.round(blue) & 0xff);
 
   const string = integer.toString(16).toUpperCase();
-  return "000000".substring(string.length) + string + decimalToHex(alpha);
+  return (prefixed ? '#' : '') + '000000'.substring(string.length) + string + decimalToHex(alpha);
 };
 
 /*******************************************************************

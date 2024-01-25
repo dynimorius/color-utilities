@@ -199,5 +199,5 @@ printData([
   color30,
 ]);
 
-console.log(getShades(testColor));
-console.log(fourToneCWHarmonyHsl(checkColor.data.hsl as HSL))
+console.log(getShades(testColor, {prefexed: true}));
+console.log(fourToneCWHarmonyHsl(checkColor.data.hsl as HSL, true))

@@ -34,7 +34,7 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   return { hue, saturation: hsvSaturation, value };
 };
 
-export const hslToHex = ({ hue, saturation, lightness }: HSL): string => {
+export const hslToHex = ({ hue, saturation, lightness }: HSL, prefixed?: boolean): string => {
   lightness /= 100;
   const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
   const f = (n: number) => {
@@ -45,7 +45,7 @@ export const hslToHex = ({ hue, saturation, lightness }: HSL): string => {
       .padStart(2, "0");
   };
 
-  return `#${f(0)}${f(8)}${f(4)}`.toLocaleUpperCase();
+  return (prefixed ? '#' : '') + `${f(0)}${f(8)}${f(4)}`.toLocaleUpperCase();
 };
 
 export const hslaToHex = ({
@@ -53,7 +53,7 @@ export const hslaToHex = ({
   saturation,
   lightness,
   alpha,
-}: HSLA): string => {
+}: HSLA, prefixed?: boolean): string => {
   lightness /= 100;
   const a = (saturation * Math.min(lightness, 1 - lightness)) / 100;
   const f = (n: number) => {
@@ -67,5 +67,5 @@ export const hslaToHex = ({
     .toString(16)
     .padStart(2, "0");
 
-  return `#${f(0)}${f(8)}${f(4)}${alphaHex}`.toLocaleUpperCase();
+  return (prefixed ? '#' : '') + `${f(0)}${f(8)}${f(4)}${alphaHex}`.toLocaleUpperCase();
 };
