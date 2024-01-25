@@ -64,19 +64,22 @@ export class Blender {
         : (
             rgbConverters[oprions.returnType as keyof ColorConverters]
               ?.fun as Function
-          )(blend(this.rgb1, this.rgb2, weight));
+        )(blend(this.rgb1, this.rgb2, weight));
     this.blendData = {
       color1: {
-        data: this.rgb1,
-        amount: weight,
+        data: color1,
+        rgb: checkAndFormat('rgb',this.rgb1) as RGB,
+        amount: weight
       },
       color2: {
-        data: this.rgb2,
-        amount: 1 - weight,
+        data: color2,
+        rgb: checkAndFormat('rgb',this.rgb2) as RGB,
+        amount: 1 - weight
       },
-      resultColor: this.color,
-    };
+      resultColor: this.color
+    }
   }
+  
 }
 
 const getColorType = (color: BlenderColor): string => {

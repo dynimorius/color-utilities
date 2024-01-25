@@ -18,7 +18,7 @@ import { squareHarmony } from "./utilities/harmony";
 let pass = 0;
 let fail = 0;
 
-const testColor = { red: 238, green: 200, blue: 27 };
+const testColor = { red: 238, green: 200, blue: -27 };
 // const testColor = { red: 217, green: 122, blue: 37 };
 const checkColor = new ColorResolver("rgb", testColor);
 console.log(checkColor.data, `\n\n\n`);
@@ -210,11 +210,11 @@ console.log(
 
 const newColor = new Blender(
   { red: 255, green: 237, blue: 0 },
-  { red: 255, green: 0, blue: 0 },
+  { r: 255, g: 0, b: 0 },
   { weight: 0.67 }
 );
 
-console.log(newColor.color);
+console.log(newColor.blendData);
 
 const newColor2 = new Blender("#FFED00", "#FF0000", { weight: 0.67 });
 

@@ -15,6 +15,11 @@ export const isWebSafeHex = (color: string) => {
   );
 };
 
+export const gamutCheck = (value: number): boolean => {
+  return !isNaN(value) && value >= 0 && value <= 255;
+}
+
+
 export const formatValue = (value: number): number => Math.round(value * 100);
 
 export const bound = (value: number): number => {

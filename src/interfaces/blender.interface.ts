@@ -1,4 +1,5 @@
 import { BlenderColor } from "../types";
+import { RGB } from "./color-spaces.interface";
 
 export interface BlenderOptions {
   weight: number;
@@ -13,6 +14,7 @@ export interface BlendData {
 
 export interface BlendColorData {
   data: BlenderColor;
+  rgb: RGB;
   amount: number;
 }
 

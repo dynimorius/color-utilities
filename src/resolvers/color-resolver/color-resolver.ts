@@ -9,13 +9,11 @@ import { sRgbToXyz } from "../../converters/rgb-converter";
 import { xyzToSrgb } from "../../converters/xyz-converter";
 import { ColorExtendedData } from "../../interfaces/color-data.interface";
 import {
-  ColorCheckers,
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
 } from "../../interfaces/converters.interface";
 import { ColorSpaceUnion, Spaces } from "../../types";
-import { colorCheckerMap } from "./color-checker-map";
 import { checkAndFormat } from "../../helpers/color-checks";
 
 export class ColorResolver {

@@ -1,7 +1,7 @@
 import { CIE_κ, CIE_ϵ } from "../constants";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
-import { bound } from "../helpers";
+import { bound, gamutCheck } from "../helpers";
 import { D65toCAdaptation, D65toD50Adaptation, D65toEAdaptation } from "../helpers/chromatic-adaptation";
 import {
   LCompanding,
@@ -103,9 +103,6 @@ export const xyzToRgb = (
   };
 };
 
-const gamutCheck = (value: number): boolean => {
-  return !isNaN(value) && value >= 0 && value <= 255;
-}
 
 export const xyzToSrgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_DATASETS.SRGB, sRgbCompanding);
@@ -231,4 +228,5 @@ export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
   const devider = x + y + z;
   return { x: x / devider, y: y / devider, Y: y };
 };
+
                                                                                                                                                                                             
