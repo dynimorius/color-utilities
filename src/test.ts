@@ -18,7 +18,7 @@ import { squareHarmony } from "./utilities/harmony";
 let pass = 0;
 let fail = 0;
 
-const testColor = { red: 238, green: 200, blue: -27 };
+const testColor = { red: 238, green: 200, blue: 27 };
 // const testColor = { red: 217, green: 122, blue: 37 };
 const checkColor = new ColorResolver("rgb", testColor);
 console.log(checkColor.data, `\n\n\n`);
@@ -32,10 +32,10 @@ const checkRgb = (rgb: RGB): boolean => {
 };
 
 const diff = (n1: number, n2: number): boolean => {
-  return n1 - n2 < -0.7 || n1 - n2 > 0.7;
+  return n1 - n2 < -0.5 || n1 - n2 > 0.5;
 };
 
-const color = new RGBResolver(testColor);
+const color = new RGBResolver(testColor, [ 'cmyk', 'xyz', 'hex',]);
 
 const color2 = new ColorResolver("rgb", testColor);
 
@@ -199,47 +199,47 @@ printData([
   color30,
 ]);
 
-console.log(squareHarmony(checkColor.data.hsl as HSL, true));
-console.log(
-  blend(
-    { red: 255, green: 237, blue: 0 },
-    { red: 255, green: 0, blue: 0 },
-    0.67
-  )
-);
+// console.log(squareHarmony(checkColor.data.hsl as HSL, true));
+// console.log(
+//   blend(
+//     { red: 255, green: 237, blue: 0 },
+//     { red: 255, green: 0, blue: 0 },
+//     0.67
+//   )
+// );
 
-const newColor = new Blender(
-  { red: 255, green: 237, blue: 0 },
-  { r: 255, g: 0, b: 0 },
-  { weight: 0.67 }
-);
+// const newColor = new Blender(
+//   { red: 255, green: 237, blue: 0 },
+//   { r: 255, g: 0, b: 0 },
+//   { weight: 0.67 }
+// );
 
-console.log(newColor.blendData);
+// console.log(newColor.blendData);
 
-const newColor2 = new Blender("#FFED00", "#FF0000", { weight: 0.67 });
+// const newColor2 = new Blender("#FFED00", "#FF0000", { weight: 0.67 });
 
-console.log(newColor2.color);
+// console.log(newColor2.color);
 
-const newColor3 = new Blender(
-  { c: 0, m: 7, y: 100, k: 0 },
-  { c: 0, m: 100, y: 100, k: 0 },
-  { weight: 0.67 }
-);
+// const newColor3 = new Blender(
+//   { c: 0, m: 7, y: 100, k: 0 },
+//   { c: 0, m: 100, y: 100, k: 0 },
+//   { weight: 0.67 }
+// );
 
-console.log(newColor3.color);
+// console.log(newColor3.color);
 
-const newColor4 = new Blender(
-  { h: 56, s: 100, l: 50 },
-  { h: 0, s: 100, l: 50 },
-  { weight: 0.67 }
-);
+// const newColor4 = new Blender(
+//   { h: 56, s: 100, l: 50 },
+//   { h: 0, s: 100, l: 50 },
+//   { weight: 0.67 }
+// );
 
-console.log(newColor4.blendData);
+// console.log(newColor4.blendData);
 
-const newColor5 = new Blender(
-  { h: 56, s: 100, v: 100 },
-  { h: 0, s: 100, v: 100 },
-  { weight: 0.67, returnType: 'hsl' }
-);
+// const newColor5 = new Blender(
+//   { c: 0, m: 7, y: 100, k: 0 },
+//   { h: 0, s: 100, v: 100 },
+//   { weight: 0.67, returnType: 'hex' }
+// );
 
-console.log(newColor5.blendData);
+// console.log(newColor5.blendData);

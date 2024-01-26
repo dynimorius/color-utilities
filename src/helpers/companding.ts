@@ -1,4 +1,12 @@
-import { CIE_κ, CIE_ϵ, L_INVERSE_NORMALIZED_BELOW, SRGB_INVERSE_NORMALIZED_BELOW, SRGB_NORMALIZED_BELOW } from "../constants";
+import {
+  CIE_κ,
+  CIE_ϵ,
+  L_INVERSE_NORMALIZED_BELOW,
+  SRGB_INVERSE_NORMALIZED_BELOW,
+  SRGB_NORMALIZED_BELOW,
+} from "../constants";
+import { RGB } from "../interfaces/color-spaces.interface";
+import { bound, gamutCheck } from "../helpers";
 
 /*************************************************************
  *                        COMPANDING
@@ -12,32 +20,62 @@ export const sRgbCompanding = (value: number): number => {
 };
 
 export const gammaCompanding = (value: number, gamma: number): number => {
-  return value < 0 ?
-    -Math.pow(Math.abs(value), (1 / gamma)) * 255 : Math.pow(value, (1 / gamma)) * 255;
+  return value < 0
+    ? -Math.pow(Math.abs(value), 1 / gamma) * 255
+    : Math.pow(value, 1 / gamma) * 255;
 };
 
-export const LCompanding = (value: number): number => { 
-  return (value <= CIE_ϵ ?
-    (value * CIE_κ) / 100 : 1.16 * Math.cbrt(value) - 0.16) * 255;
-}
+export const LCompanding = (value: number): number => {
+  return (
+    (value <= CIE_ϵ ? (value * CIE_κ) / 100 : 1.16 * Math.cbrt(value) - 0.16) *
+    255
+  );
+};
 
 /*************************************************************
  *                    INVERSE COMPANDING
  ************************************************************/
-export const inverseSrbgCompanding = (value: number): number => { 
+export const inverseSrbgCompanding = (value: number): number => {
   value = value / 255;
   return value <= SRGB_INVERSE_NORMALIZED_BELOW
     ? value / 12.92
     : Math.pow((value + 0.055) / 1.055, 2.4);
 };
 
-export const inverseGammaCompanding = (value: number, gamma: number): number => {
+export const inverseGammaCompanding = (
+  value: number,
+  gamma: number
+): number => {
   value = value / 255;
   return value < 0 ? -Math.pow(Math.abs(value), gamma) : Math.pow(value, gamma);
 };
 
-export const inverseLCompanding = (value: number): number => { 
+export const inverseLCompanding = (value: number): number => {
   value = value / 255;
-  return value <= L_INVERSE_NORMALIZED_BELOW ?
-    (100 * value) / CIE_κ : Math.pow(((value + 0.16) / 1.16), 3);
-}
+  return value <= L_INVERSE_NORMALIZED_BELOW
+    ? (100 * value) / CIE_κ
+    : Math.pow((value + 0.16) / 1.16, 3);
+};
+
+export const companding = (
+  { red, green, blue }: RGB,
+  compandingFun: Function,
+  options?: { gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }
+): RGB => {
+  if (options?.rounded) {
+    red = Math.round(compandingFun(...[red, options?.gamma]));
+    green = Math.round(compandingFun(...[green, options?.gamma]));
+    blue = Math.round(compandingFun(...[blue, options?.gamma]));
+  } else {
+    red = compandingFun(...[red, options?.gamma]);
+    green = compandingFun(...[green, options?.gamma]);
+    blue = compandingFun(...[blue, options?.gamma]);
+  }
+
+  return {
+    red: options?.whitInBounds ? bound(red) : red,
+    green: options?.whitInBounds ? bound(green) : green,
+    blue: options?.whitInBounds ? bound(blue) : blue,
+    inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
+  };
+};

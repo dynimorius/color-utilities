@@ -1,10 +1,16 @@
+import { XyzToRgbOptions } from "./../interfaces/converter-options";
 import { CIE_κ, CIE_ϵ } from "../constants";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
-import { bound, gamutCheck } from "../helpers";
-import { D65toCAdaptation, D65toD50Adaptation, D65toEAdaptation } from "../helpers/chromatic-adaptation";
+
+import {
+  D65toCAdaptation,
+  D65toD50Adaptation,
+  D65toEAdaptation,
+} from "../helpers/chromatic-adaptation";
 import {
   LCompanding,
+  companding,
   gammaCompanding,
   sRgbCompanding,
 } from "../helpers/companding";
@@ -70,8 +76,7 @@ export const xyzToRgb = (
   { x, y, z }: XYZ,
   space: SpaceData,
   compandingFun: Function,
-  gamma?: boolean,
-  whitInBounds?:boolean
+  options?: XyzToRgbOptions
 ): RGB => {
   x = x > 1 ? x / 100 : x;
   y = y > 1 ? y / 100 : y;
@@ -83,26 +88,13 @@ export const xyzToRgb = (
   let green = x * G.x + y * G.y + z * G.z;
   let blue = x * B.x + y * B.y + z * B.z;
 
-
   //Companding
-  if (gamma) {
-    red = Math.round(compandingFun(red, space.GAMMA));
-    green = Math.round(compandingFun(green, space.GAMMA));
-    blue = Math.round(compandingFun(blue, space.GAMMA));
-  } else {
-    red = Math.round(compandingFun(red));
-    green = Math.round(compandingFun(green));
-    blue = Math.round(compandingFun(blue));
-  }
-
-  return {
-    red: whitInBounds ? bound(red) : red,
-    green: whitInBounds ? bound(green) : green,
-    blue: whitInBounds ? bound(blue) : blue,
-    inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
-  };
+  return companding({ red, green, blue }, compandingFun, {
+    rounded: options?.rounded,
+    whitInBounds: options?.whitInBounds,
+    gamma: options?.gamma ? space.GAMMA : null,
+  });
 };
-
 
 export const xyzToSrgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_DATASETS.SRGB, sRgbCompanding);
@@ -112,8 +104,12 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_DATASETS.ECI_RGB_V2, LCompanding);
 };
 
-export const xyzToGammaRgb = (xyz: XYZ, ref: SpaceData, whitInBounds?: boolean): RGB => {
-  return xyzToRgb(xyz, ref, gammaCompanding, true, whitInBounds);
+export const xyzToGammaRgb = (
+  xyz: XYZ,
+  ref: SpaceData,
+  whitInBounds?: boolean
+): RGB => {
+  return xyzToRgb(xyz, ref, gammaCompanding, { gamma: true, whitInBounds });
 };
 
 /*******************************************************************
@@ -228,5 +224,3 @@ export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
   const devider = x + y + z;
   return { x: x / devider, y: y / devider, Y: y };
 };
-
-                                                                                                                                                                                            
