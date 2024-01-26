@@ -1,7 +1,20 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { CIE_κ, CIE_ϵ } from "../constants";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
 
+/**
+ * Converts a color from LAB color space to XYZ
+ * @param {LAB} - Lab color value
+ * @returns {xyz} - xyz value
+ */
 export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
   const fY = (luminance + 16) / 116;
   const z = f(fY - b / 200) * REFERENCE_ILLUMINANT.D65.Z * 100 + 0;
@@ -19,6 +32,11 @@ const f = (num: number): number => {
   return Math.pow(num, 3) > CIE_ϵ ? Math.pow(num, 3) : (116 * num - 16) / CIE_κ;
 };
 
+/**
+ * Converts a color from LAB color space to LCH(ab) color space
+ * @param {LAB} - Lab color value
+ * @returns {LCH} - LCH(ab) color value
+ */
 export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
   const hr = Math.atan2(b, a);
   const hue =

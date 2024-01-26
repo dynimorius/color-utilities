@@ -1,5 +1,18 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { HSL, HSLA, HSV, RGB } from "../interfaces/color-spaces.interface";
 
+/**
+ * Converts a color from HSL color space to sRBG color space
+ * @param {HSL} - hsl color value
+ * @returns {RBG} - sRBG color value
+ */
 export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   saturation /= 100;
   lightness /= 100;
@@ -16,6 +29,11 @@ export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   return { red: f(0), green: f(8), blue: f(4) };
 };
 
+/**
+ * Converts a color from HSL color space to HSV color space
+ * @param {HSL} - hsl color value
+ * @returns {HSV} - hsv color value
+ */
 export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   saturation = saturation / 100;
   lightness = lightness / 100;
@@ -34,6 +52,11 @@ export const hslToHsv = ({ hue, saturation, lightness }: HSL): HSV => {
   return { hue, saturation: hsvSaturation, value };
 };
 
+/**
+ * Converts a color from HSL color space to hex string
+ * @param {HSL} - hsl color value
+ * @returns {string} - hex value
+ */
 export const hslToHex = (hsl: HSL | HSLA, prefixed?: boolean): string => {
   let { hue, saturation, lightness } = hsl;
   lightness /= 100;

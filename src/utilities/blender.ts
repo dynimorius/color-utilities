@@ -108,7 +108,7 @@ export class Blender {
 }
 
   /**
-  * Create a color
+  * Get  color type / space
   * @param {BlenderColor} - Color data
   * @returns {string} - type / space of color
   */

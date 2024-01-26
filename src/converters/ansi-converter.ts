@@ -1,5 +1,18 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { RGB } from "../interfaces/color-spaces.interface";
 
+/**
+ * Converts an Ansi16 numerical to sRBG
+ * @param {number} - ansi16 color value
+ * @returns {RGB} - sRBG color value
+ */
 export const ansi16ToRgb = (ansi: number): RGB => {
   let color = ansi % 10;
 
@@ -22,6 +35,11 @@ export const ansi16ToRgb = (ansi: number): RGB => {
   return { red, green, blue };
 };
 
+/**
+ * Converts an Ansi256 numerical to sRBG
+ * @param {number} - ansi256 color value
+ * @returns {RGB} - sRBG color value
+ */
 export const ansi256ToRgb = (ansi: number): RGB => {
   if (ansi >= 232) {
     const c = (ansi - 232) * 10 + 8;

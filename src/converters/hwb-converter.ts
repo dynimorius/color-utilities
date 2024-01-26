@@ -1,5 +1,18 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { HWB, RGB } from "../interfaces/color-spaces.interface";
 
+/**
+ * Converts a color from HWB color space to sRBG color space
+ * @param {HWB} - hwb color value
+ * @returns {RBG} - sRBG color value
+ */
 export const hwbToRgb = ({ hue, whiteness, blackness }: HWB): RGB => {
   hue = hue / 360;
   whiteness = whiteness / 100;
@@ -13,7 +26,7 @@ export const hwbToRgb = ({ hue, whiteness, blackness }: HWB): RGB => {
 
   const mod = Math.floor(6 * hue);
   let f = 6 * hue - mod;
-  f = (mod & 0x01) !== 0 ?  f = 1 - f : f;
+  f = (mod & 0x01) !== 0 ? 1 - f : f;
   let v = 1 - blackness;
   const n = whiteness + f * (v - whiteness); 
   const red = Math.round([v, n, whiteness, whiteness, v, v][mod] * 255);

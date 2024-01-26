@@ -1,6 +1,19 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
 import { sRgbToAnsi16 } from "./rgb-converter";
 
+/**
+ * Converts a color from HSV color space to sRBG color space
+ * @param {HSV} - hsl color value
+ * @returns {RBG} - sRBG color value
+ */
 export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
   hue = (hue / 360) * 6;
   saturation = saturation / 100;
@@ -19,6 +32,11 @@ export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
   return { red, green, blue };
 };
 
+/**
+ * Converts a color from HSV color space to HSV color space
+ * @param {HSV} - hsl color value
+ * @returns {HSV} - hsv color value
+ */
 export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
   saturation = saturation / 100;
   value = value / 100;
@@ -36,6 +54,11 @@ export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
   return { hue, saturation: hslSaturation * 100, lightness: lightness * 100 };
 };
 
+/**
+ * Converts a color from HSV color space to ansi16 numerical
+ * @param {HSV} - hsl color value
+ * @returns {number} - ansi16 numberical value
+ */
 export const hsvToAnsi16 = (hsv: HSV): number => {
   const rgb = hsvToRgb(hsv);
   return sRgbToAnsi16(rgb, hsv.value);

@@ -1,4 +1,12 @@
-import { CtoD65Adaptation, EtoD65Adaptation, D50toD65Adaptation  } from './../helpers/chromatic-adaptation';
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
+import { CtoD65Adaptation, EtoD65Adaptation, D50toD65Adaptation } from './../helpers/chromatic-adaptation';
 import { formatValue } from "../helpers";
 import {
   inverseGammaCompanding,
@@ -28,12 +36,22 @@ import { SPACE_DATASETS } from '../constants/space-datasets';
 /*******************************************************************
  *                           HELPERS
  * *****************************************************************/
+/**
+ * Normalizes an RBG value 
+ * @param {RBG} - color to normalize
+ * @returns {RGB} - normalized sRBG color value
+ */
 export const normalizeRgb = ({ red, green, blue }: RGB): RGB => ({
   red: red / 255,
   green: green / 255,
   blue: blue / 255,
 });
 
+/**
+ * Normalizes an RBGA value 
+ * @param {RBGA} - color to normalize
+ * @returns {RGBA} - normalized sRBGA color value
+ */
 export const normalizeRgba = ({ red, green, blue, alpha }: RGBA): RGBA => ({
   red: red / 255,
   green: green / 255,
@@ -41,6 +59,11 @@ export const normalizeRgba = ({ red, green, blue, alpha }: RGBA): RGBA => ({
   alpha,
 });
 
+/**
+ * Inverts a sRBG color 
+ * @param {RBG} - color to invert
+ * @returns {RGB} - inverted sRBG color value
+ */
 export const rgbInvert = ({ red, green, blue }: RGB): RGB => ({
   red: 255 - red,
   green: 255 - green,
@@ -58,6 +81,11 @@ export const getRange = (
   return { min, max, delta };
 };
 
+/**
+ * Gets Hue for a given sRBG color 
+ * @param {RBG} - color to get the hue from 
+ * @returns {number} - value of hue
+ */
 export const rgbToHue = (
   red: number,
   green: number,
@@ -84,6 +112,11 @@ export const rgbToHue = (
   return hue;
 };
 
+/**
+ * Gets a sRBG color values in a range between 0 and 1 
+ * @param {RBG} - color in range 0 to 255 
+ * @returns {number} - color in range 0 to 1
+ */
 export const rgbTo1_0rgb = (rgb: RGB): RGB => {
   const { red, green, blue } = normalizeRgb(rgb);
   return {
