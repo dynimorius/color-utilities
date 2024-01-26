@@ -19,3 +19,6 @@ export * from "./resolvers/prebuilt-resolvers/hsv-resolver";
 export * from "./resolvers/prebuilt-resolvers/hwb-resolver";
 export * from "./resolvers/prebuilt-resolvers/rgb-resolver";
 export * from "./resolvers/prebuilt-resolvers/xyz-resolver";
+export * from "./utilities/blender";
+export * from "./utilities/harmony";
+export * from "./utilities/mixer"; 
