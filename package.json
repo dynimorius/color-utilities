@@ -2,7 +2,7 @@
   "name": "color-utilities",
   "version": "1.0.0",
   "description": "Library to format, convert and work with colors.",
-  "main": "public_api.js",
+  "main": "index.js",
   "scripts": {
     "test": "tsc --build && node ./lib/test.js",
     "test-to-file": "tsc --build && node ./lib/test.js > test.txt"

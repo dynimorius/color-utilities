@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { ansi16ToRgb, ansi256ToRgb } from "../../converters/ansi-converter";
 import { cmykToRgb } from "../../converters/cmyk-converter";
 import { hexToRgb } from "../../converters/hex-converter";
@@ -66,7 +74,11 @@ import {
   ToXyzConverters,
 } from "../../interfaces/converters.interface";
 
-export const rgbConverters: ColorConverters = {
+/**
+ * Map of color converter paired with the 
+ * space used for fonversion
+ */
+export const colorConverters: ColorConverters = {
   adobe_98_rgb: { fun: xyzToAdobeRgb, from: "xyz" },
   apple_rgb: { fun: xyzToAppleRgb, from: "xyz" },
   ansi16: { fun: sRgbToAnsi16, from: "rgb" },
@@ -100,7 +112,9 @@ export const rgbConverters: ColorConverters = {
   web_safe: { fun: isWebSafeRGB, from: "rgb" },
   wide_gamut_rgb: { fun: xyzToWideGamutRgb, from: "xyz" },
 };
-
+/**
+ * Map of conversion to get sRBG color
+ */
 export const toRgbConverters: ToRGBConverters = {
   ansi16: ansi16ToRgb,
   ansi265: ansi256ToRgb,
@@ -113,6 +127,9 @@ export const toRgbConverters: ToRGBConverters = {
   xyz: xyzToSrgb,
 };
 
+/**
+ * Map of conversion to get XYZ
+ */
 export const toXyzConverters: ToXyzConverters = {
   adobe_98_rgb: adobeRgbToXyz,
   apple_rgb: appleRgbToXyz,

@@ -13,8 +13,6 @@ import {
 } from "./interfaces/color-spaces.interface";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
-import { Blender, blend } from "./utilities/blender";
-import { squareHarmony } from "./utilities/harmony";
 let pass = 0;
 let fail = 0;
 

@@ -1,6 +1,14 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import { RGB, XYZ } from "../../interfaces/color-spaces.interface";
 import {
-  rgbConverters,
+  colorConverters,
   toRgbConverters,
   toXyzConverters,
 } from "./convertor-map";
@@ -15,47 +23,23 @@ import {
 } from "../../interfaces/converters.interface";
 import { ColorSpaceUnion, Spaces } from "../../types";
 import { checkAndFormat } from "../../helpers/color-checks";
+import { DefaultResolv } from "../../constants/init-spaces";
 
+/**
+ * @description
+ * A class used to compute and retrieve any of the available
+ * color space.
+ *  @param {Spaces} -space / type of color from which conversions are made
+ *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
+ *  @param {(Spaces | "web_safe")[]} - What information do we want back
+ */
 export class ColorResolver {
   data: ColorExtendedData = {};
 
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: (Spaces | "web_safe")[] = [
-      "adobe_98_rgb",
-      "apple_rgb",
-      "ansi16",
-      "ansi256",
-      "best_rgb",
-      "beta_rgb",
-      "bruce_rgb",
-      "cie_rgb",
-      "color_match_rgb",
-      "cmyk",
-      "don_rgb_4",
-      "eci_rgb_v2",
-      "etka_space_ps5",
-      "hex",
-      "hsl",
-      "hsv",
-      "hwb",
-      "lab",
-      "lch_ab",
-      "lch_uv",
-      "luv",
-      "ntsc_rgb",
-      "pal_secam_rgb",
-      "pro_photo_rgb",
-      "rgb_0_1",
-      "rgb",
-      "ryb",
-      "smpte_c_rgb",
-      "web_safe",
-      "wide_gamut_rgb",
-      "xyz",
-      "xyy",
-    ]
+    resolv: (Spaces | "web_safe")[] = DefaultResolv
   ) {
     color = checkAndFormat(space, color);
     this.data[space as keyof ColorExtendedData] = color as any;
@@ -67,16 +51,19 @@ export class ColorResolver {
       if (this.data.xyz) this.data.xyz = sRgbToXyz(this.data.rgb as RGB);
     }
 
-    if (!this.data.xyz && !!new RegExp(/rgb|lab|luv|lch|ps5|xyy/g).exec(space)) {
+    if (
+      !this.data.xyz &&
+      !!new RegExp(/rgb|lab|luv|lch|ps5|xyy/g).exec(space)
+    ) {
       this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
     } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);
 
     for (let resolution of resolv) {
       if (!this.data[resolution as keyof ColorExtendedData]) {
-        const fun = rgbConverters[resolution as keyof ColorConverters]
+        const fun = colorConverters[resolution as keyof ColorConverters]
           ?.fun as Function;
-        const param = rgbConverters[resolution as keyof ColorConverters]
+        const param = colorConverters[resolution as keyof ColorConverters]
           ?.from as string;
         this.data[resolution as keyof ColorExtendedData] = fun(
           this.data[param as keyof ColorExtendedData]
