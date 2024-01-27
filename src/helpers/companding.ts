@@ -58,6 +58,41 @@ export const LCompanding = (value: number): number => {
   );
 };
 
+/**
+ * RGB Companding 
+ * @param {RGB} rgb  RGB color values
+ * @param {Function} compandingFun function to preform companding whit
+ * @param {{ gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }} options 
+ *              - rounded: should the returned values be rounded
+ *              - whitInBounds: should the return values be in range of 0 - 255
+ *              - gamma: should the gamma value from the space data set be used 
+ *                while companding                 
+ * @returns {RGB} - companded RGB values
+ * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
+ */
+export const companding = (
+  { red, green, blue }: RGB,
+  compandingFun: Function,
+  options?: { gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }
+): RGB => {
+  if (options?.rounded) {
+    red = Math.round(compandingFun(...[red, options?.gamma]));
+    green = Math.round(compandingFun(...[green, options?.gamma]));
+    blue = Math.round(compandingFun(...[blue, options?.gamma]));
+  } else {
+    red = compandingFun(...[red, options?.gamma]);
+    green = compandingFun(...[green, options?.gamma]);
+    blue = compandingFun(...[blue, options?.gamma]);
+  }
+
+  return {
+    red: options?.whitInBounds ? bound(red) : red,
+    green: options?.whitInBounds ? bound(green) : green,
+    blue: options?.whitInBounds ? bound(blue) : blue,
+    inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
+  };
+};
+
 /*************************************************************
  *                    INVERSE COMPANDING
  ************************************************************/
@@ -101,37 +136,3 @@ export const inverseLCompanding = (value: number): number => {
     : Math.pow((value + 0.16) / 1.16, 3);
 };
 
-/**
- * RGB Companding 
- * @param {RGB} rgb  RGB color values
- * @param {Function} compandingFun function to preform companding whit
- * @param {{ gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }} options 
- *              - rounded: should the returned values be rounded
- *              - whitInBounds: should the return values be in range of 0 - 255
- *              - gamma: should the gamma value from the space data set be used 
- *                while companding                 
- * @returns {RGB} - companded RGB values
- * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
- */
-export const companding = (
-  { red, green, blue }: RGB,
-  compandingFun: Function,
-  options?: { gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }
-): RGB => {
-  if (options?.rounded) {
-    red = Math.round(compandingFun(...[red, options?.gamma]));
-    green = Math.round(compandingFun(...[green, options?.gamma]));
-    blue = Math.round(compandingFun(...[blue, options?.gamma]));
-  } else {
-    red = compandingFun(...[red, options?.gamma]);
-    green = compandingFun(...[green, options?.gamma]);
-    blue = compandingFun(...[blue, options?.gamma]);
-  }
-
-  return {
-    red: options?.whitInBounds ? bound(red) : red,
-    green: options?.whitInBounds ? bound(green) : green,
-    blue: options?.whitInBounds ? bound(blue) : blue,
-    inGamut: gamutCheck(red) && gamutCheck(green) && gamutCheck(blue),
-  };
-};
