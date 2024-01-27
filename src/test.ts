@@ -11,6 +11,7 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
+import { rgbTo1_0rgb, rgbToHue } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
 let pass = 0;
@@ -241,3 +242,5 @@ printData([
 // );
 
 // console.log(newColor5.blendData);
+
+rgbToHue
