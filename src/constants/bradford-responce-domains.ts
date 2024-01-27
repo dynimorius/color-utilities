@@ -1,4 +1,10 @@
 /***************************************************************
+ *  @license
+ *  Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ *  Use of this source code is governed by an ISC-style license that can be
+ *  found at https://opensource.org/license/isc-license-txt/
+ * 
  *  Cone response domains utilized for chromatic 
  *  adaptation algorithms.
  *  The Bradford method is the newest of the three methods, 

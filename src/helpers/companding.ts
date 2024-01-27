@@ -12,15 +12,15 @@ import {
   L_INVERSE_NORMALIZED_BELOW,
   SRGB_INVERSE_NORMALIZED_BELOW,
   SRGB_NORMALIZED_BELOW,
-} from "../constants";
-import { RGB } from "../interfaces/color-spaces.interface";
+} from "../constants/conditionals";
 import { bound, gamutCheck } from "../helpers";
+import { RGB } from "../interfaces/color-spaces.interface";
 
 /*************************************************************
  *                        COMPANDING
  ************************************************************/
 /**
- * sRGB Companding 
+ * sRGB Companding
  * @param {number} value color value
  * @returns {number} - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
@@ -34,7 +34,7 @@ export const sRgbCompanding = (value: number): number => {
 };
 
 /**
- * Gamma Companding 
+ * Gamma Companding
  * @param {number} value color value
  * @returns {number} - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
@@ -46,7 +46,7 @@ export const gammaCompanding = (value: number, gamma: number): number => {
 };
 
 /**
- * L* Companding 
+ * L* Companding
  * @param {number} value color value
  * @returns {number} - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
@@ -59,14 +59,14 @@ export const LCompanding = (value: number): number => {
 };
 
 /**
- * RGB Companding 
+ * RGB Companding
  * @param {RGB} rgb  RGB color values
  * @param {Function} compandingFun function to preform companding whit
- * @param {{ gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }} options 
+ * @param {{ gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }} options
  *              - rounded: should the returned values be rounded
  *              - whitInBounds: should the return values be in range of 0 - 255
- *              - gamma: should the gamma value from the space data set be used 
- *                while companding                 
+ *              - gamma: should the gamma value from the space data set be used
+ *                while companding
  * @returns {RGB} - companded RGB values
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
@@ -135,4 +135,3 @@ export const inverseLCompanding = (value: number): number => {
     ? (100 * value) / CIE_κ
     : Math.pow((value + 0.16) / 1.16, 3);
 };
-

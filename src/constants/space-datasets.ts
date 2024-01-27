@@ -1,4 +1,10 @@
 /******************************************************************
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ * 
  * RGB Working Space Matrices and Gamma values
  * credit: 
  * http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html

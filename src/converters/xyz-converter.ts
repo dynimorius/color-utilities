@@ -6,10 +6,10 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { XyzToRgbOptions } from "./../interfaces/converter-options";
-import { CIE_κ, CIE_ϵ } from "../constants";
+import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
+import { XyzToRgbOptions } from "./../interfaces/converter-options";
 
 import {
   D65toCAdaptation,
@@ -33,7 +33,7 @@ import {
 
 /**
  * Gets Lab values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {LAB} - lab values for a color
  */
 export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
@@ -54,7 +54,7 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
 
 /**
  * Gets Luv values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {LUV} - luv values for a color
  */
 export const xyzToLuv = ({ x, y, z }: XYZ): LUV => {
@@ -92,14 +92,14 @@ export const Fv = ({ x, y, z }: XYZ): number => {
 
 /**
  * Gets RGB values from given xyz values in a given RGB space
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @param {SpaceData} space RGB space dataset
  * @param {Function} compandingFun function to preform companding whit
- * @param {XyzToRgbOptions} options - optional paramter to set 
+ * @param {XyzToRgbOptions} options - optional paramter to set
  *              - rounded: should the returned values be rounded
  *              - presition: to what decimal should return values go to
  *              - whitInBounds: should the return values be in range of 0 - 255
- *              - gamma: should the gamma value from the space data set be used 
+ *              - gamma: should the gamma value from the space data set be used
  *                while companding
  * @returns {RGB} - sRGB values for a color
  */
@@ -129,17 +129,16 @@ export const xyzToRgb = (
 
 /**
  * Gets sRGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - sRGB values for a color
  */
 export const xyzToSrgb = (xyz: XYZ): RGB => {
   return xyzToRgb(xyz, SPACE_DATASETS.SRGB, sRgbCompanding);
 };
 
-
 /**
  * Gets RGB values for a given RGB space, from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - RGB values for a color in a specified RGB space
  */
 export const xyzToGammaRgb = (
@@ -155,7 +154,7 @@ export const xyzToGammaRgb = (
  * *****************************************************************/
 /**
  * Gets Adobe 98 RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Adobe 98 RGB values
  */
 export const xyzToAdobeRgb = (xyz: XYZ): RGB => {
@@ -167,7 +166,7 @@ export const xyzToAdobeRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Apple RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Apple RGB values
  */
 export const xyzToAppleRgb = (xyz: XYZ): RGB => {
@@ -179,7 +178,7 @@ export const xyzToAppleRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Best RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Best RGB values
  */
 export const xyzToBestRgb = (xyz: XYZ): RGB => {
@@ -191,7 +190,7 @@ export const xyzToBestRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Beta RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Beta RGB values
  */
 export const xyzToBetaRgb = (xyz: XYZ): RGB => {
@@ -203,7 +202,7 @@ export const xyzToBetaRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Bruce RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Bruce RGB values
  */
 export const xyzToBruceRgb = (xyz: XYZ): RGB => {
@@ -215,7 +214,7 @@ export const xyzToBruceRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets CIE RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - CIE RGB values
  */
 export const xyzToCieRgb = (xyz: XYZ): RGB => {
@@ -227,7 +226,7 @@ export const xyzToCieRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Color Match RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Color Match RGB values
  */
 export const xyzToColorMatchRgb = (xyz: XYZ): RGB => {
@@ -239,7 +238,7 @@ export const xyzToColorMatchRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets DON RGB 4 values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - DON RGB 4 values
  */
 export const xyzToDonRgb4 = (xyz: XYZ): RGB => {
@@ -251,7 +250,7 @@ export const xyzToDonRgb4 = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Etka Space PS5 values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Etka Space PS5 values
  */
 export const xyzToEtkaSpacePs5 = (xyz: XYZ): RGB => {
@@ -263,7 +262,7 @@ export const xyzToEtkaSpacePs5 = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets NTSC RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - NTSC RGB values
  */
 export const xyzToNtscRgb = (xyz: XYZ): RGB => {
@@ -275,7 +274,7 @@ export const xyzToNtscRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets PAL/SECAM RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - PAL/SECAM RGB values
  */
 export const xyzToPalSecamRgb = (xyz: XYZ): RGB => {
@@ -287,7 +286,7 @@ export const xyzToPalSecamRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets ProPhoto RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - ProPhoto RGB values
  */
 export const xyzToProPhotoRgb = (xyz: XYZ): RGB => {
@@ -299,7 +298,7 @@ export const xyzToProPhotoRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets SMPTE-C RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - SMPTE-C RGB values
  */
 export const xyzToSmpteCRgb = (xyz: XYZ): RGB => {
@@ -311,7 +310,7 @@ export const xyzToSmpteCRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets Wide Gamut RGB values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - Wide Gamut RGB values
  */
 export const xyzToWideGamutRgb = (xyz: XYZ): RGB => {
@@ -323,7 +322,7 @@ export const xyzToWideGamutRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets ECI RGB V2 values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - ECI RGB V2 values
  */
 export const xyzToEciRgbV2 = (xyz: XYZ): RGB => {
@@ -333,7 +332,7 @@ export const xyzToEciRgbV2 = (xyz: XYZ): RGB => {
 /**
  * Gets ECI RGB V2 values from given xyz values but
  * but additional chromatic adaptation is needed
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {RGB} - ECI RGB V2 values
  */
 export const xyzToLRgb = (xyz: XYZ): RGB => {
@@ -344,7 +343,7 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
  * *****************************************************************/
 /**
  * Gets xyY values from given xyz values
- * @param {XYZ} xyz xyz values for a color 
+ * @param {XYZ} xyz xyz values for a color
  * @returns {XYY} - xyY values
  */
 export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {

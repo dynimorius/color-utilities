@@ -1,4 +1,10 @@
 /*****************************************************************
+ *  @license
+ *  Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ *  Use of this source code is governed by an ISC-style license that can be
+ *  found at https://opensource.org/license/isc-license-txt/
+ * 
  *  Chromatic adaptation matrices using the 
  *  Bradford method and reference illuminant 
  *  tristimulus values from ASTM E308-01 whit 

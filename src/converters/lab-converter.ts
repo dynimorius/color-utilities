@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { CIE_κ, CIE_ϵ } from "../constants";
+import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
 
@@ -23,8 +23,9 @@ export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
     (luminance > CIE_κ * CIE_ϵ
       ? Math.pow((luminance + 16) / 116, 3)
       : luminance / CIE_κ) *
-    REFERENCE_ILLUMINANT.D65.Y *
-    100 + 0;
+      REFERENCE_ILLUMINANT.D65.Y *
+      100 +
+    0;
   return { x, y, z };
 };
 
