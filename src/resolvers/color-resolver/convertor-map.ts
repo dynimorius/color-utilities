@@ -67,7 +67,7 @@ import {
   xyzToWideGamutRgb,
   xyzToXyY,
 } from "../../converters/xyz-converter";
-import { isWebSafeRGB } from "../../helpers";
+import { isWebSafeRGB } from "../../helpers/formats-and-checks";
 import {
   ColorConverters,
   ToRGBConverters,
@@ -75,7 +75,7 @@ import {
 } from "../../interfaces/converters.interface";
 
 /**
- * Map of color converter paired with the 
+ * Map of color converter paired with the
  * space used for fonversion
  */
 export const colorConverters: ColorConverters = {

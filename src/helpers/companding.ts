@@ -13,8 +13,8 @@ import {
   SRGB_INVERSE_NORMALIZED_BELOW,
   SRGB_NORMALIZED_BELOW,
 } from "../constants/conditionals";
-import { bound, gamutCheck } from "../helpers";
 import { RGB } from "../interfaces/color-spaces.interface";
+import { bound, gamutCheck } from "./formats-and-checks";
 
 /*************************************************************
  *                        COMPANDING

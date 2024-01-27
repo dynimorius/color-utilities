@@ -6,17 +6,13 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import {
-  CtoD65Adaptation,
-  EtoD65Adaptation,
-  D50toD65Adaptation,
-} from "./../helpers/chromatic-adaptation";
-import { formatValue } from "../helpers";
+import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   inverseGammaCompanding,
   inverseLCompanding,
   inverseSrbgCompanding,
 } from "../helpers/companding";
+import { formatValue } from "../helpers/formats-and-checks";
 import {
   CMYK,
   HSL,
@@ -31,11 +27,15 @@ import {
   SpaceData,
   XYZ,
 } from "../interfaces/color-spaces.interface";
+import {
+  CtoD65Adaptation,
+  D50toD65Adaptation,
+  EtoD65Adaptation,
+} from "./../helpers/chromatic-adaptation";
 import { labToLch_ab } from "./lab-converter";
 import { luvToLch_uv } from "./luv-converter";
 import { decimalToHex } from "./number-converter";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-converter";
-import { SPACE_DATASETS } from "../constants/space-datasets";
 
 /*******************************************************************
  *                           HELPERS
@@ -218,7 +218,7 @@ export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
  * Converts a given color from an sRBG space to Adobe 98 RGB space
  * that RGB Space utilizing inverse gamma companding
  * @param {RBG} rgb sRBG values
- * @param {XYZ} xyz xyz values 
+ * @param {XYZ} xyz xyz values
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - Adobe 98 RGB values
  */

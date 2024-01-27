@@ -6,7 +6,6 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { gamutCheck } from ".";
 import {
   CMYK,
   CMYK_M,
@@ -33,9 +32,10 @@ import {
 import { ColorCheckers } from "../interfaces/converters.interface";
 import { FULL_HEX, HEX } from "../regex";
 import { ColorSpaceUnion } from "../types";
+import { gamutCheck } from "./formats-and-checks";
 
 /**
- * Checks color values and converts the color from 
+ * Checks color values and converts the color from
  * shorthand naming to full naming ({r, b, g} -> {red, green, blue})
  * @param {string} space color type / space
  * @param {ColorSpaceUnion} color - color data
@@ -103,7 +103,7 @@ const rgbColorCheck = (color: RGB | RGB_M): RGB => {
 };
 
 /**
- * Checks if all HSL values are numeric 
+ * Checks if all HSL values are numeric
  * converts from HSL_M to HSL if needed
  * @param {HSL | HSL_M} color - color data
  * @returns {HSL} returns back the same color
@@ -115,7 +115,7 @@ const hslColorCheck = (color: HSL | HSL_M): HSL => {
 };
 
 /**
- * Checks if all HSV values are numeric 
+ * Checks if all HSV values are numeric
  * converts from HSV_M to HSV if needed
  * @param {HSV | HSV_M} color - color data
  * @returns {HSV} returns back the same color
@@ -127,7 +127,7 @@ const hsvColorCheck = (color: HSV | HSV_M): HSV => {
 };
 
 /**
- * Checks if all HWB values are numeric 
+ * Checks if all HWB values are numeric
  * converts from HWB_M to HWB if needed
  * @param {HWB | HWB_M} color - color data
  * @returns {HWB} returns back the same color
@@ -139,7 +139,7 @@ const hwbColorCheck = (color: HWB | HWB_M): HWB => {
 };
 
 /**
- * Checks if all HCL values are numeric 
+ * Checks if all HCL values are numeric
  * converts from HCL_M to HCL if needed
  * @param {HCL | HCL_M} color - color data
  * @returns {HCL} returns back the same color
@@ -151,7 +151,7 @@ const hclColorCheck = (color: HCL | HCL_M): HCL => {
 };
 
 /**
- * Checks if all LAB values are numeric 
+ * Checks if all LAB values are numeric
  * converts from LAB_M to LAB if needed
  * @param {LAB | LAB_M} color - color data
  * @returns {LAB} returns back the same color
@@ -163,7 +163,7 @@ const labColorCheck = (color: LAB | LAB_M): LAB => {
 };
 
 /**
- * Checks if all LCH values are numeric 
+ * Checks if all LCH values are numeric
  * converts from LCH_M to LCH if needed
  * @param {LCH | LCH_M} color - color data
  * @returns {LCH} returns back the same color
@@ -175,7 +175,7 @@ const lchColorCheck = (color: LCH | LCH_M): LCH => {
 };
 
 /**
- * Checks if all LUV values are numeric 
+ * Checks if all LUV values are numeric
  * @param {LUV} color - color data
  * @returns {LUV} returns back the same color
  * @throws Color data is incorrect
@@ -186,7 +186,7 @@ const luvColorCheck = (color: LUV): LUV => {
 };
 
 /**
- * Checks if all CMYK values are numeric 
+ * Checks if all CMYK values are numeric
  * converts from CMYK_M to CMYK if needed
  * @param {CMYK | CMYK_M} color - color data
  * @returns {CMYK} returns back the same color
@@ -203,7 +203,7 @@ const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
 };
 
 /**
- * Checks if all XYZ values are numeric 
+ * Checks if all XYZ values are numeric
  * @param {XYZ} color - color data
  * @returns {XYZ} returns back the same color
  * @throws Color data is incorrect
@@ -214,7 +214,7 @@ const xyzColorCheck = (color: XYZ): XYZ => {
 };
 
 /**
- * Checks if all XYY values are numeric 
+ * Checks if all XYY values are numeric
  * @param {XYY} color - color data
  * @returns {XYY} returns back the same color
  * @throws Color data is incorrect
@@ -225,7 +225,7 @@ const xyYColorCheck = (color: XYY): XYY => {
 };
 
 /**
- * Checks if all RYB values are numeric 
+ * Checks if all RYB values are numeric
  * converts from RYB_M to RYB if needed
  * @param {RYB | RYB_M} color - color data
  * @returns {RYB} returns back the same color
