@@ -13,7 +13,6 @@ import {
 } from "./interfaces/color-spaces.interface";
 import { rgbTo1_0rgb, rgbToHue } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
-import { RGBResolver } from "./resolvers/prebuilt-resolvers/rgb-resolver";
 let pass = 0;
 let fail = 0;
 
@@ -34,7 +33,6 @@ const diff = (n1: number, n2: number): boolean => {
   return n1 - n2 < -0.5 || n1 - n2 > 0.5;
 };
 
-const color = new RGBResolver(testColor, [ 'cmyk', 'xyz', 'hex',]);
 
 const color2 = new ColorResolver("rgb", testColor);
 
@@ -167,7 +165,6 @@ const printData = (colors: ColorResolver[]) => {
 };
 
 printData([
-  color,
   color2,
   color3,
   color5,
