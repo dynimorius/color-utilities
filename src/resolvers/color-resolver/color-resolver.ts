@@ -13,17 +13,17 @@ import {
   toXyzConverters,
 } from "./convertor-map";
 
+import { DefaultResolv } from "../../constants/init-spaces";
 import { sRgbToXyz } from "../../converters/rgb-converter";
 import { xyzToSrgb } from "../../converters/xyz-converter";
+import { checkAndFormat } from "../../helpers/color-checks";
 import { ColorExtendedData } from "../../interfaces/color-data.interface";
 import {
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
 } from "../../interfaces/converters.interface";
-import { ColorSpaceUnion, Spaces } from "../../types";
-import { checkAndFormat } from "../../helpers/color-checks";
-import { DefaultResolv } from "../../constants/init-spaces";
+import { ColorSpaceUnion, Spaces } from "../../types/colors";
 
 /**
  * @description

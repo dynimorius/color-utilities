@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { Spaces } from "../types";
+import { Spaces } from "../types/colors";
 
 export const DefaultResolv: (Spaces | "web_safe")[] = [
   "adobe_98_rgb",

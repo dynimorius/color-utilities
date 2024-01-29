@@ -1,3 +1,14 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
+/**
+ * @description Representation of a color converter map
+ */
 export interface ColorConverters {
   adobe_98_rgb?: ConverterInfo;
   apple_rgb?: ConverterInfo;
@@ -34,11 +45,19 @@ export interface ColorConverters {
   xyy?: ConverterInfo;
 }
 
+/**
+ * @description Representation of a color converter information
+ *  - fun: converter function
+ *  - from: type of color values needed for conversion
+ */
 export interface ConverterInfo {
   fun: Function;
   from: string;
 }
 
+/**
+ * @description Representation of a rgb converter map
+ */
 export interface ToRGBConverters {
   ansi16: Function;
   ansi265: Function;
@@ -51,6 +70,10 @@ export interface ToRGBConverters {
   xyz: Function;
 }
 
+
+/**
+ * @description Representation of a xyz converter map
+ */
 export interface ToXyzConverters {
   adobe_98_rgb: Function;
   apple_rgb: Function;
@@ -75,6 +98,9 @@ export interface ToXyzConverters {
   xyy: Function;
 }
 
+/**
+ * @description Representation of a color checker map
+ */
 export interface ColorCheckers {
   hex: Function;
   cmyk: Function;

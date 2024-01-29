@@ -1,3 +1,11 @@
+/**
+ * @license
+ * Copyright Slavko Mihajlovic All Rights Reserved.
+ *
+ * Use of this source code is governed by an ISC-style license that can be
+ * found at https://opensource.org/license/isc-license-txt/
+ */
+
 import {
   CMYK,
   HSL,
@@ -12,15 +20,9 @@ import {
   XYZ,
 } from "./color-spaces.interface";
 
-export interface ColorData {
-  hex: string;
-  rgb: RGB;
-  hsl: HSL;
-  hsv: HSV;
-  alpha: number;
-  outOfGamut: boolean;
-  webSafe: boolean;
-}
+/**
+ * @description Represntation of color values for a given color:
+ */
 export interface ColorExtendedData {
   adobe_98_rgb?: RGB;
   apple_rgb?: RGB;
@@ -54,22 +56,4 @@ export interface ColorExtendedData {
   wide_gamut_rgb?: RGB;
   xyz?: XYZ;
   xyy?: XYY;
-}
-
-export interface ColorBreakdown {
-  alpha: number;
-  blackness: number;
-  brightness: number;
-  chroma: number;
-  cmyk: CMYK;
-  grayscale: number;
-  hue: number;
-  lab: LAB;
-  luminance: number;
-  rgb: RGB;
-  saturation: number;
-  whiteness: number;
-  xyz: XYZ;
-  outOfGamut: boolean;
-  webSafe: boolean;
 }

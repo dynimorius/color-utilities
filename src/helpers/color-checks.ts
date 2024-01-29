@@ -31,7 +31,7 @@ import {
 } from "../interfaces/color-spaces.interface";
 import { ColorCheckers } from "../interfaces/converters.interface";
 import { FULL_HEX, HEX } from "../regex";
-import { ColorSpaceUnion } from "../types";
+import { ColorSpaceUnion } from "../types/colors";
 import { gamutCheck } from "./formats-and-checks";
 
 /**

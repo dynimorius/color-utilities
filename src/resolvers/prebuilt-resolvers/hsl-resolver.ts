@@ -1,5 +1,5 @@
 import { HSL } from "../../interfaces/color-spaces.interface";
-import { Spaces } from "../../types";
+import { Spaces } from "../../types/colors";
 import { ColorResolver } from "../color-resolver/color-resolver";
 
 export class HSLResolver extends ColorResolver {

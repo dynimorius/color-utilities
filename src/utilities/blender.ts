@@ -29,15 +29,15 @@ import {
   colorConverters,
   toRgbConverters,
 } from "../resolvers/color-resolver/convertor-map";
-import { BlenderColor } from "../types";
+import { BlenderColor } from "../types/colors";
 
-  /**
-  * Blends two colors
-  * @param {RGB} - data for the first color to blend
-  * @param {RGB} - data for the second color to blend
-  * @param {number} - weight / amount of the first color
-  * @returns {RGB} - New blended color
-  */
+/**
+ * Blends two colors
+ * @param {RGB} - data for the first color to blend
+ * @param {RGB} - data for the second color to blend
+ * @param {number} - weight / amount of the first color
+ * @returns {RGB} - New blended color
+ */
 export const blend = (rgb1: RGB, rgb2: RGB, weight = 0.5): RGB => {
   return {
     red: Math.round(rgb1.red * weight + rgb2.red * (1 - weight)),
@@ -48,7 +48,7 @@ export const blend = (rgb1: RGB, rgb2: RGB, weight = 0.5): RGB => {
 
 /**
  * @description
- * A class used to blend two colors 
+ * A class used to blend two colors
  * color space.
  *  @param {BlenderColor} - The actual data for the first color (RGB, HSL etc..)
  *  @param {BlenderColor} - TThe actual data for the second color (RGB, HSL etc..)
@@ -89,29 +89,28 @@ export class Blender {
         : (
             colorConverters[oprions.returnType as keyof ColorConverters]
               ?.fun as Function
-        )(blend(this.rgb1, this.rgb2, weight));
+          )(blend(this.rgb1, this.rgb2, weight));
     this.blendData = {
       color1: {
         data: color1,
-        rgb: checkAndFormat('rgb',this.rgb1) as RGB,
-        amount: weight
+        rgb: checkAndFormat("rgb", this.rgb1) as RGB,
+        amount: weight,
       },
       color2: {
         data: color2,
-        rgb: checkAndFormat('rgb',this.rgb2) as RGB,
-        amount: 1 - weight
+        rgb: checkAndFormat("rgb", this.rgb2) as RGB,
+        amount: 1 - weight,
       },
-      resultColor: this.color
-    }
+      resultColor: this.color,
+    };
   }
-  
 }
 
-  /**
-  * Get  color type / space
-  * @param {BlenderColor} - Color data
-  * @returns {string} - type / space of color
-  */
+/**
+ * Get  color type / space
+ * @param {BlenderColor} - Color data
+ * @returns {string} - type / space of color
+ */
 const getColorType = (color: BlenderColor): string => {
   if (
     typeof (color as RGB).green === "number" ||
