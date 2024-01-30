@@ -219,6 +219,36 @@ export interface HCL_M {
   l: number;
 }
 
+
+/**
+ * @description Represntation of an HCY color space:
+ * HCY colour space is a tractable hue/chroma/luminance 
+ * scheme developed by Kuzma Shapran. It is ideal for
+ * pixel shaders, being only slightly more expensive that 
+ * the HSV and HSL schemes. However, it tries to be more 
+ * "meaningful" in terms of human perception.
+ * - Hue (H) computed in the same manner as HSV and HSL
+ * - Chroma (C) computed as the scaled difference between 
+ *   the maximum unweighted RGB component and the minimum 
+ *   unweighted RGB component
+ * - Luminance (Y) computed as the weighted sum of RGB components
+ *   - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
+ */
+export interface HCY {
+  hue: number;
+  chroma: number;
+  Yluminance: number;
+}
+
+/**
+ * @description Represntation of an HCY color space:
+ */
+export interface HCY_M {
+  h: number;
+  c: number;
+  y: number;
+}
+
 /**
  * @description Represntation of an LCH color space:
  *  - more info: https://sensing.konicaminolta.us/us/blog/understanding-the-cie-lch-color-space/

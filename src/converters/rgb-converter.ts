@@ -665,6 +665,32 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
 };
 
 /*******************************************************************
+ *                             HCY
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to HCY space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {HCY} - HCY values for a color
+ */
+export const sRgbToHcy = ({ red, green, blue }: RGB) => {
+  const sum = red + green + blue;
+  red = red / sum;
+  green - green / sum;
+  blue - blue / sum;
+
+  let hue = Math.acos(
+    (0.5 * (red - green + (red - blue))) /
+      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
+  );
+
+  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
+  else hue = (hue * 180) / Math.PI;
+  let chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
+  let Yluminance = sum / 3;
+  return { hue, chroma, Yluminance };
+};
+
+/*******************************************************************
  *                             HWG
  * *****************************************************************/
 /**
