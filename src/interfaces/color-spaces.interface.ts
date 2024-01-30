@@ -136,6 +136,26 @@ export interface LAB_M {
 }
 
 /**
+ * @description Represntation of an CMY color space:
+ *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
+ */
+export interface CMY {
+  cyan: number;
+  magenta: number;
+  yellow: number;
+}
+
+/**
+ * @description Represntation of an CMY color space:
+ *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
+ */
+export interface CMY_M {
+  c: number;
+  m: number;
+  y: number;
+}
+
+/**
  * @description Represntation of an CMYK color space:
  *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
  */
@@ -271,6 +291,16 @@ export interface XYY {
   x: number;
   y: number;
   Y: number;
+}
+
+/**
+ * @description Represntation of an YUB color space:
+ *   - more info: https://en.wikipedia.org/?title=YUV
+ */
+export interface YUV {
+  y: number;
+  u: number;
+  v: number;
 }
 
 /**

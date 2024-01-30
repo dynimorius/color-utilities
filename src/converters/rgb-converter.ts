@@ -14,6 +14,7 @@ import {
 } from "../helpers/companding";
 import { formatValue } from "../helpers/formats-and-checks";
 import {
+  CMY,
   CMYK,
   HSL,
   HSV,
@@ -26,6 +27,7 @@ import {
   RYB,
   SpaceData,
   XYZ,
+  YUV,
 } from "../interfaces/color-spaces.interface";
 import {
   CtoD65Adaptation,
@@ -487,6 +489,24 @@ export const sRgbToAnsi256 = ({ red, green, blue }: RGB): number => {
 };
 
 /*******************************************************************
+ *                             CMY
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to CMY space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {CMY} - CMY values for a color
+ */
+export const sRgbToCmy = (rgb: RGB): CMY => {
+  const { red, green, blue } = normalizeRgb(rgb);
+
+  return {
+    cyan: (1 - red) * 100 || 0,
+    magenta: (1 - green) * 100 || 0,
+    yellow: (1 - blue) * 100 || 0,
+  };
+};
+
+/*******************************************************************
  *                            CMYK
  * *****************************************************************/
 /**
@@ -693,4 +713,23 @@ export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
     yellow: yRYB / N + Ib,
     blue: bRYB / N + Ib,
   };
+};
+
+/*******************************************************************
+ *                             YUV
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to YUV space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YUV} - YUV values for a color
+ */
+
+export const sRgbToYuv = (rgb: RGB): YUV => {
+  const { red, green, blue } = normalizeRgb(rgb);
+
+  const y = red * 0.299 + green * 0.587 + blue * 0.114;
+  const u = red * -0.14713 + green * -0.28886 + blue * 0.436;
+  const v = red * 0.615 + green * -0.51499 + blue * -0.10001;
+
+  return { y, u, v };
 };

@@ -62,3 +62,4 @@ export const round = (value: number, decimals = MAX_DECIMALS): number => {
   const exp = Math.pow(10, decimals);
   return Math.round(+value * exp) / exp;
 };
+
