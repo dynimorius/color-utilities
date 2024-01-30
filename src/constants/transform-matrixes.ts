@@ -14,6 +14,9 @@
  ***************************************************************/
 import { ResponceDomain } from "../interfaces/responce-domain";
 
+/**
+ * @description Sharp Transform Matrices
+ */
 export const SHARP_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [1.2694, -0.0988, -0.1706],
@@ -27,6 +30,9 @@ export const SHARP_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
 };
 
+/**
+ * @description Bradford Transform Matrices
+ */
 export const BRADFORD_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.8951, 0.2664, -0.1614],
@@ -40,6 +46,9 @@ export const BRADFORD_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
 };
 
+/**
+ * @description HuntPointer-Estevez Transform Matrices
+ */
 export const HUNT_POINTER_ESTEVEZ_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.38971, 0.68898, -0.07868],
@@ -53,6 +62,9 @@ export const HUNT_POINTER_ESTEVEZ_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
 };
 
+/**
+ * @description Von Kries Transform Matrices
+ */
 export const VON_KRIES_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.40024, 0.7076, -0.08081],
@@ -66,6 +78,9 @@ export const VON_KRIES_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
 };
 
+/**
+ * @description Stokman Transform Matrices
+ */
 export const STOKMAN_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.2689, -0.3962, 0.0214],
@@ -79,6 +94,9 @@ export const STOKMAN_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
 };
 
+/**
+ * @description CIECAM97 Transform Matrices
+ */
 export const CIECAM97_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.8562, 0.3372, -0.1934],
@@ -86,12 +104,15 @@ export const CIECAM97_CONE_RESPONCE_DOMAINS: ResponceDomain = {
     [0.0357, -0.00469, 1.0112],
   ],
   MA_1: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
+    [0.983811, -0.180529, 0.18875],
+    [0.448831, 0.463277, 0.08433],
+    [-0.032651, 0.008522, 0.982651],
   ],
 };
 
+/**
+ * @description CIECAM00 Transform Matrices
+ */
 export const CIECAM00_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.7982, 0.3389, -0.1371],
@@ -99,12 +120,15 @@ export const CIECAM00_CONE_RESPONCE_DOMAINS: ResponceDomain = {
     [0.0008, 0.0239, 0.9753],
   ],
   MA_1: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
+    [1.094262, -0.241595, 0.163879],
+    [0.417976, 0.552793, 0.035743],
+    [-0.0192184, -0.0115646, 1.023105],
   ],
 };
 
+/**
+ * @description CIECAM02 Transform Matrices
+ */
 export const CIECAM02_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.7328, 0.4296, -0.1624],
@@ -113,11 +137,14 @@ export const CIECAM02_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   ],
   MA_1: [
     [0.38971, 0.68898, -0.07868],
-    [-0.22981, 1.18340, 0.04641],
+    [-0.22981, 1.1834, 0.04641],
     [0.0, 0.0, 1.0],
   ],
 };
 
+/**
+ * @description CAM16 Transform Matrices
+ */
 export const CIECAM16_CONE_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [0.401288, 0.650173, -0.051461],
@@ -125,12 +152,15 @@ export const CIECAM16_CONE_RESPONCE_DOMAINS: ResponceDomain = {
     [-0.002079, 0.048952, 0.953127],
   ],
   MA_1: [
-    [0, 0, 0],
-    [0, 0, 0],
-    [0, 0, 0],
+    [1.8620678, -1.011254, 0.149186],
+    [0.387526, 0.621447, -0.008973],
+    [-0.015841, -0.034122, 1.0499644],
   ],
 };
 
+/**
+ * @description XYZ Scaling Transform Matrices
+ */
 export const XYZ_SCALING_RESPONCE_DOMAINS: ResponceDomain = {
   MA: [
     [1.0, 0.0, 0.0],
