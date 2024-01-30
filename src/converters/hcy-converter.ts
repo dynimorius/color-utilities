@@ -10,15 +10,15 @@
  * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
  */
 
-import { HCY } from "../interfaces/color-spaces.interface";
+import { HCY, RGB } from "../interfaces/color-spaces.interface";
 
+//TODO move hsiToSrgb and hcyToSrgb in to a single shared function
 /**
  * Converts a color form an HCY space to sRGB space
  * @param {HCY} hcy HCY values for a color
  * @returns {RGB} - sRGB values for a color
  */
-
-export const hcyToSrgb = ({hue, chroma, Yluminance}: HCY) => {
+export const hcyToSrgb = ({hue, chroma, Yluminance}: HCY): RGB => {
   hue = (hue < 0 ? (hue % 360) + 360 : (hue % 360)) * Math.PI / 180;
   chroma = Math.max(0, Math.min(chroma, 100)) / 100;
   Yluminance = Math.max(0, Math.min(Yluminance, 255)) / 255;

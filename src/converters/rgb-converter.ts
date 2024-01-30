@@ -16,6 +16,8 @@ import { formatValue } from "../helpers/formats-and-checks";
 import {
   CMY,
   CMYK,
+  HCY,
+  HSI,
   HSL,
   HSV,
   HWB,
@@ -27,6 +29,7 @@ import {
   RYB,
   SpaceData,
   XYZ,
+  YCbCr,
   YUV,
 } from "../interfaces/color-spaces.interface";
 import {
@@ -667,12 +670,13 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
 /*******************************************************************
  *                             HCY
  * *****************************************************************/
+//TODO move sRgbToHcy and sRgbToHsi to a single function
 /**
  * Converts a color form an sRGB space to HCY space
  * @param {RBG} rgb sRBG values for a color
  * @returns {HCY} - HCY values for a color
  */
-export const sRgbToHcy = ({ red, green, blue }: RGB) => {
+export const sRgbToHcy = ({ red, green, blue }: RGB): HCY => {
   const sum = red + green + blue;
   red = red / sum;
   green - green / sum;
@@ -688,6 +692,33 @@ export const sRgbToHcy = ({ red, green, blue }: RGB) => {
   let chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
   let Yluminance = sum / 3;
   return { hue, chroma, Yluminance };
+};
+
+/*******************************************************************
+ *                             HSI
+ * *****************************************************************/
+//TODO move sRgbToHcy and sRgbToHsi to a single function
+/**
+ * Converts a color form an sRGB space to HSI space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {HSI} - HSI values for a color
+ */
+export const sRgbToHsi = ({ red, green, blue }: RGB): HSI => {
+  const sum = red + green + blue;
+  red = red / sum;
+  green - green / sum;
+  blue - blue / sum;
+
+  let hue = Math.acos(
+    (0.5 * (red - green + (red - blue))) /
+      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
+  );
+
+  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
+  else hue = (hue * 180) / Math.PI;
+  let saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
+  let intensity = sum / 3;
+  return { hue, saturation, intensity };
 };
 
 /*******************************************************************
@@ -759,3 +790,19 @@ export const sRgbToYuv = (rgb: RGB): YUV => {
 
   return { y, u, v };
 };
+
+/*******************************************************************
+ *                         JPEG / YCbCr
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to YUV space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YCbCr} - YCbCr values for a color
+ */
+export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
+  return {
+    Y: 0.299 * red + 0.587 * green + 0.114 * blue,
+		Cb: 128 - 0.168736 * red  - 0.331264 * green + 0.5 * blue,
+		Cr: 128 + 0.5 * red - 0.418688 * green - 0.081312 * blue
+  }
+}

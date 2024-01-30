@@ -115,6 +115,20 @@ export interface HSVA_M extends HSV_M {
 }
 
 /**
+ * @description Represntation of an HSI color space:
+ *    The HSI color space is very important and attractive 
+ *    color model for image processing applications because 
+ *    it represents colors similarly how the human eye senses 
+ *    colors.
+ *   - more info: https://www.blackice.com/colorspaceHSI.htm
+ */
+export interface HSI {
+  hue: number;
+  saturation: number;
+  intensity: number;
+}
+
+/**
  * @description Represntation of an LAB color space:
  *   - more info: https://en.wikipedia.org/wiki/CIELAB_color_space
  */
@@ -281,6 +295,20 @@ export interface LUV {
 }
 
 /**
+ * @description Represntation of an LUV color space:
+ * represents the response of the three types of cones of 
+ * the human eye.
+ * The numerical range is generally not specified, except 
+ * that the lower end is generally bounded by zero.
+ *   - more infeo : https://en.wikipedia.org/wiki/LMS_color_space
+ */
+export interface LMS {
+  long: number;
+  medium: number;
+  short: number;
+}
+
+/**
  * @description Represntation of an RYB color space:
  *   - more info: https://en.wikipedia.org/wiki/RYB_color_model
  */
@@ -324,7 +352,7 @@ export interface XYY {
 }
 
 /**
- * @description Represntation of an YUB color space:
+ * @description Represntation of an YUV color space:
  *   - more info: https://en.wikipedia.org/?title=YUV
  */
 export interface YUV {
@@ -333,6 +361,23 @@ export interface YUV {
   v: number;
 }
 
+
+/**
+ * @description Represntation of an YCbCr color space:
+ *   -  Y is the luma component
+ *   -  Cb is blue-difference chroma component
+ *   -  Cr red-difference chroma component
+ *  Y′ (with prime) is distinguished from Y, 
+ *  which is luminance, meaning that light intensity 
+ *  is nonlinearly encoded based on gamma corrected RGB 
+ *  primaries.
+ *   - more info: https://en.wikipedia.org/wiki/YCbCr
+ */
+export interface YCbCr {
+  Y: number;
+  Cb: number;
+  Cr: number;
+}
 /**
  * @description Represntation data in a Color Space Dataset:
  *  - RGB_TO_XYZ: A Matrix used for a RGB to XYZ conversion

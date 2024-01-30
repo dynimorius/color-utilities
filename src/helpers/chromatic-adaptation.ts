@@ -7,7 +7,7 @@
  */
 
 import { ADAPTIVE_MATRICES } from "../constants/adaptive_matrices";
-import { BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants/bradford-responce-domains";
+import { BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
 import { XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
 import {
