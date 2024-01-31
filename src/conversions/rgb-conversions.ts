@@ -177,54 +177,6 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 };
 
 /*******************************************************************
- *                              XYZ
- * *****************************************************************/
-/**
- * Gets XYZ values for a given RGB color in a given RGB space
- * that RGB Space
- * @param {RBG} rgb RBG values
- * @param {SpaceData} space RGB space dataset
- * @param {Function} inverseCompandingFun function to preform inverse companding whit
- * @param {boolean} gamma optional flag indicating if a gamma value
- *                        for a give RGB space data set should be used
- * @returns {XYZ} - xyz values
- */
-const rgbToXyz = (
-  { red, green, blue }: RGB,
-  space: SpaceData,
-  inverseCompandingFun: Function,
-  gamma?: boolean
-): XYZ => {
-  let Rlin, Glin, Blin;
-  if (gamma) {
-    Rlin = inverseCompandingFun(red, space.GAMMA);
-    Glin = inverseCompandingFun(green, space.GAMMA);
-    Blin = inverseCompandingFun(blue, space.GAMMA);
-  } else {
-    Rlin = inverseCompandingFun(red);
-    Glin = inverseCompandingFun(green);
-    Blin = inverseCompandingFun(blue);
-  }
-  const { X, Y, Z } = space.RGB_TO_XYZ;
-  const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
-  const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;
-  const z = (Rlin * Z.r + Glin * Z.g + Blin * Z.b) * 100;
-
-  return { x, y, z };
-};
-
-/**
- * Gets XYZ values for a given RGB color in a given RGB space
- * that RGB Space utilizing inverse gamma companding
- * @param {RBG} rgb RBG values
- * @param {SpaceData} space RGB space dataset
- * @returns {XYZ} - xyz values
- */
-export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
-  return rgbToXyz(rgb, ref, inverseGammaCompanding, true);
-};
-
-/*******************************************************************
  *                        ADOBE 1998 RGB
  * *****************************************************************/
 /**
@@ -533,49 +485,32 @@ export const sRgbToCmyk = (rgb: RGB): CMYK => {
 
   return { cyan: f(red), magenta: f(green), yellow: f(blue), key: key * 100 };
 };
-/*******************************************************************
- *                             LAB
- * *****************************************************************/
-/**
- * Converts a color form an sRGB space to Lab space
- * @param {RBG} rgb sRBG values for a color
- * @returns {LAB} - Lab values for a color
- */
-export const sRgbToLab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LAB => {
-  return xyzToLab(xyz);
-};
 
 /*******************************************************************
- *                             LUV
+ *                             HCY
  * *****************************************************************/
+//TODO move sRgbToHcy and sRgbToHsi to a single function
 /**
- * Converts a color form an sRGB space to Luv space
+ * Converts a color form an sRGB space to HCY space
  * @param {RBG} rgb sRBG values for a color
- * @returns {LUV} - Luv values for a color
+ * @returns {HCY} - HCY values for a color
  */
-export const sRgbToLuv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LUV => {
-  return xyzToLuv(xyz);
-};
+export const sRgbToHcy = ({ red, green, blue }: RGB): HCY => {
+  const sum = red + green + blue;
+  red = red / sum;
+  green - green / sum;
+  blue - blue / sum;
 
-/*******************************************************************
- *                             LCH
- * *****************************************************************/
-/**
- * Converts a color form an sRGB space to LCH(ab) space
- * @param {RBG} rgb sRBG values for a color
- * @returns {LCH} - LCH(ab) values for a color
- */
-export const sRgbToLch_ab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
-  return labToLch_ab(xyzToLab(xyz));
-};
+  let hue = Math.acos(
+    (0.5 * (red - green + (red - blue))) /
+      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
+  );
 
-/**
- * Converts a color form an sRGB space to LCH(uv) space
- * @param {RBG} rgb sRBG values for a color
- * @returns {LCH} - LCH(uv) values for a color
- */
-export const sRgbToLch_uv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
-  return luvToLch_uv(xyzToLuv(xyz));
+  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
+  else hue = (hue * 180) / Math.PI;
+  let chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
+  let Yluminance = sum / 3;
+  return { hue, chroma, Yluminance };
 };
 
 /*******************************************************************
@@ -620,6 +555,33 @@ export const sRgbaToHex = (
     string +
     decimalToHex(alpha)
   );
+};
+
+/*******************************************************************
+ *                             HSI
+ * *****************************************************************/
+//TODO move sRgbToHcy and sRgbToHsi to a single function
+/**
+ * Converts a color form an sRGB space to HSI space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {HSI} - HSI values for a color
+ */
+export const sRgbToHsi = ({ red, green, blue }: RGB): HSI => {
+  const sum = red + green + blue;
+  red = red / sum;
+  green - green / sum;
+  blue - blue / sum;
+
+  let hue = Math.acos(
+    (0.5 * (red - green + (red - blue))) /
+      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
+  );
+
+  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
+  else hue = (hue * 180) / Math.PI;
+  let saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
+  let intensity = sum / 3;
+  return { hue, saturation, intensity };
 };
 
 /*******************************************************************
@@ -676,60 +638,6 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
 };
 
 /*******************************************************************
- *                             HCY
- * *****************************************************************/
-//TODO move sRgbToHcy and sRgbToHsi to a single function
-/**
- * Converts a color form an sRGB space to HCY space
- * @param {RBG} rgb sRBG values for a color
- * @returns {HCY} - HCY values for a color
- */
-export const sRgbToHcy = ({ red, green, blue }: RGB): HCY => {
-  const sum = red + green + blue;
-  red = red / sum;
-  green - green / sum;
-  blue - blue / sum;
-
-  let hue = Math.acos(
-    (0.5 * (red - green + (red - blue))) /
-      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
-  );
-
-  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
-  else hue = (hue * 180) / Math.PI;
-  let chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
-  let Yluminance = sum / 3;
-  return { hue, chroma, Yluminance };
-};
-
-/*******************************************************************
- *                             HSI
- * *****************************************************************/
-//TODO move sRgbToHcy and sRgbToHsi to a single function
-/**
- * Converts a color form an sRGB space to HSI space
- * @param {RBG} rgb sRBG values for a color
- * @returns {HSI} - HSI values for a color
- */
-export const sRgbToHsi = ({ red, green, blue }: RGB): HSI => {
-  const sum = red + green + blue;
-  red = red / sum;
-  green - green / sum;
-  blue - blue / sum;
-
-  let hue = Math.acos(
-    (0.5 * (red - green + (red - blue))) /
-      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
-  );
-
-  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
-  else hue = (hue * 180) / Math.PI;
-  let saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
-  let intensity = sum / 3;
-  return { hue, saturation, intensity };
-};
-
-/*******************************************************************
  *                             HWG
  * *****************************************************************/
 /**
@@ -751,6 +659,51 @@ export const sRgbToHwb = (rgb: RGB, pHue?: number): HWB => {
     (1 - (1 / 255) * Math.max(rgb.red, Math.max(rgb.green, rgb.blue))) * 100;
 
   return { hue, whiteness, blackness };
+};
+
+/*******************************************************************
+ *                             LAB
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to Lab space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {LAB} - Lab values for a color
+ */
+export const sRgbToLab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LAB => {
+  return xyzToLab(xyz);
+};
+
+/*******************************************************************
+ *                             LCH
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to LCH(ab) space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {LCH} - LCH(ab) values for a color
+ */
+export const sRgbToLch_ab = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
+  return labToLch_ab(xyzToLab(xyz));
+};
+
+/**
+ * Converts a color form an sRGB space to LCH(uv) space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {LCH} - LCH(uv) values for a color
+ */
+export const sRgbToLch_uv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LCH => {
+  return luvToLch_uv(xyzToLuv(xyz));
+};
+
+/*******************************************************************
+ *                             LUV
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to Luv space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {LUV} - Luv values for a color
+ */
+export const sRgbToLuv = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): LUV => {
+  return xyzToLuv(xyz);
 };
 
 /*******************************************************************
@@ -781,22 +734,51 @@ export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
 };
 
 /*******************************************************************
- *                             YUV
+ *                              XYZ
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to YUV space
- * @param {RBG} rgb sRBG values for a color
- * @returns {YUV} - YUV values for a color
+ * Gets XYZ values for a given RGB color in a given RGB space
+ * that RGB Space
+ * @param {RBG} rgb RBG values
+ * @param {SpaceData} space RGB space dataset
+ * @param {Function} inverseCompandingFun function to preform inverse companding whit
+ * @param {boolean} gamma optional flag indicating if a gamma value
+ *                        for a give RGB space data set should be used
+ * @returns {XYZ} - xyz values
  */
+const rgbToXyz = (
+  { red, green, blue }: RGB,
+  space: SpaceData,
+  inverseCompandingFun: Function,
+  gamma?: boolean
+): XYZ => {
+  let Rlin, Glin, Blin;
+  if (gamma) {
+    Rlin = inverseCompandingFun(red, space.GAMMA);
+    Glin = inverseCompandingFun(green, space.GAMMA);
+    Blin = inverseCompandingFun(blue, space.GAMMA);
+  } else {
+    Rlin = inverseCompandingFun(red);
+    Glin = inverseCompandingFun(green);
+    Blin = inverseCompandingFun(blue);
+  }
+  const { X, Y, Z } = space.RGB_TO_XYZ;
+  const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
+  const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;
+  const z = (Rlin * Z.r + Glin * Z.g + Blin * Z.b) * 100;
 
-export const sRgbToYuv = (rgb: RGB): YUV => {
-  const { red, green, blue } = normalizeRgb(rgb);
+  return { x, y, z };
+};
 
-  const y = red * 0.299 + green * 0.587 + blue * 0.114;
-  const u = red * -0.14713 + green * -0.28886 + blue * 0.436;
-  const v = red * 0.615 + green * -0.51499 + blue * -0.10001;
-
-  return { y, u, v };
+/**
+ * Gets XYZ values for a given RGB color in a given RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb RBG values
+ * @param {SpaceData} space RGB space dataset
+ * @returns {XYZ} - xyz values
+ */
+export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
+  return rgbToXyz(rgb, ref, inverseGammaCompanding, true);
 };
 
 /*******************************************************************
@@ -895,4 +877,23 @@ export const sRgbToYiq = (rgb: RGB): YIQ => {
     Q = red * 0.212 + green * -0.528 + blue * 0.311;
   }
   return { Y, I, Q };
+};
+
+/*******************************************************************
+ *                             YUV
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to YUV space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YUV} - YUV values for a color
+ */
+
+export const sRgbToYuv = (rgb: RGB): YUV => {
+  const { red, green, blue } = normalizeRgb(rgb);
+
+  const y = red * 0.299 + green * 0.587 + blue * 0.114;
+  const u = red * -0.14713 + green * -0.28886 + blue * 0.436;
+  const v = red * 0.615 + green * -0.51499 + blue * -0.10001;
+
+  return { y, u, v };
 };

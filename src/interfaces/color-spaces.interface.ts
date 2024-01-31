@@ -7,39 +7,110 @@
  */
 
 /**
- * @description Represntation of an RGB color space:
- *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
+ * @description Represntation of an CMY color space:
+ *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
  */
-export interface RGB {
-  red: number;
-  green: number;
-  blue: number;
-  inGamut?: boolean;
+export interface CMY {
+  cyan: number;
+  magenta: number;
+  yellow: number;
 }
 
 /**
- * @description Represntation of an RGBA color space:
- *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
+ * @description Represntation of an CMY color space:
+ *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
  */
-export interface RGBA extends RGB {
-  alpha: number;
-}
-/**
- * @description Represntation of an RGB color space:
- *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
- */
-export interface RGB_M {
-  r: number;
-  g: number;
-  b: number;
+export interface CMY_M {
+  c: number;
+  m: number;
+  y: number;
 }
 
 /**
- * @description Represntation of an RGBA color space:
- *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
+ * @description Represntation of an CMYK color space:
+ *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
  */
-export interface RGBA_M extends RGB_M {
-  a: number;
+export interface CMYK {
+  cyan: number;
+  magenta: number;
+  yellow: number;
+  key: number;
+}
+
+/**
+ * @description Represntation of an CMYK color space:
+ *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
+ */
+export interface CMYK_M {
+  c: number;
+  m: number;
+  y: number;
+  k: number;
+}
+
+/**
+ * @description Represntation of an HCL color space:
+ * - more info: https://en.wikipedia.org/wiki/HCL_color_space
+ */
+export interface HCL {
+  hue: number;
+  chroma: number;
+  luminance: number;
+}
+
+/**
+ * @description Represntation of an HCL color space:
+ *   - more info: https://en.wikipedia.org/wiki/HCL_color_space
+ */
+export interface HCL_M {
+  h: number;
+  c: number;
+  l: number;
+}
+
+/**
+ * @description Represntation of an HCY color space:
+ * HCY colour space is a tractable hue/chroma/luminance
+ * scheme developed by Kuzma Shapran. It is ideal for
+ * pixel shaders, being only slightly more expensive that
+ * the HSV and HSL schemes. However, it tries to be more
+ * "meaningful" in terms of human perception.
+ * - Hue (H) computed in the same manner as HSV and HSL
+ * - Chroma (C) computed as the scaled difference between
+ *   the maximum unweighted RGB component and the minimum
+ *   unweighted RGB component
+ * - Luminance (Y) computed as the weighted sum of RGB components
+ *   - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
+ */
+export interface HCY {
+  hue: number;
+  chroma: number;
+  Yluminance: number;
+}
+
+/**
+ * @description Represntation of an HCY color space:
+ * @alias HCY
+ * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
+ */
+export interface HCY_M {
+  h: number;
+  c: number;
+  y: number;
+}
+
+/**
+ * @description Represntation of an HSI color space:
+ *    The HSI color space is very important and attractive
+ *    color model for image processing applications because
+ *    it represents colors similarly how the human eye senses
+ *    colors.
+ *   - more info: https://www.blackice.com/colorspaceHSI.htm
+ */
+export interface HSI {
+  hue: number;
+  saturation: number;
+  intensity: number;
 }
 
 /**
@@ -115,17 +186,23 @@ export interface HSVA_M extends HSV_M {
 }
 
 /**
- * @description Represntation of an HSI color space:
- *    The HSI color space is very important and attractive
- *    color model for image processing applications because
- *    it represents colors similarly how the human eye senses
- *    colors.
- *   - more info: https://www.blackice.com/colorspaceHSI.htm
+ * @description Represntation of an HWB color space:
+ *   - more info: https://dev.to/alvaromontoro/hwb-13h7
  */
-export interface HSI {
+export interface HWB {
   hue: number;
-  saturation: number;
-  intensity: number;
+  whiteness: number;
+  blackness: number;
+}
+
+/**
+ * @description Represntation of an HWB color space:
+ * - more info: https://dev.to/alvaromontoro/hwb-13h7
+ */
+export interface HWB_M {
+  h: number;
+  w: number;
+  b: number;
 }
 
 /**
@@ -149,119 +226,6 @@ export interface LAB_M {
 }
 
 /**
- * @description Represntation of an CMY color space:
- *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
- */
-export interface CMY {
-  cyan: number;
-  magenta: number;
-  yellow: number;
-}
-
-/**
- * @description Represntation of an CMY color space:
- *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
- */
-export interface CMY_M {
-  c: number;
-  m: number;
-  y: number;
-}
-
-/**
- * @description Represntation of an CMYK color space:
- *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
- */
-export interface CMYK {
-  cyan: number;
-  magenta: number;
-  yellow: number;
-  key: number;
-}
-
-/**
- * @description Represntation of an CMYK color space:
- *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
- */
-export interface CMYK_M {
-  c: number;
-  m: number;
-  y: number;
-  k: number;
-}
-
-/**
- * @description Represntation of an HWB color space:
- *   - more info: https://dev.to/alvaromontoro/hwb-13h7
- */
-export interface HWB {
-  hue: number;
-  whiteness: number;
-  blackness: number;
-}
-
-/**
- * @description Represntation of an HWB color space:
- * - more info: https://dev.to/alvaromontoro/hwb-13h7
- */
-export interface HWB_M {
-  h: number;
-  w: number;
-  b: number;
-}
-
-/**
- * @description Represntation of an HCL color space:
- * - more info: https://en.wikipedia.org/wiki/HCL_color_space
- */
-export interface HCL {
-  hue: number;
-  chroma: number;
-  luminance: number;
-}
-
-/**
- * @description Represntation of an HCL color space:
- *   - more info: https://en.wikipedia.org/wiki/HCL_color_space
- */
-export interface HCL_M {
-  h: number;
-  c: number;
-  l: number;
-}
-
-/**
- * @description Represntation of an HCY color space:
- * HCY colour space is a tractable hue/chroma/luminance
- * scheme developed by Kuzma Shapran. It is ideal for
- * pixel shaders, being only slightly more expensive that
- * the HSV and HSL schemes. However, it tries to be more
- * "meaningful" in terms of human perception.
- * - Hue (H) computed in the same manner as HSV and HSL
- * - Chroma (C) computed as the scaled difference between
- *   the maximum unweighted RGB component and the minimum
- *   unweighted RGB component
- * - Luminance (Y) computed as the weighted sum of RGB components
- *   - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
- */
-export interface HCY {
-  hue: number;
-  chroma: number;
-  Yluminance: number;
-}
-
-/**
- * @description Represntation of an HCY color space:
- * @alias HCY
- * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
- */
-export interface HCY_M {
-  h: number;
-  c: number;
-  y: number;
-}
-
-/**
  * @description Represntation of an LCH color space:
  *  - more info: https://sensing.konicaminolta.us/us/blog/understanding-the-cie-lch-color-space/
  */
@@ -282,6 +246,20 @@ export interface LCH_M {
 }
 
 /**
+ * @description Represntation of an LMS color space:
+ * represents the response of the three types of cones of
+ * the human eye.
+ * The numerical range is generally not specified, except
+ * that the lower end is generally bounded by zero.
+ *   - more info : https://en.wikipedia.org/wiki/LMS_color_space
+ */
+export interface LMS {
+  long: number;
+  medium: number;
+  short: number;
+}
+
+/**
  * @description Represntation of an LUV color space:
  *  - L representes lightness / brightness
  *  - U and V are chromaticity coordinates that serve to define
@@ -299,44 +277,39 @@ export interface LUV {
 }
 
 /**
- * @description Represntation of an UVW color space:
- *  - W represents lightness index W
- *  - U and V are chromaticity coordinates that serve to define
- *    white point (white point is often referred to as reference
- *    white or target white in technical documents)
- *   - more info :
- *     https://en.wikipedia.org/wiki/CIELUV
- *     https://www.wikiwand.com/en/White_point
- *     https://en.wikipedia.org/wiki/CIELUV
+ * @description Represntation of an RGB color space:
+ *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
-export interface UVW {
-  u: number;
-  v: number;
-  w: number;
+export interface RGB {
+  red: number;
+  green: number;
+  blue: number;
+  inGamut?: boolean;
 }
 
 /**
- * @description Represntation of an LMS color space:
- * represents the response of the three types of cones of
- * the human eye.
- * The numerical range is generally not specified, except
- * that the lower end is generally bounded by zero.
- *   - more info : https://en.wikipedia.org/wiki/LMS_color_space
+ * @description Represntation of an RGBA color space:
+ *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
-export interface LMS {
-  long: number;
-  medium: number;
-  short: number;
+export interface RGBA extends RGB {
+  alpha: number;
+}
+/**
+ * @description Represntation of an RGB color space:
+ *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
+ */
+export interface RGB_M {
+  r: number;
+  g: number;
+  b: number;
 }
 
 /**
- * @description Represntation of an TSL color space:
- *   - more info: https://en.wikipedia.org/wiki/TSL_color_space
+ * @description Represntation of an RGBA color space:
+ *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
-export interface TSL {
-  tint: number;
-  saturation: number;
-  lightness: number;
+export interface RGBA_M extends RGB_M {
+  a: number;
 }
 
 /**
@@ -360,13 +333,49 @@ export interface RYB_M {
 }
 
 /**
- * @description Represntation of an XYZ color space:
- *   - more info: https://en.wikipedia.org/wiki/CIE_1931_color_space
+ * @description Represntation of an TSL color space:
+ *   - more info: https://en.wikipedia.org/wiki/TSL_color_space
  */
-export interface XYZ {
-  x: number;
-  y: number;
-  z: number;
+export interface TSL {
+  tint: number;
+  saturation: number;
+  lightness: number;
+}
+
+/**
+ * @description Represntation of an UVW color space:
+ *  - W represents lightness index W
+ *  - U and V are chromaticity coordinates that serve to define
+ *    white point (white point is often referred to as reference
+ *    white or target white in technical documents)
+ *   - more info :
+ *     https://en.wikipedia.org/wiki/CIELUV
+ *     https://www.wikiwand.com/en/White_point
+ *     https://en.wikipedia.org/wiki/CIELUV
+ */
+export interface UVW {
+  u: number;
+  v: number;
+  w: number;
+}
+
+/**
+ * @description Represntation of an xvYCC color space:
+ *  xvYCC is an extended-gamut YCbCr is a color space,
+ *  supports a gamut 1.8
+ *   -  Y is the luma component
+ *   -  Cb is blue-difference chroma component
+ *   -  Cr red-difference chroma component
+ *  Y′ (with prime) is distinguished from Y,
+ *  which is luminance, meaning that light intensity
+ *  is nonlinearly encoded based on gamma corrected RGB
+ *  primaries.
+ *   - more info: https://en.wikipedia.org/wiki/XvYCC
+ */
+export interface xvYCC {
+  Y: number;
+  Cb: number;
+  Cr: number;
 }
 
 /**
@@ -383,13 +392,13 @@ export interface XYY {
 }
 
 /**
- * @description Represntation of an YUV color space:
- *   - more info: https://en.wikipedia.org/?title=YUV
+ * @description Represntation of an XYZ color space:
+ *   - more info: https://en.wikipedia.org/wiki/CIE_1931_color_space
  */
-export interface YUV {
+export interface XYZ {
+  x: number;
   y: number;
-  u: number;
-  v: number;
+  z: number;
 }
 
 /**
@@ -441,7 +450,7 @@ export interface YCoCg {
 
 /**
  * @description Represntation of an YDbDr color space:
- *   -  Y is the luma component (a sum of colors R, G ,B values representing the 
+ *   -  Y is the luma component (a sum of colors R, G ,B values representing the
  *      overall brightness, or luminance)
  *   -  Db is difference between blue and luma (B − Y)
  *   -  Dr is difference between red and luma (R − Y)
@@ -451,23 +460,6 @@ export interface YDbDr {
   Y: number;
   Db: number;
   Dr: number;
-}
-/**
- * @description Represntation of an YPbPr color space:
- *   -  Y is the luma component (a sum of colors R, G ,B values representing the 
- *      overall brightness, or luminance)
- *   -  Pb is difference between blue and luma (B − Y)
- *   -  Pr is difference between red and luma (R − Y)
- * YPbPr is the analog video signal carried by component
- * video cable in consumer electronics.
- * The green cable carries Y, the blue cable carries PB
- * and the red cable carries PR.
- *   - more info: https://en.wikipedia.org/?title=YPbPr
- */
-export interface YPbPr {
-  Y: number;
-  Pb: number;
-  Pr: number;
 }
 
 /**
@@ -484,23 +476,33 @@ export interface YIQ {
 }
 
 /**
- * @description Represntation of an xvYCC color space:
- *  xvYCC is an extended-gamut YCbCr is a color space,
- *  supports a gamut 1.8
- *   -  Y is the luma component
- *   -  Cb is blue-difference chroma component
- *   -  Cr red-difference chroma component
- *  Y′ (with prime) is distinguished from Y,
- *  which is luminance, meaning that light intensity
- *  is nonlinearly encoded based on gamma corrected RGB
- *  primaries.
- *   - more info: https://en.wikipedia.org/wiki/XvYCC
+ * @description Represntation of an YPbPr color space:
+ *   -  Y is the luma component (a sum of colors R, G ,B values representing the
+ *      overall brightness, or luminance)
+ *   -  Pb is difference between blue and luma (B − Y)
+ *   -  Pr is difference between red and luma (R − Y)
+ * YPbPr is the analog video signal carried by component
+ * video cable in consumer electronics.
+ * The green cable carries Y, the blue cable carries PB
+ * and the red cable carries PR.
+ *   - more info: https://en.wikipedia.org/?title=YPbPr
  */
-export interface xvYCC {
+export interface YPbPr {
   Y: number;
-  Cb: number;
-  Cr: number;
+  Pb: number;
+  Pr: number;
 }
+
+/**
+ * @description Represntation of an YUV color space:
+ *   - more info: https://en.wikipedia.org/?title=YUV
+ */
+export interface YUV {
+  y: number;
+  u: number;
+  v: number;
+}
+
 /**
  * @description Represntation data in a Color Space Dataset:
  *  - RGB_TO_XYZ: A Matrix used for a RGB to XYZ conversion
