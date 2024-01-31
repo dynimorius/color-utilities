@@ -10,43 +10,49 @@
  * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
  */
 
-import { HCY, RGB } from "../interfaces/color-spaces.interface";
-
-//TODO move hsiToSrgb and hcyToSrgb in to a single shared function
-/**
- * Converts a color form an HCY space to sRGB space
- * @param {HCY} hcy HCY values for a color
- * @returns {RGB} - sRGB values for a color
- */
-export const hcyToSrgb = ({hue, chroma, Yluminance}: HCY): RGB => {
-  hue = (hue < 0 ? (hue % 360) + 360 : (hue % 360)) * Math.PI / 180;
-  chroma = Math.max(0, Math.min(chroma, 100)) / 100;
-  Yluminance = Math.max(0, Math.min(Yluminance, 255)) / 255;
+import { HCY, HSI, RGB } from "../interfaces/color-spaces.interface";
+export const hcyOrHsiToSrgb = (val: HCY | HSI): RGB => {
+  const values = Object.values(val);
+  let hue = values[0];
+  let chromaOrSaturation = values[1];
+  let yOrIntensity = values[2];
+   hue = (hue < 0 ? (hue % 360) + 360 : (hue % 360)) * Math.PI / 180;
+   chromaOrSaturation = Math.max(0, Math.min(chromaOrSaturation, 100)) / 100;
+   yOrIntensity = Math.max(0, Math.min(yOrIntensity, 255)) / 255;
 
   const thirdOfPI = Math.PI / 3;
 
   if (hue < (2 * thirdOfPI)) {
     return {
-      red: (Yluminance * (1 + ( chroma * Math.cos(hue) / Math.cos(thirdOfPI - hue) ))) * 255,
-      green: (Yluminance * (1 + (chroma * (1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
-      blue: (Yluminance * ( 1 - chroma )) * 255,
+      red: (yOrIntensity * (1 + ( chromaOrSaturation * Math.cos(hue) / Math.cos(thirdOfPI - hue) ))) * 255,
+      green: (yOrIntensity * (1 + (chromaOrSaturation * (1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
+      blue: (yOrIntensity * ( 1 - chromaOrSaturation )) * 255,
     }
 
 	}
 	else if (hue < (4 * thirdOfPI) ) {
     hue = hue - 2 * thirdOfPI;
     return {
-      red: (Yluminance * ( 1 - chroma )) * 255,
-      green: (Yluminance * (1 + ( chroma * Math.cos(hue) / Math.cos(thirdOfPI - hue) ))) * 255,
-      blue: (Yluminance * (1 + ( chroma * ( 1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
+      red: (yOrIntensity * ( 1 - chromaOrSaturation )) * 255,
+      green: (yOrIntensity * (1 + ( chromaOrSaturation * Math.cos(hue) / Math.cos(thirdOfPI - hue) ))) * 255,
+      blue: (yOrIntensity * (1 + (chromaOrSaturation * ( 1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
     }
 	}
 	else {
     hue = hue - 4 * thirdOfPI;
     return {
-      red: (Yluminance * (1 + (chroma * (1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
-      green: (Yluminance * (1 - chroma)) * 255,
-      blue: (Yluminance * (1 + ( chroma * Math.cos(hue) / Math.cos(thirdOfPI - hue)))) * 255,
+      red: (yOrIntensity * (1 + (chromaOrSaturation* (1 - Math.cos(hue) / Math.cos(thirdOfPI - hue))))) * 255,
+      green: (yOrIntensity * (1 - chromaOrSaturation)) * 255,
+      blue: (yOrIntensity * (1 + ( chromaOrSaturation * Math.cos(hue) / Math.cos(thirdOfPI - hue)))) * 255,
     }
 	}
+}
+
+/**
+ * Converts a color form an HCY space to sRGB space
+ * @param {HCY} hcy HCY values for a color
+ * @returns {RGB} - sRGB values for a color
+ */
+export const hcyToSrgb = (hcy: HCY): RGB => {
+  return hcyOrHsiToSrgb(hcy);
 }
