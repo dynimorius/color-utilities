@@ -489,13 +489,13 @@ export const sRgbToCmyk = (rgb: RGB): CMYK => {
 /*******************************************************************
  *                             HCY
  * *****************************************************************/
-//TODO move sRgbToHcy and sRgbToHsi to a single function
 /**
- * Converts a color form an sRGB space to HCY space
+ * Converts a color form an sRGB space to HCY or HSI value
  * @param {RBG} rgb sRBG values for a color
- * @returns {HCY} - HCY values for a color
+ * @param {'hcy' | 'hsi'} ret color space to retrun
+ * @returns {HCY | HSI} - resultion color space values
  */
-export const sRgbToHcy = ({ red, green, blue }: RGB): HCY => {
+const sRgbToHcyOrHsi = ({ red, green, blue }: RGB, ret: 'hcy' | 'hsi'): HCY | HSI => {
   const sum = red + green + blue;
   red = red / sum;
   green - green / sum;
@@ -508,9 +508,25 @@ export const sRgbToHcy = ({ red, green, blue }: RGB): HCY => {
 
   if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
   else hue = (hue * 180) / Math.PI;
-  let chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
-  let Yluminance = sum / 3;
-  return { hue, chroma, Yluminance };
+ 
+  if (ret === 'hsi') {
+    const intensity = sum / 3;
+    const saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
+    return { hue, saturation, intensity }
+  } else {
+    const chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
+    const Yluminance = sum / 3;
+    return { hue, chroma, Yluminance };
+  }
+};
+
+/**
+ * Converts a color form an sRGB space to HCY space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {HCY} - HCY values for a color
+ */
+export const sRgbToHcy = (rgb: RGB): HCY => {
+  return sRgbToHcyOrHsi(rgb, 'hcy') as HCY;
 };
 
 /*******************************************************************
@@ -560,28 +576,13 @@ export const sRgbaToHex = (
 /*******************************************************************
  *                             HSI
  * *****************************************************************/
-//TODO move sRgbToHcy and sRgbToHsi to a single function
 /**
  * Converts a color form an sRGB space to HSI space
  * @param {RBG} rgb sRBG values for a color
  * @returns {HSI} - HSI values for a color
  */
-export const sRgbToHsi = ({ red, green, blue }: RGB): HSI => {
-  const sum = red + green + blue;
-  red = red / sum;
-  green - green / sum;
-  blue - blue / sum;
-
-  let hue = Math.acos(
-    (0.5 * (red - green + (red - blue))) /
-      Math.sqrt((red - green) * (red - green) + (red - blue) * (green - blue))
-  );
-
-  if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
-  else hue = (hue * 180) / Math.PI;
-  let saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
-  let intensity = sum / 3;
-  return { hue, saturation, intensity };
+export const sRgbToHsi = (rgb: RGB): HSI => {
+  return sRgbToHcyOrHsi(rgb, 'hsi') as HSI;
 };
 
 /*******************************************************************
