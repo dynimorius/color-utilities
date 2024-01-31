@@ -5,12 +5,7 @@
  *  Use of this source code is governed by an ISC-style license that can be
  *  found at https://opensource.org/license/isc-license-txt/
  *
- *  Cone response domains utilized for chromatic
- *  adaptation algorithms.
- *  The Bradford method is the newest of the three methods,
- *  and is considered by most experts to be the best of them.
- *  credit:
- *  http://www.brucelindbloom.com/index.html?Eqn_RGB_to_XYZ.html
+ *  Matrices chromatic adaptation algorithms.
  ***************************************************************/
 import { ResponceDomain } from "../interfaces/responce-domain";
 

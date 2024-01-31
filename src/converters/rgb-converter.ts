@@ -6,6 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   inverseGammaCompanding,
@@ -30,7 +31,13 @@ import {
   SpaceData,
   XYZ,
   YCbCr,
+  YCoCg,
+  YDbDr,
+  YIQ,
+  YPbPr,
   YUV,
+  YcCbcCrc,
+  xvYCC,
 } from "../interfaces/color-spaces.interface";
 import {
   CtoD65Adaptation,
@@ -41,6 +48,7 @@ import { labToLch_ab } from "./lab-converter";
 import { luvToLch_uv } from "./luv-converter";
 import { decimalToHex } from "./number-converter";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-converter";
+import { yCbCrToXvYcc } from "./ycbcr-jpeg-converter";
 
 /*******************************************************************
  *                           HELPERS
@@ -792,17 +800,99 @@ export const sRgbToYuv = (rgb: RGB): YUV => {
 };
 
 /*******************************************************************
- *                         JPEG / YCbCr
+ *    JPEG / YCbCr / YcCbcCrc / YCoCg / YDbDr / YPbPr / xvYCC
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to YUV space
+ * Converts a color form an sRGB space to YCbCr space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCbCr} - YCbCr values for a color
  */
 export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
   return {
     Y: 0.299 * red + 0.587 * green + 0.114 * blue,
-		Cb: 128 - 0.168736 * red  - 0.331264 * green + 0.5 * blue,
-		Cr: 128 + 0.5 * red - 0.418688 * green - 0.081312 * blue
+    Cb: 128 - 0.168736 * red - 0.331264 * green + 0.5 * blue,
+    Cr: 128 + 0.5 * red - 0.418688 * green - 0.081312 * blue,
+  };
+};
+
+/**
+ * Converts a color form an sRGB space to xvYCC space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {xvYCC} - xvYCC values for a color
+ */
+export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
+  return yCbCrToXvYcc(sRgbToYCbCr(rgb));
+};
+
+/**
+ * Converts a color form an sRGB space to YDbDr space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YDbDr} - YDbDr values for a color
+ */
+export const sRgbToYDbDr = (rgb: RGB): YDbDr => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  return {
+    Y: 0.299 * red + 0.587 * green + 0.114 * blue,
+    Db: -0.45 * red - 0.883 * green + 1.333 * blue,
+    Dr: -1.333 * red + 1.116 * green + 0.217 * blue,
+  };
+};
+
+/**
+ * Converts a color form an sRGB space to YPbPr space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YPbPr} - YPbPr values for a color
+ */
+export const sRgbToYPbPr = (
+  { red, green, blue }: RGB,
+  ituRBt = CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_709
+): YPbPr | YcCbcCrc => {
+  const Y =
+    ituRBt.Kr * red + (1 - ituRBt.Kr - ituRBt.Kb) * green + ituRBt.Kb * blue;
+  const Pb = (0.5 * (blue - Y)) / (1 - ituRBt.Kb);
+  const Pr = (0.5 * (red - Y)) / (1 - ituRBt.Kr);
+  return { Y, Pb, Pr };
+};
+
+/**
+ * Converts a color form an sRGB space to YcCbcCrc space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YcCbcCrc} - YcCbcCrc values for a color
+ */
+export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
+  return sRgbToYPbPr(
+    rgb,
+    CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_2020
+  ) as YcCbcCrc;
+};
+
+/**
+ * Converts a color form an sRGB space to YCoCg space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YCoCg} - YCoCg values for a color
+ */
+export const sRgbToYCgCo = (rgb: RGB): YCoCg => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  return {
+    Y: 0.25 * red + 0.5 * green + 0.25 * blue,
+    Co: 0.5 * red - 0.5 * blue,
+    Cg: -0.25 * red + 0.5 * green - 0.25 * blue,
+  };
+};
+
+/**
+ * Converts a color form an sRGB space to YIQ  space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YIQ } - YIQ  values for a color
+ */
+export const sRgbToYiq = (rgb: RGB): YIQ => {
+  const { red, green, blue } = normalizeRgb(rgb);
+  const Y = red * 0.299 + green * 0.587 + blue * 0.114;
+  let I = 0,
+    Q = 0;
+  if (red !== green || green !== blue) {
+    I = red * 0.596 + green * -0.275 + blue * -0.321;
+    Q = red * 0.212 + green * -0.528 + blue * 0.311;
   }
-}
+  return { Y, I, Q };
+};

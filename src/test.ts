@@ -1,3 +1,4 @@
+import { lmsToXyz } from "./converters/lms-converter";
 import {
   CMYK,
   HSL,
@@ -5,13 +6,14 @@ import {
   HWB,
   LAB,
   LCH,
+  LMS,
   LUV,
   RGB,
   RYB,
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { rgbTo1_0rgb, rgbToHue } from "./public_api";
+import { rgbTo1_0rgb, rgbToHue, xyzToLsm } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 let pass = 0;
 let fail = 0;
@@ -240,4 +242,7 @@ printData([
 
 // console.log(newColor5.blendData);
 
-rgbToHue
+const lsm = xyzToLsm(checkColor.data?.xyz as XYZ)
+console.log(lsm);
+console.log(lmsToXyz(lsm))
+

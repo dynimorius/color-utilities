@@ -10,7 +10,7 @@ import { XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
 
 /**
- * 3 x 3 Matrix Multiplication 
+ * 3 x 3 Matrix Multiplication
  * @param {Matrix3x3} a 3 x 3 matrix
  * @param {Matrix3x3} b 3 x 3 matrix
  * @returns {Matrix3x3} - resulting 3 x 3 matrix
@@ -47,14 +47,14 @@ export const matrixVectorMulti = (
 ): number[] => {
   return [
     matrix[0][0] * vector[0] +
-    matrix[0][1] * vector[1] +
-    matrix[0][2] * vector[2],
+      matrix[0][1] * vector[1] +
+      matrix[0][2] * vector[2],
     matrix[1][0] * vector[0] +
-    matrix[1][1] * vector[1] +
-    matrix[1][2] * vector[2],
+      matrix[1][1] * vector[1] +
+      matrix[1][2] * vector[2],
     matrix[2][0] * vector[0] +
-    matrix[2][1] * vector[1] +
-    matrix[2][2] * vector[2],
+      matrix[2][1] * vector[1] +
+      matrix[2][2] * vector[2],
   ];
 };
 
@@ -108,3 +108,83 @@ export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
   };
 };
 
+/**
+ * Multiplication of a 3 x 3 Matrix by a Color Space object
+ * @param {Matrix3x3} matrix 3 x 3 matrix
+ * @param {{ [key: string]: number }} vector a vector object
+ * @returns {{ [key: string]: number }} - resulting color space object
+ */
+export const matrixSpaceMulti = (
+  matrix: Matrix3x3,
+  vector: { [key: string]: number }
+): { [key: string]: number } => {
+  const entries = Object.entries(vector);
+  return {
+    [entries[0][0]]:
+      matrix[0][0] * entries[0][1] +
+      matrix[0][1] * entries[1][1] +
+      matrix[0][2] * entries[2][1],
+    [entries[1][0]]:
+      matrix[1][0] * entries[0][1] +
+      matrix[1][1] * entries[1][1] +
+      matrix[1][2] * entries[2][1],
+    [entries[2][0]]:
+      matrix[2][0] * entries[0][1] +
+      matrix[2][1] * entries[1][1] +
+      matrix[2][2] * entries[2][1],
+  };
+};
+
+/**
+ * Multiplication of a 3 x 3 Matrix by a Color Space object
+ * @param {Matrix3x3} matrix 3 x 3 matrix
+ * @param {{ [key: string]: number }} vector a vector object
+ * @returns {XYZ} - resulting xyz object
+ */
+export const matrixSpaceMultiAsXyz = (
+  matrix: Matrix3x3,
+  vector: { [key: string]: number }
+): XYZ => {
+  const values = Object.values(vector);
+  return {
+    x:
+      matrix[0][0] * values[0] +
+      matrix[0][1] * values[1] +
+      matrix[0][2] * values[2],
+    y:
+      matrix[1][0] * values[0] +
+      matrix[1][1] * values[1] +
+      matrix[1][2] * values[2],
+    z:
+      matrix[2][0] * values[0] +
+      matrix[2][1] * values[1] +
+      matrix[2][2] * values[2],
+  };
+};
+
+/**
+ * Multiplication of a 3 x 3 Matrix by an XYZ
+ * @param {Matrix3x3} matrix 3 x 3 matrix
+ * @param {XYZ} vector a vector xyz object
+ * @returns {{ [key: string]: number }} - resulting color space object
+ */
+export const matrixXyzMultiAsSpace = (
+  matrix: Matrix3x3,
+  vector: XYZ,
+  space: string[]
+): { [key: string]: number } => {
+  return {
+    [space[0]]:
+      matrix[0][0] * vector.x +
+      matrix[0][1] * vector.y +
+      matrix[0][2] * vector.z,
+    [space[1]]:
+      matrix[1][0] * vector.x +
+      matrix[1][1] * vector.y +
+      matrix[1][2] * vector.z,
+    [space[2]]:
+      matrix[2][0] * vector.x +
+      matrix[2][1] * vector.y +
+      matrix[2][2] * vector.z,
+  };
+};

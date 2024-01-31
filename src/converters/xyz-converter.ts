@@ -24,12 +24,18 @@ import {
 } from "../helpers/companding";
 import {
   LAB,
+  LMS,
   LUV,
   RGB,
   SpaceData,
+  UVW,
   XYY,
   XYZ,
 } from "../interfaces/color-spaces.interface";
+import { Matrix3x3 } from "../types/math-types";
+import { VON_KRIES_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
+import { matrixXyzMultiAsSpace } from "../helpers/matrix";
+import { Fu, Fv } from "../helpers/white-point";
 
 /**
  * Gets Lab values from given xyz values
@@ -57,37 +63,62 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
  * @param {XYZ} xyz xyz values for a color
  * @returns {LUV} - luv values for a color
  */
-export const xyzToLuv = ({ x, y, z }: XYZ): LUV => {
+export const xyzToLuv = (
+  { x, y, z }: XYZ,
+  refIlluminant = REFERENCE_ILLUMINANT.D65
+): LUV => {
   x = x > 1 ? x / 100 : x;
   y = y > 1 ? y / 100 : y;
   z = z > 1 ? z / 100 : z;
 
-  const yr = y / REFERENCE_ILLUMINANT.D65.Y;
+  const yr = y / refIlluminant.Y;
   const uP = Fu({ x, y, z });
   const vP = Fv({ x, y, z });
-  const uRef = Fu({
-    x: REFERENCE_ILLUMINANT.D65.X,
-    y: REFERENCE_ILLUMINANT.D65.Y,
-    z: REFERENCE_ILLUMINANT.D65.Z,
+  const v0 = Fv({
+    x: refIlluminant.X,
+    y: refIlluminant.Y,
+    z: refIlluminant.Z,
   });
-  const vRef = Fv({
-    x: REFERENCE_ILLUMINANT.D65.X,
-    y: REFERENCE_ILLUMINANT.D65.Y,
-    z: REFERENCE_ILLUMINANT.D65.Z,
-  });
+  const u0 = Fu({
+    x: refIlluminant.X,
+    y: refIlluminant.Y,
+    z: refIlluminant.Z,
+  })
   const L = yr > CIE_ϵ ? 116 * Math.cbrt(yr) - 16 : CIE_κ * yr;
-  const u = 13 * L * (uP - uRef);
-  const v = 13 * L * (vP - vRef);
+  const u = 13 * L * (uP - u0);
+  const v = 13 * L * (vP - v0);
 
   return { L, u, v };
 };
 
-export const Fu = ({ x, y, z }: XYZ): number => {
-  return (4 * x) / (x + 15 * y + 3 * z);
-};
-
-export const Fv = ({ x, y, z }: XYZ): number => {
-  return (9 * y) / (x + 15 * y + 3 * z);
+/**
+ * Gets UVW values from given xyz values
+ * @param {XYZ} xyz xyz values for a color
+ * @returns {UVW} - uvw values for a color
+ */
+export const xyzToUvw = (
+  { x, y, z }: XYZ,
+  refIlluminant = REFERENCE_ILLUMINANT.D65
+): UVW => {
+  x = x > 1 ? x / 100 : x;
+  y = y > 1 ? y / 100 : y;
+  z = z > 1 ? z / 100 : z;
+  const uP = Fu({ x, y, z });
+  const vP = Fv({ x, y, z });
+  const v0 = Fv({
+    x: refIlluminant.X,
+    y: refIlluminant.Y,
+    z: refIlluminant.Z,
+  });
+  const u0 = Fu({
+    x: refIlluminant.X,
+    y: refIlluminant.Y,
+    z: refIlluminant.Z,
+  });
+  const w = 25 * Math.pow(y, 1 / 3) - 17;
+  const u = 13 * w * (uP - u0);
+  const v = 13 * w * (vP - v0);
+  return { u, v, w };
 };
 
 /**
@@ -349,4 +380,20 @@ export const xyzToLRgb = (xyz: XYZ): RGB => {
 export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
   const devider = x + y + z;
   return { x: x / devider, y: y / devider, Y: y };
+};
+
+/*******************************************************************
+ *                             LMS
+ * *****************************************************************/
+/**
+ * Gets LMS values from given xyz values
+ * @param {XYZ} xyz xyz values for a color
+ * @returns {LMS} - lms values
+ */
+export const xyzToLsm = (
+  xyz: XYZ,
+  matrix?: Matrix3x3
+): LMS => {
+  if (!matrix) matrix = VON_KRIES_CONE_RESPONCE_DOMAINS.MA;
+  return matrixXyzMultiAsSpace(matrix, xyz, ["long", "medium", "short"]) as unknown as LMS;
 };

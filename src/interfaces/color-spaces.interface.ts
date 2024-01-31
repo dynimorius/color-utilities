@@ -38,7 +38,7 @@ export interface RGB_M {
  * @description Represntation of an RGBA color space:
  *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
-export interface RGBA_M extends RGB_M{
+export interface RGBA_M extends RGB_M {
   a: number;
 }
 
@@ -116,9 +116,9 @@ export interface HSVA_M extends HSV_M {
 
 /**
  * @description Represntation of an HSI color space:
- *    The HSI color space is very important and attractive 
- *    color model for image processing applications because 
- *    it represents colors similarly how the human eye senses 
+ *    The HSI color space is very important and attractive
+ *    color model for image processing applications because
+ *    it represents colors similarly how the human eye senses
  *    colors.
  *   - more info: https://www.blackice.com/colorspaceHSI.htm
  */
@@ -137,7 +137,6 @@ export interface LAB {
   a: number;
   b: number;
 }
-
 
 /**
  * @description Represntation of an LAB color space:
@@ -191,7 +190,6 @@ export interface CMYK_M {
   k: number;
 }
 
-
 /**
  * @description Represntation of an HWB color space:
  *   - more info: https://dev.to/alvaromontoro/hwb-13h7
@@ -222,7 +220,6 @@ export interface HCL {
   luminance: number;
 }
 
-
 /**
  * @description Represntation of an HCL color space:
  *   - more info: https://en.wikipedia.org/wiki/HCL_color_space
@@ -233,17 +230,16 @@ export interface HCL_M {
   l: number;
 }
 
-
 /**
  * @description Represntation of an HCY color space:
- * HCY colour space is a tractable hue/chroma/luminance 
+ * HCY colour space is a tractable hue/chroma/luminance
  * scheme developed by Kuzma Shapran. It is ideal for
- * pixel shaders, being only slightly more expensive that 
- * the HSV and HSL schemes. However, it tries to be more 
+ * pixel shaders, being only slightly more expensive that
+ * the HSV and HSL schemes. However, it tries to be more
  * "meaningful" in terms of human perception.
  * - Hue (H) computed in the same manner as HSV and HSL
- * - Chroma (C) computed as the scaled difference between 
- *   the maximum unweighted RGB component and the minimum 
+ * - Chroma (C) computed as the scaled difference between
+ *   the maximum unweighted RGB component and the minimum
  *   unweighted RGB component
  * - Luminance (Y) computed as the weighted sum of RGB components
  *   - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
@@ -256,6 +252,8 @@ export interface HCY {
 
 /**
  * @description Represntation of an HCY color space:
+ * @alias HCY
+ * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
  */
 export interface HCY_M {
   h: number;
@@ -285,8 +283,14 @@ export interface LCH_M {
 
 /**
  * @description Represntation of an LUV color space:
- *   - more infeo : https://en.wikipedia.org/wiki/CIELUV
- * represents brightness, "U" and "V" represent chroma.
+ *  - L representes lightness / brightness
+ *  - U and V are chromaticity coordinates that serve to define
+ *    white point (white point is often referred to as reference
+ *    white or target white in technical documents)
+ *   - more info :
+ *     https://en.wikipedia.org/wiki/CIELUV
+ *     https://www.wikiwand.com/en/White_point
+ *     https://en.wikipedia.org/wiki/CIELUV
  */
 export interface LUV {
   L: number;
@@ -295,17 +299,44 @@ export interface LUV {
 }
 
 /**
- * @description Represntation of an LUV color space:
- * represents the response of the three types of cones of 
+ * @description Represntation of an UVW color space:
+ *  - W represents lightness index W
+ *  - U and V are chromaticity coordinates that serve to define
+ *    white point (white point is often referred to as reference
+ *    white or target white in technical documents)
+ *   - more info :
+ *     https://en.wikipedia.org/wiki/CIELUV
+ *     https://www.wikiwand.com/en/White_point
+ *     https://en.wikipedia.org/wiki/CIELUV
+ */
+export interface UVW {
+  u: number;
+  v: number;
+  w: number;
+}
+
+/**
+ * @description Represntation of an LMS color space:
+ * represents the response of the three types of cones of
  * the human eye.
- * The numerical range is generally not specified, except 
+ * The numerical range is generally not specified, except
  * that the lower end is generally bounded by zero.
- *   - more infeo : https://en.wikipedia.org/wiki/LMS_color_space
+ *   - more info : https://en.wikipedia.org/wiki/LMS_color_space
  */
 export interface LMS {
   long: number;
   medium: number;
   short: number;
+}
+
+/**
+ * @description Represntation of an TSL color space:
+ *   - more info: https://en.wikipedia.org/wiki/TSL_color_space
+ */
+export interface TSL {
+  tint: number;
+  saturation: number;
+  lightness: number;
 }
 
 /**
@@ -340,8 +371,8 @@ export interface XYZ {
 
 /**
  * @description Represntation of an xyY color space:
- * xy values can be seen as a representation of the color's 
- * chromaticity while the Y values can be seen as a 
+ * xy values can be seen as a representation of the color's
+ * chromaticity while the Y values can be seen as a
  * representation of the color's intensity or brightness value
  *   - more info: http://www.colorwiki.com/wiki/XyY
  */
@@ -361,19 +392,111 @@ export interface YUV {
   v: number;
 }
 
-
 /**
  * @description Represntation of an YCbCr color space:
- *   -  Y is the luma component
+ *   -  Y is the luma component (brightness or luminance)
  *   -  Cb is blue-difference chroma component
- *   -  Cr red-difference chroma component
- *  Y′ (with prime) is distinguished from Y, 
- *  which is luminance, meaning that light intensity 
- *  is nonlinearly encoded based on gamma corrected RGB 
+ *   -  Cr is red-difference chroma component
+ *  Y′ (with prime) is distinguished from Y,
+ *  which is luminance, meaning that light intensity
+ *  is nonlinearly encoded based on gamma corrected RGB
  *  primaries.
  *   - more info: https://en.wikipedia.org/wiki/YCbCr
  */
 export interface YCbCr {
+  Y: number;
+  Cb: number;
+  Cr: number;
+}
+
+/**
+ * @description Represntation of an YcCbcCrc color space:
+ *   -  Yc is the luma component (brightness or luminance)
+ *   -  Cbc is blue-difference chroma component
+ *   -  Crc is red-difference chroma component
+ *  Y′ (with prime) is distinguished from Y,
+ *  which is luminance, meaning that light intensity
+ *  is nonlinearly encoded based on gamma corrected RGB
+ *  primaries.
+ *   - more info: https://en.wikipedia.org/wiki/YCbCr
+ */
+export interface YcCbcCrc {
+  Yc: number;
+  Cbc: number;
+  Crc: number;
+}
+
+/**
+ * @description Represntation of an YCoCg color space:
+ *   -  Y is the luma component (brightness or luminance)
+ *   -  Co is chrominance orange
+ *   -  Cg is chrominance green
+ *   - more info: https://en.wikipedia.org/wiki/YCoCg
+ */
+export interface YCoCg {
+  Y: number;
+  Co: number;
+  Cg: number;
+}
+
+/**
+ * @description Represntation of an YDbDr color space:
+ *   -  Y is the luma component (a sum of colors R, G ,B values representing the 
+ *      overall brightness, or luminance)
+ *   -  Db is difference between blue and luma (B − Y)
+ *   -  Dr is difference between red and luma (R − Y)
+ *   - more info: https://en.wikipedia.org/?title=YDbDr
+ */
+export interface YDbDr {
+  Y: number;
+  Db: number;
+  Dr: number;
+}
+/**
+ * @description Represntation of an YPbPr color space:
+ *   -  Y is the luma component (a sum of colors R, G ,B values representing the 
+ *      overall brightness, or luminance)
+ *   -  Pb is difference between blue and luma (B − Y)
+ *   -  Pr is difference between red and luma (R − Y)
+ * YPbPr is the analog video signal carried by component
+ * video cable in consumer electronics.
+ * The green cable carries Y, the blue cable carries PB
+ * and the red cable carries PR.
+ *   - more info: https://en.wikipedia.org/?title=YPbPr
+ */
+export interface YPbPr {
+  Y: number;
+  Pb: number;
+  Pr: number;
+}
+
+/**
+ * @description Represntation of an YIQ color space:
+ *   -  Y is the luma component
+ *   -  I is a chroma coordinate
+ *   -  Q is a chroma coordinate
+ *   - more info: https://en.wikipedia.org/?title=YIQ
+ */
+export interface YIQ {
+  Y: number;
+  I: number;
+  Q: number;
+}
+
+/**
+ * @description Represntation of an xvYCC color space:
+ *  xvYCC is an extended-gamut YCbCr is a color space,
+ *  supports a gamut 1.8
+ *   -  Y is the luma component
+ *   -  Cb is blue-difference chroma component
+ *   -  Cr red-difference chroma component
+ *  Y′ (with prime) is distinguished from Y,
+ *  which is luminance, meaning that light intensity
+ *  is nonlinearly encoded based on gamma corrected RGB
+ *  primaries.
+ *   - more info: https://en.wikipedia.org/wiki/XvYCC
+ */
+export interface xvYCC {
   Y: number;
   Cb: number;
   Cr: number;
@@ -397,9 +520,9 @@ export interface SpaceData {
  * @description Represntation Matrix used for RGB to XYZ conversion
  */
 export interface RgbToXyzMatrice {
-  X: { r: number; g: number; b: number};
-  Y: { r: number; g: number; b: number};
-  Z: { r: number; g: number; b: number};
+  X: { r: number; g: number; b: number };
+  Y: { r: number; g: number; b: number };
+  Z: { r: number; g: number; b: number };
 }
 
 /**
@@ -410,7 +533,3 @@ export interface XyzToRgbMatrice {
   G: XYZ;
   B: XYZ;
 }
-
-
-
-
