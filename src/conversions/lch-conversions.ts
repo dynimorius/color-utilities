@@ -7,8 +7,8 @@
  */
 
 import { LAB, LCH, LUV, XYZ } from "../interfaces/color-spaces.interface";
-import { labToXyz } from "./lab-converter";
-import { luvToXyz } from "./luv-converter";
+import { labToXyz } from "./lab-conversions";
+import { luvToXyz } from "./luv-conversions";
 
 /**
  * Converts a color from LCH(ab) color space to LAB color space
@@ -20,7 +20,7 @@ export const lch_abToLab = ({ lightness, chroma, hue }: LCH): LAB => {
   const a = chroma * Math.cos(H);
   const b = chroma * Math.sin(H);
 
-  return {luminance: lightness, a, b };
+  return { luminance: lightness, a, b };
 };
 
 /**
@@ -33,7 +33,7 @@ export const lch_uvToLuv = ({ lightness, chroma, hue }: LCH): LUV => {
   const u = chroma * Math.cos(H);
   const v = chroma * Math.sin(H);
 
-  return {L: lightness, u, v };
+  return { L: lightness, u, v };
 };
 
 /**
@@ -43,7 +43,7 @@ export const lch_uvToLuv = ({ lightness, chroma, hue }: LCH): LUV => {
  */
 export const lch_abToXyz = (lch: LCH): XYZ => {
   return labToXyz(lch_abToLab(lch));
-}
+};
 
 /**
  * Converts a color from LCH(uv) color space to XYZ
@@ -52,4 +52,4 @@ export const lch_abToXyz = (lch: LCH): XYZ => {
  */
 export const lch_uvToXyz = (lch: LCH): XYZ => {
   return luvToXyz(lch_uvToLuv(lch));
-}
+};

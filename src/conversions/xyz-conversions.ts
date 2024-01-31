@@ -9,8 +9,9 @@
 import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
-import { XyzToRgbOptions } from "./../interfaces/converter-options";
+import { XyzToRgbOptions } from "../interfaces/converter-options";
 
+import { VON_KRIES_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
 import {
   D65toCAdaptation,
   D65toD50Adaptation,
@@ -22,6 +23,8 @@ import {
   gammaCompanding,
   sRgbCompanding,
 } from "../helpers/companding";
+import { matrixXyzMultiAsSpace } from "../helpers/matrix";
+import { Fu, Fv } from "../helpers/white-point";
 import {
   LAB,
   LMS,
@@ -33,9 +36,6 @@ import {
   XYZ,
 } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
-import { VON_KRIES_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
-import { matrixXyzMultiAsSpace } from "../helpers/matrix";
-import { Fu, Fv } from "../helpers/white-point";
 
 /**
  * Gets Lab values from given xyz values
@@ -83,7 +83,7 @@ export const xyzToLuv = (
     x: refIlluminant.X,
     y: refIlluminant.Y,
     z: refIlluminant.Z,
-  })
+  });
   const L = yr > CIE_ϵ ? 116 * Math.cbrt(yr) - 16 : CIE_κ * yr;
   const u = 13 * L * (uP - u0);
   const v = 13 * L * (vP - v0);
@@ -387,13 +387,14 @@ export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
  * *****************************************************************/
 /**
  * Gets LMS values from given xyz values
- * @param {XYZ} xyz xyz values for a color
+ * @param {XYZ} xyz XYZ values for a color
  * @returns {LMS} - lms values
  */
-export const xyzToLsm = (
-  xyz: XYZ,
-  matrix?: Matrix3x3
-): LMS => {
+export const xyzToLsm = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
   if (!matrix) matrix = VON_KRIES_CONE_RESPONCE_DOMAINS.MA;
-  return matrixXyzMultiAsSpace(matrix, xyz, ["long", "medium", "short"]) as unknown as LMS;
+  return matrixXyzMultiAsSpace(matrix, xyz, [
+    "long",
+    "medium",
+    "short",
+  ]) as unknown as LMS;
 };

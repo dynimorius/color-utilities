@@ -1,4 +1,4 @@
-import { lmsToXyz } from "./converters/lms-converter";
+import { lmsToXyz } from "./conversions/lms-conversions";
 import {
   CMYK,
   HSL,
@@ -6,14 +6,13 @@ import {
   HWB,
   LAB,
   LCH,
-  LMS,
   LUV,
   RGB,
   RYB,
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { rgbTo1_0rgb, rgbToHue, xyzToLsm } from "./public_api";
+import { xyzToLsm } from "./public_api";
 import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
 let pass = 0;
 let fail = 0;
@@ -34,7 +33,6 @@ const checkRgb = (rgb: RGB): boolean => {
 const diff = (n1: number, n2: number): boolean => {
   return n1 - n2 < -0.5 || n1 - n2 > 0.5;
 };
-
 
 const color2 = new ColorResolver("rgb", testColor);
 
@@ -242,7 +240,6 @@ printData([
 
 // console.log(newColor5.blendData);
 
-const lsm = xyzToLsm(checkColor.data?.xyz as XYZ)
+const lsm = xyzToLsm(checkColor.data?.xyz as XYZ);
 console.log(lsm);
-console.log(lmsToXyz(lsm))
-
+console.log(lmsToXyz(lsm));

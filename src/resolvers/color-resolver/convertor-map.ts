@@ -6,15 +6,15 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { ansi16ToRgb, ansi256ToRgb } from "../../converters/ansi-converter";
-import { cmykToRgb } from "../../converters/cmyk-converter";
-import { hexToRgb } from "../../converters/hex-converter";
-import { hslToRgb } from "../../converters/hsl-converter";
-import { hsvToRgb } from "../../converters/hsv-converter";
-import { hwbToRgb } from "../../converters/hwb-converter";
-import { labToXyz } from "../../converters/lab-converter";
-import { lch_abToXyz, lch_uvToXyz } from "../../converters/lch-converter";
-import { luvToXyz } from "../../converters/luv-converter";
+import { ansi16ToRgb, ansi256ToRgb } from "../../conversions/ansi-conversions";
+import { cmykToRgb } from "../../conversions/cmyk-conversions";
+import { hexToRgb } from "../../conversions/hex-conversions";
+import { hslToRgb } from "../../conversions/hsl-conversions";
+import { hsvToRgb } from "../../conversions/hsv-conversions";
+import { hwbToRgb } from "../../conversions/hwb-conversions";
+import { labToXyz } from "../../conversions/lab-conversions";
+import { lch_abToXyz, lch_uvToXyz } from "../../conversions/lch-conversions";
+import { luvToXyz } from "../../conversions/luv-conversions";
 import {
   adobeRgbToXyz,
   appleRgbToXyz,
@@ -43,9 +43,9 @@ import {
   sRgbToXyz,
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
-} from "../../converters/rgb-converter";
-import { rybToRgb } from "../../converters/ryb-converter";
-import { xyYToXyz } from "../../converters/xyy-converter";
+} from "../../conversions/rgb-conversions";
+import { rybToRgb } from "../../conversions/ryb-conversions";
+import { xyYToXyz } from "../../conversions/xyy-conversions";
 import {
   xyzToAdobeRgb,
   xyzToAppleRgb,
@@ -66,7 +66,7 @@ import {
   xyzToSrgb,
   xyzToWideGamutRgb,
   xyzToXyY,
-} from "../../converters/xyz-converter";
+} from "../../conversions/xyz-conversions";
 import { isWebSafeRGB } from "../../helpers/formats-and-checks";
 import {
   ColorConverters,

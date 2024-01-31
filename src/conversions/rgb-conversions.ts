@@ -9,6 +9,11 @@
 import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
+  CtoD65Adaptation,
+  D50toD65Adaptation,
+  EtoD65Adaptation,
+} from "../helpers/chromatic-adaptation";
+import {
   inverseGammaCompanding,
   inverseLCompanding,
   inverseSrbgCompanding,
@@ -39,16 +44,11 @@ import {
   YcCbcCrc,
   xvYCC,
 } from "../interfaces/color-spaces.interface";
-import {
-  CtoD65Adaptation,
-  D50toD65Adaptation,
-  EtoD65Adaptation,
-} from "./../helpers/chromatic-adaptation";
-import { labToLch_ab } from "./lab-converter";
-import { luvToLch_uv } from "./luv-converter";
-import { decimalToHex } from "./number-converter";
-import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-converter";
-import { yCbCrToXvYcc } from "./ycbcr-jpeg-converter";
+import { labToLch_ab } from "./lab-conversions";
+import { luvToLch_uv } from "./luv-conversions";
+import { decimalToHex } from "./number-conversions";
+import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
+import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
  *                           HELPERS

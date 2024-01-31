@@ -7,7 +7,7 @@
  */
 
 import { YCbCr, xvYCC } from "../public_api";
-import { yCbCrToSrgb } from "./ycbcr-jpeg-converter";
+import { yCbCrToSrgb } from "./ycbcr-jpeg-conversions";
 
 /**
  * Converts a color from digital to analog form.
@@ -30,4 +30,4 @@ export const xvYccToYcbcr = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
  */
 export const xvYccToSrgb = (xvycc: xvYCC) => {
   return yCbCrToSrgb(xvYccToYcbcr(xvycc));
-}
+};

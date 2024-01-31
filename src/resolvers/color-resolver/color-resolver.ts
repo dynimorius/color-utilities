@@ -14,8 +14,8 @@ import {
 } from "./convertor-map";
 
 import { DefaultResolv } from "../../constants/init-spaces";
-import { sRgbToXyz } from "../../converters/rgb-converter";
-import { xyzToSrgb } from "../../converters/xyz-converter";
+import { sRgbToXyz } from "../../conversions/rgb-conversions";
+import { xyzToSrgb } from "../../conversions/xyz-conversions";
 import { checkAndFormat } from "../../helpers/color-checks";
 import { ColorExtendedData } from "../../interfaces/color-data.interface";
 import {

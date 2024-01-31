@@ -1,4 +1,4 @@
-import { CMY_M, RGB } from "./../interfaces/color-spaces.interface";
+import { CMY_M, RGB } from "../interfaces/color-spaces.interface";
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.

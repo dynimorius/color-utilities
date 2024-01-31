@@ -7,7 +7,7 @@
  */
 
 import { HSL, HSV, RGB } from "../interfaces/color-spaces.interface";
-import { sRgbToAnsi16 } from "./rgb-converter";
+import { sRgbToAnsi16 } from "./rgb-conversions";
 
 /**
  * Converts a color from HSV color space to sRBG color space
@@ -63,4 +63,3 @@ export const hsvToAnsi16 = (hsv: HSV): number => {
   const rgb = hsvToRgb(hsv);
   return sRgbToAnsi16(rgb, hsv.value);
 };
-
