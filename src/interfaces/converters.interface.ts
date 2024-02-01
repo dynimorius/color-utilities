@@ -19,17 +19,22 @@ export interface ColorConverters {
   bruce_rgb?: ConverterInfo;
   cie_rgb?: ConverterInfo;
   color_match_rgb?: ConverterInfo;
+  cmy?: ConverterInfo;
   cmyk?: ConverterInfo;
   don_rgb_4?: ConverterInfo;
   eci_rgb_v2?: ConverterInfo;
   etka_space_ps5?: ConverterInfo;
+  hcl?: ConverterInfo;
+  hcy?: ConverterInfo;
   hex?: ConverterInfo;
+  hsi?: ConverterInfo;
   hsl?: ConverterInfo;
   hsv?: ConverterInfo;
   hwb?: ConverterInfo;
   lab?: ConverterInfo;
   lch_ab?: ConverterInfo;
   lch_uv?: ConverterInfo;
+  lms?: ConverterInfo;
   luv?: ConverterInfo;
   ntsc_rgb?: ConverterInfo;
   pal_secam_rgb?: ConverterInfo;
@@ -37,12 +42,22 @@ export interface ColorConverters {
   rgb?: ConverterInfo;
   rgb_0_1?: ConverterInfo;
   rgb_0_255?: ConverterInfo;
-  ryb?: ConverterInfo;
-  web_safe?: ConverterInfo;
   smpte_c_rgb?: ConverterInfo;
+  ryb?: ConverterInfo;
+  tsl?: ConverterInfo;
+  uvw?: ConverterInfo;
+  web_safe?: ConverterInfo;
   wide_gamut_rgb?: ConverterInfo;
+  xvycc?: ConverterInfo;
   xyz?: ConverterInfo;
   xyy?: ConverterInfo;
+  ycbcr?: ConverterInfo;
+  yccbccrc?: ConverterInfo;
+  ycocg?: ConverterInfo;
+  ydbdr?: ConverterInfo;
+  yiq?: ConverterInfo;
+  ypbpr?: ConverterInfo;
+  yuv?: ConverterInfo;
 }
 
 /**
@@ -61,13 +76,25 @@ export interface ConverterInfo {
 export interface ToRGBConverters {
   ansi16: Function;
   ansi265: Function;
-  hex: Function;
+  cmy: Function;
   cmyk: Function;
+  hcy: Function;
+  hex: Function;
+  hsi: Function;
   hsl: Function;
   hsv: Function;
   hwb: Function;
   ryb: Function;
+  tsl: Function;
+  xvycc: Function;
   xyz: Function;
+  ycbcr: Function;
+  yccbccrc: Function;
+  ycocg: Function;
+  ydbdr: Function;
+  yiq: Function;
+  ypbpr: Function;
+  yuv: Function;
 }
 
 
@@ -86,13 +113,15 @@ export interface ToXyzConverters {
   eci_rgb_v2: Function;
   etka_space_ps5: Function;
   lab: Function;
-  luv: Function;
   lch_ab: Function;
   lch_uv: Function;
+  lms: Function;
+  luv: Function;
   ntsc_rgb: Function;
   pal_secam_rgb: Function;
   pro_photo_rgb: Function;
   rgb: Function;
+  uvw: Function;
   smpte_c_rgb: Function;
   wide_gamut_rgb: Function;
   xyy: Function;
