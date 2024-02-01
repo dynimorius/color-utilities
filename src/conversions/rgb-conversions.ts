@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions";
+import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   CtoD65Adaptation,
@@ -495,7 +495,10 @@ export const sRgbToCmyk = (rgb: RGB): CMYK => {
  * @param {'hcy' | 'hsi'} ret color space to retrun
  * @returns {HCY | HSI} - resultion color space values
  */
-const sRgbToHcyOrHsi = ({ red, green, blue }: RGB, ret: 'hcy' | 'hsi'): HCY | HSI => {
+const sRgbToHcyOrHsi = (
+  { red, green, blue }: RGB,
+  ret: "hcy" | "hsi"
+): HCY | HSI => {
   const sum = red + green + blue;
   red = red / sum;
   green - green / sum;
@@ -508,11 +511,11 @@ const sRgbToHcyOrHsi = ({ red, green, blue }: RGB, ret: 'hcy' | 'hsi'): HCY | HS
 
   if (blue > green) hue = ((2 * Math.PI - hue) * 180) / Math.PI;
   else hue = (hue * 180) / Math.PI;
- 
-  if (ret === 'hsi') {
+
+  if (ret === "hsi") {
     const intensity = sum / 3;
     const saturation = (1 - 3 * Math.min(red, green, blue)) * 100;
-    return { hue, saturation, intensity }
+    return { hue, saturation, intensity };
   } else {
     const chroma = (1 - 3 * Math.min(red, green, blue)) * 100;
     const Yluminance = sum / 3;
@@ -526,7 +529,7 @@ const sRgbToHcyOrHsi = ({ red, green, blue }: RGB, ret: 'hcy' | 'hsi'): HCY | HS
  * @returns {HCY} - HCY values for a color
  */
 export const sRgbToHcy = (rgb: RGB): HCY => {
-  return sRgbToHcyOrHsi(rgb, 'hcy') as HCY;
+  return sRgbToHcyOrHsi(rgb, "hcy") as HCY;
 };
 
 /*******************************************************************
@@ -582,7 +585,7 @@ export const sRgbaToHex = (
  * @returns {HSI} - HSI values for a color
  */
 export const sRgbToHsi = (rgb: RGB): HSI => {
-  return sRgbToHcyOrHsi(rgb, 'hsi') as HSI;
+  return sRgbToHcyOrHsi(rgb, "hsi") as HSI;
 };
 
 /*******************************************************************

@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions";
+import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
 import { RGB, YPbPr } from "../public_api";
 import { ybrCoefToSrgb } from "./cb-cr-coef-conversions";
 
