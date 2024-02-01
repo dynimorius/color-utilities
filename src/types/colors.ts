@@ -7,10 +7,15 @@
  */
 
 import {
+  CMY,
   CMYK,
   CMYK_M,
+  CMY_M,
   HCL,
   HCL_M,
+  HCY,
+  HCY_M,
+  HSI,
   HSL,
   HSLA,
   HSL_M,
@@ -23,14 +28,25 @@ import {
   LAB_M,
   LCH,
   LCH_M,
+  LMS,
   LUV,
   RGB,
   RGBA,
   RGB_M,
   RYB,
   RYB_M,
+  TSL,
+  UVW,
   XYY,
   XYZ,
+  YCbCr,
+  YCoCg,
+  YDbDr,
+  YIQ,
+  YPbPr,
+  YUV,
+  YcCbcCrc,
+  xvYCC,
 } from "../interfaces/color-spaces.interface";
 
 /**
@@ -44,6 +60,7 @@ export type ColorSpaceUnion =
   | RYB_M
   | HSL
   | HSLA
+  | HSI
   | HSL_M
   | HSV
   | HSVA
@@ -52,15 +69,30 @@ export type ColorSpaceUnion =
   | HWB_M
   | HCL
   | HCL_M
+  | HCY
+  | HCY_M
   | LAB
   | LAB_M
   | LCH
   | LCH_M
+  | LMS
   | LUV
+  | CMY
+  | CMY_M
   | CMYK
   | CMYK_M
+  | TSL
+  | UVW
+  | xvYCC
   | XYZ
   | XYY
+  | YCbCr
+  | YcCbcCrc
+  | YCoCg
+  | YDbDr
+  | YIQ
+  | YPbPr
+  | YUV
   | string;
 
 /**

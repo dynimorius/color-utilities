@@ -14,6 +14,7 @@ import {
   EtoD65Adaptation,
 } from "../helpers/chromatic-adaptation";
 import {
+  inverseCompanding,
   inverseGammaCompanding,
   inverseLCompanding,
   inverseSrbgCompanding,
@@ -751,21 +752,17 @@ export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
  * @returns {XYZ} - xyz values
  */
 const rgbToXyz = (
-  { red, green, blue }: RGB,
+  rgb: RGB,
   space: SpaceData,
   inverseCompandingFun: Function,
   gamma?: boolean
 ): XYZ => {
-  let Rlin, Glin, Blin;
-  if (gamma) {
-    Rlin = inverseCompandingFun(red, space.GAMMA);
-    Glin = inverseCompandingFun(green, space.GAMMA);
-    Blin = inverseCompandingFun(blue, space.GAMMA);
-  } else {
-    Rlin = inverseCompandingFun(red);
-    Glin = inverseCompandingFun(green);
-    Blin = inverseCompandingFun(blue);
-  }
+  const { Rlin, Glin, Blin } = inverseCompanding(
+    rgb,
+    space,
+    inverseCompandingFun,
+    gamma
+  );
   const { X, Y, Z } = space.RGB_TO_XYZ;
   const x = (Rlin * X.r + Glin * X.g + Blin * X.b) * 100;
   const y = (Rlin * Y.r + Glin * Y.g + Blin * Y.b) * 100;

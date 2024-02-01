@@ -13,7 +13,7 @@ import {
   SRGB_INVERSE_NORMALIZED_BELOW,
   SRGB_NORMALIZED_BELOW,
 } from "../constants/conditionals";
-import { RGB } from "../interfaces/color-spaces.interface";
+import { RGB, SpaceData, XYZ } from "../interfaces/color-spaces.interface";
 import { bound, gamutCheck } from "./formats-and-checks";
 
 /*************************************************************
@@ -134,4 +134,32 @@ export const inverseLCompanding = (value: number): number => {
   return value <= L_INVERSE_NORMALIZED_BELOW
     ? (100 * value) / CIE_κ
     : Math.pow((value + 0.16) / 1.16, 3);
+};
+
+/**
+ * RGB Inverse Companding
+ * @param {RBG} rgb RBG values
+ * @param {SpaceData} space RGB space dataset
+ * @param {Function} inverseCompandingFun function to preform inverse companding whit
+ * @param {boolean} gamma optional flag indicating if a gamma value
+ *                        for a give RGB space data set should be used
+ * @returns {RGB} - rgb values
+ */
+export const inverseCompanding = (
+  { red, green, blue }: RGB,
+  space: SpaceData,
+  inverseCompandingFun: Function,
+  gamma?: boolean
+): { Rlin: number, Glin: number, Blin: number } => {
+  let Rlin, Glin, Blin;
+  if (gamma) {
+    Rlin = inverseCompandingFun(red, space.GAMMA);
+    Glin = inverseCompandingFun(green, space.GAMMA);
+    Blin = inverseCompandingFun(blue, space.GAMMA);
+  } else {
+    Rlin = inverseCompandingFun(red);
+    Glin = inverseCompandingFun(green);
+    Blin = inverseCompandingFun(blue);
+  }
+  return { Rlin, Glin, Blin };
 };

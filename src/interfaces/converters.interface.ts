@@ -102,17 +102,31 @@ export interface ToXyzConverters {
  * @description Representation of a color checker map
  */
 export interface ColorCheckers {
-  hex: Function;
+  cmy: Function;
   cmyk: Function;
+  hcl: Function;
+  hcy: Function;
+  hex: Function;
+  hsi: Function;
   hsl: Function;
   hsv: Function;
   hwb: Function;
-  hcl: Function;
-  xyz: Function;
   lab: Function;
-  luv: Function;
   lch: Function;
+  lms: Function;
+  luv: Function;
   rgb: Function;
   ryb: Function;
+  tsl: Function;
+  uvw: Function;
+  xvycc: Function;
   xyy: Function;
+  xyz: Function;
+  ycbcr: Function;
+  yccbccrc: Function;
+  ycocg: Function;
+  ydbdr: Function;
+  yiq: Function;
+  ypbpr: Function;
+  yuv: Function;
 }
