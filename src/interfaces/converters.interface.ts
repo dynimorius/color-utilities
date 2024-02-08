@@ -57,7 +57,6 @@ export interface ColorConverters {
   ydbdr?: ConverterInfo;
   yiq?: ConverterInfo;
   ypbpr?: ConverterInfo;
-  yuv?: ConverterInfo;
 }
 
 /**
@@ -94,7 +93,6 @@ export interface ToRGBConverters {
   ydbdr: Function;
   yiq: Function;
   ypbpr: Function;
-  yuv: Function;
 }
 
 
@@ -157,5 +155,4 @@ export interface ColorCheckers {
   ydbdr: Function;
   yiq: Function;
   ypbpr: Function;
-  yuv: Function;
 }

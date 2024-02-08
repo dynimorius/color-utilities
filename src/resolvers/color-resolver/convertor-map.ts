@@ -55,7 +55,6 @@ import {
   sRgbToYPbPr,
   sRgbToYcCbcCrc,
   sRgbToYiq,
-  sRgbToYuv,
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
 } from "../../conversions/rgb-conversions";
@@ -93,7 +92,6 @@ import { yCgCoToSrgb } from "../../conversions/ycocg-conversions";
 import { yDbDrToSrgb } from "../../conversions/ydbdr-conversions";
 import { yiqToSrgb } from "../../conversions/yiq-conversions";
 import { yPbPrToSrgb } from "../../conversions/ypbpr-conversions";
-import { yuvToRgb } from "../../conversions/yuv.conversions";
 import { isWebSafeRGB } from "../../helpers/formats-and-checks";
 import {
   ColorConverters,
@@ -151,7 +149,6 @@ export const colorConverters: ColorConverters = {
   ydbdr: { fun: sRgbToYDbDr, from: "rgb" },
   yiq: { fun: sRgbToYiq, from: "rgb" },
   ypbpr: { fun: sRgbToYPbPr, from: "rgb" },
-  yuv: { fun: sRgbToYuv, from: "rgb" },
 };
 /**
  * Map of conversion to get sRBG color
@@ -177,7 +174,6 @@ export const toRgbConverters: ToRGBConverters = {
   ydbdr: yDbDrToSrgb,
   yiq: yiqToSrgb,
   ypbpr: yPbPrToSrgb,
-  yuv: yuvToRgb
 };
 
 /**

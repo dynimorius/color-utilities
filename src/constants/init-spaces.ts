@@ -53,5 +53,4 @@ export const DefaultResolv: (Spaces | "web_safe")[] = [
    "ydbdr",
    "yiq",
    "ypbpr",
-   "yuv"
 ];

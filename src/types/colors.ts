@@ -162,5 +162,4 @@ export type Spaces =
   | "ycocg"
   | "ydbdr"
   | "yiq"
-  | "ypbpr"
-  | "yuv";
+  | "ypbpr";

@@ -444,5 +444,4 @@ const colorCheckerMap: ColorCheckers = {
   ydbdr: yDbDrColorCheck,
   yiq: yiqColorCheck,
   ypbpr: yPbPrColorCheck,
-  yuv: yuvColorCheck
 };

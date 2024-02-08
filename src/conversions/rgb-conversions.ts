@@ -7,8 +7,6 @@
  */
 
 import {
-  CB_CR_CONVERSIONS_COEFFICIENTS,
-  CB_CR_CONVERSION_MATRICES,
 } from "../constants/cb-cr-conversions-coefficients";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
@@ -44,20 +42,15 @@ import {
   YDbDr,
   YIQ,
   YPbPr,
-  YUV,
   YcCbcCrc,
   xvYCC,
 } from "../interfaces/color-spaces.interface";
-import { Matrix3x3 } from "../types/math-types";
-import { sRgbByMatrix, sRgbToYbrCoef } from "./cb-cr-coef-conversions";
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
-import { yCbCrToSrgb, yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
 import { yiqToSrgb } from "./yiq-conversions";
-import { ycCbcCrcToSrgb } from './yccbccrc-conversions';
-import { xvYccToSrgb, xvYccToYcbcr } from "./xvycc-conversions";
 
 
 /*******************************************************************
@@ -857,7 +850,7 @@ export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YcCbcCrc} - YcCbcCrc values for a color
  */
-//DONE
+//D
 export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
   const Yc = 0.2627 * rgb.red + 0.6780 * rgb.green + 0.0593 * rgb.blue;
   return {
@@ -887,7 +880,6 @@ export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
  * @returns {YIQ } - YIQ  values for a color
  */
 export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
-  // const { red, green, blue } = normalizeRgb(rgb);
   const Y = red * 0.299 + green * 0.587 + blue * 0.114;
   let I = 0,
     Q = 0;
@@ -895,29 +887,6 @@ export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
     I = red * 0.596 + green * -0.275 + blue * -0.321;
     Q = red * 0.212 + green * -0.528 + blue * 0.311;
   }
-  // console.log(yiqToSrgb({ Y, I, Q }))
+  console.log(yiqToSrgb({ Y, I, Q }))
   return { Y, I, Q };
-};
-
-/*******************************************************************
- *                             YUV
- * *****************************************************************/
-/**
- * Converts a color form an sRGB space to YUV space
- * @param {RBG} rgb sRBG values for a color
- * @returns {YUV} - YUV values for a color
- */
-
-export const sRgbToYuv = (rgb: RGB, normalize?: boolean): YUV => {
-  const { red, green, blue } = normalize ? normalizeRgb(rgb) : rgb;
-  const y = red * 0.299 + green * 0.587 + blue * 0.114;
-  const u = 0.492 * (blue - y);
-  const v = 0.877 * (red - y);
-  // return { y, u, v };
-  const yuv = sRgbByMatrix(
-    rgb,
-    CB_CR_CONVERSION_MATRICES.RGB_TO_YUV as Matrix3x3,
-    ["y", "u", "v"]
-  ) as unknown as YUV;
-  return yuv;
 };
