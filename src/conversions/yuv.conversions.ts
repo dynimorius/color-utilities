@@ -6,22 +6,21 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { RGB, YUV } from "../public_api"
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
+import { RGB, YUV, deNormalizeRGB } from "../public_api";
+import { Matrix3x3 } from "../types/math-types";
+import { yuvByMatrix } from "./cb-cr-coef-conversions";
 
 /**
  * Converts a color form an YUV space to sRGB space
  * @param {YUV} yuv YUV values for a color
  * @returns {RGB} - sRGB values for a color
  */
-export const yuvToRgb = ({y,u,v}: YUV): RGB => {
-  
-	let red = (y * 1) + (u *  0) + (v * 1.13983);
-	let green = (y * 1) + (u * -0.39465) + (v * -0.58060);
-	let blue = (y * 1) + (u * 2.02311) + (v * 0);
+export const yuvToRgb = ({ y, u, v }: YUV, normalized?: boolean): RGB => {
+  const red = y + 1.14 * v;
+  const green = y - 0.395 * u - 0.581 * v;
+  const blue = y + 2.032 * u;
+  // return normalized ? deNormalizeRGB({ red, green, blue }) : { red, green, blue };
+  return yuvByMatrix({ y, u, v }, CB_CR_CONVERSION_MATRICES.YUV_TO_RGB as Matrix3x3, ["red", "green", "blue"]) as unknown as RGB;
+};
 
-	red = Math.min(Math.max(0, red), 1) * 255;
-	green = Math.min(Math.max(0, green), 1) * 255;
-	blue = Math.min(Math.max(0, blue), 1) * 255;
-
-  return { red, green, blue};
-}

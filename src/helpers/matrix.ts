@@ -1,3 +1,4 @@
+import { blend } from './../utilities/blender';
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -6,8 +7,9 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { XYZ } from "../interfaces/color-spaces.interface";
+import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
+import { normalizeRgb } from '../public_api';
 
 /**
  * 3 x 3 Matrix Multiplication
@@ -112,33 +114,6 @@ export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
  * Multiplication of a 3 x 3 Matrix by a Color Space object
  * @param {Matrix3x3} matrix 3 x 3 matrix
  * @param {{ [key: string]: number }} vector a vector object
- * @returns {{ [key: string]: number }} - resulting color space object
- */
-export const matrixSpaceMulti = (
-  matrix: Matrix3x3,
-  vector: { [key: string]: number }
-): { [key: string]: number } => {
-  const entries = Object.entries(vector);
-  return {
-    [entries[0][0]]:
-      matrix[0][0] * entries[0][1] +
-      matrix[0][1] * entries[1][1] +
-      matrix[0][2] * entries[2][1],
-    [entries[1][0]]:
-      matrix[1][0] * entries[0][1] +
-      matrix[1][1] * entries[1][1] +
-      matrix[1][2] * entries[2][1],
-    [entries[2][0]]:
-      matrix[2][0] * entries[0][1] +
-      matrix[2][1] * entries[1][1] +
-      matrix[2][2] * entries[2][1],
-  };
-};
-
-/**
- * Multiplication of a 3 x 3 Matrix by a Color Space object
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {{ [key: string]: number }} vector a vector object
  * @returns {XYZ} - resulting xyz object
  */
 export const matrixSpaceMultiAsXyz = (
@@ -186,5 +161,33 @@ export const matrixXyzMultiAsSpace = (
       matrix[2][0] * vector.x +
       matrix[2][1] * vector.y +
       matrix[2][2] * vector.z,
+  };
+};
+
+/**
+ * Multiplication of a 3 x 3 Matrix by an RGB
+ * @param {Matrix3x3} matrix 3 x 3 matrix
+ * @param {RGB} vector a vector xyz object
+ * @returns {{ [key: string]: number }} - resulting color space object
+ */
+export const matrixRgbMultiAsSpace = (
+  matrix: Matrix3x3,
+  vector: RGB,
+  space: string[]
+): { [key: string]: number } => {
+  const { red, green, blue } = normalizeRgb(vector);
+  return {
+    [space[0]]:
+      matrix[0][0] * red +
+      matrix[0][1] * green +
+      matrix[0][2] * blue,
+    [space[1]]:
+      matrix[1][0] * red +
+      matrix[1][1] * green +
+      matrix[1][2] * blue,
+    [space[2]]:
+      matrix[2][0] * red +
+      matrix[2][1] * green +
+      matrix[2][2] * blue,
   };
 };

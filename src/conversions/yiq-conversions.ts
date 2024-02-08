@@ -13,9 +13,9 @@ import { RGB, YIQ } from "../public_api";
  * @param {YIQ} yig YIQ values for a color
  * @returns {RGB} - sRGB values for a color
  */
-export const yigToSrgb = ({ Y, I, Q }: YIQ): RGB => {
-  const red = Math.min(Math.max(0, Y * 1 + I * 0.956 + Q * 0.621), 1) * 255;
-  const green = Math.min(Math.max(0, Y * 1 + I * -0.272 + Q * -0.647), 1) * 255;
-  const blue = Math.min(Math.max(0, Y * 1 + I * -1.108 + Q * 1.705), 1) * 255;
+export const yiqToSrgb = ({ Y, I, Q }: YIQ): RGB => {
+  const red = Math.min(Math.max(0, Y * 1 + I * 0.956 + Q * 0.621), 1);
+  const green = Math.min(Math.max(0, Y * 1 + I * -0.272 + Q * -0.647), 1);
+  const blue = Math.min(Math.max(0, Y * 1 + I * -1.108 + Q * 1.705), 1);
   return { red, green, blue };
 };

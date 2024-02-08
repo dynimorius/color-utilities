@@ -91,7 +91,7 @@ import { yCbCrToSrgb } from "../../conversions/ycbcr-jpeg-conversions";
 import { ycCbcCrcToSrgb } from "../../conversions/yccbccrc-conversions";
 import { yCgCoToSrgb } from "../../conversions/ycocg-conversions";
 import { yDbDrToSrgb } from "../../conversions/ydbdr-conversions";
-import { yigToSrgb } from "../../conversions/yiq-conversions";
+import { yiqToSrgb } from "../../conversions/yiq-conversions";
 import { yPbPrToSrgb } from "../../conversions/ypbpr-conversions";
 import { yuvToRgb } from "../../conversions/yuv.conversions";
 import { isWebSafeRGB } from "../../helpers/formats-and-checks";
@@ -175,7 +175,7 @@ export const toRgbConverters: ToRGBConverters = {
   yccbccrc: ycCbcCrcToSrgb,
   ycocg: yCgCoToSrgb,
   ydbdr: yDbDrToSrgb,
-  yiq: yigToSrgb,
+  yiq: yiqToSrgb,
   ypbpr: yPbPrToSrgb,
   yuv: yuvToRgb
 };

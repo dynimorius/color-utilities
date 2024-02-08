@@ -13,8 +13,8 @@ import { RGB, YDbDr } from "../public_api";
  * @returns {RGB} - sRGB values for a color
  */
 export const yDbDrToSrgb = ({ Y, Db, Dr }: YDbDr): RGB => {
-  const red = (Y + 0.000092303716148 * Db - 0.525912630661865 * Dr) * 255;
-  const green = (Y - 0.129132898890509 * Db + 0.267899328207599 * Dr) * 255;
-  const blue = (Y + 0.664679059978955 * Db - 0.000079202543533 * Dr) * 255;
+  const red = (Y + 0.000092303716148 * Db - 0.525912630661865 * Dr);
+  const green = (Y - 0.129132898890509 * Db + 0.267899328207599 * Dr);
+  const blue = (Y + 0.664679059978955 * Db - 0.000079202543533 * Dr);
   return {red, green, blue}
 };

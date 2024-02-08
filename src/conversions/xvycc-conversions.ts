@@ -17,9 +17,9 @@ import { yCbCrToSrgb } from "./ycbcr-jpeg-conversions";
  */
 export const xvYccToYcbcr = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
   return {
-    Y: (Y - 16) / 219,
-    Cb: (Cb - 128) / 224,
-    Cr: (Cr - 128) / 224,
+    Y: (Y - 16) / 219 * 255,
+    Cb: (Cb - 128) / 224 * 255,
+    Cr: (Cr - 128) / 224 * 255,
   };
 };
 

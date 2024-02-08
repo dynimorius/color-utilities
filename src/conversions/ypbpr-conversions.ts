@@ -7,8 +7,7 @@
  */
 
 import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
-import { RGB, YPbPr } from "../public_api";
-import { ybrCoefToSrgb } from "./cb-cr-coef-conversions";
+import { RGB, YCbCr, YPbPr } from "../public_api";
 
 /**
  * Converts a color form an YPbPr space to sRGB space:
@@ -16,8 +15,21 @@ import { ybrCoefToSrgb } from "./cb-cr-coef-conversions";
  * @returns {RGB} - sRGB values for a color
  */
 export const yPbPrToSrgb = (
-  yPbPr: YPbPr,
+  { Y, Pb, Pr }: YPbPr,
   ituRBt = CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_709
 ): RGB => {
-  return ybrCoefToSrgb(yPbPr, ituRBt);
+  return {
+    red: Math.round(1 * Y - 0.000001 * Pb + 1.40199 * Pr),
+    green: Math.round(1 * Y - 0.344135 * Pb - 0.714136 * Pr),
+    blue: Math.round(1 * Y + 1.77200 * Pb + 0.000000 * Pr)
+  }
 };
+
+export const yPbPrToYCbCr = ({ Y, Pb, Pr }: YPbPr): YCbCr => {
+  return {
+    Y: 16 + 219 * Y,
+    Cb: 128 + 224 * Pb,
+    Cr: 128 + 224 * Pr
+  }
+}
+

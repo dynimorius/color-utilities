@@ -19,5 +19,11 @@ export const ycCbcCrcToSrgb = (
   ycCbcCrc: YcCbcCrc,
   ituRBt = CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_2020
 ): RGB => {
-  return ybrCoefToSrgb(ycCbcCrc, ituRBt);
+  //TODO needs more testing
+  const redMultiplier = ycCbcCrc.Crc < 0 || ycCbcCrc.Crc > ycCbcCrc.Yc ? 1.7182 : 0.9938;
+  const blueMultiplier = ycCbcCrc.Cbc < 0 || ycCbcCrc.Cbc > ycCbcCrc.Yc ? 1.9404 : 1.582;
+  const red = ycCbcCrc.Yc + ycCbcCrc.Crc * redMultiplier;
+  const blue = ycCbcCrc.Yc + ycCbcCrc.Cbc * blueMultiplier;
+  const green = (ycCbcCrc.Yc - 0.2627 * red - 0.0593 * blue) / 0.678
+  return {red, green, blue};
 };

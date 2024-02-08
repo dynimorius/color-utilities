@@ -16,8 +16,8 @@ import { RGB, YCoCg } from "../public_api";
 export const yCgCoToSrgb = ({ Y, Co, Cg }: YCoCg): RGB => {
   const temp = Y - Cg;
   return {
-    red: (temp + Co) * 255,
-    green: (Y + Cg) * 255,
-    blue: (temp - Co) * 255,
+    red: (temp + Co),
+    green: (Y + Cg),
+    blue: (temp - Co),
   };
 };

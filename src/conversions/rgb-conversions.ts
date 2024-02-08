@@ -6,7 +6,10 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
+import {
+  CB_CR_CONVERSIONS_COEFFICIENTS,
+  CB_CR_CONVERSION_MATRICES,
+} from "../constants/cb-cr-conversions-coefficients";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   CtoD65Adaptation,
@@ -45,11 +48,17 @@ import {
   YcCbcCrc,
   xvYCC,
 } from "../interfaces/color-spaces.interface";
+import { Matrix3x3 } from "../types/math-types";
+import { sRgbByMatrix, sRgbToYbrCoef } from "./cb-cr-coef-conversions";
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
-import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { yCbCrToSrgb, yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { yiqToSrgb } from "./yiq-conversions";
+import { ycCbcCrcToSrgb } from './yccbccrc-conversions';
+import { xvYccToSrgb, xvYccToYcbcr } from "./xvycc-conversions";
+
 
 /*******************************************************************
  *                           HELPERS
@@ -75,6 +84,12 @@ export const normalizeRgba = ({ red, green, blue, alpha }: RGBA): RGBA => ({
   green: green / 255,
   blue: blue / 255,
   alpha,
+});
+
+export const deNormalizeRGB = ({ red, green, blue }: RGB): RGB => ({
+  red: red * 255,
+  green: green * 255,
+  blue: blue * 255,
 });
 
 /**
@@ -502,8 +517,8 @@ const sRgbToHcyOrHsi = (
 ): HCY | HSI => {
   const sum = red + green + blue;
   red = red / sum;
-  green - green / sum;
-  blue - blue / sum;
+  green = green / sum;
+  blue = blue / sum;
 
   let hue = Math.acos(
     (0.5 * (red - green + (red - blue))) /
@@ -786,16 +801,17 @@ export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
  *    JPEG / YCbCr / YcCbcCrc / YCoCg / YDbDr / YPbPr / xvYCC
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to YCbCr space
+ * Converts a color form an sRGB space to Digital Y′CbCr (8 bits per sample) space 
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCbCr} - YCbCr values for a color
  */
+//DONE
 export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
   return {
-    Y: 0.299 * red + 0.587 * green + 0.114 * blue,
-    Cb: 128 - 0.168736 * red - 0.331264 * green + 0.5 * blue,
-    Cr: 128 + 0.5 * red - 0.418688 * green - 0.081312 * blue,
-  };
+    Y: 16 + (0.25678 * red + 0.50412 * green + 0.09790 * blue),
+    Cb: 128 + (-0.14822 * red - 0.29099 * green + 0.43921* blue),
+    Cr: 128 + (0.43921 * red - 0.36778 * green - 0.07142 * blue),
+  };;
 };
 
 /**
@@ -803,6 +819,7 @@ export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {xvYCC} - xvYCC values for a color
  */
+//DONE
 export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
   return yCbCrToXvYcc(sRgbToYCbCr(rgb));
 };
@@ -812,8 +829,8 @@ export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YDbDr} - YDbDr values for a color
  */
-export const sRgbToYDbDr = (rgb: RGB): YDbDr => {
-  const { red, green, blue } = normalizeRgb(rgb);
+//DONE
+export const sRgbToYDbDr = ({ red, green, blue }: RGB): YDbDr => {
   return {
     Y: 0.299 * red + 0.587 * green + 0.114 * blue,
     Db: -0.45 * red - 0.883 * green + 1.333 * blue,
@@ -822,19 +839,17 @@ export const sRgbToYDbDr = (rgb: RGB): YDbDr => {
 };
 
 /**
- * Converts a color form an sRGB space to YPbPr space
+ * Converts a color form an sRGB space to Analog YPbPr space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YPbPr} - YPbPr values for a color
  */
-export const sRgbToYPbPr = (
-  { red, green, blue }: RGB,
-  ituRBt = CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_709
-): YPbPr | YcCbcCrc => {
-  const Y =
-    ituRBt.Kr * red + (1 - ituRBt.Kr - ituRBt.Kb) * green + ituRBt.Kb * blue;
-  const Pb = (0.5 * (blue - Y)) / (1 - ituRBt.Kb);
-  const Pr = (0.5 * (red - Y)) / (1 - ituRBt.Kr);
-  return { Y, Pb, Pr };
+//DONE
+export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
+  return {
+    Y: 0.299 * rgb.red + 0.587 * rgb.green + 0.114 * rgb.blue,
+    Pb: -0.168736 * rgb.red - 0.331264 * rgb.green + 0.5 * rgb.blue,
+    Pr: 0.5 * rgb.red - 0.418688 * rgb.green - 0.081312 * rgb.blue
+  }
 };
 
 /**
@@ -842,11 +857,14 @@ export const sRgbToYPbPr = (
  * @param {RBG} rgb sRBG values for a color
  * @returns {YcCbcCrc} - YcCbcCrc values for a color
  */
+//DONE
 export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
-  return sRgbToYPbPr(
-    rgb,
-    CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_2020
-  ) as YcCbcCrc;
+  const Yc = 0.2627 * rgb.red + 0.6780 * rgb.green + 0.0593 * rgb.blue;
+  return {
+    Yc,
+    Cbc: rgb.blue < Yc ? (rgb.blue - Yc) / 1.9404 : (rgb.blue - Yc) / 1.582,
+    Crc: rgb.red < Yc ? (rgb.red - Yc) / 1.7182 : (rgb.red - Yc) / 0.9938
+  };
 };
 
 /**
@@ -854,8 +872,8 @@ export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCoCg} - YCoCg values for a color
  */
-export const sRgbToYCgCo = (rgb: RGB): YCoCg => {
-  const { red, green, blue } = normalizeRgb(rgb);
+//DONE
+export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
   return {
     Y: 0.25 * red + 0.5 * green + 0.25 * blue,
     Co: 0.5 * red - 0.5 * blue,
@@ -868,8 +886,8 @@ export const sRgbToYCgCo = (rgb: RGB): YCoCg => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YIQ } - YIQ  values for a color
  */
-export const sRgbToYiq = (rgb: RGB): YIQ => {
-  const { red, green, blue } = normalizeRgb(rgb);
+export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
+  // const { red, green, blue } = normalizeRgb(rgb);
   const Y = red * 0.299 + green * 0.587 + blue * 0.114;
   let I = 0,
     Q = 0;
@@ -877,6 +895,7 @@ export const sRgbToYiq = (rgb: RGB): YIQ => {
     I = red * 0.596 + green * -0.275 + blue * -0.321;
     Q = red * 0.212 + green * -0.528 + blue * 0.311;
   }
+  // console.log(yiqToSrgb({ Y, I, Q }))
   return { Y, I, Q };
 };
 
@@ -889,12 +908,16 @@ export const sRgbToYiq = (rgb: RGB): YIQ => {
  * @returns {YUV} - YUV values for a color
  */
 
-export const sRgbToYuv = (rgb: RGB): YUV => {
-  const { red, green, blue } = normalizeRgb(rgb);
-
+export const sRgbToYuv = (rgb: RGB, normalize?: boolean): YUV => {
+  const { red, green, blue } = normalize ? normalizeRgb(rgb) : rgb;
   const y = red * 0.299 + green * 0.587 + blue * 0.114;
-  const u = red * -0.14713 + green * -0.28886 + blue * 0.436;
-  const v = red * 0.615 + green * -0.51499 + blue * -0.10001;
-
-  return { y, u, v };
+  const u = 0.492 * (blue - y);
+  const v = 0.877 * (red - y);
+  // return { y, u, v };
+  const yuv = sRgbByMatrix(
+    rgb,
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YUV as Matrix3x3,
+    ["y", "u", "v"]
+  ) as unknown as YUV;
+  return yuv;
 };
