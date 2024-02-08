@@ -812,7 +812,6 @@ export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {xvYCC} - xvYCC values for a color
  */
-//DONE
 export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
   return yCbCrToXvYcc(sRgbToYCbCr(rgb));
 };
@@ -822,7 +821,6 @@ export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YDbDr} - YDbDr values for a color
  */
-//DONE
 export const sRgbToYDbDr = ({ red, green, blue }: RGB): YDbDr => {
   return {
     Y: 0.299 * red + 0.587 * green + 0.114 * blue,
@@ -836,7 +834,6 @@ export const sRgbToYDbDr = ({ red, green, blue }: RGB): YDbDr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YPbPr} - YPbPr values for a color
  */
-//DONE
 export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
   return {
     Y: 0.299 * rgb.red + 0.587 * rgb.green + 0.114 * rgb.blue,
@@ -850,7 +847,6 @@ export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YcCbcCrc} - YcCbcCrc values for a color
  */
-//D
 export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
   const Yc = 0.2627 * rgb.red + 0.6780 * rgb.green + 0.0593 * rgb.blue;
   return {
@@ -865,7 +861,6 @@ export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCoCg} - YCoCg values for a color
  */
-//DONE
 export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
   return {
     Y: 0.25 * red + 0.5 * green + 0.25 * blue,
@@ -881,12 +876,11 @@ export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
  */
 export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
   const Y = red * 0.299 + green * 0.587 + blue * 0.114;
-  let I = 0,
-    Q = 0;
+  let I = 0;
+  let Q = 0;
   if (red !== green || green !== blue) {
     I = red * 0.596 + green * -0.275 + blue * -0.321;
     Q = red * 0.212 + green * -0.528 + blue * 0.311;
   }
-  console.log(yiqToSrgb({ Y, I, Q }))
   return { Y, I, Q };
 };

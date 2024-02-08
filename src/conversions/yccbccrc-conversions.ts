@@ -8,7 +8,6 @@
 
 import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
 import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
-import { ybrCoefToSrgb } from "./cb-cr-coef-conversions";
 
 /**
  * Converts a color form an YcCbcCrc space to sRGB space:
