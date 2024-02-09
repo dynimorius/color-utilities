@@ -49,9 +49,9 @@ import {
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
-import { tslToSrgb } from "./tsl-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
 import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { ycCbcCrcToSrgb } from "./yccbccrc-conversions";
 
 /*******************************************************************
  *                           HELPERS
@@ -872,10 +872,12 @@ export const sRgbToYPbPr = ({ red, green, blue }: RGB): YPbPr => {
  */
 export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
   const Yc = 0.2627 * rgb.red + 0.678 * rgb.green + 0.0593 * rgb.blue;
+  const CbcDevider = rgb.blue < Yc ? 1.9404 : 1.582;
+  const CrcDevider = rgb.red < Yc ? 1.7182 : 0.9938;
   return {
     Yc,
-    Cbc: rgb.blue < Yc ? (rgb.blue - Yc) / 1.9404 : (rgb.blue - Yc) / 1.582,
-    Crc: rgb.red < Yc ? (rgb.red - Yc) / 1.7182 : (rgb.red - Yc) / 0.9938,
+    Cbc: (rgb.blue - Yc) / CbcDevider,
+    Crc: (rgb.red - Yc) / CrcDevider,
   };
 };
 
