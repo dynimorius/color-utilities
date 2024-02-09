@@ -13,11 +13,11 @@ import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
  * @param {YcCbcCrc} ycCbcCrc YcCbcCrc values for a color
  * @returns {RGB} - sRGB values for a color
  */
-export const ycCbcCrcToSrgb = (ycCbcCrc: YcCbcCrc): RGB => {
-  let red = ycCbcCrc.Yc + ycCbcCrc.Crc * 1.7182;
-  red = red < ycCbcCrc.Yc ? red : ycCbcCrc.Yc + ycCbcCrc.Crc * 0.9938;
-  let blue = ycCbcCrc.Yc + ycCbcCrc.Cbc * 1.9404;
-  blue = blue < ycCbcCrc.Yc ? blue : ycCbcCrc.Yc + ycCbcCrc.Cbc * 1.582;
-  const green = (ycCbcCrc.Yc - 0.2627 * red - 0.0593 * blue) / 0.678;
+export const ycCbcCrcToSrgb = ({ Yc, Cbc, Crc }: YcCbcCrc): RGB => {
+  let red = Yc + Crc * 1.7182;
+  red = -0.8592 <= red - Yc || red - Yc <= 0 ? red : Yc + Crc * 0.9938;
+  let blue = Yc + Cbc * 1.9404;
+  blue = -0.9702 <= blue - Yc || blue - Yc <= 0 ? blue : Yc + Cbc * 1.582;
+  const green = (Yc - 0.2627 * red - 0.0593 * blue) / 0.678;
   return { red, green, blue };
 };
