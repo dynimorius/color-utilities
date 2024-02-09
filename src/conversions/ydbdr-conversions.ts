@@ -6,6 +6,8 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
+import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import { RGB, YDbDr } from "../public_api";
 /**
  * Converts a color form an YDbDr space to sRGB space:
@@ -13,8 +15,9 @@ import { RGB, YDbDr } from "../public_api";
  * @returns {RGB} - sRGB values for a color
  */
 export const yDbDrToSrgb = ({ Y, Db, Dr }: YDbDr): RGB => {
-  const red = (Y + 0.000092303716148 * Db - 0.525912630661865 * Dr);
-  const green = (Y - 0.129132898890509 * Db + 0.267899328207599 * Dr);
-  const blue = (Y + 0.664679059978955 * Db - 0.000079202543533 * Dr);
-  return {red, green, blue}
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.YDBDR_TO_RGB,
+    { Y, Db, Dr },
+    ["red", "green", "blue"]
+  ) as unknown as RGB;
 };

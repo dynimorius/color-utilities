@@ -1,4 +1,3 @@
-import { blend } from './../utilities/blender';
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -88,6 +87,35 @@ export const matrixByVectorObjMulti = (
 };
 
 /**
+ * Multiplication of a 3 x 3 Matrix by an Object
+ * @param {Matrix3x3} matrix 3 x 3 matrix
+ * @param {{ [key: string]: number }} vector a vector object
+ * @param {string[]} space a string a param names for a resulting object
+ * @returns {{ [key: string]: number }} - resulting vector object
+ */
+export const matrixByVectorObjMultiAsSpace = (
+  matrix: Matrix3x3,
+  vector: { [key: string]: number },
+  space: string[]
+): { [key: string]: number } => {
+  const entries = Object.entries(vector);
+  return {
+    [space[0]]:
+      matrix[0][0] * entries[0][1] +
+      matrix[0][1] * entries[1][1] +
+      matrix[0][2] * entries[2][1],
+    [space[1]]:
+      matrix[1][0] * entries[0][1] +
+      matrix[1][1] * entries[1][1] +
+      matrix[1][2] * entries[2][1],
+    [space[2]]:
+      matrix[2][0] * entries[0][1] +
+      matrix[2][1] * entries[1][1] +
+      matrix[2][2] * entries[2][1],
+  };
+};
+
+/**
  * Multiplication of a 3 x 3 Matrix by an XYZ
  * @param {Matrix3x3} matrix 3 x 3 matrix
  * @param {XYZ} vector a vector xyz object
@@ -141,6 +169,7 @@ export const matrixSpaceMultiAsXyz = (
  * Multiplication of a 3 x 3 Matrix by an XYZ
  * @param {Matrix3x3} matrix 3 x 3 matrix
  * @param {XYZ} vector a vector xyz object
+ * @param {string[]} space a string a param names for a resulting object
  * @returns {{ [key: string]: number }} - resulting color space object
  */
 export const matrixXyzMultiAsSpace = (
@@ -168,6 +197,7 @@ export const matrixXyzMultiAsSpace = (
  * Multiplication of a 3 x 3 Matrix by an RGB
  * @param {Matrix3x3} matrix 3 x 3 matrix
  * @param {RGB} vector a vector xyz object
+ * @param {string[]} space a string a param names for a resulting object
  * @returns {{ [key: string]: number }} - resulting color space object
  */
 export const matrixRgbMultiAsSpace = (

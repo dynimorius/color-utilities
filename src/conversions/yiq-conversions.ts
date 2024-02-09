@@ -6,6 +6,8 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
+import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import { RGB, YIQ } from "../public_api";
 
 /**
@@ -14,8 +16,9 @@ import { RGB, YIQ } from "../public_api";
  * @returns {RGB} - sRGB values for a color
  */
 export const yiqToSrgb = ({ Y, I, Q }: YIQ): RGB => {
-  const red = Y * 1.0030892 + I * 0.9548490 + Q * 0.6178597;
-  const green = Y * 0.996776 + I * -0.2707062 + Q * -0.6447883;
-  const blue = Y * 1.0084978 + I * -1.1104851 + Q * 1.6995675;
-  return { red, green, blue };
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.YIQ_TO_RGB,
+    { Y, I, Q },
+    ["red", "green", "blue"]
+  ) as unknown as RGB;
 };

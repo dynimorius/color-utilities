@@ -6,7 +6,6 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { CB_CR_CONVERSIONS_COEFFICIENTS } from "../constants/cb-cr-conversions-coefficients";
 import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
 
 /**
@@ -16,7 +15,6 @@ import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
  */
 export const ycCbcCrcToSrgb = (
   ycCbcCrc: YcCbcCrc,
-  ituRBt = CB_CR_CONVERSIONS_COEFFICIENTS.ITU_R_BT_2020
 ): RGB => {
   //TODO needs more testing
   const redMultiplier = ycCbcCrc.Crc < 0 || ycCbcCrc.Crc > ycCbcCrc.Yc ? 1.7182 : 0.9938;

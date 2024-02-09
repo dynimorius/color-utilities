@@ -5,6 +5,8 @@
  * Use of this source code is governed by an ISC-style license that can be
  * found at https://opensource.org/license/isc-license-txt/
  */
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
+import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import { RGB, YCbCr, YPbPr, xvYCC } from "../interfaces/color-spaces.interface";
 
 /**
@@ -17,10 +19,15 @@ import { RGB, YCbCr, YPbPr, xvYCC } from "../interfaces/color-spaces.interface";
  * @returns {RGB} - sRGB values for a color
  */
 export const yCbCrToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
+  const { red, green, blue } = matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.YCBCR_TO_RGB,
+    { Y: Y - 16, Cb: Cb - 128, Cr: Cr - 128 },
+    ["red", "green", "blue"]
+  ) as unknown as RGB;
   return {
-    red: Math.round((1.16438 * Y) + (1.59602 * Cr) - 222.921),
-    green: Math.round((1.16438 * Y) - (0.39176 * Cb) - (0.81296 * Cr) + 135.576),
-    blue: Math.round((1.16438 * Y) + (2.01723* Cb) - 276.836),
+    red: Math.round(red),
+    green: Math.round(green),
+    blue: Math.round(blue),
   };
 };
 
@@ -31,7 +38,7 @@ export const yCbCrToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
  * @return {xvYCC} Resulting digitized form
  */
 export const yCbCrToXvYcc = ({ Y, Cb, Cr }: YCbCr): xvYCC => {
-  Y =  Y > 1 ? Y / 255 : Y;
+  Y = Y > 1 ? Y / 255 : Y;
   Cb = Cb > 1 ? Cb / 255 : Cb;
   Cr = Cr > 1 ? Cr / 255 : Cr;
   return {
@@ -42,12 +49,12 @@ export const yCbCrToXvYcc = ({ Y, Cb, Cr }: YCbCr): xvYCC => {
 };
 
 export const yCbCrToYPbPr = ({ Y, Cb, Cr }: YCbCr): YPbPr => {
-  Y =  Y > 1 ? Y / 255 : Y;
+  Y = Y > 1 ? Y / 255 : Y;
   Cb = Cb > 1 ? Cb / 255 : Cb;
   Cr = Cr > 1 ? Cr / 255 : Cr;
   return {
     Y: (Y - 16) / 219,
     Pb: (Cb - 128) / 224,
-    Pr: (Cr - 128) / 224
-  }
-}
+    Pr: (Cr - 128) / 224,
+  };
+};

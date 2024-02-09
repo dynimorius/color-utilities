@@ -6,8 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import {
-} from "../constants/cb-cr-conversions-coefficients";
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   CtoD65Adaptation,
@@ -21,6 +20,7 @@ import {
   inverseSrbgCompanding,
 } from "../helpers/companding";
 import { formatValue } from "../helpers/formats-and-checks";
+import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import {
   CMY,
   CMYK,
@@ -49,9 +49,8 @@ import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
-import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
-import { yiqToSrgb } from "./yiq-conversions";
-
+import { yCbCrToSrgb, yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { yDbDrToSrgb } from "./ydbdr-conversions";
 
 /*******************************************************************
  *                           HELPERS
@@ -794,17 +793,22 @@ export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
  *    JPEG / YCbCr / YcCbcCrc / YCoCg / YDbDr / YPbPr / xvYCC
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to Digital Y′CbCr (8 bits per sample) space 
+ * Converts a color form an sRGB space to Digital Y′CbCr (8 bits per sample) space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCbCr} - YCbCr values for a color
  */
 //DONE
 export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
+  const { Y, Cb, Cr } = matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YCBCR,
+    { red, green, blue },
+    ["Y", "Cb", "Cr"]
+  ) as unknown as YCbCr;
   return {
-    Y: 16 + (0.25678 * red + 0.50412 * green + 0.09790 * blue),
-    Cb: 128 + (-0.14822 * red - 0.29099 * green + 0.43921* blue),
-    Cr: 128 + (0.43921 * red - 0.36778 * green - 0.07142 * blue),
-  };;
+    Y: 16 + Y,
+    Cb: 128 + Cb,
+    Cr: 128 + Cr,
+  };
 };
 
 /**
@@ -822,11 +826,11 @@ export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
  * @returns {YDbDr} - YDbDr values for a color
  */
 export const sRgbToYDbDr = ({ red, green, blue }: RGB): YDbDr => {
-  return {
-    Y: 0.299 * red + 0.587 * green + 0.114 * blue,
-    Db: -0.45 * red - 0.883 * green + 1.333 * blue,
-    Dr: -1.333 * red + 1.116 * green + 0.217 * blue,
-  };
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YDBDR,
+    { red, green, blue },
+    ["Y", "Db", "Dr"]
+  ) as unknown as YDbDr;
 };
 
 /**
@@ -834,12 +838,12 @@ export const sRgbToYDbDr = ({ red, green, blue }: RGB): YDbDr => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {YPbPr} - YPbPr values for a color
  */
-export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
-  return {
-    Y: 0.299 * rgb.red + 0.587 * rgb.green + 0.114 * rgb.blue,
-    Pb: -0.168736 * rgb.red - 0.331264 * rgb.green + 0.5 * rgb.blue,
-    Pr: 0.5 * rgb.red - 0.418688 * rgb.green - 0.081312 * rgb.blue
-  }
+export const sRgbToYPbPr = ({ red, green, blue }: RGB): YPbPr => {
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YPBPR,
+    { red, green, blue },
+    ["Y", "Pb", "Pr"]
+  ) as unknown as YPbPr;
 };
 
 /**
@@ -848,11 +852,11 @@ export const sRgbToYPbPr = (rgb: RGB): YPbPr => {
  * @returns {YcCbcCrc} - YcCbcCrc values for a color
  */
 export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
-  const Yc = 0.2627 * rgb.red + 0.6780 * rgb.green + 0.0593 * rgb.blue;
+  const Yc = 0.2627 * rgb.red + 0.678 * rgb.green + 0.0593 * rgb.blue;
   return {
     Yc,
     Cbc: rgb.blue < Yc ? (rgb.blue - Yc) / 1.9404 : (rgb.blue - Yc) / 1.582,
-    Crc: rgb.red < Yc ? (rgb.red - Yc) / 1.7182 : (rgb.red - Yc) / 0.9938
+    Crc: rgb.red < Yc ? (rgb.red - Yc) / 1.7182 : (rgb.red - Yc) / 0.9938,
   };
 };
 
@@ -862,11 +866,11 @@ export const sRgbToYcCbcCrc = (rgb: RGB): YcCbcCrc => {
  * @returns {YCoCg} - YCoCg values for a color
  */
 export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
-  return {
-    Y: 0.25 * red + 0.5 * green + 0.25 * blue,
-    Co: 0.5 * red - 0.5 * blue,
-    Cg: -0.25 * red + 0.5 * green - 0.25 * blue,
-  };
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YCOCG,
+    { red, green, blue },
+    ["Y", "Co", "Cg"]
+  ) as unknown as YCoCg;
 };
 
 /**
@@ -875,12 +879,12 @@ export const sRgbToYCgCo = ({ red, green, blue }: RGB): YCoCg => {
  * @returns {YIQ } - YIQ  values for a color
  */
 export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
-  const Y = red * 0.299 + green * 0.587 + blue * 0.114;
-  let I = 0;
-  let Q = 0;
+  const { Y, I, Q } = matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YIQ,
+    { red, green, blue },
+    ["Y", "I", "Q"]
+  ) as unknown as YIQ;
   if (red !== green || green !== blue) {
-    I = red * 0.596 + green * -0.275 + blue * -0.321;
-    Q = red * 0.212 + green * -0.528 + blue * 0.311;
-  }
-  return { Y, I, Q };
+    return { Y, I, Q };
+  } else return { Y, I: 0, Q: 0 };
 };
