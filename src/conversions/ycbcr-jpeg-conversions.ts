@@ -5,7 +5,7 @@
  * Use of this source code is governed by an ISC-style license that can be
  * found at https://opensource.org/license/isc-license-txt/
  */
-import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-coefficients";
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-matrices";
 import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import { RGB, YCbCr, YPbPr, xvYCC } from "../interfaces/color-spaces.interface";
 
