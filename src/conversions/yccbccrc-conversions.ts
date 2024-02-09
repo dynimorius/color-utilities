@@ -6,6 +6,8 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-matrices";
+import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
 
 /**
@@ -14,10 +16,9 @@ import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
  * @returns {RGB} - sRGB values for a color
  */
 export const ycCbcCrcToSrgb = ({ Yc, Cbc, Crc }: YcCbcCrc): RGB => {
-  let red = Yc + Crc * 1.7182;
-  red = -0.8592 <= red - Yc || red - Yc <= 0 ? red : Yc + Crc * 0.9938;
-  let blue = Yc + Cbc * 1.9404;
-  blue = -0.9702 <= blue - Yc || blue - Yc <= 0 ? blue : Yc + Cbc * 1.582;
-  const green = (Yc - 0.2627 * red - 0.0593 * blue) / 0.678;
-  return { red, green, blue };
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YCCRCCBC,
+    { Yc, Cbc, Crc },
+    ["red", "green", "blue"]
+  ) as unknown as RGB;
 };
