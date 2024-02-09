@@ -874,12 +874,6 @@ export const sRgbToYcCbcCrc = ({ red, green, blue }: RGB): YcCbcCrc => {
   const Yc = 0.2627 * red + 0.678 * green + 0.0593 * blue;
   const CbcDevider = -0.9702 <= blue - Yc || blue - Yc <= 0 ? 1.9404 : 1.582;
   const CrcDevider = -0.8592 <= red - Yc || red - Yc <= 0 ? 1.7182 : 0.9938;
-
-  console.log(ycCbcCrcToSrgb({
-    Yc,
-    Cbc: (blue - Yc) / CbcDevider,
-    Crc: (red - Yc) / CrcDevider,
-  }))
   return {
     Yc,
     Cbc: (blue - Yc) / CbcDevider,
