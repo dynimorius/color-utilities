@@ -47,6 +47,7 @@ import {
   sRgbToLch_ab,
   sRgbToLch_uv,
   sRgbToRyb,
+  sRgbToTsl,
   sRgbToXvYcc,
   sRgbToXyz,
   sRgbToYCbCr,
@@ -135,7 +136,7 @@ export const colorConverters: ColorConverters = {
   rgb_0_1: { fun: rgbTo1_0rgb, from: "rgb" },
   rgb: { fun: xyzToSrgb, from: "xyz" },
   ryb: { fun: sRgbToRyb, from: "rgb" },
-  //tsl: { fun: sRgbToTsl, from: "rgb" }, //TODO
+  tsl: { fun: sRgbToTsl, from: "rgb" },
   uvw: { fun: xyzToUvw , from: "xyz" },
   smpte_c_rgb: { fun: xyzToSmpteCRgb, from: "xyz" },
   web_safe: { fun: isWebSafeRGB, from: "rgb" },

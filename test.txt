@@ -1,5 +1,4 @@
 { red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
 {
   rgb: { red: 238, green: 200, blue: 27, inGamut: true },
   xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
@@ -129,6 +128,11 @@
     blue: 0.10588235294117647
   },
   ryb: { red: 63.346820809248555, yellow: 228, blue: 17 },
+  tsl: {
+    tint: 0.4209301051592921,
+    saturation: 0.27240784750042124,
+    lightness: 0.7515294117647058
+  },
   smpte_c_rgb: {
     red: 240.45312234231287,
     green: 199.3219117186995,
@@ -184,13 +188,8 @@
 
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 199, blue: 27 }
 { red: 238, green: 199, blue: 27 }
 { red: 237, green: 198, blue: 26 }
-{ red: 237, green: 198, blue: 26 }
-{ red: 238, green: 199, blue: 27 }
 { red: 238, green: 199, blue: 27 }
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
@@ -199,14 +198,6 @@
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 26 }
 { red: 238, green: 200, blue: 26 }
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
@@ -222,21 +213,6 @@
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
 { red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 238, green: 200, blue: 27 }
-{ red: 237, green: 200, blue: 27 }
 { red: 237, green: 200, blue: 27 }
 
 RGB

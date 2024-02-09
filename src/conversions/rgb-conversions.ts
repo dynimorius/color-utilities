@@ -36,6 +36,7 @@ import {
   RGBA,
   RYB,
   SpaceData,
+  TSL,
   XYZ,
   YCbCr,
   YCoCg,
@@ -48,8 +49,9 @@ import {
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
+import { tslToSrgb } from "./tsl-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
-import {yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
  *                           HELPERS
@@ -742,6 +744,24 @@ export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
     yellow: yRYB / N + Ib,
     blue: bRYB / N + Ib,
   };
+};
+
+/*******************************************************************
+ *                              TSL
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to TSL space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {TSL} - TSL values for a color
+ */
+
+export const sRgbToTsl = ({ red, green, blue }: RGB): TSL => {
+  const r_ = (red / (red + green + blue) || 0) - 1 / 3;
+  const g_ = (green / (red + green + blue) || 0) - 1 / 3;
+  const tint = g_ != 0 ? 0.5 - Math.atan2(g_, r_) / 2 / Math.PI : 0;
+  const saturation = Math.sqrt((9 / 5) * (r_ * r_ + g_ * g_));
+  const lightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
+  return { tint, saturation, lightness };
 };
 
 /*******************************************************************

@@ -13,15 +13,17 @@ import { RGB, TSL } from "../interfaces/color-spaces.interface";
  * @param {TSL} tsl TSL values for a color
  * @returns {RGB} - RGB values for a color
  */
-export const tslToSrgb = ({ tint, saturation, lightness }: TSL): RGB => {
+export const tslToSrgb = (
+  { tint, saturation, lightness }: TSL,
+  round?: boolean
+): RGB => {
   const x = Math.pow(Math.tan(2 * Math.PI * (tint - 1 / 4)), 2);
   const r =
     Math.sqrt((5 * (saturation * saturation)) / (9 * (1 / x + 1))) + 1 / 3;
   const g = Math.sqrt((5 * (saturation * saturation)) / (9 * (x + 1))) + 1 / 3;
   const k = lightness / (0.185 * r + 0.473 * g + 0.114);
-  const red = k * r * 255;
-  const green = k * g * 255;
-  const blue = k * (1 - r - g) * 255;
+  const red = round ? Math.round(k * r * 255) : k * r * 255;
+  const green = round ? Math.round(k * g * 255) : k * g * 255;
+  const blue = round ? Math.round(k * (1 - r - g) * 255) : k * (1 - r - g) * 255;
   return { red, green, blue };
 };
-          
