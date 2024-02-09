@@ -858,13 +858,13 @@ export const sRgbToYPbPr = ({ red, green, blue }: RGB): YPbPr => {
  * Converts a color form an sRGB space to YcCbcCrc space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YcCbcCrc} - YcCbcCrc values for a color
+ * -more info: https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.2020_conversion
  */
 export const sRgbToYcCbcCrc = ({ red, green, blue }: RGB): YcCbcCrc => {
-  return matrixByVectorObjMultiAsSpace(
-    CB_CR_CONVERSION_MATRICES.YCCRCCBC_TO_RGB,
-    { red, green, blue },
-    ["Yc", "Cbc", "Crc"]
-  ) as unknown as YcCbcCrc;
+  const Yc = (0.2627 * red + 0.6780 * green + 0.0593 * blue);
+  const Cbc = (blue - Yc) / 1.8814;
+  const Crc = (red - Yc) / 1.4746;
+  return { Yc, Cbc, Crc };
 };
 
 /**
