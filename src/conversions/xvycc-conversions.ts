@@ -7,7 +7,7 @@
  */
 
 import { YCbCr, xvYCC } from "../public_api";
-import { yCbCrToSrgb } from "./ycbcr-jpeg-conversions";
+import { yCbCrBT601ToSrgb } from "./ycbcr-jpeg-conversions";
 
 /**
  * Converts a color from digital to analog form.
@@ -15,7 +15,7 @@ import { yCbCrToSrgb } from "./ycbcr-jpeg-conversions";
  * @param {xvYCC} xvycc xvYCC values for a color
  * @return {YCbCr} Resulting digitized form
  */
-export const xvYccToYcbcr = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
+export const xvYccToYcbcrBT601 = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
   return {
     Y: (Y - 16) / 219 * 255,
     Cb: (Cb - 128) / 224 * 255,
@@ -29,5 +29,5 @@ export const xvYccToYcbcr = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
  * @returns {RGB} - sRGB values for a color
  */
 export const xvYccToSrgb = (xvycc: xvYCC) => {
-  return yCbCrToSrgb(xvYccToYcbcr(xvycc));
+  return yCbCrBT601ToSrgb(xvYccToYcbcrBT601(xvycc));
 };

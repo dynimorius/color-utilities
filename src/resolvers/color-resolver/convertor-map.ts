@@ -50,7 +50,7 @@ import {
   sRgbToTsl,
   sRgbToXvYcc,
   sRgbToXyz,
-  sRgbToYCbCr,
+  sRgbToYCbCrBT601,
   sRgbToYCgCo,
   sRgbToYDbDr,
   sRgbToYPbPr,
@@ -87,7 +87,6 @@ import {
   xyzToWideGamutRgb,
   xyzToXyY,
 } from "../../conversions/xyz-conversions";
-import { yCbCrToSrgb } from "../../conversions/ycbcr-jpeg-conversions";
 import { ycCbcCrcToSrgb } from "../../conversions/yccbccrc-conversions";
 import { yCgCoToSrgb } from "../../conversions/ycocg-conversions";
 import { yDbDrToSrgb } from "../../conversions/ydbdr-conversions";
@@ -144,7 +143,7 @@ export const colorConverters: ColorConverters = {
   xvycc: { fun: sRgbToXvYcc, from: "rgb" },
   xyz: { fun: sRgbToXyz, from: "rgb" },
   xyy: { fun: xyzToXyY, from: "xyz" },
-  ycbcr: { fun: sRgbToYCbCr, from: "rgb" },
+  ycbcr: { fun: sRgbToYCbCrBT601, from: "rgb" },
   yccbccrc: { fun: sRgbToYcCbcCrc, from: "rgb" },
   ycocg: { fun: sRgbToYCgCo, from: "rgb" },
   ydbdr: { fun: sRgbToYDbDr, from: "rgb" },
@@ -169,7 +168,7 @@ export const toRgbConverters: ToRGBConverters = {
   tsl: tslToSrgb,
   xvycc: xvYccToSrgb,
   xyz: xyzToSrgb,
-  ycbcr: yCbCrToSrgb,
+  ycbcr: sRgbToYCbCrBT601,
   yccbccrc: ycCbcCrcToSrgb,
   ycocg: yCgCoToSrgb,
   ydbdr: yDbDrToSrgb,

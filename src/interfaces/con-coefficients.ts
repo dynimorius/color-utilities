@@ -17,10 +17,12 @@ export interface CoefficientsMatrices {
   YPBPR_TO_RGB: Matrix3x3;
   RGB_TO_YIQ: Matrix3x3;
   YIQ_TO_RGB: Matrix3x3;
+  RGB_TO_BT_709_YCBCR: Matrix3x3;
+  BT_709_YCBCR_TO_RGB: Matrix3x3;
   RGB_TO_HDTV_YPBPR: Matrix3x3;
   HDTV_YPBPR_TO_RGB: Matrix3x3;
-  RGB_TO_YCBCR: Matrix3x3;
-  YCBCR_TO_RGB: Matrix3x3;
+  RGB_TO_YCBCR_BT_601: Matrix3x3;
+  BT_601_YCBCR_TO_RGB: Matrix3x3;
   RGB_TO_YCCRCCBC: Matrix3x3;
   YCCRCCBC_TO_RGB: Matrix3x3;
   RGB_TO_HDTV_YCBCR: Matrix3x3;

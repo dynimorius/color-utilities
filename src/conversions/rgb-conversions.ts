@@ -7,6 +7,7 @@
  */
 
 import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-matrices";
+import { Nb, Nr, Pb, Pr } from "../constants/conditionals";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   CtoD65Adaptation,
@@ -50,7 +51,7 @@ import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
 import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
-import { yCbCrToXvYcc } from "./ycbcr-jpeg-conversions";
+import {  yCbCrBT601ToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
  *                           HELPERS
@@ -811,13 +812,14 @@ export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
  *  JPEG / YCbCr / YcCbcCrc / YCoCg / YDbDr / YPbPr / YIQ / xvYCC
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to Digital Y′CbCr (8 bits per sample) space
+ * Converts a color form an sRGB space to ITU-R BT.601 Y′CbCr space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCbCr} - YCbCr values for a color
  */
-export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
+export const sRgbToYCbCrBT601 = ({ red, green, blue }: RGB): YCbCr => {
+  console.log({ red, green, blue })
   const { Y, Cb, Cr } = matrixByVectorObjMultiAsSpace(
-    CB_CR_CONVERSION_MATRICES.RGB_TO_YCBCR,
+    CB_CR_CONVERSION_MATRICES.RGB_TO_YCBCR_BT_601,
     { red, green, blue },
     ["Y", "Cb", "Cr"]
   ) as unknown as YCbCr;
@@ -826,6 +828,31 @@ export const sRgbToYCbCr = ({ red, green, blue }: RGB): YCbCr => {
     Cb: 128 + Cb,
     Cr: 128 + Cr,
   };
+};
+
+/**
+ * Converts a color form an sRGB space to ITU-R BT.709 Y′CbCr space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YCbCr} - YCbCr values for a color
+ */
+export const sRgbToYCbCrBT709 = ({ red, green, blue }: RGB): YCbCr => {
+  return matrixByVectorObjMultiAsSpace(
+    CB_CR_CONVERSION_MATRICES.RGB_TO_BT_709_YCBCR,
+    { red, green, blue },
+    ["Y", "Cb", "Cr"]
+  ) as unknown as YCbCr;
+};
+
+/**
+ * Converts a color form an sRGB space to ITU-R BT.2020-2 Y′CbCr space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {YCbCr} - YCbCr values for a color
+ */
+export const sRgbToYCbCrBT2020 = ({ red, green, blue }: RGB): YCbCr => {
+  const Y = (0.2627 * red + 0.6780 * green + 0.0593 * blue);
+  const Cb = blue - Y / 1.8814;
+  const Cr = red - Y / 1.4746;
+  return {Y, Cb, Cr}
 };
 
 /**
@@ -862,10 +889,20 @@ export const sRgbToYPbPr = ({ red, green, blue }: RGB): YPbPr => {
  */
 export const sRgbToYcCbcCrc = ({ red, green, blue }: RGB): YcCbcCrc => {
   const Yc = (0.2627 * red + 0.6780 * green + 0.0593 * blue);
-  const Cbc = (blue - Yc) / 1.8814;
-  const Crc = (red - Yc) / 1.4746;
+  const Cbc = (blue - Yc) / getDivider({ red, green, blue }, Yc, "Cbc");
+  const Crc = (red - Yc) / getDivider({ red, green, blue }, Yc, "Crc");
   return { Yc, Cbc, Crc };
 };
+
+const getDivider = ({ red, blue }: RGB, Yc: number, chroma: "Cbc" | "Crc"): number=> {
+  if (chroma === "Crc") {
+    if (Nr <= red - Yc || red - Yc <= 0) return 1.7182;
+    else return 0.9938;
+  }
+  if (Nb <= blue - Yc || blue - Yc <= 0) return 1.9404;
+  else return 1.582;
+  
+}
 
 /**
  * Converts a color form an sRGB space to YCoCg space
@@ -901,5 +938,5 @@ export const sRgbToYiq = ({ red, green, blue }: RGB): YIQ => {
  * @returns {xvYCC} - xvYCC values for a color
  */
 export const sRgbToXvYcc = (rgb: RGB): xvYCC => {
-  return yCbCrToXvYcc(sRgbToYCbCr(rgb));
+  return yCbCrBT601ToXvYcc(sRgbToYCbCrBT601(rgb));
 };
