@@ -812,12 +812,11 @@ export const gammaRgbToXyz = (rgb: RGB, ref: SpaceData): XYZ => {
  *  JPEG / YCbCr / YcCbcCrc / YCoCg / YDbDr / YPbPr / YIQ / xvYCC
  * *****************************************************************/
 /**
- * Converts a color form an sRGB space to ITU-R BT.601 Y′CbCr space
+ * Converts a color form an sRGB space to ITU-R BT.601 Y′CbCr (YUV) space
  * @param {RBG} rgb sRBG values for a color
  * @returns {YCbCr} - YCbCr values for a color
  */
 export const sRgbToYCbCrBT601 = ({ red, green, blue }: RGB): YCbCr => {
-  console.log({ red, green, blue })
   const { Y, Cb, Cr } = matrixByVectorObjMultiAsSpace(
     CB_CR_CONVERSION_MATRICES.RGB_TO_YCBCR_BT_601,
     { red, green, blue },

@@ -4,10 +4,22 @@
  *
  * Use of this source code is governed by an ISC-style license that can be
  * found at https://opensource.org/license/isc-license-txt/
+ * 
+ * A chromatic adaptation transform (CAT) is capable of
+ * predicting corresponding colors. A pair of corresponding
+ * colors consists of a color observed under one illuminant
+ * (say, D65) and another color that has the same appearance
+ * when observed under a different illuminant (say, A).
+ * 
+ * To present the von Kries hypothesis in terms of a chromatic
+ * adaptation model, we need a 3 by 3 matrix M , which
+ * transforms the tristimulus values (TSVs) 𝑋β, 𝑌β, 𝑍β under
+ * an illuminant called β into the cone-like or sharper sensor
+ * spaces (𝑅, 𝐺, 𝐵 or 𝐿, 𝑀, 𝑆 spaces)
  */
 
 import { ADAPTIVE_MATRICES } from "../constants/adaptive_matrices";
-import { BRADFORD_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
+import { BRADFORD_COEFFICIENT_MATRICES } from "../constants/transform-matrixes";
 import { XYZ } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
 import {
@@ -18,19 +30,18 @@ import {
 
 /**
  * Transform from XYZ into a cone response domain (ρ, γ, β),
- * then scales the vector components by factors dependent upon
- * both the source and destination reference whites
+ * using a Simplified Bradford Transform method
  * @param {number[]} sourceWhite source reference white
  * @param {number[]} destinationWhite destination reference white
  * @returns {Matrix3x3} - a 3 x 3 Matrix used to prefrom
  *                        linear transformation on a color
  */
-const linearTransformationM = (
+const linearBradfordTransformation = (
   sourceWhite: number[],
   destinationWhite: number[]
 ): Matrix3x3 => {
-  const Ma = BRADFORD_CONE_RESPONCE_DOMAINS.MA;
-  const Ma_1 = BRADFORD_CONE_RESPONCE_DOMAINS.MA_1;
+  const Ma = BRADFORD_COEFFICIENT_MATRICES.MA;
+  const Ma_1 = BRADFORD_COEFFICIENT_MATRICES.MA_1;
   const PYβs = matrixVectorMulti(Ma, sourceWhite);
   const PYβd = matrixVectorMulti(Ma, destinationWhite);
   const diff: Matrix3x3 = [
@@ -49,16 +60,16 @@ const linearTransformationM = (
  * @param {{ X: number; Y: number; Z: number }} dRefWhite destination reference white
  * @returns {XYZ} - adapted xyz values
  */
-export const chromaticAdaptation = (
+export const bradfordChromaticAdaptation = (
   xyz: XYZ,
   sRefWhite: { X: number; Y: number; Z: number },
   dRefWhite: { X: number; Y: number; Z: number }
 ): XYZ => {
-  const M = linearTransformationM(
+  //linear transformation
+  const M = linearBradfordTransformation(
     [sRefWhite.X, sRefWhite.Y, sRefWhite.Z],
     [dRefWhite.X, dRefWhite.Y, dRefWhite.Z]
   );
-  //linear transformation
   return matrixVectorMultiAsXyz(M, xyz);
 };
 
