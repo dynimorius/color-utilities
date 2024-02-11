@@ -24,7 +24,6 @@ export interface ColorConverters {
   don_rgb_4?: ConverterInfo;
   eci_rgb_v2?: ConverterInfo;
   etka_space_ps5?: ConverterInfo;
-  hcl?: ConverterInfo;
   hcy?: ConverterInfo;
   hex?: ConverterInfo;
   hsi?: ConverterInfo;
@@ -131,7 +130,6 @@ export interface ToXyzConverters {
 export interface ColorCheckers {
   cmy: Function;
   cmyk: Function;
-  hcl: Function;
   hcy: Function;
   hex: Function;
   hsi: Function;

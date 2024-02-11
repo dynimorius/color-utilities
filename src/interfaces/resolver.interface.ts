@@ -29,6 +29,7 @@ export interface RGBResolverMap {
   ryb: Function;
   smpte_c_rgb: Function;
   tsl: Function;
+  uvw: Function;
   wide_gamut_rgb: Function;
   ycbcr_BT601: Function;
   ycbcr_BT709: Function;

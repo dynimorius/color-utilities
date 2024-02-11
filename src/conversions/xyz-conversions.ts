@@ -24,7 +24,7 @@ import {
   sRgbCompanding,
 } from "../helpers/companding";
 import { matrixXyzMultiAsSpace } from "../helpers/matrix";
-import { Fu, Fv } from "../helpers/white-point";
+import { Fu, Fv, _Fv } from "../helpers/white-point";
 import {
   LAB,
   LMS,
@@ -100,21 +100,20 @@ export const xyzToUvw = (
   { x, y, z }: XYZ,
   refIlluminant = REFERENCE_ILLUMINANT.D65
 ): UVW => {
-  x = x > 1 ? x / 100 : x;
-  y = y > 1 ? y / 100 : y;
-  z = z > 1 ? z / 100 : z;
-  const uP = Fu({ x, y, z });
-  const vP = Fv({ x, y, z });
-  const v0 = Fv({
-    x: refIlluminant.X,
-    y: refIlluminant.Y,
-    z: refIlluminant.Z,
-  });
   const u0 = Fu({
     x: refIlluminant.X,
     y: refIlluminant.Y,
     z: refIlluminant.Z,
   });
+  const v0 = _Fv({
+    x: refIlluminant.X,
+    y: refIlluminant.Y,
+    z: refIlluminant.Z,
+  });
+
+  const uP = Fu({ x, y, z });
+  const vP = _Fv({ x, y, z });
+
   const w = 25 * Math.pow(y, 1 / 3) - 17;
   const u = 13 * w * (uP - u0);
   const v = 13 * w * (vP - v0);
@@ -397,4 +396,17 @@ export const xyzToLsm = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
     "medium",
     "short",
   ]) as unknown as LMS;
+};
+
+/*************************************************************
+ *                        Hunter-Lab
+ *************************************************************/
+export const xyzToHunterLab = (
+  { x, y, z }: XYZ,
+): LAB => {
+  const sqY = Math.sqrt(y);
+  const luminance = 10 * sqY;
+  const a = 17.5 * ((1.02 * x - y) / sqY);
+  const b = 7 * ((y - 0.847 * z) / sqY);
+  return { luminance, a, b };
 };

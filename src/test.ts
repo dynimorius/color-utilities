@@ -1,5 +1,7 @@
+import { xyzToBetaRgb, xyzToHunterLab } from './conversions/xyz-conversions';
 import { Color } from "./color/color";
 import { lmsToXyz } from "./conversions/lms-conversions";
+import { uvwToXyz } from "./conversions/uvw-conversions";
 import {
   CMYK,
   HSL,
@@ -13,7 +15,7 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { RgbConverter, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
+import { RgbConverter, hunterLabToXyz, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
 let pass = 0;
 let fail = 0;
 
@@ -244,5 +246,9 @@ printData([
 // console.log(lsm);
 // console.log(lmsToXyz(lsm));
 const rgb = new RgbConverter(testColor);
-console.log(rgb.get("ycbcr_BT2020"))
+console.log(rgb.get('uvw'))
+console.log(uvwToXyz(rgb.get('uvw')))
+console.log(color2.data.xyz)
+// console.log(xyzToHunterLab({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }));
+// console.log(hunterLabToXyz(xyzToHunterLab({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 })))
 // console.log(sRgbToAdobeRgb(testColor))

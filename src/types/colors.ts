@@ -11,8 +11,6 @@ import {
   CMYK,
   CMYK_M,
   CMY_M,
-  HCL,
-  HCL_M,
   HCY,
   HCY_M,
   HSI,
@@ -67,8 +65,6 @@ export type ColorSpaceUnion =
   | HSV_M
   | HWB
   | HWB_M
-  | HCL
-  | HCL_M
   | HCY
   | HCY_M
   | LAB
@@ -133,7 +129,6 @@ export type Spaces =
   | "don_rgb_4"
   | "eci_rgb_v2"
   | "etka_space_ps5"
-  | "hcl"
   | "hcy"
   | "hex"
   | "hsi"
@@ -163,3 +158,4 @@ export type Spaces =
   | "ydbdr"
   | "yiq"
   | "ypbpr";
+

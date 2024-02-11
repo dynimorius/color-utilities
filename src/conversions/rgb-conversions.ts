@@ -38,6 +38,7 @@ import {
   RYB,
   SpaceData,
   TSL,
+  UVW,
   XYZ,
   YCbCr,
   YCoCg,
@@ -50,7 +51,7 @@ import {
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
-import { xyzToAdobeRgb, xyzToAppleRgb, xyzToBestRgb, xyzToBetaRgb, xyzToBruceRgb, xyzToCieRgb, xyzToColorMatchRgb, xyzToDonRgb4, xyzToEciRgbV2, xyzToEtkaSpacePs5, xyzToLab, xyzToLuv, xyzToNtscRgb, xyzToPalSecamRgb, xyzToProPhotoRgb, xyzToSmpteCRgb, xyzToWideGamutRgb } from "./xyz-conversions";
+import { xyzToAdobeRgb, xyzToAppleRgb, xyzToBestRgb, xyzToBetaRgb, xyzToBruceRgb, xyzToCieRgb, xyzToColorMatchRgb, xyzToDonRgb4, xyzToEciRgbV2, xyzToEtkaSpacePs5, xyzToLab, xyzToLuv, xyzToNtscRgb, xyzToPalSecamRgb, xyzToProPhotoRgb, xyzToSmpteCRgb, xyzToUvw, xyzToWideGamutRgb } from "./xyz-conversions";
 import {  yCbCrBT601ToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
@@ -922,7 +923,6 @@ export const sRgbToRyb = ({ red, green, blue }: RGB): RYB => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {TSL} - TSL values for a color
  */
-
 export const sRgbToTsl = ({ red, green, blue }: RGB): TSL => {
   const r_ = (red / (red + green + blue) || 0) - 1 / 3;
   const g_ = (green / (red + green + blue) || 0) - 1 / 3;
@@ -930,6 +930,18 @@ export const sRgbToTsl = ({ red, green, blue }: RGB): TSL => {
   const saturation = Math.sqrt((9 / 5) * (r_ * r_ + g_ * g_));
   const lightness = (red * 0.299 + green * 0.587 + blue * 0.114) / 255;
   return { tint, saturation, lightness };
+};
+
+/*******************************************************************
+ *                              UVW
+ * *****************************************************************/
+/**
+ * Converts a color form an sRGB space to UVW space
+ * @param {RBG} rgb sRBG values for a color
+ * @returns {UVW} - UVW values for a color
+ */
+export const sRgbToUvw = (rgb: RGB, ref: SpaceData): UVW => {
+  return xyzToUvw(sRgbToXyz(rgb));
 };
 
 /*******************************************************************

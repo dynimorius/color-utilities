@@ -9,9 +9,11 @@
 import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
-
+/*************************************************************
+ *                        CIE-L*ab
+ *************************************************************/
 /**
- * Converts a color from LAB color space to XYZ
+ * Converts a color from CIE-L*ab color space to XYZ
  * @param {LAB} - Lab color value
  * @returns {xyz} - xyz value
  */
@@ -34,7 +36,7 @@ const f = (num: number): number => {
 };
 
 /**
- * Converts a color from LAB color space to LCH(ab) color space
+ * Converts a color from CIE-L*ab color space to LCH(ab) color space
  * @param {LAB} - Lab color value
  * @returns {LCH} - LCH(ab) color value
  */
@@ -45,4 +47,16 @@ export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
   const chroma = Math.sqrt(a * a + b * b);
 
   return { lightness: luminance, chroma, hue };
+};
+
+/*************************************************************
+ *                        Hunter-Lab
+ *************************************************************/
+export const hunterLabToXyz = (
+  { luminance, a, b }: LAB,
+): XYZ => {
+  const y = Math.pow((luminance / 10) , 2);
+  const x = (((a / 17.5) * luminance) / 10 + y) / 1.02;
+  const z = -(((b / 7) * luminance) / 10 - y) / 0.847;
+  return { x, y, z };
 };

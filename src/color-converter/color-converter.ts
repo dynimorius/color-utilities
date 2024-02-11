@@ -11,19 +11,22 @@ import { ColorSpaceUnion, Spaces } from "../types/colors";
 
 /**
  * @description
- * A class used to compute and retrieve any of the available
- * color space.
+ * A class used to convert a color space in to another
  *  @param {Spaces} -space / type of color from which conversions are made
  *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
- *  @param {Spaces} - What information do we want back
+ *  @param {{ [key: string]: Function }} - a converter map
  */
 export abstract class ColorConverter {
-  abstract converterMap: { [key: string]: Function };
   color!: ColorSpaceUnion;
+  converterMap!: { [key: string]: Function };
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
+    converterMap: { [key: string]: Function }
   ) {
     this.color = checkAndFormat(space, color);
+    this.converterMap = converterMap;
   }
+
+  abstract get(converts: Spaces): ColorSpaceUnion;
 }

@@ -12,8 +12,6 @@ import {
   CMYK,
   CMYK_M,
   CMY_M,
-  HCL,
-  HCL_M,
   HCY,
   HCY_M,
   HSI,
@@ -119,17 +117,6 @@ const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
   };
 };
 
-/**
- * Checks if all HCL values are numeric
- * converts from HCL_M to HCL if needed
- * @param {HCL | HCL_M} color - color data
- * @returns {HCL} returns back the same color
- * @throws Color data is incorrect
- */
-const hclColorCheck = (color: HCL | HCL_M): HCL => {
-  const values = Object.values(colorCheck(color));
-  return { hue: values[0], chroma: values[1], luminance: values[2] };
-};
 
 /**
  * Checks if all HCY values are numeric
@@ -420,7 +407,6 @@ const yuvColorCheck = (color: YUV ): YUV  => {
 const colorCheckerMap: ColorCheckers = {
   cmy: cmyColorCheck,
   cmyk: cmykColorCheck,
-  hcl: hclColorCheck,
   hcy: hcyColorCheck,
   hex: hexColorCheck,
   hsi: hsiColorCheck,
