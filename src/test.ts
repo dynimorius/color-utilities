@@ -1,3 +1,4 @@
+import { Color } from "./color/color";
 import { lmsToXyz } from "./conversions/lms-conversions";
 import {
   CMYK,
@@ -12,14 +13,13 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { xyzToLsm } from "./public_api";
-import { ColorResolver } from "./resolvers/color-resolver/color-resolver";
+import { RgbResolver, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
 let pass = 0;
 let fail = 0;
 
 const testColor = { red: 238, green: 200, blue: 27 };
 // const testColor = { red: 217, green: 122, blue: 37 };
-const checkColor = new ColorResolver("rgb", testColor);
+const checkColor = new Color("rgb", testColor);
 console.log(checkColor.data, `\n\n\n`);
 
 const checkRgb = (rgb: RGB): boolean => {
@@ -34,96 +34,96 @@ const diff = (n1: number, n2: number): boolean => {
   return n1 - n2 < -0.5 || n1 - n2 > 0.5;
 };
 
-const color2 = new ColorResolver("rgb", testColor);
+const color2 = new Color("rgb", testColor);
 
-const color3 = new ColorResolver("hex", `#${checkColor.data?.hex as string}`);
+const color3 = new Color("hex", `#${checkColor.data?.hex as string}`);
 
-const color5 = new ColorResolver("hsl", checkColor.data?.hsl as HSL);
+const color5 = new Color("hsl", checkColor.data?.hsl as HSL);
 
-const color6 = new ColorResolver("hsv", checkColor.data?.hsv as HSV);
+const color6 = new Color("hsv", checkColor.data?.hsv as HSV);
 
-const color7 = new ColorResolver("hwb", checkColor.data?.hwb as HWB);
+const color7 = new Color("hwb", checkColor.data?.hwb as HWB);
 
-const color8 = new ColorResolver("luv", checkColor.data?.luv as LUV);
+const color8 = new Color("luv", checkColor.data?.luv as LUV);
 
-const color9 = new ColorResolver("lab", checkColor.data?.lab as LAB);
+const color9 = new Color("lab", checkColor.data?.lab as LAB);
 
-const color10 = new ColorResolver("lch_ab", checkColor.data?.lch_ab as LCH);
+const color10 = new Color("lch_ab", checkColor.data?.lch_ab as LCH);
 
-const color11 = new ColorResolver("lch_uv", checkColor.data?.lch_uv as LCH);
+const color11 = new Color("lch_uv", checkColor.data?.lch_uv as LCH);
 
-const color12 = new ColorResolver("ryb", checkColor.data?.ryb as RYB);
+const color12 = new Color("ryb", checkColor.data?.ryb as RYB);
 
-const color13 = new ColorResolver("xyz", checkColor.data?.xyz as XYZ);
+const color13 = new Color("xyz", checkColor.data?.xyz as XYZ);
 
-const color14 = new ColorResolver("xyy", checkColor.data?.xyy as XYY);
+const color14 = new Color("xyy", checkColor.data?.xyy as XYY);
 
-const color15 = new ColorResolver("cmyk", checkColor.data?.cmyk as CMYK);
+const color15 = new Color("cmyk", checkColor.data?.cmyk as CMYK);
 
-const color16 = new ColorResolver(
+const color16 = new Color(
   "adobe_98_rgb",
   checkColor.data?.adobe_98_rgb as RGB
 );
 
-const color17 = new ColorResolver(
+const color17 = new Color(
   "apple_rgb",
   checkColor.data?.apple_rgb as RGB
 );
 
-const color18 = new ColorResolver("best_rgb", checkColor.data?.best_rgb as RGB);
+const color18 = new Color("best_rgb", checkColor.data?.best_rgb as RGB);
 
-const color19 = new ColorResolver("beta_rgb", checkColor.data?.beta_rgb as RGB);
+const color19 = new Color("beta_rgb", checkColor.data?.beta_rgb as RGB);
 
-const color20 = new ColorResolver(
+const color20 = new Color(
   "bruce_rgb",
   checkColor.data?.bruce_rgb as RGB
 );
 
-const color21 = new ColorResolver("cie_rgb", checkColor.data?.cie_rgb as RGB);
+const color21 = new Color("cie_rgb", checkColor.data?.cie_rgb as RGB);
 
-const color22 = new ColorResolver(
+const color22 = new Color(
   "color_match_rgb",
   checkColor.data?.color_match_rgb as RGB
 );
 
-const color23 = new ColorResolver(
+const color23 = new Color(
   "don_rgb_4",
   checkColor.data?.don_rgb_4 as RGB
 );
 
-const color24 = new ColorResolver(
+const color24 = new Color(
   "eci_rgb_v2",
   checkColor.data?.eci_rgb_v2 as RGB
 );
 
-const color25 = new ColorResolver(
+const color25 = new Color(
   "etka_space_ps5",
   checkColor.data?.etka_space_ps5 as RGB
 );
 
-const color26 = new ColorResolver("ntsc_rgb", checkColor.data?.ntsc_rgb as RGB);
+const color26 = new Color("ntsc_rgb", checkColor.data?.ntsc_rgb as RGB);
 
-const color27 = new ColorResolver(
+const color27 = new Color(
   "pal_secam_rgb",
   checkColor.data?.pal_secam_rgb as RGB
 );
 
-const color28 = new ColorResolver(
+const color28 = new Color(
   "pro_photo_rgb",
   checkColor.data?.pro_photo_rgb as RGB
 );
 
-const color29 = new ColorResolver(
+const color29 = new Color(
   "smpte_c_rgb",
   checkColor.data?.smpte_c_rgb as RGB
 );
 
-const color30 = new ColorResolver(
+const color30 = new Color(
   "wide_gamut_rgb",
   checkColor.data?.wide_gamut_rgb as RGB
 );
 
-const printData = (colors: ColorResolver[]) => {
+const printData = (colors: Color[]) => {
   colors.forEach((color) => {
     const name = Object.keys(color.data)[0].replace(/_/g, " ").toUpperCase();
     if (!checkRgb(color.data.rgb as RGB)) {
@@ -240,6 +240,9 @@ printData([
 
 // console.log(newColor5.blendData);
 
-const lsm = xyzToLsm(checkColor.data?.xyz as XYZ);
-console.log(lsm);
-console.log(lmsToXyz(lsm));
+// const lsm = xyzToLsm(checkColor.data?.xyz as XYZ);
+// console.log(lsm);
+// console.log(lmsToXyz(lsm));
+// const rgbRes = new RgbResolver(testColor, "ycbcr_BT2020");
+// console.log(rgbRes)
+// console.log(sRgbToAdobeRgb(testColor))

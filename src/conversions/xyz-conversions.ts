@@ -11,7 +11,7 @@ import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import { XyzToRgbOptions } from "../interfaces/converter-options";
 
-import { VON_KRIES_CONE_RESPONCE_DOMAINS } from "../constants/transform-matrixes";
+import { VON_KRIES_COEFFICIENT_MATRICES } from "../constants/transform-matrixes";
 import {
   D65toCAdaptation,
   D65toD50Adaptation,
@@ -391,7 +391,7 @@ export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
  * @returns {LMS} - lms values
  */
 export const xyzToLsm = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
-  if (!matrix) matrix = VON_KRIES_CONE_RESPONCE_DOMAINS.MA;
+  if (!matrix) matrix = VON_KRIES_COEFFICIENT_MATRICES.MA;
   return matrixXyzMultiAsSpace(matrix, xyz, [
     "long",
     "medium",

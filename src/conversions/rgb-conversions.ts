@@ -50,7 +50,7 @@ import {
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
-import { xyzToAdobeRgb, xyzToLab, xyzToLuv } from "./xyz-conversions";
+import { xyzToAdobeRgb, xyzToAppleRgb, xyzToBestRgb, xyzToBetaRgb, xyzToBruceRgb, xyzToCieRgb, xyzToColorMatchRgb, xyzToDonRgb4, xyzToEciRgbV2, xyzToEtkaSpacePs5, xyzToLab, xyzToLuv, xyzToNtscRgb, xyzToPalSecamRgb, xyzToProPhotoRgb, xyzToSmpteCRgb, xyzToWideGamutRgb } from "./xyz-conversions";
 import {  yCbCrBT601ToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
@@ -196,7 +196,7 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - Adobe 98 RGB values
  */
-export const rgbToAdobeRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+export const sRgbToAdobeRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
   return xyzToAdobeRgb(xyz);
 };
 
@@ -213,6 +213,18 @@ export const adobeRgbToXyz = (rgb: RGB): XYZ => {
  *                          APPLE RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to Apple RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Apple RGB values
+ */
+export const sRgbToAppleRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToAppleRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in Apple RGB space
  * @param {RBG} rgb Apple RGB values
  * @returns {XYZ} - xyz values
@@ -224,6 +236,18 @@ export const appleRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                           BEST RGB
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to Best RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Best RGB values
+ */
+export const sRgbToBestRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToBestRgb(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in Best RGB space
  * @param {RBG} rgb Best RGB values
@@ -237,6 +261,18 @@ export const bestRgbToXyz = (rgb: RGB): XYZ => {
  *                           BETA RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to Beta RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Beta RGB values
+ */
+export const sRgbToBetaRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToBetaRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in Beta RGB space
  * @param {RBG} rgb Beta RGB values
  * @returns {XYZ} - xyz values
@@ -248,6 +284,18 @@ export const betaRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                          BRUCE RGB
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to Bruce RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Bruce RGB values
+ */
+export const sRgbToBruceRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToBruceRgb(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in Bruce RGB space
  * @param {RBG} rgb Bruce RGB values
@@ -261,6 +309,18 @@ export const bruceRgbToXyz = (rgb: RGB): XYZ => {
  *                            CIE RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to CIE RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - CIE RGB values
+ */
+export const sRgbToCieRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToCieRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in CIE RGB space
  * @param {RBG} rgb CIE RGB values
  * @returns {XYZ} - xyz values
@@ -272,6 +332,18 @@ export const cieRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                        COLOR MATCH RGB
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to Color Match RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Color Match RGB values
+ */
+export const sRgbToColorMatchRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToColorMatchRgb(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in Color Match RGB space
  * @param {RBG} rgb Color Match RGB values
@@ -285,6 +357,18 @@ export const colorMatchRgbToXyz = (rgb: RGB): XYZ => {
  *                           DON RGB 4
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to Don RGB 4 space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Don RGB 4 values
+ */
+export const sRgbToColorDonRgb4 = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToDonRgb4(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in DON RGB 4 space
  * @param {RBG} rgb DON RGB 4 values
  * @returns {XYZ} - xyz values
@@ -296,6 +380,18 @@ export const donRgb4ToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                        ETKA SPACE PS5
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to ETKA SPACE PS5 space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - ETKA SPACE PS5 values
+ */
+export const sRgbToEtkaSpacePs5 = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToEtkaSpacePs5(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in Etka Space PS5 space
  * @param {RBG} rgb Etka Space PS5 values
@@ -309,6 +405,18 @@ export const etkaSpacePs5ToXyz = (rgb: RGB): XYZ => {
  *                           NTSC RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to NTSC RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - NTSC RGB values
+ */
+export const sRgbToNtscRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToNtscRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in NTSC RGB space
  * @param {RBG} rgb NTSC RGB values
  * @returns {XYZ} - xyz values
@@ -320,6 +428,18 @@ export const ntscRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                        PAL/SECAM RGB
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to PAL/SECAM RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - PAL/SECAM RGB values
+ */
+export const sRgbToPalSecamRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToPalSecamRgb(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in PAL/SECAM RGB space
  * @param {RBG} rgb PAL/SECAM RGB values
@@ -333,6 +453,18 @@ export const palSecamRgbToXyz = (rgb: RGB): XYZ => {
  *                        PRO PHOTO RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to Pro Photo RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Pro Photo RGB values
+ */
+export const sRgbToProPhotoRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToProPhotoRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in ProPhoto RGB space
  * @param {RBG} rgb ProPhoto RGB values
  * @returns {XYZ} - xyz values
@@ -344,6 +476,18 @@ export const proPhotoRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                          SMPTE-C RGB
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to SMPTE-C RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - SMPTE-C RGB values
+ */
+export const sRgbToSmpteCRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToSmpteCRgb(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in SMPTE-C RGB space
  * @param {RBG} rgb SMPTE-C RGB values
@@ -357,6 +501,18 @@ export const smpteCRgbToXyz = (rgb: RGB): XYZ => {
  *                        WIDE GAMUT RGB
  * *****************************************************************/
 /**
+ * Converts a given color from an sRBG space to Wide Gamut RGB space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - Wide Gamut RGB values
+ */
+export const sRgbToWideGamutRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToWideGamutRgb(xyz);
+};
+
+/**
  * Gets XYZ values for a given color in Wide Gamut RGB space
  * @param {RBG} rgb Wide Gamut RGB values
  * @returns {XYZ} - xyz values
@@ -368,6 +524,18 @@ export const wideGamutRgbToXyz = (rgb: RGB): XYZ => {
 /*******************************************************************
  *                         ECI RGB V2
  * *****************************************************************/
+/**
+ * Converts a given color from an sRBG space to Color ECI RGB V2 space
+ * that RGB Space utilizing inverse gamma companding
+ * @param {RBG} rgb sRBG values
+ * @param {XYZ} xyz xyz values
+ *                  (optional - they will otherwise be computed out of the rgb values)
+ * @returns {RGB} - ECI RGB V2 values
+ */
+export const sRgbToEciRgbV2 = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+  return xyzToEciRgbV2(xyz);
+};
+
 /**
  * Gets XYZ values for a given color in ECI RGB V2 space
  * @param {RBG} rgb ECI RGB V2 values for a color

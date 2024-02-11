@@ -6,6 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { colorConverters, toRgbConverters } from "../convertor-map";
 import { checkAndFormat } from "../helpers/color-checks";
 import { BlendData, BlenderOptions } from "../interfaces/blender.interface";
 import {
@@ -25,10 +26,6 @@ import {
   RYB_M,
   XYZ,
 } from "../public_api";
-import {
-  colorConverters,
-  toRgbConverters,
-} from "../resolvers/color-resolver/convertor-map";
 import { BlenderColor } from "../types/colors";
 
 /**

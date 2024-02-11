@@ -1,3 +1,4 @@
+export * from "./color/color";
 export * from "./conversions/ansi-conversions";
 export * from "./conversions/cmyk-conversions";
 export * from "./conversions/hcl-conversions";
@@ -16,7 +17,8 @@ export * from "./conversions/xyy-conversions";
 export * from "./conversions/xyz-conversions";
 export * from "./helpers/chromatic-adaptation";
 export * from "./interfaces/color-spaces.interface";
-export * from "./resolvers/color-resolver/color-resolver";
 export * from "./utilities/blender";
 export * from "./utilities/harmony";
 export * from "./utilities/mixer";
+export * from "./color-resolver/color-resolver";
+export * from "./color-resolver/rgb-resolver";

@@ -6,34 +6,32 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { RGB, XYZ } from "../../interfaces/color-spaces.interface";
 import {
   colorConverters,
   toRgbConverters,
   toXyzConverters,
-} from "./convertor-map";
+} from "../convertor-map";
+import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
-import { DefaultResolv } from "../../constants/init-spaces";
-import { sRgbToXyz } from "../../conversions/rgb-conversions";
-import { xyzToSrgb } from "../../conversions/xyz-conversions";
-import { checkAndFormat } from "../../helpers/color-checks";
-import { ColorExtendedData } from "../../interfaces/color-data.interface";
+import { DefaultResolv } from "../constants/init-spaces";
+import { sRgbToXyz } from "../conversions/rgb-conversions";
+import { xyzToSrgb } from "../conversions/xyz-conversions";
+import { checkAndFormat } from "../helpers/color-checks";
+import { ColorExtendedData } from "../interfaces/color-data.interface";
 import {
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
-} from "../../interfaces/converters.interface";
-import { ColorSpaceUnion, Spaces } from "../../types/colors";
+} from "../interfaces/converters.interface";
+import { ColorSpaceUnion, Spaces } from "../types/colors";
 
 /**
- * @description
- * A class used to compute and retrieve any of the available
- * color space.
+ *  @description A class representing a color, and its values in diferente spaces
  *  @param {Spaces} -space / type of color from which conversions are made
  *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
  *  @param {(Spaces | "web_safe")[]} - What information do we want back
  */
-export class ColorResolver {
+export class Color {
   data: ColorExtendedData = {};
 
   constructor(

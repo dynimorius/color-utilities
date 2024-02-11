@@ -6,19 +6,19 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { ansi16ToRgb, ansi256ToRgb } from "../../conversions/ansi-conversions";
-import { cmyToSRgb } from "../../conversions/cmy-conversions";
-import { cmykToRgb } from "../../conversions/cmyk-conversions";
-import { hcyToSrgb } from "../../conversions/hcy-conversions";
-import { hexToRgb } from "../../conversions/hex-conversions";
-import { hsiToSrgb } from "../../conversions/hsi-conversions";
-import { hslToRgb } from "../../conversions/hsl-conversions";
-import { hsvToRgb } from "../../conversions/hsv-conversions";
-import { hwbToRgb } from "../../conversions/hwb-conversions";
-import { labToXyz } from "../../conversions/lab-conversions";
-import { lch_abToXyz, lch_uvToXyz } from "../../conversions/lch-conversions";
-import { lmsToXyz } from "../../conversions/lms-conversions";
-import { luvToXyz } from "../../conversions/luv-conversions";
+import { ansi16ToRgb, ansi256ToRgb } from "./conversions/ansi-conversions";
+import { cmyToSRgb } from "./conversions/cmy-conversions";
+import { cmykToRgb } from "./conversions/cmyk-conversions";
+import { hcyToSrgb } from "./conversions/hcy-conversions";
+import { hexToRgb } from "./conversions/hex-conversions";
+import { hsiToSrgb } from "./conversions/hsi-conversions";
+import { hslToRgb } from "./conversions/hsl-conversions";
+import { hsvToRgb } from "./conversions/hsv-conversions";
+import { hwbToRgb } from "./conversions/hwb-conversions";
+import { labToXyz } from "./conversions/lab-conversions";
+import { lch_abToXyz, lch_uvToXyz } from "./conversions/lch-conversions";
+import { lmsToXyz } from "./conversions/lms-conversions";
+import { luvToXyz } from "./conversions/luv-conversions";
 import {
   adobeRgbToXyz,
   appleRgbToXyz,
@@ -58,12 +58,12 @@ import {
   sRgbToYiq,
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
-} from "../../conversions/rgb-conversions";
-import { rybToRgb } from "../../conversions/ryb-conversions";
-import { tslToSrgb } from "../../conversions/tsl-conversions";
-import { uvwToXyz } from "../../conversions/uvw-conversions";
-import { xvYccToSrgb } from "../../conversions/xvycc-conversions";
-import { xyYToXyz } from "../../conversions/xyy-conversions";
+} from "./conversions/rgb-conversions";
+import { rybToRgb } from "./conversions/ryb-conversions";
+import { tslToSrgb } from "./conversions/tsl-conversions";
+import { uvwToXyz } from "./conversions/uvw-conversions";
+import { xvYccToSrgb } from "./conversions/xvycc-conversions";
+import { xyYToXyz } from "./conversions/xyy-conversions";
 import {
   xyzToAdobeRgb,
   xyzToAppleRgb,
@@ -86,18 +86,18 @@ import {
   xyzToUvw,
   xyzToWideGamutRgb,
   xyzToXyY,
-} from "../../conversions/xyz-conversions";
-import { ycCbcCrcToSrgb } from "../../conversions/yccbccrc-conversions";
-import { yCgCoToSrgb } from "../../conversions/ycocg-conversions";
-import { yDbDrToSrgb } from "../../conversions/ydbdr-conversions";
-import { yiqToSrgb } from "../../conversions/yiq-conversions";
-import { yPbPrToSrgb } from "../../conversions/ypbpr-conversions";
-import { isWebSafeRGB } from "../../helpers/formats-and-checks";
+} from "./conversions/xyz-conversions";
+import { ycCbcCrcToSrgb } from "./conversions/yccbccrc-conversions";
+import { yCgCoToSrgb } from "./conversions/ycocg-conversions";
+import { yDbDrToSrgb } from "./conversions/ydbdr-conversions";
+import { yiqToSrgb } from "./conversions/yiq-conversions";
+import { yPbPrToSrgb } from "./conversions/ypbpr-conversions";
+import { isWebSafeRGB } from "./helpers/formats-and-checks";
 import {
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
-} from "../../interfaces/converters.interface";
+} from "./interfaces/converters.interface";
 
 /**
  * Map of color converter paired with the
@@ -136,7 +136,7 @@ export const colorConverters: ColorConverters = {
   rgb: { fun: xyzToSrgb, from: "xyz" },
   ryb: { fun: sRgbToRyb, from: "rgb" },
   tsl: { fun: sRgbToTsl, from: "rgb" },
-  uvw: { fun: xyzToUvw , from: "xyz" },
+  uvw: { fun: xyzToUvw, from: "xyz" },
   smpte_c_rgb: { fun: xyzToSmpteCRgb, from: "xyz" },
   web_safe: { fun: isWebSafeRGB, from: "rgb" },
   wide_gamut_rgb: { fun: xyzToWideGamutRgb, from: "xyz" },
