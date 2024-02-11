@@ -7,7 +7,6 @@
  */
 
 import { checkAndFormat } from "../helpers/color-checks";
-import { RGBResolverMap } from "../interfaces/resolver.interface";
 import { ColorSpaceUnion, Spaces } from "../types/colors";
 
 /**
@@ -18,17 +17,13 @@ import { ColorSpaceUnion, Spaces } from "../types/colors";
  *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
  *  @param {Spaces} - What information do we want back
  */
-export class ColorResolver {
-  resolution!: ColorSpaceUnion;
-
+export abstract class ColorConverter {
+  abstract converterMap: { [key: string]: Function };
+  color!: ColorSpaceUnion;
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: any,
-    resolverMap: { [key: string]: Function }
   ) {
-    console.log(resolverMap)
-    color = checkAndFormat(space, color);
-    this.resolution = resolverMap[resolv as keyof RGBResolverMap](color);
+    this.color = checkAndFormat(space, color);
   }
 }

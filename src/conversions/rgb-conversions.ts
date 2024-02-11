@@ -7,7 +7,7 @@
  */
 
 import { CB_CR_CONVERSION_MATRICES } from "../constants/cb-cr-conversions-matrices";
-import { Nb, Nr, Pb, Pr } from "../constants/conditionals";
+import { Nb, Nr } from "../constants/conditionals";
 import { SPACE_DATASETS } from "../constants/space-datasets";
 import {
   CtoD65Adaptation,

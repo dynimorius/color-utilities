@@ -13,7 +13,7 @@ import {
   XYY,
   XYZ,
 } from "./interfaces/color-spaces.interface";
-import { RgbResolver, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
+import { RgbConverter, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
 let pass = 0;
 let fail = 0;
 
@@ -243,6 +243,6 @@ printData([
 // const lsm = xyzToLsm(checkColor.data?.xyz as XYZ);
 // console.log(lsm);
 // console.log(lmsToXyz(lsm));
-// const rgbRes = new RgbResolver(testColor, "ycbcr_BT2020");
-// console.log(rgbRes)
+const rgb = new RgbConverter(testColor);
+console.log(rgb.get("ycbcr_BT2020"))
 // console.log(sRgbToAdobeRgb(testColor))
