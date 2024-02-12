@@ -413,6 +413,7 @@ const colorCheckerMap: ColorCheckers = {
   hsl: hslColorCheck,
   hsv: hsvColorCheck,
   hwb: hwbColorCheck,
+  hunter_lab: labColorCheck,
   lab: labColorCheck,
   lch: lchColorCheck,
   lms: lmsColorCheck,

@@ -138,6 +138,7 @@ export interface ColorCheckers {
   hsl: Function;
   hsv: Function;
   hwb: Function;
+  hunter_lab: Function;
   lab: Function;
   lch: Function;
   lms: Function;

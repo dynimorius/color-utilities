@@ -16,6 +16,7 @@ import {
   HWB,
   LAB,
   LCH,
+  LMS,
   LUV,
   RGB,
   RYB,
@@ -62,6 +63,7 @@ export interface ColorData {
   lch_ab?: LCH;
   lch_uv?: LCH;
   luv?: LUV;
+  lms?: LMS;
   ntsc_rgb?: RGB;
   pal_secam_rgb?: RGB;
   pro_photo_rgb?: RGB;

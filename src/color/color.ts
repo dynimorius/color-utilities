@@ -44,7 +44,7 @@ export class Color {
     this[space as keyof this] = color as any;
     if (
       !this.rgb &&
-      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|ryb|xyz|yc|yd|yig|yp/g).exec(space)
+      !!new RegExp(/hex|cmy|sl|hc|hs|hwb|ryb|xyz|yc|yd|yiq|yp/g).exec(space)
     ) {
       this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
       if (this.xyz) this.xyz = sRgbToXyz(this.rgb);
@@ -52,7 +52,7 @@ export class Color {
 
     if (
       !this.xyz &&
-      !!new RegExp(/rgb|lab|luv|lch|ps5|xyy/g).exec(space)
+      !!new RegExp(/rgb|ab|uv|lch|lms|ps5|xyy/g).exec(space)
     ) {
       this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.rgb) this.rgb = xyzToSrgb(this.xyz);

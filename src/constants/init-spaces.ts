@@ -34,6 +34,7 @@ export const DefaultResolv: (Spaces | "web_safe")[] = [
    "lch_ab",
    "lch_uv",
    "luv",
+   "lms",
    "ntsc_rgb",
    "pal_secam_rgb",
    "pro_photo_rgb",
