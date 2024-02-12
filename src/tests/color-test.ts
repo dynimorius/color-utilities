@@ -1,7 +1,5 @@
-import { xyzToBetaRgb, xyzToHunterLab } from './conversions/xyz-conversions';
-import { Color } from "./color/color";
-import { lmsToXyz } from "./conversions/lms-conversions";
-import { uvwToXyz } from "./conversions/uvw-conversions";
+
+import { Color } from "../color/color";
 import {
   CMYK,
   HSL,
@@ -14,13 +12,13 @@ import {
   RYB,
   XYY,
   XYZ,
-} from "./interfaces/color-spaces.interface";
-import { RgbConverter, hunterLabToXyz, sRgbToAdobeRgb, xyzToLsm } from "./public_api";
+  YCbCr,
+} from "../interfaces/color-spaces.interface";
 let pass = 0;
 let fail = 0;
 
 const testColor = { red: 238, green: 200, blue: 27 };
-// const testColor = { red: 217, green: 122, blue: 37 };
+
 const checkColor = new Color("rgb", testColor);
 console.log(checkColor.data, `\n\n\n`);
 
@@ -125,6 +123,11 @@ const color30 = new Color(
   checkColor.data?.wide_gamut_rgb as RGB
 );
 
+const color31 = new Color(
+  "ycbcr",
+  checkColor.data?.ycbcr as YCbCr
+);
+
 const printData = (colors: Color[]) => {
   colors.forEach((color) => {
     const name = Object.keys(color.data)[0].replace(/_/g, " ").toUpperCase();
@@ -195,60 +198,8 @@ printData([
   color28,
   color29,
   color30,
+  color31,
 ]);
 
-// console.log(squareHarmony(checkColor.data.hsl as HSL, true));
-// console.log(
-//   blend(
-//     { red: 255, green: 237, blue: 0 },
-//     { red: 255, green: 0, blue: 0 },
-//     0.67
-//   )
-// );
 
-// const newColor = new Blender(
-//   { red: 255, green: 237, blue: 0 },
-//   { r: 255, g: 0, b: 0 },
-//   { weight: 0.67 }
-// );
 
-// console.log(newColor.blendData);
-
-// const newColor2 = new Blender("#FFED00", "#FF0000", { weight: 0.67 });
-
-// console.log(newColor2.color);
-
-// const newColor3 = new Blender(
-//   { c: 0, m: 7, y: 100, k: 0 },
-//   { c: 0, m: 100, y: 100, k: 0 },
-//   { weight: 0.67 }
-// );
-
-// console.log(newColor3.color);
-
-// const newColor4 = new Blender(
-//   { h: 56, s: 100, l: 50 },
-//   { h: 0, s: 100, l: 50 },
-//   { weight: 0.67 }
-// );
-
-// console.log(newColor4.blendData);
-
-// const newColor5 = new Blender(
-//   { c: 0, m: 7, y: 100, k: 0 },
-//   { h: 0, s: 100, v: 100 },
-//   { weight: 0.67, returnType: 'hex' }
-// );
-
-// console.log(newColor5.blendData);
-
-// const lsm = xyzToLsm(checkColor.data?.xyz as XYZ);
-// console.log(lsm);
-// console.log(lmsToXyz(lsm));
-const rgb = new RgbConverter(testColor);
-console.log(rgb.get('uvw'))
-console.log(uvwToXyz(rgb.get('uvw')))
-console.log(color2.data.xyz)
-// console.log(xyzToHunterLab({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }));
-// console.log(hunterLabToXyz(xyzToHunterLab({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 })))
-// console.log(sRgbToAdobeRgb(testColor))

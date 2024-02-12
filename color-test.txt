@@ -1,4 +1,4 @@
-{
+Color {
   rgb: { red: 238, green: 200, blue: 27, inGamut: true },
   xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
   adobe_98_rgb: {
@@ -82,6 +82,11 @@
   },
   hsl: { hue: 49, saturation: 86, lightness: 52 },
   hsv: { hue: 49, saturation: 89, value: 93 },
+  hunter_lab: {
+    luminance: 77.18048489634515,
+    a: -5.284409804901793,
+    b: 46.66785507628632
+  },
   hwb: {
     hue: 49,
     whiteness: 10.588235294117647,
@@ -121,11 +126,6 @@
     blue: 68.19442964500284,
     inGamut: true
   },
-  rgb_0_1: {
-    red: 0.9333333333333333,
-    green: 0.7843137254901961,
-    blue: 0.10588235294117647
-  },
   ryb: { red: 63.346820809248555, yellow: 228, blue: 17 },
   tsl: {
     tint: 0.4209301051592921,
@@ -144,7 +144,7 @@
     blue: 70.94351065678897,
     inGamut: true
   },
-  uvw: { u: 1.65671947075458, v: 4.176973451583952, w: 4.035120804472417 },
+  uvw: { u: 33.10727740716477, v: 55.647408920701544, w: 80.63638183973504 },
   xvycc: {
     Y: 171.08716023528632,
     Cb: 168.7454330980578,
@@ -358,135 +358,10 @@ WIDE GAMUT RGB
 ----------------------------------------------
 
 
- Passed: 23 
+YCBCR
+ ----------------------------------------------
+ Conversion passed.
+
+ Passed: 24 
  Failed: 5
 
-{
-  adobe_98_rgb: undefined,
-  apple_rgb: undefined,
-  ansi16: undefined,
-  ansi256: undefined,
-  best_rgb: undefined,
-  beta_rgb: undefined,
-  bruce_rgb: undefined,
-  cie_rgb: undefined,
-  color_match_rgb: undefined,
-  cmy: undefined,
-  cmyk: undefined,
-  don_rgb_4: undefined,
-  etka_space_ps5: undefined,
-  eci_rgb_v2: undefined,
-  hcy: undefined,
-  hex: undefined,
-  hsi: undefined,
-  hsl: undefined,
-  hsv: undefined,
-  hwb: undefined,
-  lab: undefined,
-  lch_ab: undefined,
-  lch_uv: undefined,
-  luv: undefined,
-  ntsc_rgb: undefined,
-  pal_secam_rgb: undefined,
-  pro_photo_rgb: undefined,
-  ryb: undefined,
-  smpte_c_rgb: undefined,
-  tsl: undefined,
-  wide_gamut_rgb: undefined,
-  ycbcr_BT601: undefined,
-  ycbcr_BT709: undefined,
-  ycbcr_BT2020: undefined,
-  ydbdr: undefined,
-  ypbpr: undefined,
-  yccbccrc: undefined,
-  ycgco: undefined,
-  yiq: undefined,
-  xvycc: undefined,
-  xyz: undefined
-}
-{
-  adobe_98_rgb: undefined,
-  apple_rgb: undefined,
-  ansi16: undefined,
-  ansi256: undefined,
-  best_rgb: undefined,
-  beta_rgb: undefined,
-  bruce_rgb: undefined,
-  cie_rgb: undefined,
-  color_match_rgb: undefined,
-  cmy: undefined,
-  cmyk: undefined,
-  don_rgb_4: undefined,
-  etka_space_ps5: undefined,
-  eci_rgb_v2: undefined,
-  hcy: undefined,
-  hex: undefined,
-  hsi: undefined,
-  hsl: undefined,
-  hsv: undefined,
-  hwb: undefined,
-  lab: undefined,
-  lch_ab: undefined,
-  lch_uv: undefined,
-  luv: undefined,
-  ntsc_rgb: undefined,
-  pal_secam_rgb: undefined,
-  pro_photo_rgb: undefined,
-  ryb: undefined,
-  smpte_c_rgb: undefined,
-  tsl: undefined,
-  wide_gamut_rgb: undefined,
-  ycbcr_BT601: undefined,
-  ycbcr_BT709: undefined,
-  ycbcr_BT2020: undefined,
-  ydbdr: undefined,
-  ypbpr: undefined,
-  yccbccrc: undefined,
-  ycgco: undefined,
-  yiq: undefined,
-  xvycc: undefined,
-  xyz: undefined
-}
-{
-  adobe_98_rgb: undefined,
-  apple_rgb: undefined,
-  ansi16: undefined,
-  ansi256: undefined,
-  best_rgb: undefined,
-  beta_rgb: undefined,
-  bruce_rgb: undefined,
-  cie_rgb: undefined,
-  color_match_rgb: undefined,
-  cmy: undefined,
-  cmyk: undefined,
-  don_rgb_4: undefined,
-  etka_space_ps5: undefined,
-  eci_rgb_v2: undefined,
-  hcy: undefined,
-  hex: undefined,
-  hsi: undefined,
-  hsl: undefined,
-  hsv: undefined,
-  hwb: undefined,
-  lab: undefined,
-  lch_ab: undefined,
-  lch_uv: undefined,
-  luv: undefined,
-  ntsc_rgb: undefined,
-  pal_secam_rgb: undefined,
-  pro_photo_rgb: undefined,
-  ryb: undefined,
-  smpte_c_rgb: undefined,
-  tsl: undefined,
-  wide_gamut_rgb: undefined,
-  ycbcr_BT601: undefined,
-  ycbcr_BT709: undefined,
-  ycbcr_BT2020: undefined,
-  ydbdr: undefined,
-  ypbpr: undefined,
-  yccbccrc: undefined,
-  ycgco: undefined,
-  yiq: undefined,
-  xvycc: undefined,
-  xyz: undefined
-}

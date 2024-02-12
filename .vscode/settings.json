@@ -1,0 +1,33 @@
+{
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "typescript.tsdk": "node_modules/typescript/lib",
+  "typescript.format.enable": true,
+  "typescript.disableAutomaticTypeAcquisition": true,
+  "typescript.check.npmIsInstalled": true,
+  "typescript.surveys.enabled": true,
+  "typescript.tsc.autoDetect": "on",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": false,
+  "editor.formatOnPaste": true
+
+  // "workbench.colorCustomizations": {
+  //   "activityBar.activeBackground": "#0b8aff",
+  //   "activityBar.activeBorder": "#ffbfe0",
+  //   "activityBar.background": "#0b8aff",
+  //   "activityBar.foreground": "#e7e7e7",
+  //   "activityBar.inactiveForeground": "#e7e7e799",
+  //   "activityBarBadge.background": "#ffbfe0",
+  //   "activityBarBadge.foreground": "#15202b",
+  //   "statusBar.background": "#0070d7",
+  //   "statusBar.foreground": "#e7e7e7",
+  //   "statusBarItem.hoverBackground": "#0b8aff",
+  //   "titleBar.activeBackground": "#0070d7",
+  //   "titleBar.activeForeground": "#e7e7e7",
+  //   "titleBar.inactiveBackground": "#0070d799",
+  //   "titleBar.inactiveForeground": "#e7e7e799",
+  //   "commandCenter.border": "#e7e7e799",
+  //   "sash.hoverBorder": "#0b8aff",
+  //   "statusBarItem.remoteBackground": "#0070d7",
+  //   "statusBarItem.remoteForeground": "#e7e7e7"
+  // }
+}

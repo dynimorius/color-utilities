@@ -17,7 +17,7 @@ import { DefaultResolv } from "../constants/init-spaces";
 import { sRgbToXyz } from "../conversions/rgb-conversions";
 import { xyzToSrgb } from "../conversions/xyz-conversions";
 import { checkAndFormat } from "../helpers/color-checks";
-import { ColorExtendedData } from "../interfaces/color-data.interface";
+import { ColorData } from "../interfaces/color-data.interface";
 import {
   ColorConverters,
   ToRGBConverters,
@@ -32,7 +32,8 @@ import { ColorSpaceUnion, Spaces } from "../types/colors";
  *  @param {(Spaces | "web_safe")[]} - What information do we want back
  */
 export class Color {
-  data: ColorExtendedData = {};
+  rgb!: RGB;
+  xyz!: XYZ;
 
   constructor(
     space: Spaces,
@@ -40,33 +41,38 @@ export class Color {
     resolv: (Spaces | "web_safe")[] = DefaultResolv
   ) {
     color = checkAndFormat(space, color);
-    this.data[space as keyof ColorExtendedData] = color as any;
+    this[space as keyof this] = color as any;
     if (
-      !this.data.rgb &&
-      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|ryb|xyz/g).exec(space)
+      !this.rgb &&
+      !!new RegExp(/hex|cmyk|hsl|hsv|hwb|ryb|xyz|yc|yd|yig|yp/g).exec(space)
     ) {
-      this.data.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
-      if (this.data.xyz) this.data.xyz = sRgbToXyz(this.data.rgb as RGB);
+      this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
+      if (this.xyz) this.xyz = sRgbToXyz(this.rgb);
     }
 
     if (
-      !this.data.xyz &&
+      !this.xyz &&
       !!new RegExp(/rgb|lab|luv|lch|ps5|xyy/g).exec(space)
     ) {
-      this.data.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
-      if (!this.data.rgb) this.data.rgb = xyzToSrgb(this.data.xyz as XYZ);
-    } else this.data.xyz = toXyzConverters.rgb(this.data.rgb);
+      this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
+      if (!this.rgb) this.rgb = xyzToSrgb(this.xyz);
+    } else this.xyz = toXyzConverters.rgb(this.rgb);
 
     for (let resolution of resolv) {
-      if (!this.data[resolution as keyof ColorExtendedData]) {
+      if (!this[resolution as keyof this]) {
         const fun = colorConverters[resolution as keyof ColorConverters]
           ?.fun as Function;
         const param = colorConverters[resolution as keyof ColorConverters]
           ?.from as string;
-        this.data[resolution as keyof ColorExtendedData] = fun(
-          this.data[param as keyof ColorExtendedData]
+        this[resolution as keyof this] = fun(
+          this[param as keyof this]
         );
       }
     }
   }
+
+  get data(): ColorData {
+    return this as ColorData;
+  }
 }
+

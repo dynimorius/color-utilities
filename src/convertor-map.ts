@@ -15,7 +15,7 @@ import { hsiToSrgb } from "./conversions/hsi-conversions";
 import { hslToRgb } from "./conversions/hsl-conversions";
 import { hsvToRgb } from "./conversions/hsv-conversions";
 import { hwbToRgb } from "./conversions/hwb-conversions";
-import { labToXyz } from "./conversions/lab-conversions";
+import { hunterLabToXyz, labToXyz } from "./conversions/lab-conversions";
 import { lch_abToXyz, lch_uvToXyz } from "./conversions/lch-conversions";
 import { lmsToXyz } from "./conversions/lms-conversions";
 import { luvToXyz } from "./conversions/luv-conversions";
@@ -95,6 +95,7 @@ import {
   xyzToDonRgb4,
   xyzToEciRgbV2,
   xyzToEtkaSpacePs5,
+  xyzToHunterLab,
   xyzToLab,
   xyzToLsm,
   xyzToLuv,
@@ -107,6 +108,7 @@ import {
   xyzToWideGamutRgb,
   xyzToXyY,
 } from "./conversions/xyz-conversions";
+import { yCbCrBT601ToSrgb } from "./conversions/ycbcr-jpeg-conversions";
 import { ycCbcCrcToSrgb } from "./conversions/yccbccrc-conversions";
 import { yCgCoToSrgb } from "./conversions/ycocg-conversions";
 import { yDbDrToSrgb } from "./conversions/ydbdr-conversions";
@@ -144,6 +146,7 @@ export const colorConverters: ColorConverters = {
   hsi: { fun: sRgbToHsi, from: "rgb" },
   hsl: { fun: sRgbToHsl, from: "rgb" },
   hsv: { fun: sRgbToHsv, from: "rgb" },
+  hunter_lab: { fun: xyzToHunterLab, from: "xyz" },
   hwb: { fun: sRgbToHwb, from: "rgb" },
   lab: { fun: xyzToLab, from: "xyz" },
   lch_ab: { fun: sRgbToLch_ab, from: "rgb" },
@@ -189,7 +192,7 @@ export const toRgbConverters: ToRGBConverters = {
   tsl: tslToSrgb,
   xvycc: xvYccToSrgb,
   xyz: xyzToSrgb,
-  ycbcr: sRgbToYCbCrBT601,
+  ycbcr: yCbCrBT601ToSrgb,
   yccbccrc: ycCbcCrcToSrgb,
   ycocg: yCgCoToSrgb,
   ydbdr: yDbDrToSrgb,
@@ -259,6 +262,7 @@ export const toXyzConverters: ToXyzConverters = {
   don_rgb_4: donRgb4ToXyz,
   eci_rgb_v2: eciRgbV2ToXyz,
   etka_space_ps5: etkaSpacePs5ToXyz,
+  hunter_lab: hunterLabToXyz,
   lab: labToXyz,
   luv: luvToXyz,
   lch_ab: lch_abToXyz,

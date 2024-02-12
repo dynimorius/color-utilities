@@ -29,6 +29,7 @@ export interface ColorConverters {
   hsi?: ConverterInfo;
   hsl?: ConverterInfo;
   hsv?: ConverterInfo;
+  hunter_lab?: ConverterInfo;
   hwb?: ConverterInfo;
   lab?: ConverterInfo;
   lch_ab?: ConverterInfo;
@@ -109,6 +110,7 @@ export interface ToXyzConverters {
   don_rgb_4: Function;
   eci_rgb_v2: Function;
   etka_space_ps5: Function;
+  hunter_lab: Function;
   lab: Function;
   lch_ab: Function;
   lch_uv: Function;

@@ -4,8 +4,8 @@
   "description": "Library to format, convert and work with colors.",
   "main": "index.js",
   "scripts": {
-    "test": "tsc --build && node ./lib/test.js",
-    "test-to-file": "tsc --build && node ./lib/test.js > test.txt"
+    "color-test": "tsc --build && node ./lib/tests/color-test.js",
+    "color-test-to-file": "tsc --build && node ./lib/tests/color-test.js > color-test.txt"
   },
   "repository": {
     "type": "git",
@@ -69,7 +69,7 @@
     "SMPTE-C RGB",
     "Wide Gamut RGB",
     "Web Safe",
-    "Out of Gamut"  
+    "Out of Gamut"
   ],
   "author": "Slavko Mihajlovic - dynimorius",
   "license": "ISC",
@@ -80,5 +80,8 @@
   "devDependencies": {
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3"
+  },
+  "dependencies": {
+    "npm": "^10.4.0"
   }
 }
