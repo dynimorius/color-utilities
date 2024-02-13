@@ -8,17 +8,7 @@
   ],
   "scripts": {
     "test": "jest",
-    "test-watch": "npx jest --watch",
-    "coverage": "vitest run --coverage",
-    "color-test": "tsc --build && node ./lib/tests/color-test.js",
-    "color-test-to-file": "tsc --build && node ./lib/tests/color-test.js > color-test.txt",
-    "blender-test": "tsc --build && node ./lib/tests/blender-test.js",
-    "blender-test-to-file": "tsc --build && node ./lib/tests/blender-test.js > blender-test.txt",
-    "converter-test": "tsc --build && node ./lib/tests/converter-test.js",
-    "converter-test-to-file": "tsc --build && node ./lib/tests/converter-test.js > converter-test.txt",
-    "harmony-test": "tsc --build && node ./lib/tests/harmony-test.js",
-    "harmony-test-to-file": "tsc --build && node ./lib/tests/harmony-test.js > harmony-test.txt",
-    "test-all": "npm run color-test > test.txt && npm run blender-test >> test.txt && npm run converter-test >> test.txt && npm run harmony-test >> test.txt"
+    "test-watch": "npx jest --watch"
   },
   "repository": {
     "type": "git",
