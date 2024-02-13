@@ -1,4 +1,4 @@
-import { CMY_M, RGB } from "../interfaces/color-spaces.interface";
+import { CMY, RGB } from "../interfaces/color-spaces.interface";
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -13,14 +13,14 @@ import { CMY_M, RGB } from "../interfaces/color-spaces.interface";
  * @returns {RGB} - sRGB values for a color
  */
 
-export const cmyToSRgb = ({ c, m, y }: CMY_M): RGB => {
-  c = c / 100;
-  m = m / 100;
-  y = y / 100;
+export const cmyToSRgb = ({ cyan, magenta, yellow }: CMY): RGB => {
+  cyan = cyan / 100;
+  magenta = magenta / 100;
+  yellow = yellow / 100;
 
   return {
-    red: (1 - c) * 255,
-    green: (1 - m) * 255,
-    blue: (1 - y) * 255,
+    red: (1 - cyan) * 255,
+    green: (1 - magenta) * 255,
+    blue: (1 - yellow) * 255,
   };
 };

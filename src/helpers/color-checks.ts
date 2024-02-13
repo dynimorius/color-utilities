@@ -391,17 +391,6 @@ const yPbPrColorCheck = (color: YPbPr): YPbPr => {
 };
 
 /**
- * Checks if all YUV values are numeric
- * @param {YUV} color - color data
- * @returns {YUV} returns back the same color
- * @throws Color data is incorrect
- */
-const yuvColorCheck = (color: YUV ): YUV  => {
-  const values = Object.values(color);
-  return { y: values[0], u: values[1], v: values[2] };
-};
-
-/**
  * Color checker function map
  */
 const colorCheckerMap: ColorCheckers = {
@@ -426,7 +415,7 @@ const colorCheckerMap: ColorCheckers = {
   xyy: xyYColorCheck,
   xyz: xyzColorCheck,
   ycbcr: yCbCrColorCheck,
-  yccbccrc: ycCbcCrcToSrgb,
+  yccbccrc: ycCbcCrcColorCheck,
   ycocg: yCoCgColorCheck,
   ydbdr: yDbDrColorCheck,
   yiq: yiqColorCheck,

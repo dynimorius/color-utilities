@@ -20,12 +20,7 @@ export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   const k = (n: number): number => (n + hue / 30) % 12;
   const a = saturation * Math.min(lightness, 1 - lightness);
   const f = (n: number): number =>
-    Math.round(
-      (lightness -
-        a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))) *
-        255
-    );
-
+    (lightness - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))) * 255;
   return { red: f(0), green: f(8), blue: f(4) };
 };
 

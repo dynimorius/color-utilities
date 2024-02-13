@@ -42,7 +42,6 @@ import {
   YDbDr,
   YIQ,
   YPbPr,
-  YUV,
   YcCbcCrc,
   xvYCC,
 } from "../interfaces/color-spaces.interface";
@@ -88,7 +87,6 @@ export type ColorSpaceUnion =
   | YDbDr
   | YIQ
   | YPbPr
-  | YUV
   | string;
 
 /**

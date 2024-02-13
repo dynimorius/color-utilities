@@ -16,7 +16,6 @@ import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 import { DefaultResolv } from "../constants/init-spaces";
 import { sRgbToXyz } from "../conversions/rgb-conversions";
 import { xyzToSrgb } from "../conversions/xyz-conversions";
-import { checkAndFormat } from "../helpers/color-checks";
 import { ColorData } from "../interfaces/color-data.interface";
 import {
   ColorConverters,
@@ -24,6 +23,7 @@ import {
   ToXyzConverters,
 } from "../interfaces/converters.interface";
 import { ColorSpaceUnion, Spaces } from "../types/colors";
+import { checkAndFormat } from "../helpers/color-checks";
 
 /**
  *  @description A class representing a color, and its values in diferente spaces
@@ -75,4 +75,6 @@ export class Color {
     return this as ColorData;
   }
 }
+
+
 
