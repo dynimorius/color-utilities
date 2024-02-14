@@ -104,7 +104,7 @@ export const rgbInvert = ({ red, green, blue }: RGB): RGB => ({
  * @param {number} blue value for blue
  * @returns {number, number, number}  max, min and delta values
  */
-export const getRange = (
+const getRange = (
   red: number,
   green: number,
   blue: number
