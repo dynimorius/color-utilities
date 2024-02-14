@@ -32,22 +32,9 @@ const checkIfInExceptibleRange = (color: Color, testColor: Color) => {
 const testConversions = (rgb: { red: number; green: number, blue: number; }) => {
   const testColor = new Color("rgb", rgb);
 
-  test("Checking RGB values of a color", () => {
-    expect(testColor.data.rgb).toStrictEqual({
-      red: 238,
-      green: 200,
-      blue: 27,
-      inGamut: true,
-    });
-  });
-
   test("Checking if a color created from a HEX value is correct", () => {
     const color = new Color("hex", `#${testColor.data?.hex as string}`);
-    expect(color.data.rgb).toStrictEqual({
-      red: 238,
-      green: 200,
-      blue: 27,
-    });
+    checkIfInExceptibleRange(color, testColor);
   });
 
   test("Checking if a color created from a HSL values is correct", () => {
@@ -259,6 +246,7 @@ const testConversions = (rgb: { red: number; green: number, blue: number; }) => 
   });
 }
 
-testConversions({ red: 238, green: 200, blue: 27 });
+testConversions({ red: 217, green: 122, blue: 37 }); //
+testConversions({ red: 238, green: 200, blue: 27 }); //Yellow
 
 

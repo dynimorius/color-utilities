@@ -178,11 +178,11 @@ export const sRgbToLuminance = ({ red, green, blue }: RGB): number =>
  * @param {RBG} rgb2 sRBG values for the second color
  * @returns {number} - distance
  */
-export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
+export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {  
   return (
-    (rgb1.red - rgb2.red) ** 2 +
-    (rgb1.green - rgb2.green) ** 2 +
-    (rgb1.blue - rgb2.blue) ** 2
+    Math.abs(rgb1.red - rgb2.red) +
+    Math.abs(rgb1.green - rgb2.green) +
+    Math.abs(rgb1.blue - rgb2.blue)
   );
 };
 
