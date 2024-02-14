@@ -6,7 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "outDir": "./lib",
+    "outDir": "./lib"
   },
-  "include": ["src/**/*"]
+  "include": ["src/**/*", "dis.ts"]
 }
