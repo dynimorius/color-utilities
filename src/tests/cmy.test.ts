@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> CMY conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(cmyToSRgb(sRgbToCmy(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> TSL conversion for ${colorName}`, () => {
     expect(
       comparativeDistance(tslToSrgb(sRgbToTsl(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

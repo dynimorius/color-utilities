@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> YIQ conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(yiqToSrgb(sRgbToYiq(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> YDbDr conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(yDbDrToSrgb(sRgbToYDbDr(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

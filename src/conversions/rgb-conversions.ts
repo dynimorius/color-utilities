@@ -51,8 +51,27 @@ import {
 import { labToLch_ab } from "./lab-conversions";
 import { luvToLch_uv } from "./luv-conversions";
 import { decimalToHex } from "./number-conversions";
-import { xyzToAdobeRgb, xyzToAppleRgb, xyzToBestRgb, xyzToBetaRgb, xyzToBruceRgb, xyzToCieRgb, xyzToColorMatchRgb, xyzToDonRgb4, xyzToEciRgbV2, xyzToEtkaSpacePs5, xyzToLab, xyzToLuv, xyzToNtscRgb, xyzToPalSecamRgb, xyzToProPhotoRgb, xyzToSmpteCRgb, xyzToUvw, xyzToWideGamutRgb } from "./xyz-conversions";
-import {  yCbCrBT601ToXvYcc } from "./ycbcr-jpeg-conversions";
+import {
+  xyzToAdobeRgb,
+  xyzToAppleRgb,
+  xyzToBestRgb,
+  xyzToBetaRgb,
+  xyzToBruceRgb,
+  xyzToCieRgb,
+  xyzToColorMatchRgb,
+  xyzToDonRgb4,
+  xyzToEciRgbV2,
+  xyzToEtkaSpacePs5,
+  xyzToLab,
+  xyzToLuv,
+  xyzToNtscRgb,
+  xyzToPalSecamRgb,
+  xyzToProPhotoRgb,
+  xyzToSmpteCRgb,
+  xyzToUvw,
+  xyzToWideGamutRgb,
+} from "./xyz-conversions";
+import { yCbCrBT601ToXvYcc } from "./ycbcr-jpeg-conversions";
 
 /*******************************************************************
  *                           HELPERS
@@ -171,20 +190,6 @@ export const rgbTo1_0rgb = (rgb: RGB): RGB => {
  */
 export const sRgbToLuminance = ({ red, green, blue }: RGB): number =>
   0.2126 * red + 0.7152 * green + 0.0722 * blue;
-
-/**
- * Gets comparative distance for a given sRBG color
- * @param {RBG} rgb1 sRBG values for the frist color
- * @param {RBG} rgb2 sRBG values for the second color
- * @returns {number} - distance
- */
-export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {  
-  return (
-    Math.abs(rgb1.red - rgb2.red) +
-    Math.abs(rgb1.green - rgb2.green) +
-    Math.abs(rgb1.blue - rgb2.blue)
-  );
-};
 
 /*******************************************************************
  *                        ADOBE 1998 RGB
@@ -341,7 +346,10 @@ export const cieRgbToXyz = (rgb: RGB): XYZ => {
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - Color Match RGB values
  */
-export const sRgbToColorMatchRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+export const sRgbToColorMatchRgb = (
+  rgb: RGB,
+  xyz: XYZ = sRgbToXyz(rgb)
+): RGB => {
   return xyzToColorMatchRgb(xyz);
 };
 
@@ -365,7 +373,10 @@ export const colorMatchRgbToXyz = (rgb: RGB): XYZ => {
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - Don RGB 4 values
  */
-export const sRgbToColorDonRgb4 = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+export const sRgbToColorDonRgb4 = (
+  rgb: RGB,
+  xyz: XYZ = sRgbToXyz(rgb)
+): RGB => {
   return xyzToDonRgb4(xyz);
 };
 
@@ -389,7 +400,10 @@ export const donRgb4ToXyz = (rgb: RGB): XYZ => {
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - ETKA SPACE PS5 values
  */
-export const sRgbToEtkaSpacePs5 = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+export const sRgbToEtkaSpacePs5 = (
+  rgb: RGB,
+  xyz: XYZ = sRgbToXyz(rgb)
+): RGB => {
   return xyzToEtkaSpacePs5(xyz);
 };
 
@@ -509,7 +523,10 @@ export const smpteCRgbToXyz = (rgb: RGB): XYZ => {
  *                  (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB} - Wide Gamut RGB values
  */
-export const sRgbToWideGamutRgb = (rgb: RGB, xyz: XYZ = sRgbToXyz(rgb)): RGB => {
+export const sRgbToWideGamutRgb = (
+  rgb: RGB,
+  xyz: XYZ = sRgbToXyz(rgb)
+): RGB => {
   return xyzToWideGamutRgb(xyz);
 };
 
@@ -1028,10 +1045,10 @@ export const sRgbToYCbCrBT709 = ({ red, green, blue }: RGB): YCbCr => {
  * @returns {YCbCr} - YCbCr values for a color
  */
 export const sRgbToYCbCrBT2020 = ({ red, green, blue }: RGB): YCbCr => {
-  const Y = (0.2627 * red + 0.6780 * green + 0.0593 * blue);
+  const Y = 0.2627 * red + 0.678 * green + 0.0593 * blue;
   const Cb = blue - Y / 1.8814;
   const Cr = red - Y / 1.4746;
-  return {Y, Cb, Cr}
+  return { Y, Cb, Cr };
 };
 
 /**
@@ -1067,21 +1084,24 @@ export const sRgbToYPbPr = ({ red, green, blue }: RGB): YPbPr => {
  * -more info: https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.2020_conversion
  */
 export const sRgbToYcCbcCrc = ({ red, green, blue }: RGB): YcCbcCrc => {
-  const Yc = (0.2627 * red + 0.6780 * green + 0.0593 * blue);
+  const Yc = 0.2627 * red + 0.678 * green + 0.0593 * blue;
   const Cbc = (blue - Yc) / getDivider({ red, green, blue }, Yc, "Cbc");
   const Crc = (red - Yc) / getDivider({ red, green, blue }, Yc, "Crc");
   return { Yc, Cbc, Crc };
 };
 
-const getDivider = ({ red, blue }: RGB, Yc: number, chroma: "Cbc" | "Crc"): number=> {
+const getDivider = (
+  { red, blue }: RGB,
+  Yc: number,
+  chroma: "Cbc" | "Crc"
+): number => {
   if (chroma === "Crc") {
     if (Nr <= red - Yc || red - Yc <= 0) return 1.7182;
     else return 0.9938;
   }
   if (Nb <= blue - Yc || blue - Yc <= 0) return 1.9404;
   else return 1.582;
-  
-}
+};
 
 /**
  * Converts a color form an sRGB space to YCoCg space

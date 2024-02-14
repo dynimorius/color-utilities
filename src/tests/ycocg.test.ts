@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> YCgCo conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(yCgCoToSrgb(sRgbToYCgCo(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

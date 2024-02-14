@@ -1,4 +1,10 @@
-import { comparativeDistance, sRgbToYCbCrBT2020, sRgbToYCbCrBT601, sRgbToYCbCrBT709, yCbCrBT2020ToSrgb, yCbCrBT601ToSrgb, yCbCrBT709ToSrgb } from "../public_api";
+import {
+  comparativeDistance,
+  sRgbToYCbCrBT601,
+  sRgbToYCbCrBT709,
+  yCbCrBT601ToSrgb,
+  yCbCrBT709ToSrgb,
+} from "../public_api";
 
 const TestBT601 = (
   rgb: { red: number; green: number; blue: number },
@@ -7,7 +13,7 @@ const TestBT601 = (
   test(`Checking RGB <-> YCbCr BT601 conversions of for ${colorName}`, () => {
     expect(
       comparativeDistance(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 
@@ -27,8 +33,7 @@ TestBT601({ red: 177, green: 44, blue: 56 }, "Red");
 TestBT601({ red: 187, green: 82, blue: 148 }, "Magenta");
 TestBT601({ red: -49, green: 135, blue: 166 }, "Cyan");
 TestBT601({ red: 243, green: 242, blue: 237 }, "White");
-TestBT601({ red: 50, green: 49, blue: 50 }, "Black");  // Black
-
+TestBT601({ red: 50, green: 49, blue: 50 }, "Black"); // Black
 
 const TestBT709 = (
   rgb: { red: number; green: number; blue: number },
@@ -37,7 +42,7 @@ const TestBT709 = (
   test(`Checking RGB <-> YCbCr BT709 conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 
@@ -67,7 +72,7 @@ TestBT709({ red: 50, green: 49, blue: 50 }, "Black");
 //   test(`Checking RGB <-> YCbCr BT2020 conversions for ${colorName}`, () => {
 //     expect(
 //       comparativeDistance(yCbCrBT2020ToSrgb(sRgbToYCbCrBT2020(rgb)), rgb)
-//     ).toBeLessThanOrEqual(4);
+//     ).toBeLessThanOrEqual(3);
 //   });
 // };
 

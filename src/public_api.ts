@@ -30,6 +30,7 @@ export * from "./conversions/ycocg-conversions";
 export * from "./conversions/ydbdr-conversions";
 export * from "./conversions/yiq-conversions";
 export * from "./conversions/ypbpr-conversions";
+export * from "./helpers/color-difference";
 export * from "./helpers/chromatic-adaptation";
 export * from "./interfaces/color-spaces.interface";
 export * from "./utilities/blender";

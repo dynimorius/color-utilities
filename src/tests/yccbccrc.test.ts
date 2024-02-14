@@ -1,4 +1,8 @@
-import { comparativeDistance, sRgbToYcCbcCrc, ycCbcCrcToSrgb } from "../public_api";
+import {
+  comparativeDistance,
+  sRgbToYcCbcCrc,
+  ycCbcCrcToSrgb,
+} from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -7,7 +11,7 @@ const Test = (
   test(`Checking RGB <-> YcCbcCrc conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(ycCbcCrcToSrgb(sRgbToYcCbcCrc(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 

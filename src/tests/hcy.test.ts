@@ -1,5 +1,5 @@
-import { sRgbToHcy } from '../conversions/rgb-conversions';
-import { comparativeDistance, hcyToSrgb } from '../public_api';
+import { sRgbToHcy } from "../conversions/rgb-conversions";
+import { comparativeDistance, hcyToSrgb } from "../public_api";
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
@@ -7,7 +7,7 @@ const Test = (
   test(`Checking RGB <-> HCY conversions for ${colorName}`, () => {
     expect(
       comparativeDistance(hcyToSrgb(sRgbToHcy(rgb)), rgb)
-    ).toBeLessThanOrEqual(4);
+    ).toBeLessThanOrEqual(3);
   });
 };
 
@@ -27,4 +27,4 @@ Test({ red: 177, green: 44, blue: 56 }, "Red");
 Test({ red: 187, green: 82, blue: 148 }, "Magenta");
 // Test({ red: -49, green: 135, blue: 166 }, "Cyan");
 Test({ red: 243, green: 242, blue: 237 }, "White");
-Test({ red: 50, green: 49, blue: 50 }, "Black"); 
+Test({ red: 50, green: 49, blue: 50 }, "Black");
