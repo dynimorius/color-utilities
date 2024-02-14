@@ -32,12 +32,13 @@ export const tslToSrgb = (
     _g = tint > 0.5 ? -_g : _g;
     _r = x * _g;
   }
-
   const r = _r + 0.333333;
   const g = _g + 0.333333;
   const k = lightness / (0.185 * r + 0.473 * g + 0.114);
-  const red = k * r * 255;
-  const green = k * g * 255;
-  const blue = k * (1 - r - g) * 255;
+  const red = round ? Math.round(k * r * 255) : k * r * 255;
+  const green = round ? Math.round(k * g * 255) : k * g * 255;
+  const blue = round
+    ? Math.round(k * (1 - r - g) * 255)
+    : k * (1 - r - g) * 255;
   return { red, green, blue };
 };

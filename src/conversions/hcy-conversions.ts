@@ -11,6 +11,8 @@
  */
 
 import { HCY, HSI, RGB } from "../interfaces/color-spaces.interface";
+
+//TODO handle minus values
 export const hcyOrHsiToSrgb = (val: HCY | HSI): RGB => {
   const values = Object.values(val);
   let hue = values[0];
