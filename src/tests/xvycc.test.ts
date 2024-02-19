@@ -1,13 +1,15 @@
-import { comparativeDistance, sRgbToXvYcc, xvYccToSrgb } from "../public_api";
+import { checkDiff } from "./diff";
+import { sRgbToXvYcc, xvYccToSrgb } from "../public_api";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> xvYcc conversions for ${colorName}`, () => {
-    expect(
-      comparativeDistance(xvYccToSrgb(sRgbToXvYcc(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+    expect(checkDiff(xvYccToSrgb(sRgbToXvYcc(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 

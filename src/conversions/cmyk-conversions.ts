@@ -13,7 +13,7 @@ import { CMYK, RGB } from "../interfaces/color-spaces.interface";
  * @param {CMYK} - cmyk color value
  * @returns {RGB} - sRBG color value
  */
-// TODO handle minus values
+
 export const cmykToRgb = ({ cyan, magenta, yellow, key }: CMYK): RGB => {
   key = key / 100;
   const f = (t: number): number =>

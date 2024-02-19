@@ -1,13 +1,15 @@
-import { comparativeDistance, tslToSrgb } from "../public_api";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { tslToSrgb } from "../public_api";
 import { sRgbToTsl } from "./../conversions/rgb-conversions";
+import { checkDiff } from "./diff";
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> TSL conversion for ${colorName}`, () => {
     expect(
-      comparativeDistance(tslToSrgb(sRgbToTsl(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(tslToSrgb(sRgbToTsl(rgb)), rgb)
+    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
 

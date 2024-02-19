@@ -1,8 +1,9 @@
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 import {
-  comparativeDistance,
   sRgbToYcCbcCrc,
   ycCbcCrcToSrgb,
 } from "../public_api";
+import { checkDiff } from "./diff";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -10,8 +11,8 @@ const Test = (
 ) => {
   test(`Checking RGB <-> YcCbcCrc conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(ycCbcCrcToSrgb(sRgbToYcCbcCrc(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(ycCbcCrcToSrgb(sRgbToYcCbcCrc(rgb)), rgb)
+    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
 

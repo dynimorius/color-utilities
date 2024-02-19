@@ -1,4 +1,6 @@
-import { comparativeDistance, rybToRgb, sRgbToRyb } from "../public_api";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { rybToRgb, sRgbToRyb } from "../public_api";
+import { checkDiff } from "./diff";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,8 +8,8 @@ const Test = (
 ) => {
   test(`Checking RGB <-> RYB conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(rybToRgb(sRgbToRyb(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(rybToRgb(sRgbToRyb(rgb)), rgb)
+    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
 

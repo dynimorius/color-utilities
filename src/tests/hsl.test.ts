@@ -1,4 +1,7 @@
-import { comparativeDistance, hslToRgb, sRgbToHsl } from "../public_api";
+import { hslToRgb, sRgbToHsl } from "../public_api";
+import { checkDiff } from "./diff";
+
+
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,15 +9,15 @@ const Test = (
 ) => {
   test(`Checking RGB <-> HSL conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(hslToRgb(sRgbToHsl(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(hslToRgb(sRgbToHsl(rgb)), rgb)
+    ).toBeLessThanOrEqual(2);
   });
 };
 
 Test({ red: 238, green: 200, blue: 27 }, "Yellow");
 Test({ red: 217, green: 122, blue: 37 }, "Orange");
 Test({ red: 72, green: 91, blue: 165 }, "Purplish Blue");
-// Test({ red: 194, green: 84, blue: 98 }, "Moderate Red");
+Test({ red: 194, green: 84, blue: 98 }, "Moderate Red");
 Test({ red: 91, green: 59, blue: 107 }, "Purple");
 Test({ red: 160, green: 188, blue: 60 }, "Yellow Green");
 Test({ red: 230, green: 163, blue: 42 }, "Orange Yellow");

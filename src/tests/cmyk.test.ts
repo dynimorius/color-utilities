@@ -1,4 +1,6 @@
-import { cmykToRgb, comparativeDistance, sRgbToCmyk } from "../public_api";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { cmykToRgb, sRgbToCmyk } from "../public_api";
+import { checkDiff } from "./diff";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,10 +8,20 @@ const Test = (
 ) => {
   test(`Checking RGB <-> CMYK conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(cmykToRgb(sRgbToCmyk(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(cmykToRgb(sRgbToCmyk(rgb)), rgb)
+    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
+
+const ErrorTest = (
+  rgb: { red: number; green: number; blue: number },
+  colorName: string
+) => {
+  test(`Checking RGB <-> CMYK conversions for ${colorName}`, () => {
+    expect(() => { sRgbToCmyk(rgb); }).toThrow("Provided rgb values must be within range of 0 to 255!");
+  });
+};
+
 
 Test({ red: 238, green: 200, blue: 27 }, "Yellow");
 Test({ red: 217, green: 122, blue: 37 }, "Orange");
@@ -25,6 +37,6 @@ Test({ red: 100, green: 190, blue: 171 }, "Bluish Green");
 Test({ red: 71, green: 150, blue: 69 }, "Green");
 Test({ red: 177, green: 44, blue: 56 }, "Red");
 Test({ red: 187, green: 82, blue: 148 }, "Magenta");
-// Test({ red: -49, green: 135, blue: 166 }, "Cyan");
 Test({ red: 243, green: 242, blue: 237 }, "White");
 Test({ red: 50, green: 49, blue: 50 }, "Black");
+ErrorTest({ red: -49, green: 135, blue: 166 }, "Cyan");

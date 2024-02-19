@@ -22,6 +22,17 @@ export const Pr = 0.4969;
 export const Nb = -0.9702;
 export const Nr = -0.8591;
 
+//ITU-R BT.2020
+export const Kr = 0.2627;
+export const Kg = 0.6780;
+export const Kb = 0.0593;
+
+export const NOT_PERCEPTIBLE_BY_HUMAN_EYE = 1;
+export const PRECEPTABLE_THROUGH_CLOSE_OBESERVATION = 2;
+export const PRECEPTABLE_AT_A_GLANCE = 10;
+export const MORE_CLOSE_THEN_OPPOSITE = 49;
+export const EXACT_OPPOSITE = 100;
+
 
 
 

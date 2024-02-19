@@ -77,20 +77,3 @@ export const yCbCrBT709ToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
     blue: Math.round(blue),
   };
 };
-
-/**
- * Converts a color form an ITU-R BT.2020-2 Y′CbCr space to sRGB space:
- * - more info: https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.2020_conversion
- * @param {YCbCr} ycbcr YCbCr values for a color
- * @returns {RGB} - sRGB values for a color
- */
-export const yCbCrBT2020ToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
-  const red = (Cr + Y) * 1.4746;
-  const blue = (Cb + Y) * 1.8814;
-  const green = (Y - 0.2627 * red - 0.0593 * blue) / 0.678;
-  return {
-    red: Math.round(red),
-    green: Math.round(green),
-    blue: Math.round(blue),
-  };
-};

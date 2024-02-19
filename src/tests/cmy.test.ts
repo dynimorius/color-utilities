@@ -1,4 +1,6 @@
-import { cmyToSRgb, comparativeDistance, sRgbToCmy } from "../public_api";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { cmyToSRgb, sRgbToCmy } from "../public_api";
+import { checkDiff } from "./diff";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,8 +8,8 @@ const Test = (
 ) => {
   test(`Checking RGB <-> CMY conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(cmyToSRgb(sRgbToCmy(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+      checkDiff(cmyToSRgb(sRgbToCmy(rgb)), rgb)
+    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
 

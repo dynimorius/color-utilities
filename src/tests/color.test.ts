@@ -1,4 +1,5 @@
 import { Color } from "../color/color";
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 import {
   CMY,
   CMYK,
@@ -22,12 +23,15 @@ import {
   YIQ,
   YPbPr,
   YcCbcCrc,
-  comparativeDistance,
 } from "../public_api";
+import { checkDiff } from "./diff";
 
 const checkIfInExceptibleRange = (color: Color, testColor: Color) => {
-  expect(comparativeDistance(color.rgb, testColor.rgb)).toBeLessThanOrEqual(3);
+  expect(checkDiff(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
+    PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+  );
 };
+
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -252,11 +256,11 @@ const Test = (
 Test({ red: 238, green: 200, blue: 27 }, "Yellow");
 Test({ red: 217, green: 122, blue: 37 }, "Orange");
 Test({ red: 72, green: 91, blue: 165 }, "Purplish Blue");
-// Test({ red: 194, green: 84, blue: 98 }, "Moderate Red");
+Test({ red: 194, green: 84, blue: 98 }, "Moderate Red");
 // Test({ red: 91, green: 59, blue: 107 }, "Purple");
 Test({ red: 160, green: 188, blue: 60 }, "Yellow Green");
 Test({ red: 230, green: 163, blue: 42 }, "Orange Yellow");
-// Test({ red: 46, green: 60, blue: 153 }, "Blue");
+Test({ red: 46, green: 60, blue: 153 }, "Blue");
 Test({ red: 94, green: 123, blue: 156 }, "Blue Sky");
 // Test({ red: 130, green: 129, blue: 177 }, "Blue Flower");
 Test({ red: 100, green: 190, blue: 171 }, "Bluish Green");

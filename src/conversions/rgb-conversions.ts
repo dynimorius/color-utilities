@@ -20,7 +20,7 @@ import {
   inverseLCompanding,
   inverseSrbgCompanding,
 } from "../helpers/companding";
-import { formatValue } from "../helpers/formats-and-checks";
+import { formatValue, gamutCheck } from "../helpers/formats-and-checks";
 import { matrixByVectorObjMultiAsSpace } from "../helpers/matrix";
 import {
   CMY,
@@ -672,11 +672,17 @@ export const sRgbToCmy = (rgb: RGB): CMY => {
  * @param {RBG} rgb sRBG values for a color
  * @returns {CMYK} - CMYK values for a color
  */
-export const sRgbToCmyk = (rgb: RGB): CMYK => {
+export const sRgbToCmyk = (rgb: RGB, round?: boolean): CMYK => {
+  if (!gamutCheck(rgb.red) || !gamutCheck(rgb.green) || !gamutCheck(rgb.blue)) {
+    throw new Error("Provided rgb values must be within range of 0 to 255!");
+  }
   const { red, green, blue } = normalizeRgb(rgb);
   let key = 1 - Math.max(red, green, blue);
   const K1 = 1 - key;
-  const f = (t: number): number => Math.round((K1 && (K1 - t) / K1) * 100);
+  const f = (t: number): number =>
+    round
+      ? Math.round((K1 && (K1 - t) / K1) * 100)
+      : (K1 && (K1 - t) / K1) * 100;
 
   return { cyan: f(red), magenta: f(green), yellow: f(blue), key: key * 100 };
 };
@@ -694,6 +700,9 @@ const sRgbToHcyOrHsi = (
   { red, green, blue }: RGB,
   ret: "hcy" | "hsi"
 ): HCY | HSI => {
+  if (!gamutCheck(red) || !gamutCheck(green) || !gamutCheck(blue)) {
+    throw new Error("Provided rgb values must be within range of 0 to 255!");
+  }
   const sum = red + green + blue;
   red = red / sum;
   green = green / sum;
@@ -1037,18 +1046,6 @@ export const sRgbToYCbCrBT709 = ({ red, green, blue }: RGB): YCbCr => {
     { red, green, blue },
     ["Y", "Cb", "Cr"]
   ) as unknown as YCbCr;
-};
-
-/**
- * Converts a color form an sRGB space to ITU-R BT.2020-2 Y′CbCr space
- * @param {RBG} rgb sRBG values for a color
- * @returns {YCbCr} - YCbCr values for a color
- */
-export const sRgbToYCbCrBT2020 = ({ red, green, blue }: RGB): YCbCr => {
-  const Y = 0.2627 * red + 0.678 * green + 0.0593 * blue;
-  const Cb = blue - Y / 1.8814;
-  const Cr = red - Y / 1.4746;
-  return { Y, Cb, Cr };
 };
 
 /**
