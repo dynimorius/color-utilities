@@ -10,7 +10,7 @@ import { sRgbToLab } from "../conversions/rgb-conversions";
 import { LAB, RGB } from "../interfaces/color-spaces.interface";
 
 /**
- * Gets comparative distance for a given sRBG color
+ * Gets comparative distance for a given sRBG colors
  * @param {RBG} rgb1 sRBG values for the frist color
  * @param {RBG} rgb2 sRBG values for the second color
  * @returns {number} - distance
@@ -24,6 +24,12 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
   return Math.round(Math.abs(diff));
 };
 
+/**
+ * Gets a delta E CIE 1976 value for a given colors
+ * @param {LAB} lab1 LAB values for the frist color
+ * @param {LAB} lab2 LAB values for the second color
+ * @returns {number} - difference
+ */
 export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
   return Math.sqrt(
     Math.pow(lab1.luminance - lab2.luminance, 2) +
@@ -33,11 +39,18 @@ export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
 };
 
 
-//https://zschuessler.github.io/DeltaE/learn/#:~:text=dE94%2C%20and%20dE00.-,Defining%20Delta%20E,in%20a%20variable%20or%20function.
+/**
+ * Gets a delta E CIE 1976 value for a given colors
+ * @param {RBG} rgb1 sRBG values for the frist color
+ * @param {RBG} rgb2 sRBG values for the second color
+ * @returns {number} - difference
+ *  ΔE - (Delta E, dE) The measure of change in visual 
+ *  perception of two given colors
+ * - more info: 
+ * https://zschuessler.github.io/DeltaE/learn/#:~:text=dE94%2C%20and%20dE00.-,Defining%20Delta%20E,in%20a%20variable%20or%20function
+ */
 export const cie76ColorDiff = (rgb1: RGB, rgb2: RGB): number => {
-  const lab1 = sRgbToLab(rgb1);
-  const lab2 = sRgbToLab(rgb2);
-  return deltaECIE76(lab1, lab2);
+  return deltaECIE76(sRgbToLab(rgb1), sRgbToLab(rgb2));
 };
 
 
