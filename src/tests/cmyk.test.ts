@@ -7,9 +7,9 @@ const Test = (
   colorName: string
 ) => {
   test(`Checking RGB <-> CMYK conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(cmykToRgb(sRgbToCmyk(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(checkDiff(cmykToRgb(sRgbToCmyk(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 
@@ -17,8 +17,10 @@ const ErrorTest = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
-  test(`Checking RGB <-> CMYK conversions for ${colorName}`, () => {
-    expect(() => { sRgbToCmyk(rgb); }).toThrow("Provided rgb values must be within range of 0 to 255!");
+  test(`Checking RGB <-> CMYK conversions for ${colorName} is throwing an error`, () => {
+    expect(() => {
+      sRgbToCmyk(rgb);
+    }).toThrow("Provided rgb values must be within range of 0 to 255!");
   });
 };
 

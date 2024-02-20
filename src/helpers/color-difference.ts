@@ -6,6 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { sRgbToLab } from "../conversions/rgb-conversions";
 import { LAB, RGB } from "../interfaces/color-spaces.interface";
 
 /**
@@ -30,4 +31,13 @@ export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
       Math.pow(lab1.b - lab2.b, 2)
   );
 };
+
+
+//https://zschuessler.github.io/DeltaE/learn/#:~:text=dE94%2C%20and%20dE00.-,Defining%20Delta%20E,in%20a%20variable%20or%20function.
+export const cie76ColorDiff = (rgb1: RGB, rgb2: RGB): number => {
+  const lab1 = sRgbToLab(rgb1);
+  const lab2 = sRgbToLab(rgb2);
+  return deltaECIE76(lab1, lab2);
+};
+
 
