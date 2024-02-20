@@ -1,12 +1,10 @@
-import { labToSrgb } from './../conversions/lab-conversions';
-import { xyzToHunterLab, xyzToSrgb } from "./../conversions/xyz-conversions";
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
-import { RGB, XYZ, cie76ColorDiff, hunterLabToXyz, labToXyz, sRgbToLab, xyzToLab } from "../public_api";
+import { XYZ, cie76ColorDiff, lch_abToXyz, lch_uvToXyz, xyzToLch_ab, xyzToLch_uv, xyzToSrgb } from "../public_api";
 
 const Test = (xyz: XYZ, colorName: string) => {
-  test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
+  test(`Checking XYZ <-> Lch(ab) conversions for ${colorName}`, () => {
     expect(
-      cie76ColorDiff(xyzToSrgb(labToXyz(xyzToLab(xyz))), xyzToSrgb(xyz))
+      cie76ColorDiff(xyzToSrgb(lch_abToXyz(xyzToLch_ab(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -27,7 +25,10 @@ Test(
   { x: 27.62513014132322, y: 18.69502708789548, z: 13.706625515194181 },
   "Moderate Red"
 );
-Test({ x: 8.531757200262838, y: 6.413798640911185, z: 14.695612441342334 }, "Purple");
+Test(
+  { x: 8.531757200262838, y: 6.413798640911185, z: 14.695612441342334 },
+  "Purple"
+);
 Test(
   { x: 33.2965334632533, y: 43.766312849403235, z: 10.967717412244491 },
   "Yellow Green"
@@ -78,9 +79,9 @@ Test(
 );
 
 const Test2 = (xyz: XYZ, colorName: string) => {
-  test(`Checking XYZ <-> Hunter's LAB conversions for ${colorName}`, () => {
+  test(`Checking XYZ <-> Lch(uv) conversions for ${colorName}`, () => {
     expect(
-      cie76ColorDiff(xyzToSrgb(hunterLabToXyz(xyzToHunterLab(xyz))), xyzToSrgb(xyz))
+      cie76ColorDiff(xyzToSrgb(lch_uvToXyz(xyzToLch_uv(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -153,29 +154,3 @@ Test2(
   { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
   "Black"
 );
-
-const Test3 = (rgb: RGB, colorName: string) => {
-  test(`Checking RGB <-> LAB conversions for ${colorName}`, () => {
-    expect(
-      cie76ColorDiff(labToSrgb(sRgbToLab(rgb)), rgb)
-    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
-  });
-};
-
-Test3({ red: 238, green: 200, blue: 27 }, "Yellow");
-Test3({ red: 217, green: 122, blue: 37 }, "Orange");
-Test3({ red: 72, green: 91, blue: 165 }, "Purplish Blue");
-Test3({ red: 194, green: 84, blue: 98 }, "Moderate Red");
-Test3({ red: 91, green: 59, blue: 107 }, "Purple");
-Test3({ red: 160, green: 188, blue: 60 }, "Yellow Green");
-Test3({ red: 230, green: 163, blue: 42 }, "Orange Yellow");
-Test3({ red: 46, green: 60, blue: 153 }, "Blue");
-Test3({ red: 94, green: 123, blue: 156 }, "Blue Sky");
-Test3({ red: 130, green: 129, blue: 177 }, "Blue Flower");
-Test3({ red: 100, green: 190, blue: 171 }, "Bluish Green");
-Test3({ red: 71, green: 150, blue: 69 }, "Green");
-Test3({ red: 177, green: 44, blue: 56 }, "Red");
-Test3({ red: 187, green: 82, blue: 148 }, "Magenta");
-Test3({ red: -49, green: 135, blue: 166 }, "Cyan");
-Test3({ red: 243, green: 242, blue: 237 }, "White");
-Test3({ red: 50, green: 49, blue: 50 }, "Black");

@@ -1,3 +1,4 @@
+import { xyzToSrgb } from './xyz-conversions';
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -8,7 +9,7 @@
 
 import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
-import { LAB, LCH, XYZ } from "../interfaces/color-spaces.interface";
+import { LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
 /*************************************************************
  *                        CIE-L*ab
  *************************************************************/
@@ -47,6 +48,15 @@ export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
   const chroma = Math.sqrt(a * a + b * b);
 
   return { lightness: luminance, chroma, hue };
+};
+
+/**
+ * Converts a color from CIE-L*ab color space to sRGB color space
+ * @param {LAB} - Lab color value
+ * @returns {RGB} - sRGB color value
+ */
+export const labToSrgb = (lab: LAB): RGB => {
+  return xyzToSrgb(labToXyz(lab));
 };
 
 /*************************************************************

@@ -1,3 +1,4 @@
+import { labToLch_ab } from './lab-conversions';
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -27,6 +28,7 @@ import { matrixXyzMultiAsSpace } from "../helpers/matrix";
 import { Fu, Fv, _Fv } from "../helpers/white-point";
 import {
   LAB,
+  LCH,
   LMS,
   LUV,
   RGB,
@@ -36,6 +38,7 @@ import {
   XYZ,
 } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
+import { luvToLch_uv } from './luv-conversions';
 
 /**
  * Gets Lab values from given xyz values
@@ -57,6 +60,15 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
 
   return { luminance, a, b };
 };
+
+/**
+ * Gets Lch(ab) values from given xyz values
+ * @param {XYZ} xyz xyz values for a color
+ * @returns {LCH} - LCH values for a color
+ */
+export const xyzToLch_ab = (xyz: XYZ): LCH => { 
+  return labToLch_ab(xyzToLab(xyz));
+}
 
 /**
  * Gets Luv values from given xyz values
@@ -90,6 +102,15 @@ export const xyzToLuv = (
 
   return { L, u, v };
 };
+
+/**
+ * Gets Lch(uv) values from given xyz values
+ * @param {XYZ} xyz xyz values for a color
+ * @returns {LCH} - LCH values for a color
+ */
+export const xyzToLch_uv = (xyz: XYZ): LCH => { 
+  return luvToLch_uv(xyzToLuv(xyz));
+}
 
 /**
  * Gets UVW values from given xyz values
