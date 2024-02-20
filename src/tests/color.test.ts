@@ -23,15 +23,14 @@ import {
   YIQ,
   YPbPr,
   YcCbcCrc,
+  cie76ColorDiff,
 } from "../public_api";
-import { checkDiff } from "./diff";
 
 const checkIfInExceptibleRange = (color: Color, testColor: Color) => {
-  expect(checkDiff(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
+  expect(cie76ColorDiff(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
     PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
   );
 };
-
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -257,12 +256,11 @@ const ErrorTest = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
-     test(`Checking ${colorName} from a CMYK value is throwing an error"`, () => {
-       expect((): Color => {
-         return new Color("rgb", rgb);
-       }).toThrow("Provided rgb values must be within range of 0 to 255!");
-       ;
-     });
+  test(`Checking ${colorName} from a CMYK value is throwing an error"`, () => {
+    expect((): Color => {
+      return new Color("rgb", rgb);
+    }).toThrow("Provided rgb values must be within range of 0 to 255!");
+  });
 };
 
 Test({ red: 238, green: 200, blue: 27 }, "Yellow");

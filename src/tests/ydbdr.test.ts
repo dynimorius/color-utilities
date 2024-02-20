@@ -1,4 +1,4 @@
-import { comparativeDistance, sRgbToYDbDr, yDbDrToSrgb } from "../public_api";
+import { cie76ColorDiff, sRgbToYDbDr, yDbDrToSrgb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,7 +6,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> YDbDr conversions for ${colorName}`, () => {
     expect(
-      comparativeDistance(yDbDrToSrgb(sRgbToYDbDr(rgb)), rgb)
+      cie76ColorDiff(yDbDrToSrgb(sRgbToYDbDr(rgb)), rgb)
     ).toBeLessThanOrEqual(3);
   });
 };

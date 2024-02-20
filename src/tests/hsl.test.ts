@@ -1,16 +1,13 @@
-import { hslToRgb, sRgbToHsl } from "../public_api";
-import { checkDiff } from "./diff";
-
-
+import { cie76ColorDiff, hslToRgb, sRgbToHsl } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HSL conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(hslToRgb(sRgbToHsl(rgb)), rgb)
-    ).toBeLessThanOrEqual(2);
+    expect(cie76ColorDiff(hslToRgb(sRgbToHsl(rgb)), rgb)).toBeLessThanOrEqual(
+      2
+    );
   });
 };
 

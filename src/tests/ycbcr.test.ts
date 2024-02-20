@@ -1,11 +1,11 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 import {
+  cie76ColorDiff,
   sRgbToYCbCrBT601,
   sRgbToYCbCrBT709,
   yCbCrBT601ToSrgb,
   yCbCrBT709ToSrgb,
 } from "../public_api";
-import { checkDiff } from "./diff";
 
 const TestBT601 = (
   rgb: { red: number; green: number; blue: number },
@@ -13,7 +13,7 @@ const TestBT601 = (
 ) => {
   test(`Checking RGB <-> YCbCr BT601 conversions of for ${colorName}`, () => {
     expect(
-      checkDiff(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
+      cie76ColorDiff(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
     ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
@@ -42,7 +42,7 @@ const TestBT709 = (
 ) => {
   test(`Checking RGB <-> YCbCr BT709 conversions for ${colorName}`, () => {
     expect(
-      checkDiff(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
+      cie76ColorDiff(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
     ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };

@@ -1,15 +1,14 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
-import { hsvToRgb, sRgbToHsv } from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, hsvToRgb, sRgbToHsv } from "../public_api";;
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HSV conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(hsvToRgb(sRgbToHsv(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(cie76ColorDiff(hsvToRgb(sRgbToHsv(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 

@@ -1,15 +1,14 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
-import { hwbToRgb, sRgbToHwb } from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, hwbToRgb, sRgbToHwb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HWB conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(hwbToRgb(sRgbToHwb(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(cie76ColorDiff(hwbToRgb(sRgbToHwb(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 

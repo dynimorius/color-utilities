@@ -1,15 +1,14 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
-import { rybToRgb, sRgbToRyb } from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, rybToRgb, sRgbToRyb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> RYB conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(rybToRgb(sRgbToRyb(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(cie76ColorDiff(rybToRgb(sRgbToRyb(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 

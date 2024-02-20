@@ -1,13 +1,13 @@
-import { comparativeDistance, sRgbToYiq, yiqToSrgb } from "../public_api";
+import { cie76ColorDiff, sRgbToYiq, yiqToSrgb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> YIQ conversions for ${colorName}`, () => {
-    expect(
-      comparativeDistance(yiqToSrgb(sRgbToYiq(rgb)), rgb)
-    ).toBeLessThanOrEqual(3);
+    expect(cie76ColorDiff(yiqToSrgb(sRgbToYiq(rgb)), rgb)).toBeLessThanOrEqual(
+      3
+    );
   });
 };
 

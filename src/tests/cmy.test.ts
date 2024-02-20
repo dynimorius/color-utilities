@@ -1,15 +1,14 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
-import { cmyToSRgb, sRgbToCmy } from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, cmyToSRgb, sRgbToCmy } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> CMY conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(cmyToSRgb(sRgbToCmy(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(cie76ColorDiff(cmyToSRgb(sRgbToCmy(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 

@@ -1,15 +1,15 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 import { sRgbToHcy } from "../conversions/rgb-conversions";
-import { hcyToSrgb } from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, hcyToSrgb } from "../public_api";
+
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HCY conversions for ${colorName}`, () => {
-    expect(
-      checkDiff(hcyToSrgb(sRgbToHcy(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    expect(cie76ColorDiff(hcyToSrgb(sRgbToHcy(rgb)), rgb)).toBeLessThanOrEqual(
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    );
   });
 };
 
@@ -23,7 +23,6 @@ const ErrorTest = (
     }).toThrow("Provided rgb values must be within range of 0 to 255!");
   });
 };
-
 
 Test({ red: 238, green: 200, blue: 27 }, "Yellow");
 Test({ red: 217, green: 122, blue: 37 }, "Orange");

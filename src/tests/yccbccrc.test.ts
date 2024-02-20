@@ -1,9 +1,5 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
-import {
-  sRgbToYcCbcCrc,
-  ycCbcCrcToSrgb,
-} from "../public_api";
-import { checkDiff } from "./diff";
+import { cie76ColorDiff, sRgbToYcCbcCrc, ycCbcCrcToSrgb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -11,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> YcCbcCrc conversions for ${colorName}`, () => {
     expect(
-      checkDiff(ycCbcCrcToSrgb(sRgbToYcCbcCrc(rgb)), rgb)
+      cie76ColorDiff(ycCbcCrcToSrgb(sRgbToYcCbcCrc(rgb)), rgb)
     ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
   });
 };
