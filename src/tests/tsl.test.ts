@@ -1,4 +1,4 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { cie76ColorDiff, tslToSrgb } from "../public_api";
 import { sRgbToTsl } from "./../conversions/rgb-conversions";
 
@@ -8,7 +8,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> TSL conversion for ${colorName}`, () => {
     expect(cie76ColorDiff(tslToSrgb(sRgbToTsl(rgb)), rgb)).toBeLessThanOrEqual(
-      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+      NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });
 };

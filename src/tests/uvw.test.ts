@@ -1,11 +1,11 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { XYZ, cie76ColorDiff, uvwToXyz, xyzToSrgb, xyzToUvw } from "../public_api";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> UVW conversions for ${colorName}`, () => {
     expect(
       cie76ColorDiff(xyzToSrgb(uvwToXyz(xyzToUvw(xyz))), xyzToSrgb(xyz))
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
 

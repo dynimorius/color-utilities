@@ -1,12 +1,12 @@
 import { xyzToSrgb } from "./../conversions/xyz-conversions";
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { XYZ, cie76ColorDiff, labToXyz, xyzToLab } from "../public_api";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
     expect(
       cie76ColorDiff(xyzToSrgb(labToXyz(xyzToLab(xyz))), xyzToSrgb(xyz))
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
 

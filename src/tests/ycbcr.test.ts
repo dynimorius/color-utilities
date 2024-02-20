@@ -1,4 +1,4 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import {
   cie76ColorDiff,
   sRgbToYCbCrBT601,
@@ -14,7 +14,7 @@ const TestBT601 = (
   test(`Checking RGB <-> YCbCr BT601 conversions of for ${colorName}`, () => {
     expect(
       cie76ColorDiff(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
 
@@ -43,7 +43,7 @@ const TestBT709 = (
   test(`Checking RGB <-> YCbCr BT709 conversions for ${colorName}`, () => {
     expect(
       cie76ColorDiff(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
-    ).toBeLessThanOrEqual(PRECEPTABLE_THROUGH_CLOSE_OBESERVATION);
+    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
 

@@ -1,4 +1,4 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { sRgbToHcy } from "../conversions/rgb-conversions";
 import { cie76ColorDiff, hcyToSrgb } from "../public_api";
 
@@ -8,7 +8,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> HCY conversions for ${colorName}`, () => {
     expect(cie76ColorDiff(hcyToSrgb(sRgbToHcy(rgb)), rgb)).toBeLessThanOrEqual(
-      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+      NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });
 };

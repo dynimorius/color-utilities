@@ -1,4 +1,4 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { cie76ColorDiff, cmyToSRgb, sRgbToCmy } from "../public_api";
 
 const Test = (
@@ -7,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> CMY conversions for ${colorName}`, () => {
     expect(cie76ColorDiff(cmyToSRgb(sRgbToCmy(rgb)), rgb)).toBeLessThanOrEqual(
-      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+      NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });
 };

@@ -1,3 +1,4 @@
+import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { cie76ColorDiff, sRgbToYiq, yiqToSrgb } from "../public_api";
 
 const Test = (
@@ -6,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> YIQ conversions for ${colorName}`, () => {
     expect(cie76ColorDiff(yiqToSrgb(sRgbToYiq(rgb)), rgb)).toBeLessThanOrEqual(
-      3
+      NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });
 };

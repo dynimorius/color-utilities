@@ -1,3 +1,4 @@
+import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from "../constants/conditionals";
 import { cie76ColorDiff, hslToRgb, sRgbToHsl } from "../public_api";
 
 const Test = (
@@ -6,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> HSL conversions for ${colorName}`, () => {
     expect(cie76ColorDiff(hslToRgb(sRgbToHsl(rgb)), rgb)).toBeLessThanOrEqual(
-      2
+      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
     );
   });
 };
