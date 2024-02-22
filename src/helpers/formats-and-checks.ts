@@ -63,3 +63,14 @@ export const round = (value: number, decimals = MAX_DECIMALS): number => {
   const exp = Math.pow(10, decimals);
   return Math.round(+value * exp) / exp;
 };
+
+/**
+ * Clamps a numeric value to a given range
+ * @param {number} value a number to clamp
+ * @param {number} min a minimum allowed value
+ * @param {number} max a maximum allowed value
+ * @returns {number} - returns a rounded number
+ */
+export function clamp(value: number, min: number, max: number) {
+  return Math.min(Math.max(value, min), max);
+}

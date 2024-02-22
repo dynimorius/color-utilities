@@ -6,6 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+import { clamp } from "../helpers/formats-and-checks";
 import { RGB } from "../interfaces/color-spaces.interface";
 
 /**
@@ -41,17 +42,19 @@ export const ansi16ToRgb = (ansi: number): RGB => {
  * @returns {RGB} - sRBG color value
  */
 export const ansi256ToRgb = (ansi: number): RGB => {
+  ansi = clamp(ansi, 16, 255);
+
   if (ansi >= 232) {
     const c = (ansi - 232) * 10 + 8;
     return { red: c, green: c, blue: c };
   }
 
-  ansi -= 16;
+  const brights: number[] = [0, 95, 135, 175, 215, 255];
 
-  let rem = ansi % 36;
-  const red = (Math.floor(ansi / 36) / 5) * 255;
-  const green = (Math.floor(rem / 6) / 5) * 255;
-  const blue = ((rem % 6) / 5) * 255;
+  const red = brights[Math.floor(((ansi - 16) / 36) % 6)];
+  const green = brights[Math.floor(((ansi - 16) / 6) % 6)];
+  const blue = brights[Math.floor((ansi - 16) % 6)];
 
   return { red, green, blue };
 };
+

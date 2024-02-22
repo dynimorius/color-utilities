@@ -12,7 +12,6 @@ import { CMY, RGB } from "../interfaces/color-spaces.interface";
  * @param {CMY} cmy CMY values for a color
  * @returns {RGB} - sRGB values for a color
  */
-
 export const cmyToSRgb = ({ cyan, magenta, yellow }: CMY): RGB => {
   cyan = cyan / 100;
   magenta = magenta / 100;
