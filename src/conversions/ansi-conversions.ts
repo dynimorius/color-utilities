@@ -17,7 +17,6 @@ import { RGB } from "../interfaces/color-spaces.interface";
 export const ansi16ToRgb = (ansi: number): RGB => {
   let color = ansi % 10;
 
-  // Handle greyscale
   if (color === 0 || color === 7) {
     if (ansi > 50) {
       color += 3.5;
@@ -35,6 +34,16 @@ export const ansi16ToRgb = (ansi: number): RGB => {
 
   return { red, green, blue };
 };
+
+/**
+ * Converts an Ansi16 numerical to Ansi8
+ * @param {number} - ansi16 color value
+ * @returns {number} - ansi8 color value
+ */
+export const ansi16ToAnsi8 = (ansi: number): number => {
+  ansi = clamp(ansi, 0, 15);
+  return ansi > 7 ? ansi - 8 : ansi;
+}
 
 /**
  * Converts an Ansi256 numerical to sRBG
