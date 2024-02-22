@@ -1,6 +1,6 @@
-import { luvToXyz } from './../conversions/luv-conversions';
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
 import { XYZ, cie76ColorDiff, xyzToLuv, xyzToSrgb } from "../public_api";
+import { luvToXyz } from "./../conversions/luv-conversions";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LUV conversions for ${colorName}`, () => {
@@ -76,5 +76,5 @@ Test(
 );
 Test(
   { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
-  "Black"
+  "Printer Black"
 );

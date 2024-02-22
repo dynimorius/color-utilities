@@ -34,7 +34,7 @@ TestBT601({ red: 177, green: 44, blue: 56 }, "Red");
 TestBT601({ red: 187, green: 82, blue: 148 }, "Magenta");
 TestBT601({ red: -49, green: 135, blue: 166 }, "Cyan");
 TestBT601({ red: 243, green: 242, blue: 237 }, "White");
-TestBT601({ red: 50, green: 49, blue: 50 }, "Black"); // Black
+TestBT601({ red: 50, green: 49, blue: 50 }, "Printer Black"); // Black
 
 const TestBT709 = (
   rgb: { red: number; green: number; blue: number },
@@ -63,4 +63,4 @@ TestBT709({ red: 177, green: 44, blue: 56 }, "Red");
 TestBT709({ red: 187, green: 82, blue: 148 }, "Magenta");
 TestBT709({ red: -49, green: 135, blue: 166 }, "Cyan");
 TestBT709({ red: 243, green: 242, blue: 237 }, "White");
-TestBT709({ red: 50, green: 49, blue: 50 }, "Black");
+TestBT709({ red: 50, green: 49, blue: 50 }, "Printer Black");

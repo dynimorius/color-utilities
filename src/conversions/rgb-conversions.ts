@@ -630,8 +630,12 @@ export const sRgbToAnsi16 = (
   rgb: RGB,
   saturation: number | null = null
 ): number => {
-  // Hsv -> ansi16 optimization
-  let value = saturation ?? sRgbToHsv(rgb).value;
+  let value;
+  if (saturation) value = saturation;
+  else {
+    const max = Math.max(rgb.red, rgb.green, rgb.blue);
+    value = formatValue(max);
+  }
 
   value = Math.round(value / 50);
 
@@ -664,13 +668,9 @@ export const sRgbToAnsi256 = ({ red, green, blue }: RGB): number => {
   blue = clamp(blue, 0, 255);
   
   if (red >> 4 === green >> 4 && green >> 4 === blue >> 4) {
-    const lost = 16;
-    const offset = -8;
-
-    if (red >= 0 && red <= lost - 1 + offset) return 16;
-    if (red >= 255 + lost - (lost - 1) + offset) return 231;
-
-    return Math.floor(((red - offset - lost) / (255 - (lost - 1))) * 24) + 232;
+    if (red >= 0 && red <= 7) return 16;
+    if (red >= 255 - 7) return 231;
+    return Math.floor(((red - 8) / 240) * 24) + 232;
   }
 
   return  16 +
@@ -876,8 +876,8 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
   const { max, delta } = getRange(red, green, blue);
 
   let hue = 0;
-  let value = formatValue(max);
-  let saturation = formatValue(max === 0 ? 0 : delta / max);
+  const value = formatValue(max);
+  const saturation = formatValue(max === 0 ? 0 : delta / max);
 
   if (!delta) return { hue, saturation, value };
 

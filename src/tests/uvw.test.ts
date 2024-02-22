@@ -1,5 +1,11 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
-import { XYZ, cie76ColorDiff, uvwToXyz, xyzToSrgb, xyzToUvw } from "../public_api";
+import {
+  XYZ,
+  cie76ColorDiff,
+  uvwToXyz,
+  xyzToSrgb,
+  xyzToUvw,
+} from "../public_api";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> UVW conversions for ${colorName}`, () => {
@@ -75,5 +81,5 @@ Test(
 );
 Test(
   { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
-  "Black"
+  "Printer Black"
 );

@@ -40,6 +40,10 @@ export const ansi16ToRgb = (ansi: number): RGB => {
  * Converts an Ansi256 numerical to sRBG
  * @param {number} - ansi256 color value
  * @returns {RGB} - sRBG color value
+ * 
+ * - note: due to the nature of of Ansi256 to RGB conversion
+ *         there is a significant data loss between RGB to Ansi256
+ *         and Ansi256 to RGB conversions
  */
 export const ansi256ToRgb = (ansi: number): RGB => {
   ansi = clamp(ansi, 16, 255);

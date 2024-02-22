@@ -1,7 +1,15 @@
-import { labToSrgb } from './../conversions/lab-conversions';
-import { xyzToHunterLab, xyzToSrgb } from "./../conversions/xyz-conversions";
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
-import { RGB, XYZ, cie76ColorDiff, hunterLabToXyz, labToXyz, sRgbToLab, xyzToLab } from "../public_api";
+import {
+  RGB,
+  XYZ,
+  cie76ColorDiff,
+  hunterLabToXyz,
+  labToXyz,
+  sRgbToLab,
+  xyzToLab,
+} from "../public_api";
+import { labToSrgb } from "./../conversions/lab-conversions";
+import { xyzToHunterLab, xyzToSrgb } from "./../conversions/xyz-conversions";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
@@ -27,7 +35,10 @@ Test(
   { x: 27.62513014132322, y: 18.69502708789548, z: 13.706625515194181 },
   "Moderate Red"
 );
-Test({ x: 8.531757200262838, y: 6.413798640911185, z: 14.695612441342334 }, "Purple");
+Test(
+  { x: 8.531757200262838, y: 6.413798640911185, z: 14.695612441342334 },
+  "Purple"
+);
 Test(
   { x: 33.2965334632533, y: 43.766312849403235, z: 10.967717412244491 },
   "Yellow Green"
@@ -74,13 +85,16 @@ Test(
 );
 Test(
   { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
-  "Black"
+  "Printer Black"
 );
 
 const Test2 = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> Hunter's LAB conversions for ${colorName}`, () => {
     expect(
-      cie76ColorDiff(xyzToSrgb(hunterLabToXyz(xyzToHunterLab(xyz))), xyzToSrgb(xyz))
+      cie76ColorDiff(
+        xyzToSrgb(hunterLabToXyz(xyzToHunterLab(xyz))),
+        xyzToSrgb(xyz)
+      )
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -151,14 +165,14 @@ Test2(
 );
 Test2(
   { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
-  "Black"
+  "Printer Black"
 );
 
 const Test3 = (rgb: RGB, colorName: string) => {
   test(`Checking RGB <-> LAB conversions for ${colorName}`, () => {
-    expect(
-      cie76ColorDiff(labToSrgb(sRgbToLab(rgb)), rgb)
-    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
+    expect(cie76ColorDiff(labToSrgb(sRgbToLab(rgb)), rgb)).toBeLessThanOrEqual(
+      NOT_PERCEPTIBLE_BY_HUMAN_EYE
+    );
   });
 };
 
@@ -178,4 +192,4 @@ Test3({ red: 177, green: 44, blue: 56 }, "Red");
 Test3({ red: 187, green: 82, blue: 148 }, "Magenta");
 Test3({ red: -49, green: 135, blue: 166 }, "Cyan");
 Test3({ red: 243, green: 242, blue: 237 }, "White");
-Test3({ red: 50, green: 49, blue: 50 }, "Black");
+Test3({ red: 50, green: 49, blue: 50 }, "Printer Black");
