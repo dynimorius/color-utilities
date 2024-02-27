@@ -63,6 +63,7 @@ export interface XYZRezolverMap {
   ntsc_rgb: Function;
   pal_secam_rgb: Function;
   pro_photo_rgb: Function;
+  smpte_c_rgb: Function;
   wide_gamut_rgb: Function;
   xyy: Function;
   lms: Function;

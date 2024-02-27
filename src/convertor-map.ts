@@ -301,6 +301,7 @@ export const fromXyzConverters: XYZRezolverMap = {
   ntsc_rgb: xyzToNtscRgb,
   pal_secam_rgb: xyzToPalSecamRgb,
   pro_photo_rgb: xyzToProPhotoRgb,
+  smpte_c_rgb: xyzToSmpteCRgb,
   wide_gamut_rgb: xyzToWideGamutRgb,
   xyy: xyzToXyY,
   lms: xyzToLsm,

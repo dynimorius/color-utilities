@@ -224,6 +224,7 @@ export type XyzConSpaces =
   | "ntsc_rgb"
   | "pal_secam_rgb"
   | "pro_photo_rgb"
+  | "smpte_c_rgb"
   | "wide_gamut_rgb"
   | "xyy"
   | "lms"

@@ -1,7 +1,7 @@
 import { fromXyzConverters } from "../convertor-map";
 import { XYZRezolverMap } from "../interfaces/resolver.interface";
 import { XYZ } from "../public_api";
-import { Spaces, XyzConSpaces } from "../types/colors";
+import { XyzConSpaces } from "../types/colors";
 import { ColorConverter } from "./color-converter";
 
 /**
@@ -11,7 +11,7 @@ import { ColorConverter } from "./color-converter";
  *  @param {ColorSpaceUnion}             - The actual color data (RGB, HSL etc..)
  *  @param {{ [key: string]: Function }} - a converter map
  */
-export class HexConverter extends ColorConverter {
+export class XyzConverter extends ColorConverter {
   constructor(color: XYZ) {
     super("xyz", color, fromXyzConverters as unknown as { [key: string]: Function });
   }
