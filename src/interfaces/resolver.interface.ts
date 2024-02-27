@@ -37,7 +37,7 @@ export interface RGBResolverMap {
   ydbdr: Function;
   ypbpr: Function;
   yccbccrc: Function;
-  ycgco: Function;
+  ycocg: Function;
   yiq: Function;
   xvycc: Function;
   xyz: Function;

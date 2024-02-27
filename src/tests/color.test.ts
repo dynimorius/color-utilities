@@ -201,8 +201,11 @@ const Test = (
     checkIfInExceptibleRange(color, testColor);
   });
 
-  test(`Checking ${colorName} from a YCbCr value is correct"`, () => {
-    const color = new Color("ycbcr", testColor.data?.ycbcr as YCbCr);
+  test(`Checking ${colorName} from a YCbCr BT601 value is correct"`, () => {
+    const color = new Color(
+      "ycbcr_BT601",
+      testColor.data?.ycbcr_BT601 as YCbCr
+    );
     checkIfInExceptibleRange(color, testColor);
   });
 

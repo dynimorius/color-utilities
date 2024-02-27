@@ -51,7 +51,9 @@ export interface ColorConverters {
   xvycc?: ConverterInfo;
   xyz?: ConverterInfo;
   xyy?: ConverterInfo;
-  ycbcr?: ConverterInfo;
+  ycbcr_BT601?: ConverterInfo;
+  ycbcr_BT709?: ConverterInfo;
+  ycbcr_BT2020?: ConverterInfo;
   yccbccrc?: ConverterInfo;
   ycocg?: ConverterInfo;
   ydbdr?: ConverterInfo;
@@ -87,7 +89,7 @@ export interface ToRGBConverters {
   tsl: Function;
   xvycc: Function;
   xyz: Function;
-  ycbcr: Function;
+  ycbcr_BT601: Function;
   yccbccrc: Function;
   ycocg: Function;
   ydbdr: Function;
@@ -150,7 +152,9 @@ export interface ColorCheckers {
   xvycc: Function;
   xyy: Function;
   xyz: Function;
-  ycbcr: Function;
+  ycbcr_BT601: Function;
+  ycbcr_BT709: Function;
+  ycbcr_BT2020: Function;
   yccbccrc: Function;
   ycocg: Function;
   ydbdr: Function;

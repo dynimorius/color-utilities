@@ -392,7 +392,7 @@ export const colorMatchRgbToXyz = (rgb: RGB): XYZ => {
  *    (optional - they will otherwise be computed out of the rgb values)
  * @returns {RGB}               - Don RGB 4 values
  */
-export const sRgbToColorDonRgb4 = (
+export const sRgbToDonRgb4 = (
   rgb: RGB,
   xyz: XYZ = sRgbToXyz(rgb)
 ): RGB => {
@@ -1014,7 +1014,7 @@ export const sRgbToTsl = ({ red, green, blue }: RGB): TSL => {
  * @param {RBG}                   - sRBG values for a color
  * @returns {UVW}                 - UVW values for a color
  */
-export const sRgbToUvw = (rgb: RGB, ref: SpaceData): UVW => {
+export const sRgbToUvw = (rgb: RGB): UVW => {
   return xyzToUvw(sRgbToXyz(rgb));
 };
 

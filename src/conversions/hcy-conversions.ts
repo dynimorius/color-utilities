@@ -12,7 +12,6 @@
 
 import { HCY, HSI, RGB } from "../interfaces/color-spaces.interface";
 
-//TODO handle minus values
 /**
  * Converts a color form an HCY space or Hsi to sRGB space
  * @param {HCY | HSI}             - HCY or HSI values for a color

@@ -76,7 +76,8 @@ export interface ColorData {
   xvycc?: xvYCC;
   xyz?: XYZ;
   xyy?: XYY;
-  ycbcr?: YCbCr;
+  ycbcr_BT601?: YCbCr;
+  ycbcr_BT709?: YCbCr;
   yccbccrc?: YcCbcCrc;
   ycocg?: YCoCg;
   ydbdr?: YDbDr;
