@@ -27,9 +27,9 @@ import { checkAndFormat } from "../helpers/color-checks";
 
 /**
  *  @description A class representing a color, and its values in diferente spaces
- *  @param {Spaces} -space / type of color from which conversions are made
- *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
- *  @param {(Spaces | "web_safe")[]} - What information do we want back
+ *  @param {Spaces}                     -space / type of color from which conversions are made
+ *  @param {ColorSpaceUnion}            - The actual color data (RGB, HSL etc..)
+ *  @param {(Spaces | "web_safe")[]}    - What information do we want back
  */
 export class Color {
   rgb!: RGB;

@@ -6,7 +6,7 @@ import { ColorConverter } from "./color-converter";
 
 /**
  * @description
- * A class used to convert a color in RGB color space in to other color spaces
+ * A class used to convert a XYZ color values in to other spaces
  *  @param {Spaces}                      -space / type of color from which conversions are made
  *  @param {ColorSpaceUnion}             - The actual color data (RGB, HSL etc..)
  *  @param {{ [key: string]: Function }} - a converter map

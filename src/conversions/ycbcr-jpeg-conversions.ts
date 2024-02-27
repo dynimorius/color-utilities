@@ -34,8 +34,8 @@ export const yCbCrBT601ToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
 /**
  * Converts a color from analog to digital form.
  * Scales to min/max ranges
- * @param {YCbCr} ycbcr YCbCr values for a color
- * @return {xvYCC} Resulting digitized form
+ * @param {YCbCr}                   - YCbCr values for a color
+ * @return {xvYCC}                  - Resulting digitized form
  */
 export const yCbCrBT601ToXvYcc = ({ Y, Cb, Cr }: YCbCr): xvYCC => {
   Y = Y > 1 ? Y / 255 : Y;
@@ -62,8 +62,8 @@ export const yCbCrBT601ToYPbPr = ({ Y, Cb, Cr }: YCbCr): YPbPr => {
 /**
  * Converts a color form an ITU-R BT.709 Y′CbCr space to sRGB space:
  * - more info: https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.709_conversion
- * @param {YCbCr} ycbcr YCbCr values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {YCbCr}                   - YCbCr values for a color
+ * @returns {RGB}                   - sRGB values for a color
  */
 export const yCbCrBT709ToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
   const { red, green, blue } = matrixByVectorObjMultiAsSpace(
