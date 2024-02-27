@@ -30,10 +30,10 @@ import { BlenderColor } from "../types/colors";
 
 /**
  * Blends two colors
- * @param {RGB} - data for the first color to blend
- * @param {RGB} - data for the second color to blend
- * @param {number} - weight / amount of the first color
- * @returns {RGB} - New blended color
+ * @param {RGB}                   - data for the first color to blend
+ * @param {RGB}                   - data for the second color to blend
+ * @param {number}                - weight / amount of the first color
+ * @returns {RGB}                 - New blended color
  */
 export const blend = (rgb1: RGB, rgb2: RGB, weight = 0.5): RGB => {
   return {

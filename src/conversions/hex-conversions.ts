@@ -10,8 +10,8 @@ import { RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a hex string value to sRBG color space
- * @param {string} - hex
- * @returns {RGB} - sRBG color value
+ * @param {string}                - hex
+ * @returns {RGB}                 - sRBG color value
  */
 export const hexToRgb = (hex: string): RGB => {
   const hexRegExp = new RegExp(/[a-f0-9]{6}|[a-f0-9]{3}/i).exec(hex);
@@ -40,8 +40,8 @@ export const hexToRgb = (hex: string): RGB => {
 
 /**
  * Converts a hex string value to a integer
- * @param {string} - hex
- * @returns {number} - integer value
+ * @param {string}                - hex
+ * @returns {number}              - integer value
  */
 export const hexToInt = (val: string): number => {
   return parseInt(val, 16);
@@ -49,8 +49,8 @@ export const hexToInt = (val: string): number => {
 
 /**
  * Converts a hex string value to a decimal
- * @param {string} - hex
- * @returns {number} - decimal value
+ * @param {string}                - hex
+ * @returns {number}              - decimal value
  */
 export const hexToDecimal = (h: string): number => {
   return hexToInt(h) / 255;

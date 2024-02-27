@@ -11,8 +11,8 @@ import { RGB, YcCbcCrc } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color form an YcCbcCrc space to sRGB space:
- * @param {YcCbcCrc} ycCbcCrc YcCbcCrc values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {YcCbcCrc}                - YcCbcCrc values for a color
+ * @returns {RGB}                   - sRGB values for a color
  */
 export const ycCbcCrcToSrgb = ({ Yc, Cbc, Crc }: YcCbcCrc): RGB => {
   const red = getChannel({ Yc, Cbc, Crc }, "red");

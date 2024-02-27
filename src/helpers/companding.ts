@@ -21,8 +21,8 @@ import { bound, gamutCheck } from "./formats-and-checks";
  ************************************************************/
 /**
  * sRGB Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const sRgbCompanding = (value: number): number => {
@@ -35,8 +35,8 @@ export const sRgbCompanding = (value: number): number => {
 
 /**
  * Gamma Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const gammaCompanding = (value: number, gamma: number): number => {
@@ -47,8 +47,8 @@ export const gammaCompanding = (value: number, gamma: number): number => {
 
 /**
  * L* Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const LCompanding = (value: number): number => {
@@ -60,14 +60,14 @@ export const LCompanding = (value: number): number => {
 
 /**
  * RGB Companding
- * @param {RGB} rgb  RGB color values
- * @param {Function} compandingFun function to preform companding whit
+ * @param {RGB}                   - RGB color values
+ * @param {Function}              - function to preform companding whit
  * @param {{ gamma?: number | null; rounded?: boolean; whitInBounds?: boolean }} options
  *              - rounded: should the returned values be rounded
  *              - whitInBounds: should the return values be in range of 0 - 255
  *              - gamma: should the gamma value from the space data set be used
  *                while companding
- * @returns {RGB} - companded RGB values
+ * @returns {RGB}                 - companded RGB values
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const companding = (
@@ -98,8 +98,8 @@ export const companding = (
  ************************************************************/
 /**
  * Inverse sRGB Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color channel value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const inverseSrbgCompanding = (value: number): number => {
@@ -111,8 +111,8 @@ export const inverseSrbgCompanding = (value: number): number => {
 
 /**
  * Inverse Gamma Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color channel value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const inverseGammaCompanding = (
@@ -125,8 +125,8 @@ export const inverseGammaCompanding = (
 
 /**
  * Inverse L* Companding
- * @param {number} value color value
- * @returns {number} - companded value
+ * @param {number}                - color channel value
+ * @returns {number}              - companded value
  * more info: http://www.brucelindbloom.com/index.html?Eqn_RGB_XYZ_Matrix.html
  */
 export const inverseLCompanding = (value: number): number => {
@@ -138,12 +138,12 @@ export const inverseLCompanding = (value: number): number => {
 
 /**
  * RGB Inverse Companding
- * @param {RBG} rgb RBG values
- * @param {SpaceData} space RGB space dataset
- * @param {Function} inverseCompandingFun function to preform inverse companding whit
- * @param {boolean} gamma optional flag indicating if a gamma value
- *                        for a give RGB space data set should be used
- * @returns {RGB} - rgb values
+ * @param {RBG}                   - RGB color values
+ * @param {SpaceData}             - RGB space dataset
+ * @param {Function}              - function to preform inverse companding whit
+ * @param {boolean}               - optional flag indicating if a gamma value
+ *                                for a give RGB space data set should be used
+ * @returns {RGB}                 - rgb values
  */
 export const inverseCompanding = (
   { red, green, blue }: RGB,

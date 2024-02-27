@@ -15,8 +15,8 @@ import { LAB, LCH, RGB, XYZ } from "../interfaces/color-spaces.interface";
  *************************************************************/
 /**
  * Converts a color from CIE-L*ab color space to XYZ
- * @param {LAB} - Lab color value
- * @returns {xyz} - xyz value
+ * @param {LAB}                   - Lab color value
+ * @returns {xyz}                 - xyz value
  */
 export const labToXyz = ({ luminance, a, b }: LAB): XYZ => {
   const fY = (luminance + 16) / 116;
@@ -38,8 +38,8 @@ const f = (num: number): number => {
 
 /**
  * Converts a color from CIE-L*ab color space to LCH(ab) color space
- * @param {LAB} - Lab color value
- * @returns {LCH} - LCH(ab) color value
+ * @param {LAB}                   - Lab color value
+ * @returns {LCH}                 - LCH(ab) color value
  */
 export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
   const hr = Math.atan2(b, a);
@@ -52,8 +52,8 @@ export const labToLch_ab = ({ luminance, a, b }: LAB): LCH => {
 
 /**
  * Converts a color from CIE-L*ab color space to sRGB color space
- * @param {LAB} - Lab color value
- * @returns {RGB} - sRGB color value
+ * @param {LAB}                   - Lab color value
+ * @returns {RGB}                 - sRGB color value
  */
 export const labToSrgb = (lab: LAB): RGB => {
   return xyzToSrgb(labToXyz(lab));
@@ -62,6 +62,11 @@ export const labToSrgb = (lab: LAB): RGB => {
 /*************************************************************
  *                        Hunter-Lab
  *************************************************************/
+/**
+ * Converts a color from Hunter's Lab color space to XYZ values
+ * @param {LAB}                   - Lab color value
+ * @returns {XYZ}                 - XYZ color value
+ */
 export const hunterLabToXyz = (
   { luminance, a, b }: LAB,
 ): XYZ => {

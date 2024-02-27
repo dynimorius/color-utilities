@@ -10,8 +10,8 @@ import { HWB, RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color from HWB color space to sRBG color space
- * @param {HWB} - hwb color value
- * @returns {RBG} - sRBG color value
+ * @param {HWB}                   - hwb color value
+ * @returns {RBG}                 - sRBG color value
  */
 export const hwbToRgb = ({ hue, whiteness, blackness }: HWB): RGB => {
   hue = hue / 360;

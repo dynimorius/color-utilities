@@ -10,8 +10,8 @@ import { RGB, TSL } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color form an TSL space to sRGB
- * @param {TSL} tsl TSL values for a color
- * @returns {RGB} - RGB values for a color
+ * @param {TSL}                   - TSL values for a color
+ * @returns {RGB}                 - RGB values for a color
  */
 export const tslToSrgb = (
   { tint, saturation, lightness }: TSL,

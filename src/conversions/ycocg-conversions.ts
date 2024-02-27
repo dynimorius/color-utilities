@@ -10,8 +10,8 @@ import { RGB, YCoCg } from "../public_api";
 
 /**
  * Converts a color form an YCoCg space to sRGB space:
- * @param {YCoCg} ycocg YCoCg values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {YCoCg}                   - YCoCg values for a color
+ * @returns {RGB}                   - sRGB values for a color
  */
 export const yCgCoToSrgb = ({ Y, Co, Cg }: YCoCg): RGB => {
   const temp = Y - Cg;

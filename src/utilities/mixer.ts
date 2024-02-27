@@ -12,10 +12,10 @@ import { MixerOptions } from "../interfaces/mixer.interface";
 
 /**
  * Creates an incremented color palet
- * @param {RGB} - data for the original color
- * @param {number} - amount of colors to generate
- * @param {number} - the number by which to increment
- * @returns {string[]} - array of colors in hex format
+ * @param {RGB}                   - data for the original color
+ * @param {number}                - amount of colors to generate
+ * @param {number}                - the number by which to increment
+ * @returns {string[]}            - array of colors in hex format
  */
 const scale = (
   rgb: RGB | RGBA,
@@ -44,11 +44,11 @@ const scale = (
 /**
  * Creates an palet of shades by mixing a given color
  * with black (#000000)
- * @param {RGB} - data for the original color
- * @param {MixerOptions} - options for generating the palet:
- *  - size: how many colors to generate
- *  - prefixed: should the return values start with #
- * @returns {string[]} - array of shades in hex format
+ * @param {RGB}                   - data for the original color
+ * @param {MixerOptions}          - options for generating the palet:
+ *                                - size: how many colors to generate
+ *                                - prefixed: should the return values start with #
+ * @returns {string[]}            - array of shades in hex format
  */
 export const getShades = (
   rgb: RGB | RGBA,
@@ -64,10 +64,10 @@ export const getShades = (
 /**
  * Creates an palet of tints by mixing a given color
  * with white (#FFFFFF)
- * @param {RGB} - data for the original color
- * @param {MixerOptions} - options for generating the palet:
- *  - size: how many colors to generate
- *  - prefixed: should the return values start with #
+ * @param {RGB}                   - data for the original color
+ * @param {MixerOptions}          - options for generating the palet:
+ *                                - size: how many colors to generate
+ *                                - prefixed: should the return values start with #
  * @returns {string[]} - array of tints in hex format
  */
 export const getTints = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {
@@ -81,10 +81,10 @@ export const getTints = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {
 /**
  * Creates an palet of tones by mixing a given color
  * with gray (#777777)
- * @param {RGB} - data for the original color
- * @param {MixerOptions} - options for generating the palet:
- *  - size: how many colors to generate
- *  - prefixed: should the return values start with #
+ * @param {RGB}                   - data for the original color
+ * @param {MixerOptions}          - options for generating the palet:
+ *                                - size: how many colors to generate
+ *                                - prefixed: should the return values start with #
  * @returns {string[]} - array of tones in hex format
  */
 export const getTones = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {

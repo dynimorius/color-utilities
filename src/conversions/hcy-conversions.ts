@@ -13,6 +13,11 @@
 import { HCY, HSI, RGB } from "../interfaces/color-spaces.interface";
 
 //TODO handle minus values
+/**
+ * Converts a color form an HCY space or Hsi to sRGB space
+ * @param {HCY | HSI}             - HCY or HSI values for a color
+ * @returns {RGB}                 - sRGB values for a color
+ */
 export const hcyOrHsiToSrgb = (val: HCY | HSI): RGB => {
   const values = Object.values(val);
   let hue = values[0];
@@ -52,8 +57,8 @@ export const hcyOrHsiToSrgb = (val: HCY | HSI): RGB => {
 
 /**
  * Converts a color form an HCY space to sRGB space
- * @param {HCY} hcy HCY values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {HCY}                   -HCY values for a color
+ * @returns {RGB}                 - sRGB values for a color
  */
 export const hcyToSrgb = (hcy: HCY): RGB => {
   return hcyOrHsiToSrgb(hcy);

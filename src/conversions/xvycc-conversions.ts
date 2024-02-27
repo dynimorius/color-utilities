@@ -12,8 +12,8 @@ import { yCbCrBT601ToSrgb } from "./ycbcr-jpeg-conversions";
 /**
  * Converts a color from digital to analog form.
  * Scales to min/max ranges
- * @param {xvYCC} xvycc xvYCC values for a color
- * @return {YCbCr} Resulting digitized form
+ * @param {xvYCC}                   - xvYCC values for a color
+ * @return {YCbCr}                  - Resulting digitized form
  */
 export const xvYccToYcbcrBT601 = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
   return {
@@ -25,8 +25,8 @@ export const xvYccToYcbcrBT601 = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
 
 /**
  * Converts a color form an xvYCC space to sRGB space:
- * @param {xvYCC} xvycc xvYCC values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {xvYCC}                   - xvYCC values for a color
+ * @returns {RGB}                   - sRGB values for a color
  */
 export const xvYccToSrgb = (xvycc: xvYCC) => {
   return yCbCrBT601ToSrgb(xvYccToYcbcrBT601(xvycc));

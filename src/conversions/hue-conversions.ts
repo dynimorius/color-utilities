@@ -6,6 +6,12 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
+/**
+ * Computes a hue value froma given sRGB values
+ * 
+ * @param {RBG}                   - sRBG values for a color
+ * @returns {number}              - number value of hue
+ */
 export const hueToRGB = (t1: number, t2: number, hue: number): number => {
   if (hue < 0) {
     hue += 6;

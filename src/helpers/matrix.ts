@@ -12,9 +12,9 @@ import { normalizeRgb } from '../public_api';
 
 /**
  * 3 x 3 Matrix Multiplication
- * @param {Matrix3x3} a 3 x 3 matrix
- * @param {Matrix3x3} b 3 x 3 matrix
- * @returns {Matrix3x3} - resulting 3 x 3 matrix
+ * @param {Matrix3x3}              - 3 x 3 matrix
+ * @param {Matrix3x3}              - 3 x 3 matrix
+ * @returns {Matrix3x3}            - resulting 3 x 3 matrix
  */
 export const matrix3x3Multi = (a: Matrix3x3, b: Matrix3x3): Matrix3x3 => {
   return [
@@ -38,9 +38,9 @@ export const matrix3x3Multi = (a: Matrix3x3, b: Matrix3x3): Matrix3x3 => {
 
 /**
  * Multiplication of a 3 x 3 Matrix by array / vector
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {number[]} vector a number array
- * @returns {number[]} - resulting number array / vector
+ * @param {Matrix3x3}              - 3 x 3 matrix
+ * @param {number[]}               - a number array
+ * @returns {number[]}             - resulting number array / vector
  */
 export const matrixVectorMulti = (
   matrix: Matrix3x3,
@@ -61,8 +61,8 @@ export const matrixVectorMulti = (
 
 /**
  * Multiplication of a 3 x 3 Matrix by an Object
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {{ [key: string]: number }} vector a vector object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {{ [key: string]: number }}   - a vector object
  * @returns {{ [key: string]: number }} - resulting vector object
  */
 export const matrixByVectorObjMulti = (
@@ -88,9 +88,9 @@ export const matrixByVectorObjMulti = (
 
 /**
  * Multiplication of a 3 x 3 Matrix by an Object
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {{ [key: string]: number }} vector a vector object
- * @param {string[]} space a string a param names for a resulting object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {{ [key: string]: number }}   - a vector object
+ * @param {string[]}                    - a string a param names for a resulting object
  * @returns {{ [key: string]: number }} - resulting vector object
  */
 export const matrixByVectorObjMultiAsSpace = (
@@ -117,9 +117,9 @@ export const matrixByVectorObjMultiAsSpace = (
 
 /**
  * Multiplication of a 3 x 3 Matrix by an XYZ
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {XYZ} vector a vector xyz object
- * @returns {XYZ} - resulting xyz object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {XYZ}                         - a vector xyz object
+ * @returns {XYZ}                       - resulting xyz object
  */
 export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
   return {
@@ -140,9 +140,9 @@ export const matrixVectorMultiAsXyz = (matrix: Matrix3x3, vector: XYZ): XYZ => {
 
 /**
  * Multiplication of a 3 x 3 Matrix by a Color Space object
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {{ [key: string]: number }} vector a vector object
- * @returns {XYZ} - resulting xyz object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {{ [key: string]: number }}   - a vector object
+ * @returns {XYZ}                       - resulting xyz object
  */
 export const matrixSpaceMultiAsXyz = (
   matrix: Matrix3x3,
@@ -167,9 +167,9 @@ export const matrixSpaceMultiAsXyz = (
 
 /**
  * Multiplication of a 3 x 3 Matrix by an XYZ
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {XYZ} vector a vector xyz object
- * @param {string[]} space a string a param names for a resulting object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {XYZ}                         - a vector xyz object
+ * @param {string[]}                    - a string a param names for a resulting object
  * @returns {{ [key: string]: number }} - resulting color space object
  */
 export const matrixXyzMultiAsSpace = (
@@ -195,9 +195,9 @@ export const matrixXyzMultiAsSpace = (
 
 /**
  * Multiplication of a 3 x 3 Matrix by an RGB
- * @param {Matrix3x3} matrix 3 x 3 matrix
- * @param {RGB} vector a vector xyz object
- * @param {string[]} space a string a param names for a resulting object
+ * @param {Matrix3x3}                   - 3 x 3 matrix
+ * @param {RGB}                         - a vector xyz object
+ * @param {string[]}                    - a string a param names for a resulting object
  * @returns {{ [key: string]: number }} - resulting color space object
  */
 export const matrixRgbMultiAsSpace = (

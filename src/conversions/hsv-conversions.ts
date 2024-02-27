@@ -11,8 +11,8 @@ import { sRgbToAnsi16 } from "./rgb-conversions";
 
 /**
  * Converts a color from HSV color space to sRBG color space
- * @param {HSV} - hsl color value
- * @returns {RBG} - sRBG color value
+ * @param {HSV}                   - hsl color value
+ * @returns {RBG}                 - sRBG color value
  */
 export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
   hue = (hue / 360) * 6;
@@ -34,8 +34,8 @@ export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
 
 /**
  * Converts a color from HSV color space to HSV color space
- * @param {HSV} - hsl color value
- * @returns {HSV} - hsv color value
+ * @param {HSV}                   - hsl color value
+ * @returns {HSV}                 - hsv color value
  */
 export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
   saturation = saturation / 100;
@@ -56,8 +56,8 @@ export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
 
 /**
  * Converts a color from HSV color space to ansi16 numerical
- * @param {HSV} - hsl color value
- * @returns {number} - ansi16 numberical value
+ * @param {HSV}                   - hsl color value
+ * @returns {number}              - ansi16 numberical value
  */
 export const hsvToAnsi16 = (hsv: HSV): number => {
   const rgb = hsvToRgb(hsv);

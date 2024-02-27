@@ -12,8 +12,8 @@ import { luvToXyz } from "./luv-conversions";
 
 /**
  * Converts a color from LCH(ab) color space to LAB color space
- * @param {LCH} - Lch(ab) color value
- * @returns {LAB} - lab color value
+ * @param {LCH}                   - Lch(ab) color value
+ * @returns {LAB}                 - lab color value
  */
 export const lch_abToLab = ({ lightness, chroma, hue }: LCH): LAB => {
   const H = (hue / 180) * Math.PI;
@@ -25,8 +25,8 @@ export const lch_abToLab = ({ lightness, chroma, hue }: LCH): LAB => {
 
 /**
  * Converts a color from LCH(ab) color space to LUV color space
- * @param {LCH} - Lch(uv) color value
- * @returns {LUV} - luv color value
+ * @param {LCH}                   - Lch(uv) color value
+ * @returns {LUV}                 - luv color value
  */
 export const lch_uvToLuv = ({ lightness, chroma, hue }: LCH): LUV => {
   const H = (hue / 180) * Math.PI;
@@ -38,8 +38,8 @@ export const lch_uvToLuv = ({ lightness, chroma, hue }: LCH): LUV => {
 
 /**
  * Converts a color from LCH(ab) color space to XYZ
- * @param {LCH} - Lch(ab) color value
- * @returns {XYZ} - xyz value
+ * @param {LCH}                   - Lch(ab) color value
+ * @returns {XYZ}                 - xyz value
  */
 export const lch_abToXyz = (lch: LCH): XYZ => {
   return labToXyz(lch_abToLab(lch));
@@ -47,8 +47,8 @@ export const lch_abToXyz = (lch: LCH): XYZ => {
 
 /**
  * Converts a color from LCH(uv) color space to XYZ
- * @param {LCH} - Lch(uv) color value
- * @returns {XYZ} - xyz value
+ * @param {LCH}                   - Lch(uv) color value
+ * @returns {XYZ}                 - xyz value
  */
 export const lch_uvToXyz = (lch: LCH): XYZ => {
   return luvToXyz(lch_uvToLuv(lch));

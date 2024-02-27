@@ -11,10 +11,10 @@ import { HSL, HSLA, hslToHex } from "../public_api";
 
 /**
  * Creates a harmony palet for a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {number[]} - represents harmonization angles
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {number[]}             - represents harmonization angles
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 const harmonizeHsl = (
   hsl: HSL | HSLA,
@@ -44,9 +44,9 @@ const harmonizeHsl = (
 /**
  * Gets a complementary color for a given one
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const complementaryHarmony = (
   hsl: HSLA | HSL,
@@ -58,9 +58,9 @@ export const complementaryHarmony = (
 /**
  * Creates a Split harmony color palet base on a given color
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const splitComplementaryHarmony = (
   hsl: HSLA | HSL,
@@ -72,9 +72,9 @@ export const splitComplementaryHarmony = (
 /**
  * Creates a Split harmony color palet base on a given color
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const splitComplementaryCWHarmony = (
   hsl: HSLA | HSL,
@@ -86,9 +86,9 @@ export const splitComplementaryCWHarmony = (
 /**
  * Creates a Split harmony color palet base on a given color
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const splitComplementaryCCWHarmony = (
   hsl: HSLA | HSL,
@@ -100,9 +100,9 @@ export const splitComplementaryCCWHarmony = (
 /**
  * Creates a Triadic harmony color palet base on a given color
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const triadicHarmony = (
   hsl: HSLA | HSL,
@@ -118,9 +118,9 @@ export const clashHarmony = (hsl: HSLA | HSL, prefixed?: boolean): string[] => {
 /**
  * Creates a Tetradic/Rectangle harmony color palet base on a given color
  * More info: https://www.color-meanings.com/rectangular-tetradic-color-schemes/
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}            - color from which to generate a harmony palet
+ * @param {boolean}               - should return values start with #
+ * @returns {string[]}            - return an array of colors in hex form
  */
 export const tetradicHarmony = (
   hsl: HSLA | HSL,
@@ -131,9 +131,9 @@ export const tetradicHarmony = (
 
 /**
  * Creates a Four Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fourToneCWHarmony = (
   hsl: HSLA | HSL,
@@ -144,9 +144,9 @@ export const fourToneCWHarmony = (
 
 /**
  * Creates a Four Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fourToneCCWHarmony = (
   hsl: HSLA | HSL,
@@ -157,9 +157,9 @@ export const fourToneCCWHarmony = (
 
 /**
  * Creates a Five Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fiveToneAHarmony = (
   hsl: HSLA | HSL,
@@ -170,9 +170,9 @@ export const fiveToneAHarmony = (
 
 /**
  * Creates a Five Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fiveToneBHarmony = (
   hsl: HSLA | HSL,
@@ -183,9 +183,9 @@ export const fiveToneBHarmony = (
 
 /**
  * Creates a Five Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fiveToneCHarmony = (
   hsl: HSLA | HSL,
@@ -196,9 +196,9 @@ export const fiveToneCHarmony = (
 
 /**
  * Creates a Five Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fiveToneDHarmony = (
   hsl: HSLA | HSL,
@@ -209,9 +209,9 @@ export const fiveToneDHarmony = (
 
 /**
  * Creates a Five Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const fiveToneEHarmony = (
   hsl: HSLA | HSL,
@@ -222,9 +222,9 @@ export const fiveToneEHarmony = (
 
 /**
  * Creates a Six Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const sixToneCWHarmony = (
   hsl: HSLA | HSL,
@@ -235,9 +235,9 @@ export const sixToneCWHarmony = (
 
 /**
  * Creates a Six Tone harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const sixToneCCWHarmony = (
   hsl: HSLA | HSL,
@@ -248,9 +248,9 @@ export const sixToneCCWHarmony = (
 
 /**
  * Creates a Natural harmony color palet base on a given color
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const neutralHarmony = (
   hsl: HSLA | HSL,
@@ -262,9 +262,9 @@ export const neutralHarmony = (
 /**
  * Creates a Analogous harmony color palet base on a given color
  * More info: https://en.wikipedia.org/wiki/Harmony_(color)
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const analogousHarmony = (
   hsl: HSLA | HSL,
@@ -276,9 +276,9 @@ export const analogousHarmony = (
 /**
  * Creates a Square color palet base on a given color
  * More info: https://www.color-meanings.com/square-color-schemes/
- * @param {HSL | HSLA} - color from which to generate a harmony palet
- * @param {boolean} - should return values start with #
- * @returns {string[]} - return an array of colors in hex form
+ * @param {HSL | HSLA}           - color from which to generate a harmony palet
+ * @param {boolean}              - should return values start with #
+ * @returns {string[]}           - return an array of colors in hex form
  */
 export const squareHarmony = (
   hsl: HSLA | HSL,

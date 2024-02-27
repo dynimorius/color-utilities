@@ -10,6 +10,11 @@ import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
 import { Fu, _Fv } from "../helpers/white-point";
 import { UVW, XYZ } from "../interfaces/color-spaces.interface";
 
+/**
+ * Gets XYZ value for a given color in UVW space
+ * @param {UVW}                   - UVW values for a color
+ * @returns {number}              - XYZ values
+ */
 export const uvwToXyz = (
   { u, v, w }: UVW,
   refIlluminant = REFERENCE_ILLUMINANT.D65

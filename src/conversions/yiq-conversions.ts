@@ -12,8 +12,8 @@ import { RGB, YIQ } from "../public_api";
 
 /**
  * Converts a color form an YIQ space to sRGB values
- * @param {YIQ} yig YIQ values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {YIQ}                   - YIQ values for a color
+ * @returns {RGB}                 - sRGB values for a color
  */
 export const yiqToSrgb = ({ Y, I, Q }: YIQ): RGB => {
   return matrixByVectorObjMultiAsSpace(

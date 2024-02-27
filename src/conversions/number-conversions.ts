@@ -10,8 +10,8 @@ import { RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a decimal numberical value in to a hex string
- * @param {number} - decimal
- * @returns {string} - hex
+ * @param {number}                   - decimal
+ * @returns {string}                 - hex
  */
 export const decimalToHex = (d: string | number): string => {
   return Math.round(parseFloat(d as string) * 255).toString(16);
@@ -19,8 +19,8 @@ export const decimalToHex = (d: string | number): string => {
 
 /**
  * Converts a numberical value in a sRBG
- * @param {number} - numberical color value
- * @returns {RBG} - sRBG color value
+ * @param {number}                  - numberical color value
+ * @returns {RBG}                   - sRBG color value
  */
 export const numberToRGB = (color: number): RGB => {
   return {

@@ -42,8 +42,8 @@ import { luvToLch_uv } from './luv-conversions';
 
 /**
  * Gets Lab values from given xyz values
- * @param {XYZ} xyz xyz values for a color
- * @returns {LAB} - lab values for a color
+ * @param {XYZ}                   - xyz values for a color
+ * @returns {LAB}                 - lab values for a color
  */
 export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
   const f = (t: number): number => {

@@ -13,8 +13,8 @@ import { Matrix3x3 } from "../types/math-types";
 
 /**
  * Converts a color form an LMS space to XYZ values
- * @param {LMS} lms LMS values for a color
- * @returns {XYZ} - XYZ values for a color
+ * @param {LMS}                   - LMS values for a color
+ * @returns {XYZ}                 - XYZ values for a color
  */
 export const lmsToXyz = (lms: LMS | { [key: string]: number }, matrix?: Matrix3x3): XYZ  => {
   if (!matrix) matrix = VON_KRIES_COEFFICIENT_MATRICES.MA_1;

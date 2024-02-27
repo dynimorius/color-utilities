@@ -15,8 +15,8 @@ import { RGB, YCbCr, YPbPr, xvYCC } from "../interfaces/color-spaces.interface";
  * a modified Rec. 601 Y′CbCr where Y′, CB and CR have the
  * full 8-bit range of [0...255].
  * - more info: https://en.wikipedia.org/wiki/YCbCr#ITU-R_BT.601_conversion
- * @param {YCbCr} ycbcr YCbCr values for a color
- * @returns {RGB} - sRGB values for a color
+ * @param {YCbCr}                   - YCbCr values for a color
+ * @returns {RGB}                   - sRGB values for a color
  */
 export const yCbCrBT601ToSrgb = ({ Y, Cb, Cr }: YCbCr): RGB => {
   const { red, green, blue } = matrixByVectorObjMultiAsSpace(

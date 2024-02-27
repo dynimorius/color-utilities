@@ -10,8 +10,8 @@ import { HCL, LAB } from "../interfaces/color-spaces.interface"
 
 /**
  * Converts a color from HCL color space to LAB color space
- * @param {HCL} - hcl color value
- * @returns {LAB} - lab color value
+ * @param {HCL}                   - hcl color value
+ * @returns {LAB}                 - lab color value
  */
 export const hclToLab = ({ luminance, hue, chroma }: HCL): LAB => {
   const h = hue * (Math.PI / 180)

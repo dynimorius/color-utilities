@@ -13,8 +13,8 @@ import { LCH, LUV, XYZ } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color from LUV color space to LCH(uv) color space
- * @param {LUV} - luv color value
- * @returns {LCH} - Lch(uv) color value
+ * @param {LUV}                   - luv color value
+ * @returns {LCH}                 - Lch(uv) color value
  */
 export const luvToLch_uv = ({ L, u, v }: LUV): LCH => {
   const chroma = Math.sqrt(u * u + v * v);
@@ -25,8 +25,8 @@ export const luvToLch_uv = ({ L, u, v }: LUV): LCH => {
 
 /**
  * Converts a color from LUV color space to XYZ
- * @param {LUV} - luv color value
- * @returns {XYZ} - xyz color value
+ * @param {LUV}                   - luv color value
+ * @returns {XYZ}                 - xyz color value
  */
 export const luvToXyz = (
   { L, u, v }: LUV,

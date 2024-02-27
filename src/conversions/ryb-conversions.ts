@@ -10,8 +10,8 @@ import { RGB, RYB } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color form an RYB space to sRGB space
- * @param {RYB} - RYB values for a color 
- * @returns {RBG} rgb sRBG values for a color
+ * @param {RYB}                   - RYB values for a color 
+ * @returns {RBG}                 - sRBG values for a color
  */
 export const rybToRgb = ({red, yellow, blue}: RYB): RGB => {
   const Iw = Math.min(red, yellow, blue);

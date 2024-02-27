@@ -10,8 +10,8 @@ import { CMYK, RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Converts a color from CMYK color space to sRBG color space
- * @param {CMYK} - cmyk color value
- * @returns {RGB} - sRBG color value
+ * @param {CMYK}                   - cmyk color value
+ * @returns {RGB}                  - sRBG color value
  */
 
 export const cmykToRgb = ({ cyan, magenta, yellow, key }: CMYK): RGB => {

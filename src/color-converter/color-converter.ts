@@ -12,13 +12,13 @@ import { ColorSpaceUnion, Spaces } from "../types/colors";
 /**
  * @description
  * A class used to convert a color space in to another
- *  @param {Spaces} -space / type of color from which conversions are made
- *  @param {ColorSpaceUnion} - The actual color data (RGB, HSL etc..)
+ *  @param {Spaces}                      -space / type of color from which conversions are made
+ *  @param {ColorSpaceUnion}             - The actual color data (RGB, HSL etc..)
  *  @param {{ [key: string]: Function }} - a converter map
  */
 export abstract class ColorConverter {
-  color!: ColorSpaceUnion;
-  converterMap!: { [key: string]: Function };
+  protected color!: ColorSpaceUnion;
+  protected converterMap!: { [key: string]: Function };
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,

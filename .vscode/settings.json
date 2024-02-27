@@ -8,7 +8,8 @@
   "typescript.tsc.autoDetect": "on",
   "editor.formatOnSave": true,
   "editor.formatOnType": false,
-  "editor.formatOnPaste": true
+  "editor.formatOnPaste": true,
+  "cmake.configureOnOpen": false
 
   // "workbench.colorCustomizations": {
   //   "activityBar.activeBackground": "#0b8aff",

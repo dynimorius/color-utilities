@@ -1,4 +1,3 @@
-import { ycCbcCrcToSrgb } from './../conversions/yccbccrc-conversions';
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
@@ -40,7 +39,6 @@ import {
   YDbDr,
   YIQ,
   YPbPr,
-  YUV,
   YcCbcCrc,
   xvYCC,
 } from "../interfaces/color-spaces.interface";
@@ -52,10 +50,10 @@ import { gamutCheck } from "./formats-and-checks";
 /**
  * Checks color values and converts the color from
  * shorthand naming to full naming ({r, b, g} -> {red, green, blue})
- * @param {string} space color type / space
- * @param {ColorSpaceUnion} color - color data
- * @returns {ColorSpaceUnion} returns back the same color
- * @throws Color data is incorrect
+ * @param {string}                - color type / space
+ * @param {ColorSpaceUnion}       - color data
+ * @returns {ColorSpaceUnion}     - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 export const checkAndFormat = (
   space: string,
@@ -70,9 +68,9 @@ export const checkAndFormat = (
 
 /**
  * Checks if all color values are numeric
- * @param {ColorSpaceUnion} color - color data
- * @returns {ColorSpaceUnion} returns back the same color
- * @throws Color data is incorrect
+ * @param {ColorSpaceUnion}       - color data
+ * @returns {ColorSpaceUnion}     - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 export const colorCheck = (color: ColorSpaceUnion): ColorSpaceUnion => {
   const entries = Object.entries(color);
@@ -87,9 +85,9 @@ export const colorCheck = (color: ColorSpaceUnion): ColorSpaceUnion => {
 /**
  * Checks if all CMY values are numeric
  * converts from CMY_M to CMY if needed
- * @param {CMY | CMY_M} color - color data
- * @returns {CMY} returns back the same color
- * @throws Color data is incorrect
+ * @param {CMY | CMY_M}           - color data
+ * @returns {CMY}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const cmyColorCheck = (color: CMY | CMY_M): CMY => {
   const values = Object.values(colorCheck(color));
@@ -103,9 +101,9 @@ const cmyColorCheck = (color: CMY | CMY_M): CMY => {
 /**
  * Checks if all CMYK values are numeric
  * converts from CMYK_M to CMYK if needed
- * @param {CMYK | CMYK_M} color - color data
- * @returns {CMYK} returns back the same color
- * @throws Color data is incorrect
+ * @param {CMYK | CMYK_M}         - color data
+ * @returns {CMYK}                - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
   const values = Object.values(colorCheck(color));
@@ -121,9 +119,9 @@ const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
 /**
  * Checks if all HCY values are numeric
  * converts from HCY_M to HCY if needed
- * @param {HCY | HCY_M} color - color data
- * @returns {HCY} returns back the same color
- * @throws Color data is incorrect
+ * @param {HCY | HCY_M}           - color data
+ * @returns {HCY}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hcyColorCheck = (color: HCY | HCY_M): HCY => {
   const values = Object.values(colorCheck(color));
@@ -132,9 +130,9 @@ const hcyColorCheck = (color: HCY | HCY_M): HCY => {
 
 /**
  * Checks if hex value is in a proper format
- * @param {string} color - color hex string
- * @returns {strings} returns back the same color
- * @throws Color data is incorrect
+ * @param {string}                - color hex string
+ * @returns {strings}             - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hexColorCheck = (color: string): string => {
   if (new RegExp(FULL_HEX).exec(color)) return color.slice(1).toUpperCase();
@@ -148,9 +146,9 @@ const hexColorCheck = (color: string): string => {
 /**
  * Checks if all HSI values are numeric
  * converts from HSI_M to HSI if needed
- * @param {HSI} color - color data
- * @returns {HSI} returns back the same color
- * @throws Color data is incorrect
+ * @param {HSI}                   - color data
+ * @returns {HSI}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hsiColorCheck = (color: HSI): HSI => {
   const values = Object.values(colorCheck(color));
@@ -160,9 +158,9 @@ const hsiColorCheck = (color: HSI): HSI => {
 /**
  * Checks if all HSL values are numeric
  * converts from HSL_M to HSL if needed
- * @param {HSL | HSL_M} color - color data
- * @returns {HSL} returns back the same color
- * @throws Color data is incorrect
+ * @param {HSL | HSL_M}           - color data
+ * @returns {HSL}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hslColorCheck = (color: HSL | HSL_M): HSL => {
   const values = Object.values(colorCheck(color));
@@ -172,9 +170,9 @@ const hslColorCheck = (color: HSL | HSL_M): HSL => {
 /**
  * Checks if all HSV values are numeric
  * converts from HSV_M to HSV if needed
- * @param {HSV | HSV_M} color - color data
- * @returns {HSV} returns back the same color
- * @throws Color data is incorrect
+ * @param {HSV | HSV_M}           - color data
+ * @returns {HSV}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hsvColorCheck = (color: HSV | HSV_M): HSV => {
   const values = Object.values(colorCheck(color));
@@ -184,9 +182,9 @@ const hsvColorCheck = (color: HSV | HSV_M): HSV => {
 /**
  * Checks if all HWB values are numeric
  * converts from HWB_M to HWB if needed
- * @param {HWB | HWB_M} color - color data
- * @returns {HWB} returns back the same color
- * @throws Color data is incorrect
+ * @param {HWB | HWB_M}           - color data
+ * @returns {HWB}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const hwbColorCheck = (color: HWB | HWB_M): HWB => {
   const values = Object.values(colorCheck(color));
@@ -196,9 +194,9 @@ const hwbColorCheck = (color: HWB | HWB_M): HWB => {
 /**
  * Checks if all LAB values are numeric
  * converts from LAB_M to LAB if needed
- * @param {LAB | LAB_M} color - color data
- * @returns {LAB} returns back the same color
- * @throws Color data is incorrect
+ * @param {LAB | LAB_M}           - color data
+ * @returns {LAB}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const labColorCheck = (color: LAB | LAB_M): LAB => {
   const values = Object.values(colorCheck(color));
@@ -208,9 +206,9 @@ const labColorCheck = (color: LAB | LAB_M): LAB => {
 /**
  * Checks if all LCH values are numeric
  * converts from LCH_M to LCH if needed
- * @param {LCH | LCH_M} color - color data
- * @returns {LCH} returns back the same color
- * @throws Color data is incorrect
+ * @param {LCH | LCH_M}           - color data
+ * @returns {LCH}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const lchColorCheck = (color: LCH | LCH_M): LCH => {
   const values = Object.values(colorCheck(color));
@@ -219,9 +217,9 @@ const lchColorCheck = (color: LCH | LCH_M): LCH => {
 
 /**
  * Checks if all LMS values are numeric
- * @param {LMS} color - color data
- * @returns {LMS} returns back the same color
- * @throws Color data is incorrect
+ * @param {LMS}                   - color data
+ * @returns {LMS}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const lmsColorCheck = (color: LMS): LMS => {
   const values = Object.values(colorCheck(color));
@@ -230,9 +228,9 @@ const lmsColorCheck = (color: LMS): LMS => {
 
 /**
  * Checks if all LUV values are numeric
- * @param {LUV} color - color data
- * @returns {LUV} returns back the same color
- * @throws Color data is incorrect
+ * @param {LUV}                   - color data
+ * @returns {LUV}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const luvColorCheck = (color: LUV): LUV => {
   const values = Object.values(colorCheck(color));
@@ -242,9 +240,9 @@ const luvColorCheck = (color: LUV): LUV => {
 /**
  * Checks if all RGB values are numeric as well as if the color is in Gamut
  * converts from RGB_M to RGB if needed
- * @param {RGB | RGB_M} color - color data
- * @returns {RGB} returns back the same color
- * @throws Color data is incorrect
+ * @param {RGB | RGB_M}           - color data
+ * @returns {RGB}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const rgbColorCheck = (color: RGB | RGB_M): RGB => {
   const values = Object.values(colorCheck(color));
@@ -260,9 +258,9 @@ const rgbColorCheck = (color: RGB | RGB_M): RGB => {
 /**
  * Checks if all RYB values are numeric
  * converts from RYB_M to RYB if needed
- * @param {RYB | RYB_M} color - color data
- * @returns {RYB} returns back the same color
- * @throws Color data is incorrect
+ * @param {RYB | RYB_M}           - color data
+ * @returns {RYB}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const rybColorCheck = (color: RYB | RYB_M): RYB => {
   const values = Object.values(colorCheck(color));
@@ -271,9 +269,9 @@ const rybColorCheck = (color: RYB | RYB_M): RYB => {
 
 /**
  * Checks if all TSL values are numeric
- * @param {TSL} color - color data
- * @returns {TSL} returns back the same color
- * @throws Color data is incorrect
+ * @param {TSL}                   - color data
+ * @returns {TSL}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const tslColorCheck = (color: TSL): TSL => {
   const values = Object.values(colorCheck(color));
@@ -282,9 +280,9 @@ const tslColorCheck = (color: TSL): TSL => {
 
 /**
  * Checks if all UVW values are numeric
- * @param {UVW} color - color data
- * @returns {UVW} returns back the same color
- * @throws Color data is incorrect
+ * @param {UVW}                   - color data
+ * @returns {UVW}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const uvwColorCheck = (color: UVW): UVW => {
   const values = Object.values(colorCheck(color));
@@ -293,9 +291,9 @@ const uvwColorCheck = (color: UVW): UVW => {
 
 /**
  * Checks if all xvYCC values are numeric
- * @param {xvYCC} color - color data
- * @returns {xvYCC} returns back the same color
- * @throws Color data is incorrect
+ * @param {xvYCC}                 - color data
+ * @returns {xvYCC}               - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const xvYccColorCheck = (color: xvYCC): xvYCC => {
   const values = Object.values(color);
@@ -304,9 +302,9 @@ const xvYccColorCheck = (color: xvYCC): xvYCC => {
 
 /**
  * Checks if all XYY values are numeric
- * @param {XYY} color - color data
- * @returns {XYY} returns back the same color
- * @throws Color data is incorrect
+ * @param {XYY}                   - color data
+ * @returns {XYY}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const xyYColorCheck = (color: XYY): XYY => {
   const values = Object.values(color);
@@ -315,9 +313,9 @@ const xyYColorCheck = (color: XYY): XYY => {
 
 /**
  * Checks if all XYZ values are numeric
- * @param {XYZ} color - color data
- * @returns {XYZ} returns back the same color
- * @throws Color data is incorrect
+ * @param {XYZ}                   - color data
+ * @returns {XYZ}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const xyzColorCheck = (color: XYZ): XYZ => {
   const values = Object.values(color);
@@ -326,9 +324,9 @@ const xyzColorCheck = (color: XYZ): XYZ => {
 
 /**
  * Checks if all YCbCr values are numeric
- * @param {YCbCr} color - color data
- * @returns {YCbCr} returns back the same color
- * @throws Color data is incorrect
+ * @param {YCbCr}                 - color data
+ * @returns {YCbCr}               - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const yCbCrColorCheck = (color: YCbCr): YCbCr => {
   const values = Object.values(color);
@@ -337,9 +335,9 @@ const yCbCrColorCheck = (color: YCbCr): YCbCr => {
 
 /**
  * Checks if all YcCbcCrc values are numeric
- * @param {YcCbcCrc} color - color data
- * @returns {YcCbcCrc} returns back the same color
- * @throws Color data is incorrect
+ * @param {YcCbcCrc}              - color data
+ * @returns {YcCbcCrc}            - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const ycCbcCrcColorCheck = (color: YcCbcCrc): YcCbcCrc => {
   const values = Object.values(color);
@@ -348,9 +346,9 @@ const ycCbcCrcColorCheck = (color: YcCbcCrc): YcCbcCrc => {
 
 /**
  * Checks if all YCoCg values are numeric
- * @param {YCoCg} color - color data
- * @returns {YCoCg} returns back the same color
- * @throws Color data is incorrect
+ * @param {YCoCg}                 - color data
+ * @returns {YCoCg}               - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const yCoCgColorCheck = (color: YCoCg): YCoCg => {
   const values = Object.values(color);
@@ -359,9 +357,9 @@ const yCoCgColorCheck = (color: YCoCg): YCoCg => {
 
 /**
  * Checks if all YDbDr values are numeric
- * @param {YDbDr} color - color data
- * @returns {YDbDr} returns back the same color
- * @throws Color data is incorrect
+ * @param {YDbDr}                 - color data
+ * @returns {YDbDr}               - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const yDbDrColorCheck = (color: YDbDr): YDbDr => {
   const values = Object.values(color);
@@ -370,9 +368,9 @@ const yDbDrColorCheck = (color: YDbDr): YDbDr => {
 
 /**
  * Checks if all YIQ values are numeric
- * @param {YIQ} color - color data
- * @returns {YIQ} returns back the same color
- * @throws Color data is incorrect
+ * @param {YIQ}                   - color data
+ * @returns {YIQ}                 - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const yiqColorCheck = (color: YIQ ): YIQ  => {
   const values = Object.values(color);
@@ -381,9 +379,9 @@ const yiqColorCheck = (color: YIQ ): YIQ  => {
 
 /**
  * Checks if all YPbPr values are numeric
- * @param {YPbPr} color - color data
- * @returns {YPbPr} returns back the same color
- * @throws Color data is incorrect
+ * @param {YPbPr}                 - color data
+ * @returns {YPbPr}               - returns back the same color
+ * @throws                        - Color data is incorrect
  */
 const yPbPrColorCheck = (color: YPbPr): YPbPr => {
   const values = Object.values(color);

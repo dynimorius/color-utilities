@@ -11,9 +11,9 @@ import { LAB, RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Gets comparative distance for a given sRBG colors
- * @param {RBG} rgb1 sRBG values for the frist color
- * @param {RBG} rgb2 sRBG values for the second color
- * @returns {number} - distance
+ * @param {RBG}                   - sRBG values for the frist color
+ * @param {RBG}                   - sRBG values for the second color
+ * @returns {number}              - distance
  */
 export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
   const diff = Math.sqrt(
@@ -26,9 +26,9 @@ export const comparativeDistance = (rgb1: RGB, rgb2: RGB): number => {
 
 /**
  * Gets a delta E CIE 1976 value for a given colors
- * @param {LAB} lab1 LAB values for the frist color
- * @param {LAB} lab2 LAB values for the second color
- * @returns {number} - difference
+ * @param {LAB}                   - LAB values for the frist color
+ * @param {LAB}                   - LAB values for the second color
+ * @returns {number}              - difference
  */
 export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
   return Math.sqrt(
@@ -41,9 +41,9 @@ export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
 
 /**
  * Gets a delta E CIE 1976 value for a given colors
- * @param {RBG} rgb1 sRBG values for the frist color
- * @param {RBG} rgb2 sRBG values for the second color
- * @returns {number} - difference
+ * @param {RBG}                   - sRBG values for the frist color
+ * @param {RBG}                   - sRBG values for the second color
+ * @returns {number}              - difference
  *  ΔE - (Delta E, dE) The measure of change in visual 
  *  perception of two given colors
  * - more info: 

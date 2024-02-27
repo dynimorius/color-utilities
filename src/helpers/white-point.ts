@@ -10,8 +10,8 @@ import { XYZ } from "../interfaces/color-spaces.interface";
 
 /**
  * Computes a U chromaticity coordinate for a reference white
- * @param {XYZ} xyz xyz values for a color
- * @returns {number} - U chromaticity coordinate
+ * @param {XYZ}                   - xyz values for a color
+ * @returns {number}              - U chromaticity coordinate
  */
 export const Fu = ({ x, y, z }: XYZ): number => {
   return (4 * x) / (x + (15 * y) + (3 * z));
@@ -19,8 +19,8 @@ export const Fu = ({ x, y, z }: XYZ): number => {
 
 /**
  * Computes a V chromaticity coordinate for a reference white
- * @param {XYZ} xyz xyz values for a color
- * @returns {number} - V chromaticity coordinate
+ * @param {XYZ}                   - xyz values for a color
+ * @returns {number}              - V chromaticity coordinate
  */
 export const Fv = ({ x, y, z }: XYZ): number => {
   return (9 * y) / (x + (15 * y) + (3 * z));
@@ -28,8 +28,8 @@ export const Fv = ({ x, y, z }: XYZ): number => {
 
 /**
  * Computes a V chromaticity coordinate for a reference white
- * @param {XYZ} xyz xyz values for a color
- * @returns {number} - V chromaticity coordinate
+ * @param {XYZ}                   - xyz values for a color
+ * @returns {number}              - V chromaticity coordinate
  */
 export const _Fv = ({ x, y, z }: XYZ): number => {
   return (6 * y) / (x + (15 * y) + (3 * z));
