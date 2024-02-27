@@ -1,7 +1,7 @@
 import { fromRgbConverters } from "../convertor-map";
 import { RGB, RGBA, RGBA_M, RGB_M } from "../interfaces/color-spaces.interface";
 import { RGBResolverMap } from "../interfaces/resolver.interface";
-import { Spaces } from "../types/colors";
+import { RGBConSpaces } from "../types/colors";
 import { ColorConverter } from "./color-converter";
 
 /**
@@ -16,7 +16,7 @@ export class RgbConverter extends ColorConverter {
     super("rgb", color, fromRgbConverters as unknown as {[key: string]: Function});
   }
 
-  get(converts: Spaces) {
+  get(converts: RGBConSpaces) {
     return this.converterMap[converts as keyof RGBResolverMap](this.color);
   }
 }

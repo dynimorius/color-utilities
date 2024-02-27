@@ -7,7 +7,7 @@
  */
 
 import { checkAndFormat } from "../helpers/color-checks";
-import { ColorSpaceUnion, Spaces } from "../types/colors";
+import { ColorSpaceUnion, RGBConSpaces, Spaces, XyzConSpaces } from "../types/colors";
 
 /**
  * @description
@@ -28,5 +28,5 @@ export abstract class ColorConverter {
     this.converterMap = converterMap;
   }
 
-  abstract get(converts: Spaces): ColorSpaceUnion;
+  abstract get(converts: Spaces | XyzConSpaces | RGBConSpaces): ColorSpaceUnion;
 }

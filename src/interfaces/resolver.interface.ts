@@ -42,3 +42,29 @@ export interface RGBResolverMap {
   xvycc: Function;
   xyz: Function;
 }
+
+export interface XYZRezolverMap {
+  lab: Function;
+  lch_ab: Function;
+  lch_uv: Function;
+  luv: Function;
+  uvw: Function;
+  rgb: Function;
+  adobe_98_rgb: Function;
+  apple_rgb: Function;
+  best_rgb: Function;
+  beta_rgb: Function;
+  bruce_rgb: Function;
+  cie_rgb: Function;
+  color_match_rgb: Function;
+  don_rgb_4: Function;
+  etka_space_ps5: Function;
+  eci_rgb_v2: Function;
+  ntsc_rgb: Function;
+  pal_secam_rgb: Function;
+  pro_photo_rgb: Function;
+  wide_gamut_rgb: Function;
+  xyy: Function;
+  lms: Function;
+  hunters_lab: Function;
+}

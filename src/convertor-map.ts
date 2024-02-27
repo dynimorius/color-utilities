@@ -96,6 +96,8 @@ import {
   xyzToEtkaSpacePs5,
   xyzToHunterLab,
   xyzToLab,
+  xyzToLch_ab,
+  xyzToLch_uv,
   xyzToLsm,
   xyzToLuv,
   xyzToNtscRgb,
@@ -119,7 +121,7 @@ import {
   ToRGBConverters,
   ToXyzConverters,
 } from "./interfaces/converters.interface";
-import { RGBResolverMap } from "./interfaces/resolver.interface";
+import { RGBResolverMap, XYZRezolverMap } from "./interfaces/resolver.interface";
 
 /**
  * Map of color converter paired with the
@@ -278,3 +280,29 @@ export const toXyzConverters: ToXyzConverters = {
   wide_gamut_rgb: wideGamutRgbToXyz,
   xyy: xyYToXyz,
 };
+
+export const fromXyzConverters: XYZRezolverMap = {
+  lab: xyzToLab,
+  lch_ab: xyzToLch_ab,
+  lch_uv: xyzToLch_uv,
+  luv: xyzToLuv,
+  uvw: xyzToUvw,
+  rgb: xyzToSrgb,
+  adobe_98_rgb: xyzToAdobeRgb,
+  apple_rgb: xyzToAppleRgb,
+  best_rgb: xyzToBestRgb,
+  beta_rgb: xyzToBetaRgb,
+  bruce_rgb: xyzToBruceRgb,
+  cie_rgb: xyzToCieRgb,
+  color_match_rgb: xyzToColorMatchRgb,
+  don_rgb_4: xyzToDonRgb4,
+  etka_space_ps5: xyzToEtkaSpacePs5,
+  eci_rgb_v2: xyzToEciRgbV2,
+  ntsc_rgb: xyzToNtscRgb,
+  pal_secam_rgb: xyzToPalSecamRgb,
+  pro_photo_rgb: xyzToProPhotoRgb,
+  wide_gamut_rgb: xyzToWideGamutRgb,
+  xyy: xyzToXyY,
+  lms: xyzToLsm,
+  hunters_lab: xyzToHunterLab
+}

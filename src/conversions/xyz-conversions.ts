@@ -154,7 +154,7 @@ export const xyzToUvw = (
  *                while companding
  * @returns {RGB} - sRGB values for a color
  */
-export const xyzToRgb = (
+const xyzToRgb = (
   { x, y, z }: XYZ,
   space: SpaceData,
   compandingFun: Function,
