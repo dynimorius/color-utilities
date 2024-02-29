@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { HSI } from "../interfaces/color-spaces.interface";
@@ -16,4 +16,4 @@ import { hcyOrHsiToSrgb } from "./hcy-conversions";
  */
 export const hsiToSrgb = (hsi: HSI) => {
   return hcyOrHsiToSrgb(hsi);
-}
+};

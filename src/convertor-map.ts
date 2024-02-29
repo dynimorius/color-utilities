@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { ansi16ToRgb, ansi256ToRgb } from "./conversions/ansi-conversions";
@@ -44,8 +44,8 @@ import {
   sRgbToCieRgb,
   sRgbToCmy,
   sRgbToCmyk,
-  sRgbToDonRgb4,
   sRgbToColorMatchRgb,
+  sRgbToDonRgb4,
   sRgbToEciRgbV2,
   sRgbToEtkaSpacePs5,
   sRgbToHcy,
@@ -121,7 +121,10 @@ import {
   ToRGBConverters,
   ToXyzConverters,
 } from "./interfaces/converters.interface";
-import { RGBResolverMap, XYZRezolverMap } from "./interfaces/resolver.interface";
+import {
+  RGBResolverMap,
+  XYZRezolverMap,
+} from "./interfaces/resolver.interface";
 
 /**
  * Map of color converter paired with the
@@ -249,7 +252,7 @@ export const fromRgbConverters: RGBResolverMap = {
   yiq: sRgbToYiq,
   xvycc: sRgbToXvYcc,
   xyz: sRgbToXyz,
-}
+};
 
 /**
  * Map of conversion to get XYZ
@@ -305,5 +308,5 @@ export const fromXyzConverters: XYZRezolverMap = {
   wide_gamut_rgb: xyzToWideGamutRgb,
   xyy: xyzToXyY,
   lms: xyzToLsm,
-  hunters_lab: xyzToHunterLab
-}
+  hunters_lab: xyzToHunterLab,
+};

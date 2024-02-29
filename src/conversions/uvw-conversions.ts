@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { REFERENCE_ILLUMINANT } from "../constants/reference-illuminants";
@@ -34,7 +34,7 @@ export const uvwToXyz = (
   const y = Math.pow((w + 17) / 25, 3);
   const _u = u / (13 * w) + u0 || 0;
   const _v = v / (13 * w) + v0 || 0;
-  const x = (6 / 4) * y * _u / _v;
-  const z = y * (2 / _v - 0.5 * _u / _v - 5);
+  const x = ((6 / 4) * y * _u) / _v;
+  const z = y * (2 / _v - (0.5 * _u) / _v - 5);
   return { x, y, z };
 };

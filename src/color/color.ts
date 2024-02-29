@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import {
@@ -16,6 +16,7 @@ import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 import { DefaultResolv } from "../constants/init-spaces";
 import { sRgbToXyz } from "../conversions/rgb-conversions";
 import { xyzToSrgb } from "../conversions/xyz-conversions";
+import { checkAndFormat } from "../helpers/color-checks";
 import { ColorData } from "../interfaces/color-data.interface";
 import {
   ColorConverters,
@@ -23,7 +24,6 @@ import {
   ToXyzConverters,
 } from "../interfaces/converters.interface";
 import { ColorSpaceUnion, Spaces } from "../types/colors";
-import { checkAndFormat } from "../helpers/color-checks";
 
 /**
  *  @description A class representing a color, and its values in diferente spaces
@@ -42,18 +42,12 @@ export class Color {
   ) {
     color = checkAndFormat(space, color);
     this[space as keyof this] = color as any;
-    if (
-      !this.rgb &&
-      /hex|cmy|sl|hc|hs|hwb|ryb|xyz|yc|yd|yiq|yp/g.test(space)
-    ) {
+    if (!this.rgb && /hex|cmy|sl|hc|hs|hwb|ryb|xyz|yc|yd|yiq|yp/g.test(space)) {
       this.rgb = toRgbConverters[space as keyof ToRGBConverters](color);
       if (this.xyz) this.xyz = sRgbToXyz(this.rgb);
     }
 
-    if (
-      !this.xyz &&
-      /rgb|ab|uv|lch|lms|ps5|xyy/g.test(space)
-    ) {
+    if (!this.xyz && /rgb|ab|uv|lch|lms|ps5|xyy/g.test(space)) {
       this.xyz = toXyzConverters[space as keyof ToXyzConverters](color);
       if (!this.rgb) this.rgb = xyzToSrgb(this.xyz);
     } else this.xyz = toXyzConverters.rgb(this.rgb);
@@ -64,9 +58,7 @@ export class Color {
           ?.fun as Function;
         const param = colorConverters[resolution as keyof ColorConverters]
           ?.from as string;
-        this[resolution as keyof this] = fun(
-          this[param as keyof this]
-        );
+        this[resolution as keyof this] = fun(this[param as keyof this]);
       }
     }
   }
@@ -75,7 +67,3 @@ export class Color {
     return this as ColorData;
   }
 }
-
-
-
-

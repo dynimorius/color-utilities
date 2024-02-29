@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import {
@@ -114,7 +114,6 @@ const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
     key: values[3],
   };
 };
-
 
 /**
  * Checks if all HCY values are numeric
@@ -372,7 +371,7 @@ const yDbDrColorCheck = (color: YDbDr): YDbDr => {
  * @returns {YIQ}                 - returns back the same color
  * @throws                        - Color data is incorrect
  */
-const yiqColorCheck = (color: YIQ ): YIQ  => {
+const yiqColorCheck = (color: YIQ): YIQ => {
   const values = Object.values(color);
   return { Y: values[0], I: values[1], Q: values[2] };
 };

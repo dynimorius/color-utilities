@@ -3,14 +3,14 @@
  *  Copyright Slavko Mihajlovic All Rights Reserved.
  *
  *  Use of this source code is governed by an ISC-style license that can be
- *  found at https://opensource.org/license/isc-license-txt/
- * 
- *  Chromatic adaptation matrices using the 
- *  Bradford method and reference illuminant 
- *  tristimulus values from ASTM E308-01 whit 
- *  the exception of B which came from 
+ *  found at https://www.isc.org/licenses/
+ *
+ *  Chromatic adaptation matrices using the
+ *  Bradford method and reference illuminant
+ *  tristimulus values from ASTM E308-01 whit
+ *  the exception of B which came from
  *  Wyszecki & Stiles.
- *  credits: 
+ *  credits:
  *  http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
  *****************************************************************/
 export const ADAPTIVE_MATRICES = {
@@ -555,13 +555,13 @@ export const ADAPTIVE_MATRICES = {
     [0.0216636, -0.0368473, 1.5772733],
   ],
   F11_F2: [
-    [0.9846860, -0.0093755, 0.0109973],
+    [0.984686, -0.0093755, 0.0109973],
     [-0.0131907, 1.0106809, 0.0040974],
-    [0.0015289, -0.0021539,  1.0482367]
+    [0.0015289, -0.0021539, 1.0482367],
   ],
   F11_F7: [
-    [0.9080200, -0.0542240, 0.1365639],
+    [0.90802, -0.054224, 0.1365639],
     [-0.0679612, 1.0391545, 0.0457816],
-    [0.0260859, -0.0431241, 1.7160176]
-  ]
+    [0.0260859, -0.0431241, 1.7160176],
+  ],
 };

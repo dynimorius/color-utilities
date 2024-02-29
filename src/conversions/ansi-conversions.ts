@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { clamp } from "../helpers/formats-and-checks";
@@ -43,13 +43,13 @@ export const ansi16ToRgb = (ansi: number): RGB => {
 export const ansi16ToAnsi8 = (ansi: number): number => {
   ansi = clamp(ansi, 0, 15);
   return ansi > 7 ? ansi - 8 : ansi;
-}
+};
 
 /**
  * Converts an Ansi256 numerical to sRBG
  * @param {number}                - ansi256 color value
  * @returns {RGB}                 - sRBG color value
- * 
+ *
  * - note: due to the nature of of Ansi256 to RGB conversion
  *         there is a significant data loss between RGB to Ansi256
  *         and Ansi256 to RGB conversions
@@ -70,4 +70,3 @@ export const ansi256ToRgb = (ansi: number): RGB => {
 
   return { red, green, blue };
 };
-

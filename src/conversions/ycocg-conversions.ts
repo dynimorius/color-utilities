@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { RGB, YCoCg } from "../public_api";
@@ -16,8 +16,8 @@ import { RGB, YCoCg } from "../public_api";
 export const yCgCoToSrgb = ({ Y, Co, Cg }: YCoCg): RGB => {
   const temp = Y - Cg;
   return {
-    red: (temp + Co),
-    green: (Y + Cg),
-    blue: (temp - Co),
+    red: temp + Co,
+    green: Y + Cg,
+    blue: temp - Co,
   };
 };

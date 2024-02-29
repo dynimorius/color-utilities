@@ -1,12 +1,12 @@
-/**************************************************************** 
+/****************************************************************
  *  @license
  *  Copyright Slavko Mihajlovic All Rights Reserved.
  *
  *  Use of this source code is governed by an ISC-style license that can be
- *  found at https://opensource.org/license/isc-license-txt/
- * 
+ *  found at https://www.isc.org/licenses/
+ *
  *  Reference illuminant tristimulus values
- *  B is from Wyszecki & Stiles and the rest are 
+ *  B is from Wyszecki & Stiles and the rest are
  *  from  ASTM E308-01
  *  credit:
  *  http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html

@@ -3,14 +3,14 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
- * 
+ * found at https://www.isc.org/licenses/
+ *
  * A chromatic adaptation transform (CAT) is capable of
  * predicting corresponding colors. A pair of corresponding
  * colors consists of a color observed under one illuminant
  * (say, D65) and another color that has the same appearance
  * when observed under a different illuminant (say, A).
- * 
+ *
  * To present the von Kries hypothesis in terms of a chromatic
  * adaptation model, we need a 3 by 3 matrix M , which
  * transforms the tristimulus values (TSVs) 𝑋β, 𝑌β, 𝑍β under

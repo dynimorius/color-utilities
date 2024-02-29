@@ -3,11 +3,16 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { checkAndFormat } from "../helpers/color-checks";
-import { ColorSpaceUnion, RGBConSpaces, Spaces, XyzConSpaces } from "../types/colors";
+import {
+  ColorSpaceUnion,
+  RGBConSpaces,
+  Spaces,
+  XyzConSpaces,
+} from "../types/colors";
 
 /**
  * @description

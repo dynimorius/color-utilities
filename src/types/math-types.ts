@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 /**
@@ -13,7 +13,7 @@ export type Matrix3x3 = [
   [number, number, number],
   [number, number, number],
   [number, number, number]
-]
+];
 
 /**
  * @description Representation of a 3 point Vector

@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { RGB } from "../interfaces/color-spaces.interface";
@@ -22,11 +22,11 @@ export const hexToRgb = (hex: string): RGB => {
 
   if (hexRegExp[0].length === 3) {
     colorString = colorString
-      .split('')
+      .split("")
       .map((char) => {
         return char + char;
       })
-      .join('');
+      .join("");
   }
 
   const integer = parseInt(colorString, 16);
@@ -36,7 +36,6 @@ export const hexToRgb = (hex: string): RGB => {
 
   return { red, green, blue };
 };
-
 
 /**
  * Converts a hex string value to a integer

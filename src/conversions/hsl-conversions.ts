@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { HSL, HSLA, HSV, RGB } from "../interfaces/color-spaces.interface";
@@ -20,7 +20,8 @@ export const hslToRgb = ({ hue, saturation, lightness }: HSL): RGB => {
   const k = (n: number): number => (n + hue / 30) % 12;
   const a = saturation * Math.min(lightness, 1 - lightness);
   const f = (n: number): number =>
-    (lightness - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))) * 255;
+    (lightness - a * Math.max(-1, Math.min(k(n) - 3, Math.min(9 - k(n), 1)))) *
+    255;
   return { red: f(0), green: f(8), blue: f(4) };
 };
 

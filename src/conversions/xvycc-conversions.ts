@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { YCbCr, xvYCC } from "../public_api";
@@ -17,9 +17,9 @@ import { yCbCrBT601ToSrgb } from "./ycbcr-jpeg-conversions";
  */
 export const xvYccToYcbcrBT601 = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
   return {
-    Y: (Y - 16) / 219 * 255,
-    Cb: (Cb - 128) / 224 * 255,
-    Cr: (Cr - 128) / 224 * 255,
+    Y: ((Y - 16) / 219) * 255,
+    Cb: ((Cb - 128) / 224) * 255,
+    Cr: ((Cr - 128) / 224) * 255,
   };
 };
 

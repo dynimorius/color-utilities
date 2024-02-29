@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { XYZ } from "../interfaces/color-spaces.interface";
@@ -14,7 +14,7 @@ import { XYZ } from "../interfaces/color-spaces.interface";
  * @returns {number}              - U chromaticity coordinate
  */
 export const Fu = ({ x, y, z }: XYZ): number => {
-  return (4 * x) / (x + (15 * y) + (3 * z));
+  return (4 * x) / (x + 15 * y + 3 * z);
 };
 
 /**
@@ -23,7 +23,7 @@ export const Fu = ({ x, y, z }: XYZ): number => {
  * @returns {number}              - V chromaticity coordinate
  */
 export const Fv = ({ x, y, z }: XYZ): number => {
-  return (9 * y) / (x + (15 * y) + (3 * z));
+  return (9 * y) / (x + 15 * y + 3 * z);
 };
 
 /**
@@ -32,5 +32,5 @@ export const Fv = ({ x, y, z }: XYZ): number => {
  * @returns {number}              - V chromaticity coordinate
  */
 export const _Fv = ({ x, y, z }: XYZ): number => {
-  return (6 * y) / (x + (15 * y) + (3 * z));
+  return (6 * y) / (x + 15 * y + 3 * z);
 };

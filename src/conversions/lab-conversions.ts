@@ -1,10 +1,10 @@
-import { xyzToSrgb } from './xyz-conversions';
+import { xyzToSrgb } from "./xyz-conversions";
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
@@ -67,10 +67,8 @@ export const labToSrgb = (lab: LAB): RGB => {
  * @param {LAB}                   - Lab color value
  * @returns {XYZ}                 - XYZ color value
  */
-export const hunterLabToXyz = (
-  { luminance, a, b }: LAB,
-): XYZ => {
-  const y = Math.pow((luminance / 10) , 2);
+export const hunterLabToXyz = ({ luminance, a, b }: LAB): XYZ => {
+  const y = Math.pow(luminance / 10, 2);
   const x = (((a / 17.5) * luminance) / 10 + y) / 1.02;
   const z = -(((b / 7) * luminance) / 10 - y) / 0.847;
   return { x, y, z };

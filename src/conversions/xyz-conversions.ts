@@ -1,10 +1,10 @@
-import { labToLch_ab } from './lab-conversions';
+import { labToLch_ab } from "./lab-conversions";
 /**
  * @license
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { CIE_κ, CIE_ϵ } from "../constants/conditionals";
@@ -38,7 +38,7 @@ import {
   XYZ,
 } from "../interfaces/color-spaces.interface";
 import { Matrix3x3 } from "../types/math-types";
-import { luvToLch_uv } from './luv-conversions';
+import { luvToLch_uv } from "./luv-conversions";
 
 /**
  * Gets Lab values from given xyz values
@@ -66,9 +66,9 @@ export const xyzToLab = ({ x, y, z }: XYZ): LAB => {
  * @param {XYZ}                     - xyz values for a color
  * @returns {LCH}                   - LCH values for a color
  */
-export const xyzToLch_ab = (xyz: XYZ): LCH => { 
+export const xyzToLch_ab = (xyz: XYZ): LCH => {
   return labToLch_ab(xyzToLab(xyz));
-}
+};
 
 /**
  * Gets Luv values from given xyz values
@@ -108,9 +108,9 @@ export const xyzToLuv = (
  * @param {XYZ}                     - xyz values for a color
  * @returns {LCH}                   - LCH values for a color
  */
-export const xyzToLch_uv = (xyz: XYZ): LCH => { 
+export const xyzToLch_uv = (xyz: XYZ): LCH => {
   return luvToLch_uv(xyzToLuv(xyz));
-}
+};
 
 /**
  * Gets UVW values from given xyz values
@@ -427,9 +427,7 @@ export const xyzToLsm = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
  * @param {XYZ}                     - XYZ values for a color
  * @returns {LAB}                   - LAB values
  */
-export const xyzToHunterLab = (
-  { x, y, z }: XYZ,
-): LAB => {
+export const xyzToHunterLab = ({ x, y, z }: XYZ): LAB => {
   const sqY = Math.sqrt(y);
   const luminance = 10 * sqY;
   const a = 17.5 * ((1.02 * x - y) / sqY);

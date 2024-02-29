@@ -3,12 +3,12 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 /**
  * Computes a hue value froma given sRGB values
- * 
+ *
  * @param {RBG}                   - sRBG values for a color
  * @returns {number}              - number value of hue
  */

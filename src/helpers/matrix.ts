@@ -3,12 +3,12 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import { RGB, XYZ } from "../interfaces/color-spaces.interface";
+import { normalizeRgb } from "../public_api";
 import { Matrix3x3 } from "../types/math-types";
-import { normalizeRgb } from '../public_api';
 
 /**
  * 3 x 3 Matrix Multiplication
@@ -207,17 +207,8 @@ export const matrixRgbMultiAsSpace = (
 ): { [key: string]: number } => {
   const { red, green, blue } = normalizeRgb(vector);
   return {
-    [space[0]]:
-      matrix[0][0] * red +
-      matrix[0][1] * green +
-      matrix[0][2] * blue,
-    [space[1]]:
-      matrix[1][0] * red +
-      matrix[1][1] * green +
-      matrix[1][2] * blue,
-    [space[2]]:
-      matrix[2][0] * red +
-      matrix[2][1] * green +
-      matrix[2][2] * blue,
+    [space[0]]: matrix[0][0] * red + matrix[0][1] * green + matrix[0][2] * blue,
+    [space[1]]: matrix[1][0] * red + matrix[1][1] * green + matrix[1][2] * blue,
+    [space[2]]: matrix[2][0] * red + matrix[2][1] * green + matrix[2][2] * blue,
   };
 };

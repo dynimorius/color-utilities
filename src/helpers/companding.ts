@@ -3,7 +3,7 @@
  * Copyright Slavko Mihajlovic All Rights Reserved.
  *
  * Use of this source code is governed by an ISC-style license that can be
- * found at https://opensource.org/license/isc-license-txt/
+ * found at https://www.isc.org/licenses/
  */
 
 import {
@@ -13,7 +13,7 @@ import {
   SRGB_INVERSE_NORMALIZED_BELOW,
   SRGB_NORMALIZED_BELOW,
 } from "../constants/conditionals";
-import { RGB, SpaceData, XYZ } from "../interfaces/color-spaces.interface";
+import { RGB, SpaceData } from "../interfaces/color-spaces.interface";
 import { bound, gamutCheck } from "./formats-and-checks";
 
 /*************************************************************
@@ -150,7 +150,7 @@ export const inverseCompanding = (
   space: SpaceData,
   inverseCompandingFun: Function,
   gamma?: boolean
-): { Rlin: number, Glin: number, Blin: number } => {
+): { Rlin: number; Glin: number; Blin: number } => {
   let Rlin, Glin, Blin;
   if (gamma) {
     Rlin = inverseCompandingFun(red, space.GAMMA);
