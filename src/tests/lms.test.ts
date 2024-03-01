@@ -3,14 +3,14 @@ import {
   XYZ,
   cie76ColorDiff,
   lmsToXyz,
-  xyzToLsm,
+  xtzToLms,
   xyzToSrgb,
 } from "../public_api";
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
     expect(
-      cie76ColorDiff(xyzToSrgb(lmsToXyz(xyzToLsm(xyz))), xyzToSrgb(xyz))
+      cie76ColorDiff(xyzToSrgb(lmsToXyz(xtzToLms(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

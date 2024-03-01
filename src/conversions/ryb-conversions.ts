@@ -13,7 +13,7 @@ import { RGB, RYB } from "../interfaces/color-spaces.interface";
  * @param {RYB}                   - RYB values for a color
  * @returns {RBG}                 - sRBG values for a color
  */
-export const rybToRgb = ({ red, yellow, blue }: RYB): RGB => {
+export const rybToSrgb = ({ red, yellow, blue }: RYB): RGB => {
   const Iw = Math.min(red, yellow, blue);
   const Ib = Math.min(255 - red, 255 - yellow, 255 - blue);
   const rRYB = red - Iw;

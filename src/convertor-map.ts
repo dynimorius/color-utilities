@@ -78,12 +78,13 @@ import {
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
 } from "./conversions/rgb-conversions";
-import { rybToRgb } from "./conversions/ryb-conversions";
+import { rybToSrgb } from "./conversions/ryb-conversions";
 import { tslToSrgb } from "./conversions/tsl-conversions";
 import { uvwToXyz } from "./conversions/uvw-conversions";
 import { xvYccToSrgb } from "./conversions/xvycc-conversions";
 import { xyYToXyz } from "./conversions/xyy-conversions";
 import {
+  xtzToLms,
   xyzToAdobeRgb,
   xyzToAppleRgb,
   xyzToBestRgb,
@@ -98,7 +99,6 @@ import {
   xyzToLab,
   xyzToLch_ab,
   xyzToLch_uv,
-  xyzToLsm,
   xyzToLuv,
   xyzToNtscRgb,
   xyzToPalSecamRgb,
@@ -155,7 +155,7 @@ export const colorConverters: ColorConverters = {
   lab: { fun: xyzToLab, from: "xyz" },
   lch_ab: { fun: sRgbToLch_ab, from: "rgb" },
   lch_uv: { fun: sRgbToLch_uv, from: "rgb" },
-  lms: { fun: xyzToLsm, from: "xyz" },
+  lms: { fun: xtzToLms, from: "xyz" },
   luv: { fun: xyzToLuv, from: "xyz" },
   ntsc_rgb: { fun: xyzToNtscRgb, from: "xyz" },
   pal_secam_rgb: { fun: xyzToPalSecamRgb, from: "xyz" },
@@ -194,7 +194,7 @@ export const toRgbConverters: ToRGBConverters = {
   hsl: hslToRgb,
   hsv: hsvToRgb,
   hwb: hwbToRgb,
-  ryb: rybToRgb,
+  ryb: rybToSrgb,
   tsl: tslToSrgb,
   xvycc: xvYccToSrgb,
   xyz: xyzToSrgb,
@@ -307,6 +307,6 @@ export const fromXyzConverters: XYZRezolverMap = {
   smpte_c_rgb: xyzToSmpteCRgb,
   wide_gamut_rgb: xyzToWideGamutRgb,
   xyy: xyzToXyY,
-  lms: xyzToLsm,
+  lms: xtzToLms,
   hunters_lab: xyzToHunterLab,
 };

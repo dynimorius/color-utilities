@@ -7,40 +7,40 @@
  */
 
 import {
-  CMY,
-  CMYK,
-  CMYK_M,
-  CMY_M,
-  HCY,
-  HCY_M,
-  HSI,
-  HSL,
-  HSL_M,
-  HSV,
-  HSV_M,
-  HWB,
-  HWB_M,
-  LAB,
-  LAB_M,
-  LCH,
-  LCH_M,
-  LMS,
-  LUV,
-  RGB,
-  RGB_M,
-  RYB,
-  RYB_M,
-  TSL,
-  UVW,
-  XYY,
-  XYZ,
-  YCbCr,
-  YCoCg,
-  YDbDr,
-  YIQ,
-  YPbPr,
-  YcCbcCrc,
-  xvYCC,
+    CMY,
+    CMYK,
+    CMYK_M,
+    CMY_M,
+    HCY,
+    HCY_M,
+    HSI,
+    HSL,
+    HSL_M,
+    HSV,
+    HSV_M,
+    HWB,
+    HWB_M,
+    LAB,
+    LAB_M,
+    LCH,
+    LCH_M,
+    LMS,
+    LUV,
+    RGB,
+    RGB_M,
+    RYB,
+    RYB_M,
+    TSL,
+    UVW,
+    XYY,
+    XYZ,
+    YCbCr,
+    YCoCg,
+    YDbDr,
+    YIQ,
+    YPbPr,
+    YcCbcCrc,
+    xvYCC,
 } from "../interfaces/color-spaces.interface";
 import { ColorCheckers } from "../interfaces/converters.interface";
 import { FULL_HEX, HEX } from "../regex";
@@ -114,6 +114,7 @@ const cmykColorCheck = (color: CMYK | CMYK_M): CMYK => {
     key: values[3],
   };
 };
+
 
 /**
  * Checks if all HCY values are numeric
@@ -371,7 +372,7 @@ const yDbDrColorCheck = (color: YDbDr): YDbDr => {
  * @returns {YIQ}                 - returns back the same color
  * @throws                        - Color data is incorrect
  */
-const yiqColorCheck = (color: YIQ): YIQ => {
+const yiqColorCheck = (color: YIQ ): YIQ  => {
   const values = Object.values(color);
   return { Y: values[0], I: values[1], Q: values[2] };
 };

@@ -148,7 +148,7 @@ const getRange = (
  * @param {number}                   - delta difference between maximum and minimum value
  * @returns {number}                 - value of hue
  */
-export const rgbToHue = (
+export const sRgbToHue = (
   red: number,
   green: number,
   blue: number,
@@ -853,7 +853,7 @@ export const sRgbToHsl = (rgb: RGB, pHue?: number): HSL => {
       lightness > 0.5 ? delta / (2 - max - min) : delta / (max + min)
     );
 
-  if (!pHue) hue = rgbToHue(red, green, blue, max, delta);
+  if (!pHue) hue = sRgbToHue(red, green, blue, max, delta);
   else hue = pHue;
 
   lightness = formatValue(lightness);
@@ -879,7 +879,7 @@ export const sRgbToHsv = (rgb: RGB, pHue?: number): HSV => {
 
   if (!delta) return { hue, saturation, value };
 
-  if (!pHue) hue = rgbToHue(red, green, blue, max, delta);
+  if (!pHue) hue = sRgbToHue(red, green, blue, max, delta);
   else hue = pHue;
 
   return { hue, saturation, value };
@@ -899,7 +899,7 @@ export const sRgbToHwb = (rgb: RGB, pHue?: number): HWB => {
   let hue!: number;
   if (!pHue) {
     const { max, delta } = getRange(red, green, blue);
-    hue = rgbToHue(red, green, blue, max, delta);
+    hue = sRgbToHue(red, green, blue, max, delta);
   } else hue = pHue;
 
   const whiteness =

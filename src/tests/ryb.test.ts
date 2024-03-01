@@ -1,12 +1,12 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from "../constants/conditionals";
-import { cie76ColorDiff, rybToRgb, sRgbToRyb } from "../public_api";
+import { cie76ColorDiff, rybToSrgb, sRgbToRyb } from "../public_api";
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> RYB conversions for ${colorName}`, () => {
-    expect(cie76ColorDiff(rybToRgb(sRgbToRyb(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(cie76ColorDiff(rybToSrgb(sRgbToRyb(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });

@@ -13,7 +13,7 @@ import {
 } from "../convertor-map";
 import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
-import { DefaultResolv } from "../constants/init-spaces";
+import { AllResolv, DefaultResolv } from "../constants/init-spaces";
 import { sRgbToXyz } from "../conversions/rgb-conversions";
 import { xyzToSrgb } from "../conversions/xyz-conversions";
 import { checkAndFormat } from "../helpers/color-checks";
@@ -38,8 +38,9 @@ export class Color {
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: (Spaces | "web_safe")[] = DefaultResolv
+    resolv: (Spaces | "web_safe")[] | "all" = DefaultResolv
   ) {
+    resolv = resolv === "all" ? AllResolv : resolv;
     color = checkAndFormat(space, color);
     this[space as keyof this] = color as any;
     if (!this.rgb && /hex|cmy|sl|hc|hs|hwb|ryb|xyz|yc|yd|yiq|yp/g.test(space)) {

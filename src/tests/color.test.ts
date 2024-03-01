@@ -36,7 +36,7 @@ const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
-  const testColor = new Color("rgb", rgb);
+  const testColor = new Color("rgb", rgb, "all");
 
   test(`Checking ${colorName} from a HEX value is correct"`, () => {
     const color = new Color("hex", `#${testColor.data?.hex as string}`);
