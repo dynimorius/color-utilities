@@ -180,7 +180,7 @@ a Photoshop color picker (rgb, hsv, lab, cmyk and hex).
 Here is a list of all color conversion methods, they are standalone, and can be utilized on their own.
 Some of them might have multiple conversions and that will be stated in the table.
 
-| Name                | Description                                          | Conversions              | Notes              | Parameters                                                                |
+| Name                | Description                                          | Conversions              | Notes              | Parameter                                                                 |
 | ------------------- | ---------------------------------------------------- | ------------------------ | ------------------ | ------------------------------------------------------------------------- |
 | ansi16ToRgb         | Converts an Ansi16 numeric value to sRGB values      | Ansi16 to sRGB           | Possible data loss | number                                                                    |
 | ansi256ToRGB        | Converts an Ansi256 numeric value ro sRGB values     | Ansi256 to sRGB          | Possible data loss | number                                                                    |
