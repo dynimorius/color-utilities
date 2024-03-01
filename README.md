@@ -113,23 +113,23 @@ console.log(color.data);
 The result of the above example is:
 
 ```javascript
-    Color {
-      rgb: { red: 238, green: 200, blue: 27, inGamut: true },
-      xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
-      hex: 'EEC81B',
-      hsv: { hue: 49, saturation: 89, value: 93 },
-      lab: {
-        luminance: 81.60296053275202,
-        a: -1.2482727232548951,
-        b: 79.33052440955292
-      },
-      cmyk: {
-        cyan: 0,
-        magenta: 15.96638655462185,
-        yellow: 88.65546218487395,
-        key: 6.666666666666665
-      }
-    }
+ Color {
+  rgb: { red: 238, green: 200, blue: 27, inGamut: true },
+  xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
+  hex: 'EEC81B',
+  hsv: { hue: 49, saturation: 89, value: 93 },
+  lab: {
+    luminance: 81.60296053275202,
+    a: -1.2482727232548951,
+    b: 79.33052440955292
+ },
+ cmyk: {
+   cyan: 0,
+   magenta: 15.96638655462185,
+   yellow: 88.65546218487395,
+   key: 6.666666666666665
+  }
+ }
 ```
 
 Lets see an alternative use:
@@ -150,18 +150,18 @@ console.log(color.data);
 Result from the above example would be:
 
 ```javascript
-     Color {
-      rgb: { red: 238, green: 200, blue: 27, inGamut: true },
-      xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
-      hsl: { hue: 49, saturation: 86, lightness: 52 },
-      luv: { L: 81.60296053275202, u: 33.50413039331645, v: 84.4716716630059 },
-      ryb: { red: 63.346820809248555, yellow: 228, blue: 17 },
-      tsl: {
-        tint: 0.4209301051592921,
-        saturation: 0.27240784750042124,
-        lightness: 0.7515294117647058
-      }
-    }
+Color {
+  rgb: { red: 238, green: 200, blue: 27, inGamut: true },
+  xyz: { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
+  hsl: { hue: 49, saturation: 86, lightness: 52 },
+  luv: { L: 81.60296053275202, u: 33.50413039331645, v: 84.4716716630059 },
+  ryb: { red: 63.346820809248555, yellow: 228, blue: 17 },
+  tsl: {
+    tint: 0.4209301051592921,
+    saturation: 0.27240784750042124,
+    lightness: 0.7515294117647058 
+  }
+}
 ```
 
 Note:
