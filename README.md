@@ -173,6 +173,13 @@ this option is computationally tasking and it's not a good option for color pick
 is a high frequency of re computation. Expediently the default (no third argument) will return values utilized in
 a Photoshop color picker (rgb, hsv, lab, cmyk and hex).
 
+| Param place  | Description                          | Formats                                                                                                                    
+| ------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------| 
+| 1st          | Space in vich color values are sent  | "adobe_98_rgb", "apple_rgb", "ansi16", "ansi256", "best_rgb", "beta_rgb", "bruce_rgb", "cie_rgb", "color_match_rgb", "cmy", "cmyk", "don_rgb_4", "eci_rgb_v2" "etka_space_ps5", "hcy", "hex", "hsi", "hsl", "hsv", "hunter_lab", "hwb", "lab", "lch_ab", "lch_uv", "luv", "lms", "ntsc_rgb", "pal_secam_rgb", "pro_photo_rgb", "rgb", "ryb", "tsl", "smpte_c_rgb", "wide_gamut_rgb", "uvw","xvycc", "xyy", "xyz",|"ycbcr_BT601", "yccbccrc", "ycocg", "ydbdr", "yiq", "ypbpr"|
+| 2nd          | Color values                         | number, string, { cyan: number, magenta: number, yellow: number}, {c: number, m: number, y: number}, { cyan: number, magenta: number, yellow: number, key: number }, {c: number, m: number, y: number, k: number}, { hue: number, chroma: number, Yluminance: number }, { hue: number, saturation: number, intensity: number }, { hue: number, saturation: number, lightness: number }, {h: number, s: number, l: number}, { hue: number, saturation: number, value: number }, {h: number, s: number, v: number}, { hue: number, whiteness: number, blackness: number },  { luminance: number, a: number, b: number },
+ { l: number, a: number, b: number }, { lightness: number, chroma: number, hue: number }, { L: number, u: number, v: number },  { red: number, green: number, blue: number }, {r: number, g: number, b: number }, { u: number, v: number, w: number }, { Y: number, Cb: number, Cr: number }, { x: number, y: number, Y: number }, { x: number, y: number, z: number }, { Yc: number, Cbc: number, Crc: number }, { Y: number, Co: number, Cg: number }|
+| 3rd          |  optional - colors spaces to comput | string[], "all"  |
+
 ### Conversions
 
 <a name="conversions"></a>
