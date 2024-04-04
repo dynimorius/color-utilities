@@ -23,10 +23,30 @@ Color utilities is a collection of tools used to work with colors.
   - [Documentation](#documentation)
     - [Dependencies](#dependencies)
     - [Importing](#importing)
-    - [Color](#color)
-    - [Conversions](#conversions)
-    - [Color Converter](#color-converter)
+  - [Color](#color)
+  - [Conversions](#conversions)
+  - [Color Converter](#color-converter)
     - [RGB Converter](#rgb-converter)
+    - [XYZ Converter](#xyz_converter)
+  - [Color Blending](#color_blending)
+    - [Blender](#blender)
+    - [blend](#blend)
+  - [Color Harmonies](#color_harmonies)
+    - [Analogous](#analogous)
+    - [Clash](#clash)
+    - [Complementary](#complementary)
+    - [Split Complementary](#split_complementary)
+    - [Four Tone](#four_tone)
+    - [Five Tone](#five_tone)
+    - [Six Tone](#six_tone)
+    - [Neutral](#neutral)
+    - [Square](#square)
+    - [Tetradic](#tetradic)
+    - [Triadic](#triadic)
+  - [Color Mixes](#color_mixes)
+    - [Tones](#tones)
+    - [Tints](#tints)
+    - [Shades](#shades)
 
 ## [About Color Utilities](#about_color_utilities)
 
@@ -49,12 +69,12 @@ significant difference in color.
 npm install --save @dynamize/color-utilities
 ```
 
-### Dependencies
+### [Dependencies](#dependencies)
 
 <a name="dependencies"></a>
 This library has no dependencies and is completely self-contained.
 
-### Importing
+### [Importing](#importing)
 
 <a name="importing"></a>
 Importing is done using the ES static import declaration.
@@ -67,7 +87,7 @@ import { Color } from "@dynamize/color-utilities";
 In order to use the import declaration in a source file, the file must be interpreted by the runtime as a
 module.
 
-### Color
+## [Color](#color)
 
 <a name="color"></a>
 A Color class is a representation of a color in Color Utilities. Use cse for this is when you know you will need
@@ -160,7 +180,7 @@ is a high frequency of re computation. Expediently the default (no third argumen
 a Photoshop color picker (rgb, hsv, lab, cmyk and hex).
 |
 
-### Conversions
+## [Conversions](#conversions)
 
 <a name="conversions"></a>
 
@@ -294,7 +314,7 @@ Some of them might have multiple conversions and that will be stated in the tabl
 | yPbPrToSrgb         | Converts colors YPbPr values to sRGB vlues           | YPbPr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                           |
 | yPbPrToYCbCr        | Converts colors YPbPr values to YCbCr vlues          | YPbPr to YCbCr           | No major data loss | { Y: number, Co: number, Cg: number }                           |
 
-### Color Converter 
+## Color Converter 
 
 <a name="color_converter"></a>
 
@@ -302,7 +322,7 @@ In situations where you might need to covert from one space into multiple spaces
 Color Converter is faster and less task-intensive than using Color. There are two prebuilt Color Converters, 
 RGB Converter and the XYZ Converter.
 
-### RGB Converter
+### [RGB Converter](#rgb_converter)
 
 <a name="rgb_converter"></a>
 
@@ -364,7 +384,7 @@ console.log(rgbCon.get("hsv"));
 
 This will return HSV values for the above-given color.
 
-### XYZ Converter
+### [XYZ Converter](#xyz_converter)
 
 <a name="xyz_converter"></a>
 
@@ -373,7 +393,7 @@ XYZ Converter is a prebuilt Color Converter that takes a single attribute of a t
 
 It has a single method, "get" and it takes an attribute of type string which represents a color space you would like back.
 Supported conversion are: 
-lab"
+lab,
 lch_ab,
 lch_uv,
 luv,
@@ -407,12 +427,3 @@ console.log(xyzCon.get("luv"));
 ```
 
 This will return LUV values for the above-given color.
-
-
-
-
-  
-
-
-
-
