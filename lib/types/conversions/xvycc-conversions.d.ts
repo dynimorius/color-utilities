@@ -18,4 +18,4 @@ export declare const xvYccToYcbcrBT601: ({ Y, Cb, Cr }: xvYCC) => YCbCr;
  * @param {xvYCC}                   - xvYCC values for a color
  * @returns {RGB}                   - sRGB values for a color
  */
-export declare const xvYccToSrgb: (xvycc: xvYCC) => import("../public_api").RGB;
+export declare const xvYccToSrgb: (xvycc: xvYCC) => import("interfaces/color-spaces.interface").RGB;

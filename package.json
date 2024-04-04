@@ -2,7 +2,6 @@
   "name": "color-utilities",
   "version": "1.0.0",
   "description": "Library to format, convert and work with colors.",
-  "type": "module",
   "types": "./lib/types/public_api.d.ts",
   "main": "./lib/esm/public_api.js",
   "module": "./lib/esm/public_api.js",

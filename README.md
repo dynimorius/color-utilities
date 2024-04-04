@@ -23,9 +23,7 @@ Color utilities is a collection of tools used to work with colors.
         3.  [Importing](#importing)
     2.  [Color](#color)
     3.  [Conversions]
-        1.  [RGB Conversions](#rgb_con)
-        2.  [XYZ Conversions](#xyz_con)
-        3.  [Conversion list](con_list)
+        1.  [Conversion list](con_list)
     4.  [Color Converter](#color_converter)
         1.  [RGB Converter](#rgb_converter)
         2.  [XYZ Converter](#xyz_converter)
@@ -314,3 +312,11 @@ Some of them might have multiple conversions and that will be stated in the tabl
 | yiqToSrgb           | Converts colors YIQ values to sRGB vlues             | YIQ to RGB               | No major data loss | { Y: number, Co: number, Cg: number }                           |
 | yPbPrToSrgb         | Converts colors YPbPr values to sRGB vlues           | YPbPr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                           |
 | yPbPrToYCbCr        | Converts colors YPbPr values to YCbCr vlues          | YPbPr to YCbCr           | No major data loss | { Y: number, Co: number, Cg: number }                           |
+
+### Color Converter 
+
+<a name="color_converter"></a>
+
+In situations where you might need to covert from one space into multiple spaces, you can use a color converter. 
+Color Converter is faster and less task-intensive than using Color, but  doesn't force you to use multiple standalone conversions.
+There are two prebuilt Color Converters, RGB Converter and the XYZ Converter.
