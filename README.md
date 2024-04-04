@@ -495,3 +495,242 @@ const blended = blend(
 
 console.log(blended);
 ```
+
+## [Color Harmonies](#color_harmonies)
+
+<a name="color_harmonies"></a>
+
+With Color utilities, you can also generate a number of Harmony pallets.
+For more information about Harmonies, visit: https://simplified.com/blog/colors/color-harmony
+All Harmonies are a standalone functions and they all the a color in a HSL format ({ hue: number, saturation: number, lightness: number }) and return an array of hex values. In addition, in adition the second optional parameter is a boolean, which represents if returned hex values should start with a #.
+
+### [Analogous](#analogous)
+
+<a name="analogous"></a>
+
+Usage example:
+
+```javascript
+import { analogousHarmony } from "@dynamize/color-utilities";
+
+const palet = analogousHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Clash](#clash)
+
+<a name="clash"></a>
+
+Usage example:
+
+```javascript
+import { clashHarmony } from "@dynamize/color-utilities";
+
+const palet = clashHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Complementary](#complementary)
+
+<a name="complementary"></a>
+
+Usage example:
+
+```javascript
+import { complementaryHarmony } from "@dynamize/color-utilities";
+
+const palet = complementaryHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Split Complementary](#split_complementary)
+
+<a name="split_complementary"></a>
+
+Usage example:
+
+```javascript
+import { splitComplementaryHarmony } from "@dynamize/color-utilities";
+
+const palet = splitComplementaryHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { splitComplementaryCWHarmony } from "@dynamize/color-utilities";
+
+const palet = splitComplementaryCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { splitComplementaryCCWHarmony } from "@dynamize/color-utilities";
+
+const palet = splitComplementaryCCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Four Tone](#four_tone)
+
+<a name="four_tone"></a>
+
+Usage example:
+
+```javascript
+import { fourToneCWHarmony } from "@dynamize/color-utilities";
+
+const palet = fourToneCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { fourToneCCWHarmony } from "@dynamize/color-utilities";
+
+const palet = fourToneCCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Five Tone](#five_tone)
+
+<a name="five_tone"></a>
+
+Usage example:
+
+```javascript
+import { fiveToneAHarmony } from "@dynamize/color-utilities";
+
+const palet = fiveToneAHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { fiveToneBHarmony } from "@dynamize/color-utilities";
+
+const palet = fiveToneBHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { fiveToneCHarmony } from "@dynamize/color-utilities";
+
+const palet = fiveToneCHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { fiveToneDHarmony } from "@dynamize/color-utilities";
+
+const palet = fiveToneDHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+Usage example:
+
+```javascript
+import { fiveToneEHarmony } from "@dynamize/color-utilities";
+
+const palet = fiveToneEHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Six Tone](#six_tone)
+
+<a name="six_tone"></a>
+
+Usage example:
+
+```javascript
+import { sixToneCWHarmony } from "@dynamize/color-utilities";
+
+const palet = sixToneCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+Usage example:
+
+```javascript
+import { sixToneCCWHarmony } from "@dynamize/color-utilities";
+
+const palet = sixToneCCWHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Neutral](#neutral)
+
+<a name="neutral"></a>
+
+Usage example:
+
+```javascript
+import { neutralHarmony } from "@dynamize/color-utilities";
+
+const palet = neutralHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Square](#square)
+
+<a name="square"></a>
+
+```javascript
+import { squareHarmony } from "@dynamize/color-utilities";
+
+const palet = squareHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Tetradic](#tetradic)
+
+<a name="tetradic"></a>
+
+```javascript
+import { tetradicHarmony } from "@dynamize/color-utilities";
+
+const palet = tetradicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+### [Triadic](#triadic)
+
+<a name="triadic"></a>
+
+```javascript
+import { triadicHarmony } from "@dynamize/color-utilities";
+
+const palet = triadicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+
+console.log(palet);
+```
+
+## [Color Mixes](#color_mixes)
+
+<a name="color_mixesc"></a>
