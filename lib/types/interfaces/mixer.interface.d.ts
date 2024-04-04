@@ -8,9 +8,9 @@
 /**
  * @description Options used for a Mixer constructor :
  *  - size: number of colors to return
- *  - prefexed: should the resulting colors start with #
+ *  - prefixed: should the resulting colors start with #
  */
 export interface MixerOptions {
-    size?: number;
-    prefexed?: boolean;
+  size?: number;
+  prefixed?: boolean;
 }

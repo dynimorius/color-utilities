@@ -58,7 +58,7 @@ export const getShades = (
   if (!options?.size || !isFinite(options?.size)) {
     size = 10;
   }
-  return scale(rgb, size, 0, options?.prefexed);
+  return scale(rgb, size, 0, options?.prefixed);
 };
 
 /**
@@ -75,7 +75,7 @@ export const getTints = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {
   if (!options?.size || !isFinite(options?.size)) {
     size = 10;
   }
-  return scale(rgb, size, 1, options?.prefexed);
+  return scale(rgb, size, 1, options?.prefixed);
 };
 
 /**
@@ -92,5 +92,5 @@ export const getTones = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {
   if (!options?.size || !isFinite(options?.size)) {
     size = 10;
   }
-  return scale(rgb, size, 0.5, options?.prefexed);
+  return scale(rgb, size, 0.5, options?.prefixed);
 };
