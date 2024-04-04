@@ -14,38 +14,19 @@ Color utilities is a collection of tools used to work with colors.
 
 ## Table of Contents
 
-1.  [About Color Utilities](#about_color_utilities)
-    1.  [Limits](#limits)
-2.  [Documentation](#documentation)
-    1.  [Setup]
-        1.  [Installation](#installation)
-        2.  [Dependencies](#dependencies)
-        3.  [Importing](#importing)
-    2.  [Color](#color)
-    3.  [Conversions]
-        1.  [Conversion list](con_list)
-    4.  [Color Converter](#color_converter)
-        1.  [RGB Converter](#rgb_converter)
-        2.  [XYZ Converter](#xyz_converter)
-    5.  [Color Blending](#color_blending)
-        1.  [Blender](#blender)
-        2.  [blend](#blend)
-    6.  [Color Harmonies](#color_harmonies)
-        1.  [Analogous](#analogous)
-        2.  [Clash](#clash)
-        3.  [Complementary](#complementary)
-        4.  [Split Complementary](#split_complementary)
-        5.  [Four Tone](#four_tone)
-        6.  [Five Tone](#five_tone)
-        7.  [Six Tone](#six_tone)
-        8.  [Neutral](#neutral)
-        9.  [Square](#square)
-        10. [Tetradic](#tetradic)
-        11. [Triadic](#triadic)
-    7.  [Color Mixes](#color_mixes)
-        1.  [Tones](#tones)
-        2.  [Tints](#tints)
-        3.  [Shades](#shades)
+- [Color Utilities](#color-utilities)
+      - [_Tools for all your color needs_](#tools-for-all-your-color-needs)
+  - [Features](#features)
+  - [Table of Contents](#table-of-contents)
+  - [About Color Utilities](#about-color-utilities)
+    - [Limits](#limits)
+  - [Documentation](#documentation)
+    - [Dependencies](#dependencies)
+    - [Importing](#importing)
+    - [Color](#color)
+    - [Conversions](#conversions)
+    - [Color Converter](#color-converter)
+    - [RGB Converter](#rgb-converter)
 
 ## [About Color Utilities](#about_color_utilities)
 
@@ -318,5 +299,120 @@ Some of them might have multiple conversions and that will be stated in the tabl
 <a name="color_converter"></a>
 
 In situations where you might need to covert from one space into multiple spaces, you can use a color converter. 
-Color Converter is faster and less task-intensive than using Color, but  doesn't force you to use multiple standalone conversions.
-There are two prebuilt Color Converters, RGB Converter and the XYZ Converter.
+Color Converter is faster and less task-intensive than using Color. There are two prebuilt Color Converters, 
+RGB Converter and the XYZ Converter.
+
+### RGB Converter
+
+<a name="rgb_converter"></a>
+
+RGB Converter is a prebuilt Color Converter that takes a single attribute of a type: 
+{ red: number, green: number, blue: number } or { r: number, g: number, b: number }. 
+
+It has a single method, "get" and it takes an attribute of type string which represents a color space you would like back.
+Supported conversion are: 
+adobe_98_rgb,
+apple_rgb,
+ansi16,
+ansi256,
+best_rgb,
+beta_rgb,
+bruce_rgb,
+cie_rgb,
+color_match_rgb,
+cmy,
+cmyk,
+don_rgb_4,
+etka_space_ps5,
+eci_rgb_v2,
+hcy,
+hex,
+hsi,
+hsl,
+hsv,
+hwb,
+lab,
+lch_ab,
+lch_uv,
+luv,
+ntsc_rgb,
+pal_secam_rgb,
+pro_photo_rgb,
+ryb,
+smpte_c_rgb,
+tsl,
+uvw,
+wide_gamut_rgb,
+ycbcr_BT601,
+ycbcr_BT709,
+ycbcr_BT2020,
+ydbdr,
+ypbpr,
+yccbccrc,
+ycocg,
+yiq,
+xvycc,
+xyz.
+
+```javascript
+import { RgbConverter } from "@dynamize/color-utilities";
+
+const rgbCon = new RgbConverter( { red: 238, green: 200, blue: 27 });
+
+console.log(rgbCon.get("hsv"));
+```
+
+This will return HSV values for the above-given color.
+
+### XYZ Converter
+
+<a name="xyz_converter"></a>
+
+XYZ Converter is a prebuilt Color Converter that takes a single attribute of a type: 
+{ x: number, y: number, z: number }. 
+
+It has a single method, "get" and it takes an attribute of type string which represents a color space you would like back.
+Supported conversion are: 
+lab"
+lch_ab,
+lch_uv,
+luv,
+uvw,
+rgb,
+adobe_98_rgb,
+apple_rgb,
+best_rgb,
+beta_rgb,
+bruce_rgb,
+cie_rgb,
+color_match_rgb,
+don_rgb_4,
+etka_space_ps5,
+eci_rgb_v2,
+ntsc_rgb,
+pal_secam_rgb,
+pro_photo_rgb,
+smpte_c_rgb,
+wide_gamut_rgb,
+xyy,
+lms,
+hunters_lab.
+
+```javascript
+import { XyzConverter } from "@dynamize/color-utilities";
+
+const xyzCon = new XyzConverter( { red: 238, green: 200, blue: 27 });
+
+console.log(xyzCon.get("luv"));
+```
+
+This will return LUV values for the above-given color.
+
+
+
+
+  
+
+
+
+

@@ -48,109 +48,109 @@ const XYZTest = (
   const tUvw = xyzToUvw(xyz);
   const tWideG = xyzToWideGamutRgb(xyz);
   const tXyy = xyzToXyY(xyz);
-  const rgbCon = new XyzConverter(xyz);
+  const xyzCon = new XyzConverter(xyz);
   Compare(
-    rgbCon.get("adobe_98_rgb"),
+    xyzCon.get("adobe_98_rgb"),
     tAdobe as unknown as Record<string, number>,
     `Testing Rgb Convertor Adobe conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("apple_rgb"),
+    xyzCon.get("apple_rgb"),
     tApple as unknown as Record<string, number>,
     `Testing Rgb Convertor Apple conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("best_rgb"),
+    xyzCon.get("best_rgb"),
     tBest as unknown as Record<string, number>,
     `Testing Rgb Convertor Best Rgb conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("beta_rgb"),
+    xyzCon.get("beta_rgb"),
     tBeta as unknown as Record<string, number>,
     `Testing Rgb Convertor Beta Rgb conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("bruce_rgb"),
+    xyzCon.get("bruce_rgb"),
     tBruce as unknown as Record<string, number>,
     `Testing Rgb Convertor Bruce Rgb conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("cie_rgb"),
+    xyzCon.get("cie_rgb"),
     tCie as unknown as Record<string, number>,
     `Testing Rgb Convertor Cie Rgb conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("color_match_rgb"),
+    xyzCon.get("color_match_rgb"),
     tColorM as unknown as Record<string, number>,
     `Testing Rgb Convertor Color Match Rgb conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("don_rgb_4"),
+    xyzCon.get("don_rgb_4"),
     tDon as unknown as Record<string, number>,
     `Testing Rgb Convertor Don RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("eci_rgb_v2"),
+    xyzCon.get("eci_rgb_v2"),
     tEci as unknown as Record<string, number>,
     `Testing Rgb Convertor ECI RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("etka_space_ps5"),
+    xyzCon.get("etka_space_ps5"),
     tEtka as unknown as Record<string, number>,
     `Testing Rgb Convertor Etka Space RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("lab"),
+    xyzCon.get("lab"),
     tLab as unknown as Record<string, number>,
     `Testing Rgb Convertor LAB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("lch_ab"),
+    xyzCon.get("lch_ab"),
     tLch_ab as unknown as Record<string, number>,
     `Testing Rgb Convertor LCH(ab) conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("lch_uv"),
+    xyzCon.get("lch_uv"),
     tLch_uv as unknown as Record<string, number>,
     `Testing Rgb Convertor LCH(uv) conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("luv"),
+    xyzCon.get("luv"),
     tLuv as unknown as Record<string, number>,
     `Testing Rgb Convertor LUV conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("ntsc_rgb"),
+    xyzCon.get("ntsc_rgb"),
     tNtsc as unknown as Record<string, number>,
     `Testing Rgb Convertor NTSC RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("pal_secam_rgb"),
+    xyzCon.get("pal_secam_rgb"),
     tPalS as unknown as Record<string, number>,
     `Testing Rgb Convertor Pal Secam RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("pro_photo_rgb"),
+    xyzCon.get("pro_photo_rgb"),
     tProP as unknown as Record<string, number>,
     `Testing Rgb Convertor Pro Photo RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("uvw"),
+    xyzCon.get("uvw"),
     tUvw as unknown as Record<string, number>,
     `Testing Rgb Convertor UVW conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("smpte_c_rgb"),
+    xyzCon.get("smpte_c_rgb"),
     tSmpte as unknown as Record<string, number>,
     `Testing Rgb Convertor SMPTE C RGB conversion for ${colorName}`
   );
   Compare(
-    rgbCon.get("wide_gamut_rgb"),
+    xyzCon.get("wide_gamut_rgb"),
     tWideG as unknown as Record<string, number>,
     `Testing Rgb Convertor Wide Gamut RGB conversion for ${colorName}`
   );
     Compare(
-      rgbCon.get("xyy"),
+      xyzCon.get("xyy"),
       tXyy as unknown as Record<string, number>,
       `Testing Rgb Convertor XYY conversion for ${colorName}`
     );
