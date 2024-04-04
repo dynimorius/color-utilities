@@ -61,7 +61,7 @@ export class Blender {
   constructor(
     color1: BlenderColor,
     color2: BlenderColor,
-    oprions: BlenderOptions
+    options: BlenderOptions
   ) {
     const type1 = getColorType(color1);
     color1 = checkAndFormat(type1, color1) as BlenderColor;
@@ -79,12 +79,12 @@ export class Blender {
         : toRgbConverters[getColorType(color2) as keyof ToRGBConverters](
             color2
           );
-    const weight = oprions.weight ? oprions.weight : 0.5;
+    const weight = options.weight ? options.weight : 0.5;
     this.color =
-      oprions.returnType === "rgb" || !oprions.returnType
+      options.returnType === "rgb" || !options.returnType
         ? blend(this.rgb1, this.rgb2, weight)
         : (
-            colorConverters[oprions.returnType as keyof ColorConverters]
+            colorConverters[options.returnType as keyof ColorConverters]
               ?.fun as Function
           )(blend(this.rgb1, this.rgb2, weight));
     this.blendData = {

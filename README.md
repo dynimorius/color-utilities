@@ -374,6 +374,8 @@ yiq,
 xvycc,
 xyz.
 
+Usage example:
+
 ```javascript
 import { RgbConverter } from "@dynamize/color-utilities";
 
@@ -418,6 +420,8 @@ xyy,
 lms,
 hunters_lab.
 
+Usage example:
+
 ```javascript
 import { XyzConverter } from "@dynamize/color-utilities";
 
@@ -427,3 +431,67 @@ console.log(xyzCon.get("luv"));
 ```
 
 This will return LUV values for the above-given color.
+
+## [Color Blending](#color_blending)
+
+<a name="color_blending"></a>
+In Color Utilities, there are two ways you can blend colors: either by using the standalone method "blend" or by using a Color Blender.
+
+### [Blender](#blender)
+
+<a name="blender"></a>
+Color Blender is quite powerful, it allows you to blend two colors in rgb ,cmyk, hex, hsl ,hsv, hwb, hex, ryb and xyz formats.
+The two colors do not have to be in the same format to blend them, and the returned color can have any of the following formats: 
+rgb ,cmyk, hex, hsl ,hsv, hwb, hex, ryb, xyz.
+
+Usage example:
+
+```javascript
+import { Blender } from "@dynamize/color-utilities";
+
+ const color = new Blender(
+    { c: 0, m: 7, y: 100, k: 0 },
+    { h: 0, s: 100, v: 100 },
+    { weight: 0.67, returnType: "hex" }
+  );
+
+console.log(color.color);
+```
+
+Color Blender can return two things: color or blend data. Color will just be a color value in the format that was requested, blend data will give you more information. Below, you can see the blend data for the above example:
+
+```javascript
+{
+    color1: {
+      data: { cyan: 0, magenta: 7, yellow: 100, key: 0 },
+      rgb: { red: 255, green: 237.14999999999998, blue: 0, inGamut: true },
+      amount: 0.67,
+    },
+    color2: {
+      data: { hue: 0, saturation: 100, value: 100 },
+      rgb: { red: 255, green: 0, blue: 0, inGamut: true },
+      amount: 0.32999999999999996,
+    },
+    resultColor: "FF9F00",
+  }
+```
+
+### [blend](#blend)
+
+<a name="blend"></a>
+Using the blend method is pretty straight-forward. It takes three parameters, the first two being the RGB values of colors to blend, and the 
+last one is a percentage of the first color, the remaining percentage will be allocated to the second one.
+
+Usage example:
+
+```javascript
+import { blend } from "@dynamize/color-utilities";
+
+const blended = blend(
+      { red: 255, green: 237, blue: 0 },
+      { red: 255, green: 0, blue: 0 },
+      0.67
+    );
+
+console.log(blended);
+```
