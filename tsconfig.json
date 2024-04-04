@@ -1,12 +1,26 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "commonjs",
+    "target": "ES2020",
+    "allowJs": true,
+    "allowSyntheticDefaultImports": true,
+    "baseUrl": "src",
+    "declaration": true,
     "esModuleInterop": true,
-    "forceConsistentCasingInFileNames": true,
-    "strict": true,
+    "inlineSourceMap": false,
+    "lib": ["ES2020"],
+    "listEmittedFiles": false,
+    "listFiles": false,
+    "moduleResolution": "node",
+    "noFallthroughCasesInSwitch": true,
+    "pretty": true,
+    "resolveJsonModule": true,
+    "rootDir": "src",
     "skipLibCheck": true,
-    "outDir": "./lib"
+    "strict": true,
+    "traceResolution": false,
+    "declarationDir": "./lib/types",
   },
-  "include": ["src/**/*", "dis.ts"]
+  "compileOnSave": false,
+  "exclude": ["node_modules", "lib"],
+  "include": ["./src/**/*"]
 }

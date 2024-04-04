@@ -2,13 +2,24 @@
   "name": "color-utilities",
   "version": "1.0.0",
   "description": "Library to format, convert and work with colors.",
-  "main": "lib/index.js",
+  "type": "module",
+  "types": "./lib/types/public_api.d.ts",
+  "main": "./lib/esm/public_api.js",
+  "module": "./lib/esm/public_api.js",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/public_api.js"
+    }
+  },
   "files": [
     "/lib"
   ],
   "scripts": {
     "test": "jest",
-    "test-watch": "npx jest --watch"
+    "test-watch": "npx jest --watch",
+    "build:win": "del lib && tsc --project tsconfig.esm.json",
+    "build:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json",
+    "build:esm": "tsc --project tsconfig.esm.json"
   },
   "repository": {
     "type": "git",
