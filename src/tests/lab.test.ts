@@ -3,12 +3,14 @@ import {
   RGB,
   XYZ,
   cie76ColorDiff,
+  deltaECIE76,
   hunterLabToXyz,
   labToXyz,
+  lch_abToLab,
   sRgbToLab,
   xyzToLab,
 } from "../public_api";
-import { labToSrgb } from "./../conversions/lab-conversions";
+import { labToLch_ab, labToSrgb } from "./../conversions/lab-conversions";
 import { xyzToHunterLab, xyzToSrgb } from "./../conversions/xyz-conversions";
 
 const Test = (xyz: XYZ, colorName: string) => {
@@ -193,3 +195,82 @@ Test3({ red: 187, green: 82, blue: 148 }, "Magenta");
 Test3({ red: -49, green: 135, blue: 166 }, "Cyan");
 Test3({ red: 243, green: 242, blue: 237 }, "White");
 Test3({ red: 50, green: 49, blue: 50 }, "Printer Black");
+
+
+const Test4 = (xyz: XYZ, colorName: string) => {
+  test(`Checking Lab <-> Lch_ab conversions for ${colorName}`, () => {
+    const lab = xyzToLab(xyz);
+    expect(
+      deltaECIE76(lch_abToLab(labToLch_ab(lab)), lab)
+    ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
+  });
+};
+
+Test4(
+  { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 },
+  "Yellow"
+);
+Test4(
+  { x: 35.9120666993328, y: 28.808434268936097, z: 5.419297073053726 },
+  "Orange"
+);
+Test4(
+  { x: 13.202867328257659, y: 11.575532613794051, z: 37.12857860026635 },
+  "Purplish Blue"
+);
+Test4(
+  { x: 27.62513014132322, y: 18.69502708789548, z: 13.706625515194181 },
+  "Moderate Red"
+);
+Test4(
+  { x: 8.531757200262838, y: 6.413798640911185, z: 14.695612441342334 },
+  "Purple"
+);
+Test4(
+  { x: 33.2965334632533, y: 43.766312849403235, z: 10.967717412244491 },
+  "Yellow Green"
+);
+Test4(
+  { x: 46.15168100558844, y: 43.1885071436693, z: 8.095599343107358 },
+  "Orange Yellow"
+);
+Test4(
+  { x: 8.490396762622195, y: 6.111654044271183, z: 30.863036275406326 },
+  "Blue"
+);
+Test4(
+  { x: 17.697882513623384, y: 18.94493933037014, z: 34.17024267446187 },
+  "Blue Sky"
+);
+Test4(
+  { x: 24.989976330617843, y: 23.62014382596365, z: 44.82896486975364 },
+  "Blue Flower"
+);
+Test4(
+  { x: 31.01661432382987, y: 42.473960457441336, z: 45.08399767964223 },
+  "Bluish Green"
+);
+Test4(
+  { x: 14.578311839577996, y: 23.580809542693366, z: 9.412405094127996 },
+  "Green"
+);
+Test4(
+  { x: 19.748125802114448, y: 11.43698537712494, z: 4.908330952907127 },
+  "Red"
+);
+Test4(
+  { x: 28.85685600779282, y: 18.739979417361326, z: 30.108603514613236 },
+  "Magenta"
+);
+Test4(
+  { x: 14.93050603627794, y: 19.762703639769423, z: 39.09660939928801 },
+  "Cyan"
+);
+Test4(
+  { x: 83.99798052257115, y: 88.67354492316015, z: 92.79488184018574 },
+  "White"
+);
+Test4(
+  { x: 2.98933568708001, y: 3.1050304894404497, z: 3.4588402502271727 },
+  "Printer Black"
+);
