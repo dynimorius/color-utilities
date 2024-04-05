@@ -7,7 +7,7 @@
  */
 
 import { sRgbToLab } from "../conversions/rgb-conversions";
-import { LAB, RGB } from "../interfaces/color-spaces.interface";
+import { LAB, LCH, RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Gets comparative distance for a given sRBG colors
@@ -35,6 +35,20 @@ export const deltaECIE76 = (lab1: LAB, lab2: LAB): number => {
     Math.pow(lab1.luminance - lab2.luminance, 2) +
       Math.pow(lab1.a - lab2.a, 2) +
       Math.pow(lab1.b - lab2.b, 2)
+  );
+};
+
+/**
+ * Gets a delta E CIE 1976 value for a given colors
+ * @param {LCH}                   - LCH values for the frist color
+ * @param {LCH}                   - LCH values for the second color
+ * @returns {number}              - difference
+ */
+export const deltaECIE76Lch = (lch1: LCH, lch2: LCH): number => {
+  return Math.sqrt(
+    Math.pow(lch1.lightness - lch2.lightness, 2) +
+      Math.pow(lch1.chroma - lch2.chroma, 2) +
+      Math.pow(lch1.hue - lch2.hue, 2)
   );
 };
 
