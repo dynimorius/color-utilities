@@ -1,4 +1,4 @@
-import { fromRgbConverters } from "../convertor-map";
+import { fromRgbConverters } from "./convertor-map";
 import { RGB, RGBA, RGBA_M, RGB_M } from "../interfaces/color-spaces.interface";
 import { RGBResolverMap } from "../interfaces/resolver.interface";
 import { RGBConSpaces } from "../types/colors";

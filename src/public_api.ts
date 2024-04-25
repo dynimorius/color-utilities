@@ -36,3 +36,4 @@ export * from "./interfaces/color-spaces.interface";
 export * from "./utilities/blender";
 export * from "./utilities/harmony";
 export * from "./utilities/mixer";
+export * from "./utilities/adapter";

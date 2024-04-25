@@ -10,7 +10,7 @@ import {
   colorConverters,
   toRgbConverters,
   toXyzConverters,
-} from "../convertor-map";
+} from "../color-converter/convertor-map";
 import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
 import { AllResolv, DefaultResolv } from "../constants/init-spaces";

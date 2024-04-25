@@ -1,3 +1,5 @@
+import { AdaptiveMatrices } from "interfaces/adaptive-matrices.interface";
+
 /*****************************************************************
  *  @license
  *  Copyright Slavko Mihajlovic All Rights Reserved.
@@ -13,7 +15,7 @@
  *  credits:
  *  http://www.brucelindbloom.com/index.html?Eqn_ChromAdapt.html
  *****************************************************************/
-export const ADAPTIVE_MATRICES = {
+export const ADAPTIVE_MATRICES: AdaptiveMatrices = {
   A_B: [
     [0.8905163, -0.0829136, 0.2680945],
     [-0.0971524, 1.0754262, 0.0879463],

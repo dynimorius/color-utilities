@@ -18,7 +18,8 @@
     "test-watch": "npx jest --watch",
     "build:win": "del lib && tsc --project tsconfig.esm.json",
     "build:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json",
-    "build:esm": "tsc --project tsconfig.esm.json"
+    "build:win:esm": "del lib && tsc --project tsconfig.esm.json",
+    "build:win:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json"
   },
   "repository": {
     "type": "git",
@@ -34,6 +35,7 @@
     "harmony",
     "blend",
     "blender",
+    "chromatic adaptation",
     "RGB",
     "RGBA",
     "sRBG",

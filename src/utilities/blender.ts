@@ -6,7 +6,7 @@
  * found at https://www.isc.org/licenses/
  */
 
-import { colorConverters, toRgbConverters } from "../convertor-map";
+import { colorConverters, toRgbConverters } from "../color-converter/convertor-map";
 import { checkAndFormat } from "../helpers/color-checks";
 import { BlendData, BlenderOptions } from "../interfaces/blender.interface";
 import {

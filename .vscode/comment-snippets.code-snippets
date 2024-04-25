@@ -1,0 +1,32 @@
+{
+	// Place your color-utilities workspace snippets here. Each snippet is defined under a snippet name and has a scope, prefix, body and 
+	// description. Add comma separated ids of the languages where the snippet is applicable in the scope field. If scope 
+	// is left empty or omitted, the snippet gets applied to all languages. The prefix is what is 
+	// used to trigger the snippet and the body will be expanded and inserted. Possible variables are: 
+	// $1, $2 for tab stops, $0 for the final cursor position, and ${1:label}, ${2:another} for placeholders. 
+	// Placeholders with the same ids are connected.
+	"Function Comment": {
+		"scope": "javascript,typescript",
+		"prefix": "fComment",
+		"body": [
+			"$BLOCK_COMMENT_START*\n * ${TM_SELECTED_TEXT:${1:Function or Method description}}\n *\n * @param\t\t\t\t\t\t{${2:any}}\t\t\t\t\t\t\t\t\t\t\t- ${3:param description}\n * @returns\t\t\t\t\t{${4:any}}\t\t\t\t\t\t\t\t\t\t\t- ${5:return value description}\n$BLOCK_COMMENT_END"
+		],
+		"description": "Creates a comment for a function or a method"
+	},
+	"Licence Comment": {
+		"scope": "javascript,typescript",
+		"prefix": "lComment",
+		"body": [
+			"$BLOCK_COMMENT_START*\n * @license\n * Copyright Slavko Mihajlovic All Rights Reserved.\n * \n * Use of this source code is governed by an ISC-style license that can be\n * found at https://opensource.org/license/isc-license-txt/\n$BLOCK_COMMENT_END"
+		],
+		"description": "Creates a licence comment"
+	},
+	"Class Comment": {
+		"scope": "javascript,typescript",
+		"prefix": "cComment",
+		"body": [
+			"$BLOCK_COMMENT_START*\n * ${TM_SELECTED_TEXT:${1:Class description}}\n *\n * @param\t\t\t\t\t\t{${2:any}}\t\t\t\t\t\t\t\t\t\t\t- ${3:constructor param description}\n * \n$BLOCK_COMMENT_END"
+		],
+		"description": "Creates a comment for a class"
+}
+}

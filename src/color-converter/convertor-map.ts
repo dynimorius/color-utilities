@@ -6,19 +6,19 @@
  * found at https://www.isc.org/licenses/
  */
 
-import { ansi16ToRgb, ansi256ToRgb } from "./conversions/ansi-conversions";
-import { cmyToSRgb } from "./conversions/cmy-conversions";
-import { cmykToRgb } from "./conversions/cmyk-conversions";
-import { hcyToSrgb } from "./conversions/hcy-conversions";
-import { hexToRgb } from "./conversions/hex-conversions";
-import { hsiToSrgb } from "./conversions/hsi-conversions";
-import { hslToRgb } from "./conversions/hsl-conversions";
-import { hsvToRgb } from "./conversions/hsv-conversions";
-import { hwbToRgb } from "./conversions/hwb-conversions";
-import { hunterLabToXyz, labToXyz } from "./conversions/lab-conversions";
-import { lch_abToXyz, lch_uvToXyz } from "./conversions/lch-conversions";
-import { lmsToXyz } from "./conversions/lms-conversions";
-import { luvToXyz } from "./conversions/luv-conversions";
+import { ansi16ToRgb, ansi256ToRgb } from "../conversions/ansi-conversions";
+import { cmyToSRgb } from "../conversions/cmy-conversions";
+import { cmykToRgb } from "../conversions/cmyk-conversions";
+import { hcyToSrgb } from "../conversions/hcy-conversions";
+import { hexToRgb } from "../conversions/hex-conversions";
+import { hsiToSrgb } from "../conversions/hsi-conversions";
+import { hslToRgb } from "../conversions/hsl-conversions";
+import { hsvToRgb } from "../conversions/hsv-conversions";
+import { hwbToRgb } from "../conversions/hwb-conversions";
+import { hunterLabToXyz, labToXyz } from "../conversions/lab-conversions";
+import { lch_abToXyz, lch_uvToXyz } from "../conversions/lch-conversions";
+import { lmsToXyz } from "../conversions/lms-conversions";
+import { luvToXyz } from "../conversions/luv-conversions";
 import {
   adobeRgbToXyz,
   appleRgbToXyz,
@@ -77,12 +77,12 @@ import {
   sRgbToYiq,
   smpteCRgbToXyz,
   wideGamutRgbToXyz,
-} from "./conversions/rgb-conversions";
-import { rybToSrgb } from "./conversions/ryb-conversions";
-import { tslToSrgb } from "./conversions/tsl-conversions";
-import { uvwToXyz } from "./conversions/uvw-conversions";
-import { xvYccToSrgb } from "./conversions/xvycc-conversions";
-import { xyYToXyz } from "./conversions/xyy-conversions";
+} from "../conversions/rgb-conversions";
+import { rybToSrgb } from "../conversions/ryb-conversions";
+import { tslToSrgb } from "../conversions/tsl-conversions";
+import { uvwToXyz } from "../conversions/uvw-conversions";
+import { xvYccToSrgb } from "../conversions/xvycc-conversions";
+import { xyYToXyz } from "../conversions/xyy-conversions";
 import {
   xtzToLms,
   xyzToAdobeRgb,
@@ -108,23 +108,23 @@ import {
   xyzToUvw,
   xyzToWideGamutRgb,
   xyzToXyY,
-} from "./conversions/xyz-conversions";
-import { yCbCrBT601ToSrgb } from "./conversions/ycbcr-jpeg-conversions";
-import { ycCbcCrcToSrgb } from "./conversions/yccbccrc-conversions";
-import { yCgCoToSrgb } from "./conversions/ycocg-conversions";
-import { yDbDrToSrgb } from "./conversions/ydbdr-conversions";
-import { yiqToSrgb } from "./conversions/yiq-conversions";
-import { yPbPrToSrgb } from "./conversions/ypbpr-conversions";
-import { isWebSafeRGB } from "./helpers/formats-and-checks";
+} from "../conversions/xyz-conversions";
+import { yCbCrBT601ToSrgb } from "../conversions/ycbcr-jpeg-conversions";
+import { ycCbcCrcToSrgb } from "../conversions/yccbccrc-conversions";
+import { yCgCoToSrgb } from "../conversions/ycocg-conversions";
+import { yDbDrToSrgb } from "../conversions/ydbdr-conversions";
+import { yiqToSrgb } from "../conversions/yiq-conversions";
+import { yPbPrToSrgb } from "../conversions/ypbpr-conversions";
+import { isWebSafeRGB } from "../helpers/formats-and-checks";
 import {
   ColorConverters,
   ToRGBConverters,
   ToXyzConverters,
-} from "./interfaces/converters.interface";
+} from "../interfaces/converters.interface";
 import {
   RGBResolverMap,
   XYZRezolverMap,
-} from "./interfaces/resolver.interface";
+} from "../interfaces/resolver.interface";
 
 /**
  * Map of color converter paired with the

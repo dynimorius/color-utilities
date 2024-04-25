@@ -1,4 +1,4 @@
-import { fromXyzConverters } from "../convertor-map";
+import { fromXyzConverters } from "./convertor-map";
 import { XYZRezolverMap } from "../interfaces/resolver.interface";
 import { XYZ } from "../public_api";
 import { XyzConSpaces } from "../types/colors";
