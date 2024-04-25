@@ -47,6 +47,8 @@ Color utilities is a collection of tools used to work with colors.
     - [Tints](#tints)
     - [Shades](#shades)
   - [Chromatic adaptation](#chromatic_adaptation)
+    - [adapt](#adapt)
+    - [Adapter](#adapter)
 
 ## [About Color Utilities](#about_color_utilities)
 
@@ -826,3 +828,63 @@ console.log(palet);
 ```
 
 ## [Chromatic adaptation](#chromatic_adaptation)
+
+Chromatic adaptation can be preformed in two ways, either by using a standalone "adapt" function or by using an Adapter class.
+
+### [adapt](#adapt)
+
+"adapt" function which takes two arguments, first being XYZ values 0f the color to be adapted, and a string value representing reference illuminant and a destination illuminant.
+
+```javascript
+import { adapt } from "@dynamize/color-utilities";
+
+const adapted = adapt({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }, 'A_B');
+
+console.log(adapted);
+```
+The above example will adapt from a from reference illuminant A to destination illuminant B.
+
+### [Adapter](#adapter)
+
+The Adapter class is a little bit more powerful but slower, it takes two optional arguments, first being color values, second is the color space of those values, if not passed
+default values will be for color white in XYZ format.
+
+Here is a table of all available formats and values:
+
+
+| Parameter 1                                       | Parameter 2                                                                                          |
+| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| { r: number, g: number, b: number }               | adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4          |
+| { red: number, green: number, blue: number }      | eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb |
+| { l: number, a: number, b: number }               | lab,                                                                                                 |
+| { luminance: number, a: number, b: number }       |                                                                                                      |
+| { L: number, u: number, v: number }               | luv,                                                                                                 |
+| { l: number, c: number, h: number }               | lch_ab, lch_uv,                                                                                      |
+| { lightness: number, chroma: number hue: number } |                                                                                                      |
+| { long: number, medium: number, short: number }   | lms,                                                                                                 |
+| { u: number, v: number, w: number }               | uvw,                                                                                                 |
+| { x: number, y: number, Y: number }               | xyy,                                                                                                 |
+| { x: number, y: number, z: number }               | xyz                                                                                                  |
+
+
+Example 1:
+
+```javascript
+import { Adapter } from "@dynamize/color-utilities";
+
+const adapted = new Adapter({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B');
+
+console.log(adapted);
+```
+
+
+Example 2:
+
+```javascript
+import { Adapter } from "@dynamize/color-utilities";
+
+const adapter = new Adapter();
+const adapted = adapter.set({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B');
+
+console.log(adapted);
+```

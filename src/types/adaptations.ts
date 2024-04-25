@@ -1,8 +1,16 @@
 import {
+  LAB,
+  LAB_M,
+  LCH,
+  LCH_M,
+  LMS,
+  LUV,
   RGB,
   RGBA,
   RGBA_M,
   RGB_M,
+  UVW,
+  XYY,
   XYZ,
 } from "interfaces/color-spaces.interface";
 
@@ -118,7 +126,20 @@ export type Adaptations =
   | "F11_F2"
   | "F11_F7";
 
-export type AdaptiveColors = RGB | RGBA | RGB_M | RGBA_M | XYZ;
+export type AdaptiveColors = 
+ | RGB 
+ | RGBA 
+ | RGB_M 
+ | RGBA_M 
+ | LAB 
+ | LAB_M 
+ | LUV 
+ | LCH 
+ | LCH_M 
+ | LMS 
+ | UVW 
+ | XYY 
+ | XYZ;
 
 export type AdaptiveColorSpaces =
   | "adobe_98_rgb"
