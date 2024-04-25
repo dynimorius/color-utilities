@@ -857,10 +857,10 @@ Here is a table of all available formats and values:
 | { r: number, g: number, b: number }               | adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4, eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb          |
 | { red: number, green: number, blue: number }      | adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4, eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb  |
 | { l: number, a: number, b: number }               | lab,                                                                                                 |
-| { luminance: number, a: number, b: number }       |                                                                                                      |
+| { luminance: number, a: number, b: number }       | lab,                                                                                                     |
 | { L: number, u: number, v: number }               | luv,                                                                                                 |
 | { l: number, c: number, h: number }               | lch_ab, lch_uv,                                                                                      |
-| { lightness: number, chroma: number hue: number } |                                                                                                      |
+| { lightness: number, chroma: number hue: number } | lch_ab, lch_uv,                                                                                                   |
 | { long: number, medium: number, short: number }   | lms,                                                                                                 |
 | { u: number, v: number, w: number }               | uvw,                                                                                                 |
 | { x: number, y: number, Y: number }               | xyy,                                                                                                 |
