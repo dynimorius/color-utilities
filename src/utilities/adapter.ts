@@ -49,6 +49,12 @@ export class Adapter {
     else return toXyzConverters[colorSpace as keyof ToXyzConverters](color);
   }
 
+  /**
+   * Method that returns a chromatically adopted color in a desired color space.
+   * @param	{string}						- string representing the adaptation
+   * @param	{string}						- string representing the  desired color space of the return values
+   * @returns	{AdaptiveColors}  - adapted color
+   */
   adapt(
     adaptation: Adaptations,
     returnSpace: AdaptiveColorSpaces = "xyz"
@@ -59,7 +65,7 @@ export class Adapter {
       return fromXyzConverters[returnSpace as keyof XYZRezolverMap](
         adapt(this.color, adaptation)
       );
-    };
+    }
   }
 
   set(color: AdaptiveColors, colorSpace?: AdaptiveColorSpaces): void {
