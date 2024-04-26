@@ -852,19 +852,10 @@ default values will be for color white in XYZ format.
 Here is a table of all available formats and values:
 
 
-| Parameter 1                                       | Parameter 2                                                                                          |
-| ------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
-| { r: number, g: number, b: number }               | adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4, eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb          |
-| { red: number, green: number, blue: number }      | adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4, eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb  |
-| { l: number, a: number, b: number }               | lab,                                                                                                 |
-| { luminance: number, a: number, b: number }       | lab,                                                                                                     |
-| { L: number, u: number, v: number }               | luv,                                                                                                 |
-| { l: number, c: number, h: number }               | lch_ab, lch_uv,                                                                                      |
-| { lightness: number, chroma: number hue: number } | lch_ab, lch_uv,                                                                                                   |
-| { long: number, medium: number, short: number }   | lms,                                                                                                 |
-| { u: number, v: number, w: number }               | uvw,                                                                                                 |
-| { x: number, y: number, Y: number }               | xyy,                                                                                                 |
-| { x: number, y: number, z: number }               | xyz                                                                                                  |
+| Param place | Description                           | Formats                                                                                                                                                  |
+| ----------- | ------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| # 1         | Color data                            | { r: number, g: number, b: number }, { red: number, green: number, blue: number }, { l: number, a: number, b: number }, { luminance: number, a: number, b: number }, { L: number, u: number, v: number }, { l: number, c: number, h: number }, { lightness: number, chroma: number hue: number }, { long: number, medium: number, short: number }, { u: number, v: number, w: number }, { x: number, y: number, Y: number }, { x: number, y: number, z: number } |
+| # 2         | Color Space of the given color        |  adobe_98_rgb, apple_rgb, best_rgb, beta_rgb, bruce_rgb, cie_rgb, color_match_rgb, don_rgb_4, eci_rgb_v2, etka_space_ps5, ntsc_rgb, pal_secam_rgb, pro_photo_rgb, rgb, smpte_c_rgb, wide_gamut_rgb |                                                                                                                                                          |
 
 
 Example 1:
@@ -885,6 +876,18 @@ import { Adapter } from "@dynamize/color-utilities";
 
 const adapter = new Adapter();
 const adapted = adapter.set({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B');
+
+console.log(adapted);
+```
+The above example is using the "adapt" method with in the Adapter. The difference being that it takes an optional second argument, which is the desired color space of retuned color values.  
+
+Example 3:
+
+```javascript
+import { Adapter } from "@dynamize/color-utilities";
+
+const adapter = new Adapter();
+const adapted = adapter.set({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B', 'adobe_98_rgb');
 
 console.log(adapted);
 ```

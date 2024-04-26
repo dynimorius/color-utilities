@@ -14,15 +14,16 @@ import { XYZ } from "../interfaces/color-spaces.interface";
 import { matrixVectorMultiAsXyz } from "../helpers/matrix";
 import { AdaptiveMatrices } from "interfaces/adaptive-matrices.interface";
 import { ADAPTIVE_MATRICES } from "../constants/adaptive_matrices";
-import { toXyzConverters } from "../color-converter/convertor-map";
+import { fromXyzConverters, toXyzConverters } from "../color-converter/convertor-map";
 import { ToXyzConverters } from "interfaces/converters.interface";
+import { XYZRezolverMap } from "interfaces/resolver.interface";
 
 /**
  * Preforms a chromatic adaptation on a color in a XYZ space
  *
  * @param {XYZ}			       - color to preform the chromatic adaptation on
  * @param {string}			   - string representation of the adaptation
- * @returns	{XYZ}			   - Chromatically adapted XYZ values
+ * @returns	{XYZ}			     - Chromatically adapted XYZ values
  */
 export const adapt = (color: XYZ, adaptation: Adaptations): XYZ => {
   return matrixVectorMultiAsXyz(
@@ -48,8 +49,17 @@ export class Adapter {
     else return toXyzConverters[colorSpace as keyof ToXyzConverters](color);
   }
 
-  adapt(adaptation: Adaptations): XYZ {
-    return adapt(this.color, adaptation);
+  adapt(
+    adaptation: Adaptations,
+    returnSpace: AdaptiveColorSpaces = "xyz"
+  ): AdaptiveColors {
+    if (returnSpace === "xyz") {
+      return adapt(this.color, adaptation);
+    } else {
+      return fromXyzConverters[returnSpace as keyof XYZRezolverMap](
+        adapt(this.color, adaptation)
+      );
+    };
   }
 
   set(color: AdaptiveColors, colorSpace?: AdaptiveColorSpaces): void {
