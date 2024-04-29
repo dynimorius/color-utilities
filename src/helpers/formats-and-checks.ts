@@ -74,3 +74,21 @@ export const round = (value: number, decimals = MAX_DECIMALS): number => {
 export function clamp(value: number, min: number, max: number) {
   return Math.min(Math.max(value, min), max);
 }
+
+/**
+ * Gives the radian equivalent of a specified degree angle.
+ * @param {number}                 - radians value
+ * @returns {number}               - value in degrees
+ */
+export const radiansToDegrees = (radians: number): number => {
+  return radians * (180 / Math.PI);
+};
+
+/**
+ * Gives the radian equivalent of a specified degree angle.
+ * @param {number}                 - degree value
+ * @returns {number}               - value in radians
+ */
+export const degreesToRadians = (degrees: number): number => {
+  return degrees * (Math.PI / 180);
+};

@@ -863,7 +863,9 @@ Example 1:
 ```javascript
 import { Adapter } from "@dynamize/color-utilities";
 
-const adapted = new Adapter({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B');
+const adapted = new Adapter(
+  { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }
+).adapt('A_B');
 
 console.log(adapted);
 ```
@@ -875,7 +877,9 @@ Example 2:
 import { Adapter } from "@dynamize/color-utilities";
 
 const adapter = new Adapter();
-const adapted = adapter.set({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B');
+const adapted = adapter.set(
+  { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }
+).adapt('A_B');
 
 console.log(adapted);
 ```
@@ -887,7 +891,12 @@ Example 3:
 import { Adapter } from "@dynamize/color-utilities";
 
 const adapter = new Adapter();
-const adapted = adapter.set({ x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }).adapt('A_B', 'adobe_98_rgb');
+const adapted = adapter.set(
+  { x: 56.11537464609447, y: 59.56827248834963, z: 9.578873171265526 }
+).adapt(
+  'A_B', 
+  'adobe_98_rgb'
+);
 
 console.log(adapted);
 ```

@@ -1,0 +1,10 @@
+{
+    "semi": true,
+    "trailingComma": "none",
+    "singleQuote": true,
+    "printWidth": 80,
+    "[typescript]": {
+        "editor.formatOnPaste": false,
+        "editor.formatOnSave": true
+      }
+  }
