@@ -40,14 +40,33 @@ function round(n: number) {
 //   };
 // }
 
-const deltaE00Test = () => {
-    test('Check Delta E 00', () => {
+const deltaE76Test = () => {
+    test('Check Delta E 76', () => {
         expect(
           deltaECIE76Lab(color1, color2)
           ).toEqual(41.14608122288197);
     })
 }
 
+deltaE76Test();
+
+const deltaE94Test = () => {
+  test('Check Delta E 94', () => {
+      expect(
+        deltaECIE94Lab(color1, color2)
+        ).toEqual(22.849281934529994);
+  })
+}
+
+deltaE94Test();
+
+const deltaE00Test = () => {
+  test('Check Delta E 00', () => {
+      expect(
+        deltaECIE00Lab(color1, color2)
+        ).toEqual(22.3945069524179);
+  })
+}
+
 deltaE00Test();
-console.log(deltaECIE94Lab(color1, color2));
-console.log(deltaECIE00Lab(color1, color2));
+

@@ -23,40 +23,40 @@ export const deltaECIE00Lab = (
   lab2: LAB,
   weights?: LCH
 ): number => {
-  const lightness = weights?.lightness || 1;
-  const chroma = weights?.chroma || 1;
-  const hue = weights?.hue || 1;
+  const lightness = weights?.lightness ?? 1;
+  const chroma = weights?.chroma ?? 1;
+  const hue = weights?.hue ?? 1;
 
   const deltaL = lab2.luminance - lab1.luminance;
-  const Lbar = (lab1.luminance - lab2.luminance) / 2;
+  const Lbar = (lab1.luminance + lab2.luminance) / 2;
 
   const c1 = getDeltaChroma(lab1.a, lab1.b);
   const c2 = getDeltaChroma(lab2.a, lab2.b);
 
-  const CBar = (c1 + c2) / 2;
+  const CBar = ( c1 + c2 ) / 2;
 
-  const aPrime1 = getPrimeA(lab1.a, CBar);
-  const aPrime2 = getPrimeA(lab2.a, CBar);
+  const aPrime1 = getPrimeA( lab1.a, CBar );
+  const aPrime2 = getPrimeA( lab2.a, CBar );
 
-  const CPrime1 = getDeltaChroma(aPrime1, lab1.b);
-  const CPrime2 = getDeltaChroma(aPrime2, lab1.b);
+  const CPrime1 = getDeltaChroma( aPrime1, lab1.b );
+  const CPrime2 = getDeltaChroma( aPrime2, lab2.b );
 
-  const CBarPrime = (CPrime1 + CPrime2) / 2;
+  const CBarPrime = ( CPrime1 + CPrime2 ) / 2;
   const deltaC = CPrime2 - CPrime1;
 
-  const SsubL = 1 + (0.015 * Math.pow(Lbar - 50, 2)) / Math.sqrt(20 + Math.pow(Lbar - 50, 2));
+  const SsubL = 1 + ( 0.015 * Math.pow( Lbar - 50, 2 ) ) / Math.sqrt( 20 + Math.pow( Lbar - 50, 2 ) );
   const SsubC = 1 + 0.045 * CBarPrime;
 
-  const hPrime1 = getHueAngle(lab1.b, aPrime1);
-  const hPrime2 = getHueAngle(lab2.b, aPrime2);
+  const hPrime1 = getHueAngle( lab1.b, aPrime1 ); 
+  const hPrime2 = getHueAngle(lab2.b, aPrime2); 
 
-  const deltahPrime = getDeltahPrime(c1, c2, hPrime1, hPrime2);
+  const deltahPrime = getDeltahPrime(c1, c2, hPrime1, hPrime2); 
   const deltaHPrime =
     2 *
     Math.sqrt(CPrime1 * CPrime2) *
-    Math.sin(degreesToRadians(deltahPrime) / 2);
+    Math.sin(degreesToRadians(deltahPrime) / 2); 
 
-  const HBarPrime = getHBarPrime(hPrime1, hPrime2);
+  const HBarPrime = getHBarPrime(hPrime1, hPrime2); 
   const T = getT(HBarPrime);
 
   const SsubH = 1 + 0.015 * CBarPrime * T;
