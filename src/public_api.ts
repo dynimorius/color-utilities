@@ -37,3 +37,6 @@ export * from "./utilities/blender";
 export * from "./utilities/harmony";
 export * from "./utilities/mixer";
 export * from "./utilities/adapter";
+export * from "./color-difference/cie-delta-e-00";
+export * from "./color-difference/cie-delta-e-76";
+export * from "./color-difference/cie-delta-e-94";
