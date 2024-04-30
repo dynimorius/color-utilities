@@ -54,20 +54,20 @@ Color utilities is a collection of tools used to work with colors.
     - [CIE 94](#cie_94)
     - [CIE 00](#cie_00) 
 
-## [About Color Utilities](#about_color_utilities)
+## About Color Utilities
 
 Color Utilities aims to be a one-stop shop for any work related to colors, mostly built with pure functions
 One can use as little or as much of it as needed or wanted, avoiding unneeded project bloating.
 In the future, this library will most probably grow further.
 
-### [Limits](#limits)
+### Limits
 
 <a name="limits"></a>
 Due to the nature of color spaces, certain conversions are more computationally taxing than others.
 Further, certain conversions lead to data loss like RGB to Ansi16 and then back to RGB will most probably result in a
 significant difference in color.
 
-## [Documentation](#documentation)
+## Documentation
 
 <a name="documentation"></a>
 
@@ -75,12 +75,12 @@ significant difference in color.
 npm install --save @dynamize/color-utilities
 ```
 
-### [Dependencies](#dependencies)
+### Dependencies
 
 <a name="dependencies"></a>
 This library has no dependencies and is completely self-contained.
 
-### [Importing](#importing)
+### Importing
 
 <a name="importing"></a>
 Importing is done using the ES static import declaration.
@@ -93,7 +93,7 @@ import { Color } from "@dynamize/color-utilities";
 In order to use the import declaration in a source file, the file must be interpreted by the runtime as a
 module.
 
-## [Color](#color)
+## Color
 
 <a name="color"></a>
 A Color class is a representation of a color in Color Utilities. Use cse for this is when you know you will need
@@ -185,7 +185,7 @@ is a high frequency of re computation. Expediently the default (no third argumen
 a Photoshop color picker (rgb, hsv, lab, cmyk and hex).
 |
 
-## [Conversions](#conversions)
+## Conversions
 
 <a name="conversions"></a>
 
@@ -327,7 +327,7 @@ In situations where you might need to covert from one space into multiple spaces
 Color Converter is faster and less task-intensive than using Color. There are two prebuilt Color Converters,
 RGB Converter and the XYZ Converter.
 
-### [RGB Converter](#rgb_converter)
+### RGB Converter
 
 <a name="rgb_converter"></a>
 
@@ -391,7 +391,7 @@ console.log(rgbCon.get("hsv"));
 
 This will return HSV values for the above-given color.
 
-### [XYZ Converter](#xyz_converter)
+### XYZ Converter
 
 <a name="xyz_converter"></a>
 
@@ -437,12 +437,12 @@ console.log(xyzCon.get("luv"));
 
 This will return LUV values for the above-given color.
 
-## [Color Blending](#color_blending)
+## Color Blending
 
 <a name="color_blending"></a>
 In Color Utilities, there are two ways you can blend colors: either by using the standalone method "blend" or by using a Color Blender.
 
-### [Blender](#blender)
+### Blender
 
 <a name="blender"></a>
 Color Blender is quite powerful, it allows you to blend two colors in rgb ,cmyk, hex, hsl ,hsv, hwb, hex, ryb and xyz formats.
@@ -481,7 +481,7 @@ Color Blender can return two things: color or blend data. Color will just be a c
   }
 ```
 
-### [blend](#blend)
+### blend
 
 <a name="blend"></a>
 Using the blend method is pretty straight-forward. It takes three parameters, the first two being the RGB values of colors to blend, and the
@@ -501,7 +501,7 @@ const blended = blend(
 console.log(blended);
 ```
 
-## [Color Harmonies](#color_harmonies)
+## Color Harmonies
 
 <a name="color_harmonies"></a>
 
@@ -509,7 +509,7 @@ With Color utilities, you can also generate a number of Harmony pallets.
 For more information about Harmonies, visit: https://simplified.com/blog/colors/color-harmony
 All Harmonies are a standalone functions and they all the a color in a HSL format ({ hue: number, saturation: number, lightness: number }) and return an array of hex values. In addition, in adition the second optional parameter is a boolean, which represents if returned hex values should start with a #.
 
-### [Analogous](#analogous)
+### Analogous
 
 <a name="analogous"></a>
 
@@ -540,7 +540,7 @@ const palet = clashHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 console.log(palet);
 ```
 
-### [Complementary](#complementary)
+### Complementary
 
 <a name="complementary"></a>
 
@@ -557,7 +557,7 @@ const palet = complementaryHarmony(
 console.log(palet);
 ```
 
-### [Split Complementary](#split_complementary)
+### Split Complementary
 
 <a name="split_complementary"></a>
 
@@ -600,7 +600,7 @@ const palet = splitComplementaryCCWHarmony(
 console.log(palet);
 ```
 
-### [Four Tone](#four_tone)
+### Four Tone
 
 <a name="four_tone"></a>
 
@@ -630,7 +630,7 @@ const palet = fourToneCCWHarmony(
 console.log(palet);
 ```
 
-### [Five Tone](#five_tone)
+### Five Tone
 
 <a name="five_tone"></a>
 
@@ -699,7 +699,7 @@ const palet = fiveToneEHarmony(
 console.log(palet);
 ```
 
-### [Six Tone](#six_tone)
+### Six Tone
 
 <a name="six_tone"></a>
 
@@ -729,7 +729,7 @@ const palet = sixToneCCWHarmony(
 console.log(palet);
 ```
 
-### [Neutral](#neutral)
+### Neutral
 
 <a name="neutral"></a>
 
@@ -743,7 +743,7 @@ const palet = neutralHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 console.log(palet);
 ```
 
-### [Square](#square)
+### Square
 
 <a name="square"></a>
 
@@ -755,7 +755,7 @@ const palet = squareHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 console.log(palet);
 ```
 
-### [Tetradic](#tetradic)
+### Tetradic
 
 <a name="tetradic"></a>
 
@@ -767,7 +767,7 @@ const palet = tetradicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 console.log(palet);
 ```
 
-### [Triadic](#triadic)
+### Triadic
 
 <a name="triadic"></a>
 
@@ -779,14 +779,14 @@ const palet = triadicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 console.log(palet);
 ```
 
-## [Color Mixes](#color_mixes)
+## Color Mixes
 
 <a name="color_mixes"></a>
 
 Color Utilities also provides three types of color mixes you can get: Shades, Tints and Tones.
 All of these are generated by a standalone function that receives two arguments, the first being a base color in RGB format, and the second one is an optional options object that can have two values: size (number of colors generated in the pallet) and prefixed (boolean stating if the colors should start with a #). The return value is an array of strings representing hex values.
 
-### [Tones](#tones)
+### Tones
 
 <a name="tones"></a>
 
@@ -801,7 +801,7 @@ const tones = getTones(
 console.log(palet);
 ```
 
-### [Tints](#tints)
+### Tints
 
 <a name="tints"></a>
 
@@ -816,7 +816,7 @@ const tones = getTints(
 console.log(palet);
 ```
 
-### [Shades](#shades)
+### Shades
 
 <a name="shades"></a>
 
@@ -831,11 +831,11 @@ const tones = getShades(
 console.log(palet);
 ```
 
-## [Chromatic adaptation](#chromatic_adaptation)
+## Chromatic adaptation
 
 Chromatic adaptation can be preformed in two ways, either by using a standalone "adapt" function or by using an Adapter class.
 
-### [adapt](#adapt)
+### adapt
 
 "adapt" function which takes two arguments, first being XYZ values 0f the color to be adapted, and a string value representing reference illuminant and a destination illuminant.
 
@@ -848,7 +848,7 @@ console.log(adapted);
 ```
 The above example will adapt from a from reference illuminant A to destination illuminant B.
 
-### [Adapter](#adapter)
+### Adapter
 
 The Adapter class is a little bit more powerful but slower, it takes two optional arguments, first being color values, second is the color space of those values, if not passed
 default values will be for color white in XYZ format.
@@ -905,7 +905,7 @@ const adapted = adapter.set(
 console.log(adapted);
 ```
 
-## [Delta E / Color Difference](#delta_e)
+## Delta E / Color Difference
 <a name="delta_e"></a>
 There are multiple ways to calculate the color difference or color distance.
 More information about color difference: https://en.wikipedia.org/wiki/Color_difference
@@ -934,7 +934,7 @@ const diff = comparativeDistance(
 console.log(diff);
 ```
 
-### [CIE 76](#cie_76)
+### CIE 76
 <a name="cie_76"></a>
 
 ```javascript
@@ -959,7 +959,7 @@ const diff =  deltaECIE76Rgb(
 console.log(diff);
 ```
 
-### [CIE 94](#cie_94)
+### CIE 94
 <a name="cie_94"></a>
 
 ```javascript
@@ -973,7 +973,7 @@ const diff = deltaECIE94Lab(
 console.log(diff);
 ```
 
-### [CIE 00](#cie_00)
+### CIE 00
 <a name="cie_00"></a>
 
 ```javascript
