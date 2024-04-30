@@ -72,6 +72,6 @@ export class Adapter {
   }
 
   set(color: AdaptiveColors, colorSpace?: AdaptiveColorSpaces): void {
-    this.color = this.getXyz(color, colorSpace || 'xyz');
+    this.color = this.getXyz(color, colorSpace ?? 'xyz');
   }
 }

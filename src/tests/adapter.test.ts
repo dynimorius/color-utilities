@@ -9383,7 +9383,7 @@ const Compare = (
   val1: Record<string, number>,
   val2: Record<string, number>,
   testMessage: string
-) => {
+): void => {
   const values1 = Object.values(val1);
   const values2 = Object.values(val2);
   values1.forEach((val: number, i: number) => {

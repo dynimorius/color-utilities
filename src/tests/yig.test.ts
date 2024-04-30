@@ -4,7 +4,7 @@ import { sRgbToYiq, yiqToSrgb, deltaECIE00Rgb } from '../public_api';
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
-) => {
+): void => {
   test(`Checking RGB <-> YIQ conversions for ${colorName}`, () => {
     expect(deltaECIE00Rgb(yiqToSrgb(sRgbToYiq(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE

@@ -4,7 +4,7 @@ const Test16 = (
   rgb: { red: number; green: number; blue: number },
   ansi: number,
   colorName: string
-) => {
+): void => {
   test(`Checking RGB -> Ansi16 conversions for ${colorName}`, () => {
     expect(sRgbToAnsi16(rgb)).toBeLessThanOrEqual(ansi);
   });
