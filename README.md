@@ -906,7 +906,7 @@ console.log(adapted);
 ```
 
 ## [Delta E / Color Difference](#delta_e)
-
+<a name="delta_e"></a>
 There are multiple ways to calculate the color difference or color distance.
 More information about color difference: https://en.wikipedia.org/wiki/Color_difference
 
@@ -935,6 +935,8 @@ console.log(diff);
 ```
 
 ### [CIE 76](#cie_76)
+<a name="cie_76"></a>
+
 ```javascript
 import { deltaECIE76Lab } from "@dynamize/color-utilities";
 
@@ -958,6 +960,8 @@ console.log(diff);
 ```
 
 ### [CIE 94](#cie_94)
+<a name="cie_94"></a>
+
 ```javascript
 import { deltaECIE94Lab } from "@dynamize/color-utilities";
 
@@ -970,6 +974,8 @@ console.log(diff);
 ```
 
 ### [CIE 00](#cie_00)
+<a name="cie_00"></a>
+
 ```javascript
 import { deltaECIE00Lab } from "@dynamize/color-utilities";
 
