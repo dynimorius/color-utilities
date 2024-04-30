@@ -49,6 +49,10 @@ Color utilities is a collection of tools used to work with colors.
   - [Chromatic adaptation](#chromatic_adaptation)
     - [adapt](#adapt)
     - [Adapter](#adapter)
+  - [Delta E / Color Difference](#delta_e)
+    - [CIE 76](#cie_76)
+    - [CIE 94](#cie_94)
+    - [CIE 00](#cie_00) 
 
 ## [About Color Utilities](#about_color_utilities)
 
@@ -899,4 +903,88 @@ const adapted = adapter.set(
 );
 
 console.log(adapted);
+```
+
+## [Delta E / Color Difference](#delta_e)
+
+There are multiple ways to calculate the color difference or color distance.
+More information about color difference: https://en.wikipedia.org/wiki/Color_difference
+
+| Name                 | Description                           | Formats                                           |
+| -------------------- | ------------------------------------- | --------------------------------------------------|
+| comparativeDistance  | Euclidean distance                    | { red; number, green: number, blue: number }      |
+| deltaECIE76Lab       | Delta E using the CIE76 algorithm     | { luminance: number, a: number, b: number }       |
+| deltaECIE76Lch       | Delta E using the CIE76 algorithm     | { lightness: number, chroma: number, hue: number }|
+| deltaECIE76Rgb       | Delta E using the CIE76 algorithm     | { red; number, green: number, blue: number }      |
+| deltaECIE94Lab       | Delta E using the CIE94 algorithm     | { luminance: number, a: number, b: number }       |
+| deltaECIE00Lab       | Delta E using the CIE2000 algorithm   | { luminance: number, a: number, b: number }       |
+| deltaECIE00Rgb       | Delta E using the CIE2000 algorithm   | { red; number, green: number, blue: number }      | 
+
+
+Usage examples:
+
+```javascript
+import { comparativeDistance } from "@dynamize/color-utilities";
+
+const diff = comparativeDistance(
+  { red: 238, green: 200, blue: 27 },
+  { red: 217, green: 122, blue: 37 }
+  );
+
+console.log(diff);
+```
+
+```javascript
+import { deltaECIE76Lab } from "@dynamize/color-utilities";
+
+const diff = deltaECIE76Lab(
+  { luminance: 81.60296053275202, a: -1.2482727232548951, b: 79.33052440955292 } ,
+  { luminance: 60.61218950864361, a: 31.243719367882505, b: 58.52164206596838 }
+  );
+
+console.log(diff);
+```
+
+```javascript
+import { deltaECIE76Rgb } from "@dynamize/color-utilities";
+
+const diff =  deltaECIE76Rgb(
+  { red: 238, green: 200, blue: 27 },
+  { red: 217, green: 122, blue: 37 }
+  );
+
+console.log(diff);
+```
+
+```javascript
+import { deltaECIE94Lab } from "@dynamize/color-utilities";
+
+const diff = deltaECIE94Lab(
+  { luminance: 81.60296053275202, a: -1.2482727232548951, b: 79.33052440955292 } ,
+  { luminance: 60.61218950864361, a: 31.243719367882505, b: 58.52164206596838 }
+  );
+
+console.log(diff);
+```
+
+```javascript
+import { deltaECIE00Lab } from "@dynamize/color-utilities";
+
+const diff = deltaECIE00Lab(
+  { luminance: 81.60296053275202, a: -1.2482727232548951, b: 79.33052440955292 } ,
+  { luminance: 60.61218950864361, a: 31.243719367882505, b: 58.52164206596838 }
+  );
+
+console.log(diff);
+```
+
+```javascript
+import { deltaECIE00Rgb } from "@dynamize/color-utilities";
+
+const diff = deltaECIE00Rgb(
+  { red: 238, green: 200, blue: 27 },
+  { red: 217, green: 122, blue: 37 }
+  );
+
+console.log(diff);
 ```
