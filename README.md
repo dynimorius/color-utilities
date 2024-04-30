@@ -526,7 +526,7 @@ const palet = analogousHarmony(
 console.log(palet);
 ```
 
-### [Clash](#clash)
+### Clash
 
 <a name="clash"></a>
 
