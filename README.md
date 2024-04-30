@@ -934,6 +934,7 @@ const diff = comparativeDistance(
 console.log(diff);
 ```
 
+### [CIE 76](#cie_76)
 ```javascript
 import { deltaECIE76Lab } from "@dynamize/color-utilities";
 
@@ -956,6 +957,7 @@ const diff =  deltaECIE76Rgb(
 console.log(diff);
 ```
 
+### [CIE 94](#cie_94)
 ```javascript
 import { deltaECIE94Lab } from "@dynamize/color-utilities";
 
@@ -967,6 +969,7 @@ const diff = deltaECIE94Lab(
 console.log(diff);
 ```
 
+### [CIE 00](#cie_00)
 ```javascript
 import { deltaECIE00Lab } from "@dynamize/color-utilities";
 
