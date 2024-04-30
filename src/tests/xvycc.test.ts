@@ -1,5 +1,5 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { deltaECIE76Rgb, sRgbToXvYcc, xvYccToSrgb } from '../public_api';
+import { deltaECIE00Rgb, sRgbToXvYcc, xvYccToSrgb } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -7,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> xvYcc conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(xvYccToSrgb(sRgbToXvYcc(rgb)), rgb)
+      deltaECIE00Rgb(xvYccToSrgb(sRgbToXvYcc(rgb)), rgb)
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

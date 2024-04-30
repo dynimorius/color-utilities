@@ -1,12 +1,12 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { deltaECIE76Rgb, sRgbToXyz, xyzToSrgb } from '../public_api';
+import { deltaECIE00Rgb, sRgbToXyz, xyzToSrgb } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> XYZ conversions for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(xyzToSrgb(sRgbToXyz(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(xyzToSrgb(sRgbToXyz(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });

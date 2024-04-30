@@ -6,9 +6,10 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { LAB, LCH } from 'interfaces/color-spaces.interface';
+import { LAB, LCH, RGB } from 'interfaces/color-spaces.interface';
 import { degreesToRadians, radiansToDegrees } from '../helpers/formats-and-checks';
 import { getDeltaChroma } from './delta-e-helpers';
+import { sRgbToLab } from './../conversions/rgb-conversions';
 
 /**
  * Computes Delta E using the CIE2000 algorithm
@@ -70,6 +71,18 @@ export const deltaECIE00Lab = (
     Math.pow(L, 2) + Math.pow(c, 2) + Math.pow(h, 2) + RsubT * c * h
   );
 };
+
+/**
+ * Gets a delta E CIE 2000 value for a given colors
+ * @param {RBG}                   - sRBG values for the frist color
+ * @param {RBG}                   - sRBG values for the second color
+ * @returns {number}              - color difference value
+ *  ΔE - (Delta E, dE) The measure of change in visual
+ *  perception of two given colors
+ */
+export const deltaECIE00Rgb = (rgb1: RGB, rgb2: RGB): number => {
+  return deltaECIE00Lab( sRgbToLab( rgb1 ), sRgbToLab( rgb2 ) );
+}
 
 /**
  * Calculates prime a.

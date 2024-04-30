@@ -1,13 +1,13 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
 import { sRgbToHcy } from '../conversions/rgb-conversions';
-import { deltaECIE76Rgb, hcyToSrgb } from '../public_api';
+import { deltaECIE00Rgb, hcyToSrgb } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HCY conversions for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(hcyToSrgb(sRgbToHcy(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(hcyToSrgb(sRgbToHcy(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });

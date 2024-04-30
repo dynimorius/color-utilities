@@ -47,7 +47,9 @@
   "typescript.tsserver.enableTracing": true,
   "typescript.tsserver.log": "terse",
   "typescript.tsserver.useSyntaxServer": "always",
-  "typescript.workspaceSymbols.scope": "allOpenProjects"
+  "typescript.workspaceSymbols.scope": "allOpenProjects",
+  "typescript.validate.enable": true,
+  "javascript.validate.enable": true
 
   // "workbench.colorCustomizations": {
   //   "activityBar.activeBackground": "#0b8aff",

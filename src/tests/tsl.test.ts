@@ -1,5 +1,5 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { deltaECIE76Rgb, tslToSrgb } from '../public_api';
+import { deltaECIE00Rgb, tslToSrgb } from '../public_api';
 import { sRgbToTsl } from './../conversions/rgb-conversions';
 
 const Test = (
@@ -7,7 +7,7 @@ const Test = (
   colorName: string
 ) => {
   test(`Checking RGB <-> TSL conversion for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(tslToSrgb(sRgbToTsl(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(tslToSrgb(sRgbToTsl(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });

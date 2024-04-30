@@ -1,6 +1,6 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
 import {
-  deltaECIE76Rgb,
+  deltaECIE00Rgb,
   sRgbToYCbCrBT601,
   sRgbToYCbCrBT709,
   yCbCrBT601ToSrgb,
@@ -13,7 +13,7 @@ const TestBT601 = (
 ) => {
   test(`Checking RGB <-> YCbCr BT601 conversions of for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
+      deltaECIE00Rgb(yCbCrBT601ToSrgb(sRgbToYCbCrBT601(rgb)), rgb)
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -42,7 +42,7 @@ const TestBT709 = (
 ) => {
   test(`Checking RGB <-> YCbCr BT709 conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
+      deltaECIE00Rgb(yCbCrBT709ToSrgb(sRgbToYCbCrBT709(rgb)), rgb)
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

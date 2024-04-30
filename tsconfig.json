@@ -19,7 +19,8 @@
     "skipLibCheck": true,
     "strict": true,
     "traceResolution": false,
-    "declarationDir": "./lib/types"
+    "declarationDir": "./lib/types",
+    "noImplicitAny": true
   },
   "max-line-length": [true, 120],
   "compileOnSave": false,

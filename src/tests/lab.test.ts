@@ -3,7 +3,7 @@ import {
   RGB,
   XYZ,
   deltaECIE00Lab,
-  deltaECIE76Rgb,
+  deltaECIE00Rgb,
   hunterLabToXyz,
   labToXyz,
   lch_abToLab,
@@ -16,7 +16,7 @@ import { xyzToHunterLab, xyzToSrgb } from './../conversions/xyz-conversions';
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(xyzToSrgb(labToXyz(xyzToLab(xyz))), xyzToSrgb(xyz))
+      deltaECIE00Rgb(xyzToSrgb(labToXyz(xyzToLab(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -93,7 +93,7 @@ Test(
 const Test2 = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> Hunter's LAB conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(
+      deltaECIE00Rgb(
         xyzToSrgb(hunterLabToXyz(xyzToHunterLab(xyz))),
         xyzToSrgb(xyz)
       )
@@ -172,7 +172,7 @@ Test2(
 
 const Test3 = (rgb: RGB, colorName: string) => {
   test(`Checking RGB <-> LAB conversions for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(labToSrgb(sRgbToLab(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(labToSrgb(sRgbToLab(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });

@@ -2,7 +2,7 @@ import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
 import {
   XYZ,
   deltaECIE76Lch,
-  deltaECIE76Rgb,
+  deltaECIE00Rgb,
   labToLch_ab,
   lch_abToLab,
   lch_abToXyz,
@@ -15,7 +15,7 @@ import {
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> Lch(ab) conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(xyzToSrgb(lch_abToXyz(xyzToLch_ab(xyz))), xyzToSrgb(xyz))
+      deltaECIE00Rgb(xyzToSrgb(lch_abToXyz(xyzToLch_ab(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
@@ -92,7 +92,7 @@ Test(
 const Test2 = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> Lch(uv) conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(xyzToSrgb(lch_uvToXyz(xyzToLch_uv(xyz))), xyzToSrgb(xyz))
+      deltaECIE00Rgb(xyzToSrgb(lch_uvToXyz(xyzToLch_uv(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

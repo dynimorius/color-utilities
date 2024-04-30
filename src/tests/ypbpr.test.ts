@@ -1,5 +1,5 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { deltaECIE76Rgb, sRgbToYPbPr, yPbPrToSrgb } from '../public_api';
+import { deltaECIE00Rgb, sRgbToYPbPr, yPbPrToSrgb } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -7,7 +7,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> YPbPr conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(yPbPrToSrgb(sRgbToYPbPr(rgb)), rgb)
+      deltaECIE00Rgb(yPbPrToSrgb(sRgbToYPbPr(rgb)), rgb)
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

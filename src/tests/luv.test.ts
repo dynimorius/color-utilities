@@ -1,11 +1,11 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { XYZ, deltaECIE76Rgb, xyzToLuv, xyzToSrgb } from '../public_api';
+import { XYZ, deltaECIE00Rgb, xyzToLuv, xyzToSrgb } from '../public_api';
 import { luvToXyz } from './../conversions/luv-conversions';
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LUV conversions for ${colorName}`, () => {
     expect(
-      deltaECIE76Rgb(xyzToSrgb(luvToXyz(xyzToLuv(xyz))), xyzToSrgb(xyz))
+      deltaECIE00Rgb(xyzToSrgb(luvToXyz(xyzToLuv(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };

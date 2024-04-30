@@ -1,12 +1,12 @@
 import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from '../constants/conditionals';
-import { deltaECIE76Rgb, hslToRgb, sRgbToHsl } from '../public_api';
+import { deltaECIE00Rgb, hslToRgb, sRgbToHsl } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> HSL conversions for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(hslToRgb(sRgbToHsl(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(hslToRgb(sRgbToHsl(rgb)), rgb)).toBeLessThanOrEqual(
       PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
     );
   });

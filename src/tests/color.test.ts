@@ -23,11 +23,11 @@ import {
   YIQ,
   YPbPr,
   YcCbcCrc,
-  deltaECIE76Rgb
+  deltaECIE00Rgb
 } from '../public_api';
 
 const checkIfInExceptibleRange = (color: Color, testColor: Color) => {
-  expect(deltaECIE76Rgb(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
+  expect(deltaECIE00Rgb(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
     PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
   );
 };

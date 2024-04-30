@@ -1,12 +1,12 @@
 import { NOT_PERCEPTIBLE_BY_HUMAN_EYE } from '../constants/conditionals';
-import { cmykToRgb, deltaECIE76Rgb, sRgbToCmyk } from '../public_api';
+import { cmykToRgb, deltaECIE00Rgb, sRgbToCmyk } from '../public_api';
 
 const Test = (
   rgb: { red: number; green: number; blue: number },
   colorName: string
 ) => {
   test(`Checking RGB <-> CMYK conversions for ${colorName}`, () => {
-    expect(deltaECIE76Rgb(cmykToRgb(sRgbToCmyk(rgb)), rgb)).toBeLessThanOrEqual(
+    expect(deltaECIE00Rgb(cmykToRgb(sRgbToCmyk(rgb)), rgb)).toBeLessThanOrEqual(
       NOT_PERCEPTIBLE_BY_HUMAN_EYE
     );
   });
