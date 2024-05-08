@@ -84,7 +84,7 @@ import { uvwToXyz } from "../conversions/uvw-conversions";
 import { xvYccToSrgb } from "../conversions/xvycc-conversions";
 import { xyYToXyz } from "../conversions/xyy-conversions";
 import {
-  xtzToLms,
+  xyzToLms,
   xyzToAdobeRgb,
   xyzToAppleRgb,
   xyzToBestRgb,
@@ -155,7 +155,7 @@ export const colorConverters: ColorConverters = {
   lab: { fun: xyzToLab, from: "xyz" },
   lch_ab: { fun: sRgbToLch_ab, from: "rgb" },
   lch_uv: { fun: sRgbToLch_uv, from: "rgb" },
-  lms: { fun: xtzToLms, from: "xyz" },
+  lms: { fun: xyzToLms, from: "xyz" },
   luv: { fun: xyzToLuv, from: "xyz" },
   ntsc_rgb: { fun: xyzToNtscRgb, from: "xyz" },
   pal_secam_rgb: { fun: xyzToPalSecamRgb, from: "xyz" },
@@ -307,6 +307,6 @@ export const fromXyzConverters: XYZRezolverMap = {
   smpte_c_rgb: xyzToSmpteCRgb,
   wide_gamut_rgb: xyzToWideGamutRgb,
   xyy: xyzToXyY,
-  lms: xtzToLms,
+  lms: xyzToLms,
   hunters_lab: xyzToHunterLab,
 };

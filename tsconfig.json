@@ -5,7 +5,6 @@
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "baseUrl": "src",
-    "declaration": true,
     "esModuleInterop": true,
     "inlineSourceMap": false,
     "lib": ["ES2020"],
@@ -20,7 +19,7 @@
     "strict": true,
     "traceResolution": false,
     "declarationDir": "./lib/types",
-    "delaration": true,
+    "declaration": true,
     "noImplicitAny": true
   },
   "max-line-length": [true, 120],

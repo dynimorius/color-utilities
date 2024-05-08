@@ -209,7 +209,7 @@ export declare const xyzToXyY: ({ x, y, z }: XYZ) => XYY;
  * @param {XYZ}                     - XYZ values for a color
  * @returns {LMS}                   - lms values
  */
-export declare const xtzToLms: (xyz: XYZ, matrix?: Matrix3x3) => LMS;
+export declare const xyzToLms: (xyz: XYZ, matrix?: Matrix3x3) => LMS;
 /*************************************************************
  *                        Hunter-Lab
  *************************************************************/
