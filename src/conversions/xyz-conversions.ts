@@ -410,7 +410,7 @@ export const xyzToXyY = ({ x, y, z }: XYZ): XYY => {
  * @param {XYZ}                     - XYZ values for a color
  * @returns {LMS}                   - lms values
  */
-export const xtzToLms = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
+export const xyzToLms = (xyz: XYZ, matrix?: Matrix3x3): LMS => {
   if (!matrix) matrix = VON_KRIES_COEFFICIENT_MATRICES.MA;
   return matrixXyzMultiAsSpace(matrix, xyz, [
     "long",

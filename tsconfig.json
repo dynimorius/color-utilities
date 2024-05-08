@@ -20,6 +20,7 @@
     "strict": true,
     "traceResolution": false,
     "declarationDir": "./lib/types",
+    "delaration": true,
     "noImplicitAny": true
   },
   "max-line-length": [true, 120],
