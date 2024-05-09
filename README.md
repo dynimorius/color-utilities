@@ -96,7 +96,7 @@ module.
 ## Color
 
 <a name="color"></a>
-A Color class is a representation of a color in Color Utilities. Use cse for this is when you know you will need
+A Color class is a representation of a color in Color Utilities. Use case for this is when you know you will need
 values for more then one color space.
 
 Usage examples:
