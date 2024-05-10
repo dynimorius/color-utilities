@@ -102,6 +102,5 @@
     "typescript": "^5.4.5"
   },
   "dependencies": {
-    "npm": "^10.7.0"
   }
 }

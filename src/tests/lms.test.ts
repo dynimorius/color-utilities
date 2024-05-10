@@ -3,14 +3,14 @@ import {
   XYZ,
   deltaECIE00Rgb,
   lmsToXyz,
-  xtzToLms,
+  xyzToLms,
   xyzToSrgb
 } from '../public_api';
 
 const Test = (xyz: XYZ, colorName: string) => {
   test(`Checking XYZ <-> LAB conversions for ${colorName}`, () => {
     expect(
-      deltaECIE00Rgb(xyzToSrgb(lmsToXyz(xtzToLms(xyz))), xyzToSrgb(xyz))
+      deltaECIE00Rgb(xyzToSrgb(lmsToXyz(xyzToLms(xyz))), xyzToSrgb(xyz))
     ).toBeLessThanOrEqual(NOT_PERCEPTIBLE_BY_HUMAN_EYE);
   });
 };
