@@ -1,0 +1,5 @@
+{
+  "name": "@dynimorius/color-utilities",
+  "version": "1.0.7",
+  "exports": "./lib/esm/public_api.js"
+}
