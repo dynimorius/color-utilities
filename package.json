@@ -19,7 +19,8 @@
     "build:win": "del lib && tsc --project tsconfig.esm.json",
     "build:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json",
     "build:win:esm": "del lib && tsc --project tsconfig.esm.json",
-    "build:win:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json"
+    "build:win:linux": "rm -rf ./lib* && tsc --project tsconfig.esm.json",
+    "jsr:publish": "npx jsr publish"
   },
   "repository": {
     "type": "git",

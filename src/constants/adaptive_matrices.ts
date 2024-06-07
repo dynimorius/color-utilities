@@ -1,4 +1,4 @@
-import { AdaptiveMatrices } from "interfaces/adaptive-matrices.interface";
+import { AdaptiveMatrices } from './../interfaces/adaptive-matrices.interface';
 
 /*****************************************************************
  *  @license
