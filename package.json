@@ -1,6 +1,6 @@
 {
   "name": "@dynamize/color-utilities",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Library to format, convert and work with colors.",
   "types": "./lib/types/public_api.d.ts",
   "main": "./lib/esm/public_api.js",
