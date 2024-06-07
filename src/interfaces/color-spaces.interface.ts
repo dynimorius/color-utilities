@@ -7,7 +7,7 @@
  */
 
 /**
- * @description Represntation of an CMY color space:
+ * @description Representation of an CMY color space:
  *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
  */
 export interface CMY {
@@ -17,7 +17,7 @@ export interface CMY {
 }
 
 /**
- * @description Represntation of an CMY color space:
+ * @description Representation of an CMY color space:
  *   - more info: https://learn.microsoft.com/en-us/windows/win32/wcs/cmy-and-cmyk-color-spaces
  */
 export interface CMY_M {
@@ -27,7 +27,7 @@ export interface CMY_M {
 }
 
 /**
- * @description Represntation of an CMYK color space:
+ * @description Representation of an CMYK color space:
  *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
  */
 export interface CMYK {
@@ -38,7 +38,7 @@ export interface CMYK {
 }
 
 /**
- * @description Represntation of an CMYK color space:
+ * @description Representation of an CMYK color space:
  *   - more info: https://en.wikipedia.org/wiki/CMYK_color_model
  */
 export interface CMYK_M {
@@ -49,7 +49,7 @@ export interface CMYK_M {
 }
 
 /**
- * @description Represntation of an HCL color space:
+ * @description Representation of an HCL color space:
  * - more info: https://en.wikipedia.org/wiki/HCL_color_space
  */
 export interface HCL {
@@ -59,7 +59,7 @@ export interface HCL {
 }
 
 /**
- * @description Represntation of an HCL color space:
+ * @description Representation of an HCL color space:
  *   - more info: https://en.wikipedia.org/wiki/HCL_color_space
  */
 export interface HCL_M {
@@ -69,8 +69,8 @@ export interface HCL_M {
 }
 
 /**
- * @description Represntation of an HCY color space:
- * HCY colour space is a tractable hue/chroma/luminance
+ * @description Representation of an HCY color space:
+ * HCY color space is a tractable hue/chroma/luminance
  * scheme developed by Kuzma Shapran. It is ideal for
  * pixel shaders, being only slightly more expensive that
  * the HSV and HSL schemes. However, it tries to be more
@@ -89,7 +89,7 @@ export interface HCY {
 }
 
 /**
- * @description Represntation of an HCY color space:
+ * @description Representation of an HCY color space:
  * @alias HCY
  * - more info: http://chilliant.blogspot.ca/2012/08/rgbhcy-in-hlsl.html
  */
@@ -100,7 +100,7 @@ export interface HCY_M {
 }
 
 /**
- * @description Represntation of an HSI color space:
+ * @description Representation of an HSI color space:
  *    The HSI color space is very important and attractive
  *    color model for image processing applications because
  *    it represents colors similarly how the human eye senses
@@ -114,7 +114,7 @@ export interface HSI {
 }
 
 /**
- * @description Represntation of an HSL color space:
+ * @description Representation of an HSL color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HSV
  */
 export interface HSL {
@@ -124,7 +124,7 @@ export interface HSL {
 }
 
 /**
- * @description Represntation of an HSLA color space:
+ * @description Representation of an HSLA color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSLA extends HSL {
@@ -132,7 +132,7 @@ export interface HSLA extends HSL {
 }
 
 /**
- * @description Represntation of an HSL color space:
+ * @description Representation of an HSL color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSL_M {
@@ -142,7 +142,7 @@ export interface HSL_M {
 }
 
 /**
- * @description Represntation of an HSLA color space:
+ * @description Representation of an HSLA color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSLA_M extends HSL_M {
@@ -150,7 +150,7 @@ export interface HSLA_M extends HSL_M {
 }
 
 /**
- * @description Represntation of an HSV color space:
+ * @description Representation of an HSV color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSV {
@@ -160,7 +160,7 @@ export interface HSV {
 }
 
 /**
- * @description Represntation of an HSVA color space:
+ * @description Representation of an HSVA color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSVA extends HSV {
@@ -168,7 +168,7 @@ export interface HSVA extends HSV {
 }
 
 /**
- * @description Represntation of an HSV color space:
+ * @description Representation of an HSV color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSV_M {
@@ -178,7 +178,7 @@ export interface HSV_M {
 }
 
 /**
- * @description Represntation of an HSVA color space:
+ * @description Representation of an HSVA color space:
  *   - more info: https://en.wikipedia.org/wiki/HSL_and_HS
  */
 export interface HSVA_M extends HSV_M {
@@ -186,7 +186,7 @@ export interface HSVA_M extends HSV_M {
 }
 
 /**
- * @description Represntation of an HWB color space:
+ * @description Representation of an HWB color space:
  *   - more info: https://dev.to/alvaromontoro/hwb-13h7
  */
 export interface HWB {
@@ -196,7 +196,7 @@ export interface HWB {
 }
 
 /**
- * @description Represntation of an HWB color space:
+ * @description Representation of an HWB color space:
  * - more info: https://dev.to/alvaromontoro/hwb-13h7
  */
 export interface HWB_M {
@@ -206,7 +206,7 @@ export interface HWB_M {
 }
 
 /**
- * @description Represntation of an LAB color space:
+ * @description Representation of an LAB color space:
  *   - more info: https://en.wikipedia.org/wiki/CIELAB_color_space
  */
 export interface LAB {
@@ -216,7 +216,7 @@ export interface LAB {
 }
 
 /**
- * @description Represntation of an LAB color space:
+ * @description Representation of an LAB color space:
  *   - more info: https://en.wikipedia.org/wiki/CIELAB_color_space
  */
 export interface LAB_M {
@@ -226,7 +226,7 @@ export interface LAB_M {
 }
 
 /**
- * @description Represntation of an LCH color space:
+ * @description Representation of an LCH color space:
  *  - more info: https://sensing.konicaminolta.us/us/blog/understanding-the-cie-lch-color-space/
  */
 export interface LCH {
@@ -236,7 +236,7 @@ export interface LCH {
 }
 
 /**
- * @description Represntation of an LCH color space:
+ * @description Representation of an LCH color space:
  * - more info: https://sensing.konicaminolta.us/us/blog/understanding-the-cie-lch-color-space/
  */
 export interface LCH_M {
@@ -246,7 +246,7 @@ export interface LCH_M {
 }
 
 /**
- * @description Represntation of an LMS color space:
+ * @description Representation of an LMS color space:
  * represents the response of the three types of cones of
  * the human eye.
  * The numerical range is generally not specified, except
@@ -260,8 +260,8 @@ export interface LMS {
 }
 
 /**
- * @description Represntation of an LUV color space:
- *  - L representes lightness / brightness
+ * @description Representation of an LUV color space:
+ *  - L represents lightness / brightness
  *  - U and V are chromaticity coordinates that serve to define
  *    white point (white point is often referred to as reference
  *    white or target white in technical documents)
@@ -277,7 +277,7 @@ export interface LUV {
 }
 
 /**
- * @description Represntation of an RGB color space:
+ * @description Representation of an RGB color space:
  *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
 export interface RGB {
@@ -288,14 +288,14 @@ export interface RGB {
 }
 
 /**
- * @description Represntation of an RGBA color space:
+ * @description Representation of an RGBA color space:
  *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
 export interface RGBA extends RGB {
   alpha: number;
 }
 /**
- * @description Represntation of an RGB color space:
+ * @description Representation of an RGB color space:
  *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
 export interface RGB_M {
@@ -305,7 +305,7 @@ export interface RGB_M {
 }
 
 /**
- * @description Represntation of an RGBA color space:
+ * @description Representation of an RGBA color space:
  *   - more info: https://en.wikipedia.org/wiki/RGB_color_spaces
  */
 export interface RGBA_M extends RGB_M {
@@ -313,7 +313,7 @@ export interface RGBA_M extends RGB_M {
 }
 
 /**
- * @description Represntation of an RYB color space:
+ * @description Representation of an RYB color space:
  *   - more info: https://en.wikipedia.org/wiki/RYB_color_model
  */
 export interface RYB {
@@ -323,7 +323,7 @@ export interface RYB {
 }
 
 /**
- * @description Represntation of an RYB color space:
+ * @description Representation of an RYB color space:
  *   - more info: https://en.wikipedia.org/wiki/RYB_color_model
  */
 export interface RYB_M {
@@ -333,7 +333,7 @@ export interface RYB_M {
 }
 
 /**
- * @description Represntation of an TSL color space:
+ * @description Representation of an TSL color space:
  *   - more info: https://en.wikipedia.org/wiki/TSL_color_space
  */
 export interface TSL {
@@ -343,7 +343,7 @@ export interface TSL {
 }
 
 /**
- * @description Represntation of an UVW color space:
+ * @description Representation of an UVW color space:
  *  - W represents lightness index W
  *  - U and V are chromaticity coordinates that serve to define
  *    white point (white point is often referred to as reference
@@ -360,7 +360,7 @@ export interface UVW {
 }
 
 /**
- * @description Represntation of an xvYCC color space:
+ * @description Representation of an xvYCC color space:
  *  xvYCC is an extended-gamut YCbCr is a color space,
  *  supports a gamut 1.8
  *   -  Y is the luma component
@@ -368,7 +368,7 @@ export interface UVW {
  *   -  Cr red-difference chroma component
  *  Y′ (with prime) is distinguished from Y,
  *  which is luminance, meaning that light intensity
- *  is nonlinearly encoded based on gamma corrected RGB
+ *  is nonlinear encoded based on gamma corrected RGB
  *  primaries.
  *   - more info: https://en.wikipedia.org/wiki/XvYCC
  */
@@ -379,7 +379,7 @@ export interface xvYCC {
 }
 
 /**
- * @description Represntation of an xyY color space:
+ * @description Representation of an xyY color space:
  * xy values can be seen as a representation of the color's
  * chromaticity while the Y values can be seen as a
  * representation of the color's intensity or brightness value
@@ -392,7 +392,7 @@ export interface XYY {
 }
 
 /**
- * @description Represntation of an XYZ color space:
+ * @description Representation of an XYZ color space:
  *   - more info: https://en.wikipedia.org/wiki/CIE_1931_color_space
  */
 export interface XYZ {
@@ -402,13 +402,13 @@ export interface XYZ {
 }
 
 /**
- * @description Represntation of an YCbCr color space:
+ * @description Representation of an YCbCr color space:
  *   -  Y is the luma component (brightness or luminance)
  *   -  Cb is blue-difference chroma component
  *   -  Cr is red-difference chroma component
  *  Y′ (with prime) is distinguished from Y,
  *  which is luminance, meaning that light intensity
- *  is nonlinearly encoded based on gamma corrected RGB
+ *  is nonlinear encoded based on gamma corrected RGB
  *  primaries.
  *   - more info: https://en.wikipedia.org/wiki/YCbCr
  */
@@ -419,13 +419,13 @@ export interface YCbCr {
 }
 
 /**
- * @description Represntation of an YcCbcCrc color space:
+ * @description Representation of an YcCbcCrc color space:
  *   -  Yc is the luma component (brightness or luminance)
  *   -  Cbc is blue-difference chroma component
  *   -  Crc is red-difference chroma component
  *  Y′ (with prime) is distinguished from Y,
  *  which is luminance, meaning that light intensity
- *  is nonlinearly encoded based on gamma corrected RGB
+ *  is nonlinear encoded based on gamma corrected RGB
  *  primaries.
  *   - more info: https://en.wikipedia.org/wiki/YCbCr
  */
@@ -436,7 +436,7 @@ export interface YcCbcCrc {
 }
 
 /**
- * @description Represntation of an YCoCg color space:
+ * @description Representation of an YCoCg color space:
  *   -  Y is the luma component (brightness or luminance)
  *   -  Co is chrominance orange
  *   -  Cg is chrominance green
@@ -449,7 +449,7 @@ export interface YCoCg {
 }
 
 /**
- * @description Represntation of an YDbDr color space:
+ * @description Representation of an YDbDr color space:
  *   -  Y is the luma component (a sum of colors R, G ,B values representing the
  *      overall brightness, or luminance)
  *   -  Db is difference between blue and luma (B − Y)
@@ -463,7 +463,7 @@ export interface YDbDr {
 }
 
 /**
- * @description Represntation of an YIQ color space:
+ * @description Representation of an YIQ color space:
  *   -  Y is the luma component
  *   -  I is a chroma coordinate
  *   -  Q is a chroma coordinate
@@ -476,7 +476,7 @@ export interface YIQ {
 }
 
 /**
- * @description Represntation of an YPbPr color space:
+ * @description Representation of an YPbPr color space:
  *   -  Y is the luma component (a sum of colors R, G ,B values representing the
  *      overall brightness, or luminance)
  *   -  Pb is difference between blue and luma (B − Y)
@@ -494,7 +494,7 @@ export interface YPbPr {
 }
 
 /**
- * @description Represntation of an YUV color space:
+ * @description Representation of an YUV color space:
  *   - more info: https://en.wikipedia.org/?title=YUV
  */
 export interface YUV {
@@ -504,7 +504,7 @@ export interface YUV {
 }
 
 /**
- * @description Represntation data in a Color Space Dataset:
+ * @description Representation data in a Color Space Dataset:
  *  - RGB_TO_XYZ: A Matrix used for a RGB to XYZ conversion
  *  - XYZ_TO_RGB: A Matrix used for a XYZ to RGB conversion
  *  - REFERENCE_WHITE: Name of a reference white for the color Space
@@ -512,25 +512,25 @@ export interface YUV {
  *  - GAMMA: Used for companding
  */
 export interface SpaceData {
-  RGB_TO_XYZ: RgbToXyzMatrice;
-  XYZ_TO_RGB: XyzToRgbMatrice;
+  RGB_TO_XYZ: RgbToXyzMatrix;
+  XYZ_TO_RGB: XyzToRgbMatrix;
   REFERENCE_WHITE: string;
   GAMMA: number;
 }
 
 /**
- * @description Represntation Matrix used for RGB to XYZ conversion
+ * @description Representation Matrix used for RGB to XYZ conversion
  */
-export interface RgbToXyzMatrice {
+export interface RgbToXyzMatrix {
   X: { r: number; g: number; b: number };
   Y: { r: number; g: number; b: number };
   Z: { r: number; g: number; b: number };
 }
 
 /**
- * @description Represntation Matrix used for XYZ to RGB conversion.
+ * @description Representation Matrix used for XYZ to RGB conversion.
  */
-export interface XyzToRgbMatrice {
+export interface XyzToRgbMatrix {
   R: XYZ;
   G: XYZ;
   B: XYZ;

@@ -44,7 +44,7 @@ export const gamutCheck = (value: number): boolean => {
 export const formatValue = (value: number): number => Math.round(value * 100);
 
 /**
- * Baunds a numeric value to a range between 0 and 255
+ * Bounds a numeric value to a range between 0 and 255
  * @param {number}                 - numeric value
  * @returns {number}               - returns a number value which will be in t he range 0 - 255
  */
@@ -54,7 +54,7 @@ export const bound = (value: number): number => {
 };
 
 /**
- * Raunds a numeric value to a number of decimals
+ * Rounds a numeric value to a number of decimals
  * @param {number}                 - a number to round
  * @param {number}                 - a number of decimals to round to
  * @returns {number}               - returns a rounded number

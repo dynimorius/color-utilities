@@ -35,7 +35,7 @@ export const hsvToRgb = ({ hue, saturation, value }: HSV): RGB => {
 /**
  * Converts a color from HSV color space to HSV color space
  * @param {HSV}                   - hsl color value
- * @returns {HSV}                 - hsv color value
+ * @returns {HSL}                 - hsv color value
  */
 export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
   saturation = saturation / 100;
@@ -57,7 +57,7 @@ export const hsvToHsl = ({ hue, saturation, value }: HSV): HSL => {
 /**
  * Converts a color from HSV color space to ansi16 numerical
  * @param {HSV}                   - hsl color value
- * @returns {number}              - ansi16 numberical value
+ * @returns {number}              - ansi16 numerical value
  */
 export const hsvToAnsi16 = (hsv: HSV): number => {
   const rgb = hsvToRgb(hsv);

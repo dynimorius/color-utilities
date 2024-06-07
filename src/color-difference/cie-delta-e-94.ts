@@ -11,10 +11,10 @@ import { getDeltaChroma } from './delta-e-helpers';
 
 /**
  * Computes Delta E using the CIE94 algorithm
- * - more infor: http://en.wikipedia.org/wiki/Color_difference#CIE94
- * @param {LAB}				- values for the frist color
+ * - more info: http://en.wikipedia.org/wiki/Color_difference#CIE94
+ * @param {LAB}				- values for the first color
  * @param {LAB}				- values for the second color
- * @param {LCH}				- optional waight values 
+ * @param {LCH}				- optional wight values 
  * @returns {number}	    - color difference value
 */
 export const deltaECIE94Lab = (

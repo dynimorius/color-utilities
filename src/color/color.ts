@@ -13,7 +13,7 @@ import {
 } from "../color-converter/convertor-map";
 import { RGB, XYZ } from "../interfaces/color-spaces.interface";
 
-import { AllResolv, DefaultResolv } from "../constants/init-spaces";
+import { AllResolve, DefaultResolve } from "../constants/init-spaces";
 import { sRgbToXyz } from "../conversions/rgb-conversions";
 import { xyzToSrgb } from "../conversions/xyz-conversions";
 import { checkAndFormat } from "../helpers/color-checks";
@@ -26,7 +26,7 @@ import {
 import { ColorSpaceUnion, Spaces } from "../types/colors";
 
 /**
- *  @description A class representing a color, and its values in diferente spaces
+ *  @description A class representing a color, and its values in deferent spaces
  *  @param {Spaces}                     -space / type of color from which conversions are made
  *  @param {ColorSpaceUnion}            - The actual color data (RGB, HSL etc..)
  *  @param {(Spaces | "web_safe")[]}    - What information do we want back
@@ -38,9 +38,9 @@ export class Color {
   constructor(
     space: Spaces,
     color: ColorSpaceUnion,
-    resolv: (Spaces | "web_safe")[] | "all" = DefaultResolv
+    resolve: (Spaces | "web_safe")[] | "all" = DefaultResolve
   ) {
-    resolv = resolv === "all" ? AllResolv : resolv;
+    resolve = resolve === "all" ? AllResolve : resolve;
     color = checkAndFormat(space, color);
     this[space as keyof this] = color as any;
     if (!this.rgb && /hex|cmy|sl|hc|hs|hwb|ryb|xyz|yc|yd|yiq|yp/g.test(space)) {
@@ -53,7 +53,7 @@ export class Color {
       if (!this.rgb) this.rgb = xyzToSrgb(this.xyz);
     } else this.xyz = toXyzConverters.rgb(this.rgb);
 
-    for (let resolution of resolv) {
+    for (let resolution of resolve) {
       if (!this[resolution as keyof this]) {
         const fun = colorConverters[resolution as keyof ColorConverters]
           ?.fun as Function;

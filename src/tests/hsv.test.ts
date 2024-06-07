@@ -1,4 +1,4 @@
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from '../constants/conditionals';
+import { PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION } from '../constants/conditionals';
 import { hsvToRgb, sRgbToHsv, deltaECIE00Rgb } from '../public_api';
 const Test = (
   rgb: { red: number; green: number; blue: number },
@@ -6,7 +6,7 @@ const Test = (
 ) => {
   test(`Checking RGB <-> HSV conversions for ${colorName}`, () => {
     expect(deltaECIE00Rgb(hsvToRgb(sRgbToHsv(rgb)), rgb)).toBeLessThanOrEqual(
-      PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+      PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION
     );
   });
 };

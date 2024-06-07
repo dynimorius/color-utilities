@@ -1,5 +1,5 @@
 import { Color } from '../color/color';
-import { PRECEPTABLE_THROUGH_CLOSE_OBESERVATION } from '../constants/conditionals';
+import { PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION } from '../constants/conditionals';
 import {
   CMY,
   CMYK,
@@ -28,7 +28,7 @@ import {
 
 const checkIfInExceptibleRange = (color: Color, testColor: Color) => {
   expect(deltaECIE00Rgb(color.rgb, testColor.rgb)).toBeLessThanOrEqual(
-    PRECEPTABLE_THROUGH_CLOSE_OBESERVATION
+    PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION
   );
 };
 

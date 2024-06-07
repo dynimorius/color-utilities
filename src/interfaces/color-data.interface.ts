@@ -34,7 +34,7 @@ import {
 } from "./color-spaces.interface";
 
 /**
- * @description Represntation of color values for a given color:
+ * @description Representation of color values for a given color:
  */
 
 export interface ColorData {

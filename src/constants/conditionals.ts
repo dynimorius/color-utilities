@@ -24,8 +24,8 @@ export const Kg: number = 0.678;
 export const Kb: number = 0.0593;
 
 export const NOT_PERCEPTIBLE_BY_HUMAN_EYE: number = 1;
-export const PRECEPTABLE_THROUGH_CLOSE_OBESERVATION: number = 2;
-export const PRECEPTABLE_AT_A_GLANCE: number = 10;
+export const PERCEPTIBLE_THROUGH_CLOSE_OBSERVATION: number = 2;
+export const PERCEPTIBLE_AT_A_GLANCE: number = 10;
 export const MORE_CLOSE_THEN_OPPOSITE: number = 49;
 export const EXACT_OPPOSITE: number = 100;
 

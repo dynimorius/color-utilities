@@ -50,7 +50,7 @@ export interface RGBResolverMap {
   xyz: Function;
 }
 
-export interface XYZRezolverMap {
+export interface XYZResolverMap {
   lab: Function;
   lch_ab: Function;
   lch_uv: Function;

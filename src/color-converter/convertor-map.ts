@@ -123,12 +123,12 @@ import {
 } from "../interfaces/converters.interface";
 import {
   RGBResolverMap,
-  XYZRezolverMap,
+  XYZResolverMap,
 } from "../interfaces/resolver.interface";
 
 /**
  * Map of color converter paired with the
- * space used for fonversion
+ * space used for conversion
  */
 export const colorConverters: ColorConverters = {
   adobe_98_rgb: { fun: xyzToAdobeRgb, from: "xyz" },
@@ -284,7 +284,7 @@ export const toXyzConverters: ToXyzConverters = {
   xyy: xyYToXyz,
 };
 
-export const fromXyzConverters: XYZRezolverMap = {
+export const fromXyzConverters: XYZResolverMap = {
   lab: xyzToLab,
   lch_ab: xyzToLch_ab,
   lch_uv: xyzToLch_uv,

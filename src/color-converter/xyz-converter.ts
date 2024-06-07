@@ -1,5 +1,5 @@
 import { fromXyzConverters } from "./convertor-map";
-import { XYZRezolverMap } from "../interfaces/resolver.interface";
+import { XYZResolverMap } from "../interfaces/resolver.interface";
 import { XYZ } from "../public_api";
 import { XyzConSpaces } from "../types/colors";
 import { ColorConverter } from "./color-converter";
@@ -17,6 +17,6 @@ export class XyzConverter extends ColorConverter {
   }
 
   get(converts: XyzConSpaces) {
-    return this.converterMap[converts as keyof XYZRezolverMap](this.color);
+    return this.converterMap[converts as keyof XYZResolverMap](this.color);
   }
 }

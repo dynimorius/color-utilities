@@ -8,14 +8,14 @@
 
 import { Spaces } from "../types/colors";
 
-export const DefaultResolv: (Spaces | "web_safe")[] = [
+export const DefaultResolve: (Spaces | "web_safe")[] = [
   "cmyk",
   "hex",
   "hsv",
   "lab"
 ]; 
 
-export const AllResolv: (Spaces | "web_safe")[] = [
+export const AllResolve: (Spaces | "web_safe")[] = [
   "adobe_98_rgb",
   "apple_rgb",
   "ansi16",

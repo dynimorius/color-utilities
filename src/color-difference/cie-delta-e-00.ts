@@ -14,7 +14,7 @@ import { sRgbToLab } from './../conversions/rgb-conversions';
 /**
  * Computes Delta E using the CIE2000 algorithm
  * - more infor: http://en.wikipedia.org/wiki/Color_difference#CIEDE2000
- * @param {LAB}				- values for the frist color
+ * @param {LAB}				- values for the first color
  * @param {LAB}				- values for the second color
  * @param {LCH}				- optional waight configuration object 
  * @returns {number}	    - color difference value

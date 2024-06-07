@@ -50,7 +50,7 @@ export const blend = (rgb1: RGB, rgb2: RGB, weight = 0.5): RGB => {
  *  @param {BlenderColor} - The actual data for the first color (RGB, HSL etc..)
  *  @param {BlenderColor} - TThe actual data for the second color (RGB, HSL etc..)
  *  @param {BlenderOptions} - blend options which state:
- *  - the waight (amount of the first color, default 0.5 / 50%)
+ *  - the weight (amount of the first color, default 0.5 / 50%)
  *  - return type (what color space would you like the return color to be in, default RGB)
  */
 export class Blender {

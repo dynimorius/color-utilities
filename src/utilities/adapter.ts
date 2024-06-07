@@ -19,7 +19,7 @@ import {
   toXyzConverters
 } from '../color-converter/convertor-map';
 import { ToXyzConverters } from 'interfaces/converters.interface';
-import { XYZRezolverMap } from 'interfaces/resolver.interface';
+import { XYZResolverMap } from 'interfaces/resolver.interface';
 
 /**
  * Preforms a chromatic adaptation on a color in a XYZ space
@@ -65,7 +65,7 @@ export class Adapter {
     if (returnSpace === 'xyz') {
       return adapt(this.color, adaptation);
     } else {
-      return fromXyzConverters[returnSpace as keyof XYZRezolverMap](
+      return fromXyzConverters[returnSpace as keyof XYZResolverMap](
         adapt(this.color, adaptation)
       );
     }

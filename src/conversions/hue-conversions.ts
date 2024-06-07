@@ -7,7 +7,7 @@
  */
 
 /**
- * Computes a hue value froma given sRGB values
+ * Computes a hue value from a given sRGB values
  *
  * @param {number}                   - t1 value
  * @param {number}                   - t2 value

@@ -7,12 +7,12 @@
  *
  *  Matrices chromatic adaptation algorithms.
  ***************************************************************/
-import { ResponceDomain } from "../interfaces/responce-domain";
+import { ResponseDomain } from '../interfaces/response-domain';
 
 /**
  * @description Bradford Transform Matrices
  */
-export const BRADFORD_COEFFICIENT_MATRICES: ResponceDomain = {
+export const BRADFORD_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.8951, 0.2664, -0.1614],
     [-0.7502, 1.7135, 0.0367],
@@ -28,7 +28,7 @@ export const BRADFORD_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CIECAM00 Transform Matrices
  */
-export const CIECAM00_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CIECAM00_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.7982, 0.3389, -0.1371],
     [-0.5918, 1.5512, 0.0406],
@@ -44,7 +44,7 @@ export const CIECAM00_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CIECAM02 Transform Matrices
  */
-export const CIECAM02_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CIECAM02_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.7328, 0.4296, -0.1624],
     [-0.7036, 1.6975, 0.0061],
@@ -60,7 +60,7 @@ export const CIECAM02_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CAM16 Transform Matrices
  */
-export const CIECAM16_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CIECAM16_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.401288, 0.650173, -0.051461],
     [-0.250268, 1.204414, 0.045854],
@@ -76,7 +76,7 @@ export const CIECAM16_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CIECAM97 Transform Matrices
  */
-export const CIECAM97_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CIECAM97_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.8562, 0.3372, -0.1934],
     [-0.836, 1.8327, 0.0033],
@@ -92,7 +92,7 @@ export const CIECAM97_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CIECAT94 Transform Matrices
  */
-export const CIECAT94_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CIECAT94_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.40024, 0.7076, -0.08081],
     [-0.2663, 1.16532, 0.0457],
@@ -108,7 +108,7 @@ export const CIECAT94_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description CMCCAT97 Transform Matrices
  */
-export const CMCCAT97_COEFFICIENT_MATRICES: ResponceDomain = {
+export const CMCCAT97_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.7982, 0.3389, -0.1371],
     [-0.5918, 1.5512, 0.0406],
@@ -124,7 +124,7 @@ export const CMCCAT97_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description HuntPointer-Estevez Transform Matrices
  */
-export const HUNT_POINTER_ESTEVEZ_COEFFICIENT_MATRICES: ResponceDomain = {
+export const HUNT_POINTER_ESTEVEZ_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.38971, 0.68898, -0.07868],
     [-0.22981, 1.1834, 0.04641],
@@ -140,7 +140,7 @@ export const HUNT_POINTER_ESTEVEZ_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description RLAB Transform Matrices
  */
-export const RLAB_COEFFICIENT_MATRICES: ResponceDomain = {
+export const RLAB_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [1.9569, -1.1882, 0.2313],
     [0.3612, 0.6388, 0.0],
@@ -156,7 +156,7 @@ export const RLAB_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description Sharp Transform Matrices
  */
-export const SHARP_COEFFICIENT_MATRICES: ResponceDomain = {
+export const SHARP_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [1.2694, -0.0988, -0.1706],
     [-0.8364, 1.8006, 0.0357],
@@ -172,7 +172,7 @@ export const SHARP_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description Stokman Transform Matrices
  */
-export const STOKMAN_COEFFICIENT_MATRICES: ResponceDomain = {
+export const STOKMAN_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.2689, -0.3962, 0.0214],
     [0.8518, 1.177, -0.0247],
@@ -188,7 +188,7 @@ export const STOKMAN_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description Von Kries Transform Matrices
  */
-export const VON_KRIES_COEFFICIENT_MATRICES: ResponceDomain = {
+export const VON_KRIES_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.40024, 0.7076, -0.08081],
     [-0.2263, 1.16532, 0.0457],
@@ -204,7 +204,7 @@ export const VON_KRIES_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description Wassef Scaling Transform Matrices
  */
-export const WASSEF_COEFFICIENT_MATRICES: ResponceDomain = {
+export const WASSEF_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [0.926, 0.926, 0.141],
     [-0.619, 2.341, -0.303],
@@ -220,7 +220,7 @@ export const WASSEF_COEFFICIENT_MATRICES: ResponceDomain = {
 /**
  * @description XYZ Scaling Transform Matrices
  */
-export const XYZ_SCALING_COEFFICIENT_MATRICES: ResponceDomain = {
+export const XYZ_SCALING_COEFFICIENT_MATRICES: ResponseDomain = {
   MA: [
     [1.0, 0.0, 0.0],
     [0.0, 1.0, 0.0],

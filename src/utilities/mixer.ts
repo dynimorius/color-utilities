@@ -11,7 +11,7 @@ import { RGB, RGBA } from "../interfaces/color-spaces.interface";
 import { MixerOptions } from "../interfaces/mixer.interface";
 
 /**
- * Creates an incremented color palet
+ * Creates an incremented color pallet
  * @param {RGB}                   - data for the original color
  * @param {number}                - amount of colors to generate
  * @param {number}                - the number by which to increment
@@ -42,10 +42,10 @@ const scale = (
 };
 
 /**
- * Creates an palet of shades by mixing a given color
+ * Creates an pallet of shades by mixing a given color
  * with black (#000000)
  * @param {RGB}                   - data for the original color
- * @param {MixerOptions}          - options for generating the palet:
+ * @param {MixerOptions}          - options for generating the pallet:
  *                                - size: how many colors to generate
  *                                - prefixed: should the return values start with #
  * @returns {string[]}            - array of shades in hex format
@@ -62,10 +62,10 @@ export const getShades = (
 };
 
 /**
- * Creates an palet of tints by mixing a given color
+ * Creates an pallet of tints by mixing a given color
  * with white (#FFFFFF)
  * @param {RGB}                   - data for the original color
- * @param {MixerOptions}          - options for generating the palet:
+ * @param {MixerOptions}          - options for generating the pallet:
  *                                - size: how many colors to generate
  *                                - prefixed: should the return values start with #
  * @returns {string[]} - array of tints in hex format
@@ -79,10 +79,10 @@ export const getTints = (rgb: RGB | RGBA, options?: MixerOptions): string[] => {
 };
 
 /**
- * Creates an palet of tones by mixing a given color
+ * Creates an pallet of tones by mixing a given color
  * with gray (#777777)
  * @param {RGB}                   - data for the original color
- * @param {MixerOptions}          - options for generating the palet:
+ * @param {MixerOptions}          - options for generating the pallet:
  *                                - size: how many colors to generate
  *                                - prefixed: should the return values start with #
  * @returns {string[]} - array of tones in hex format

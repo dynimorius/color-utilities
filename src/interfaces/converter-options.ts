@@ -9,8 +9,8 @@
 /**
  * @description Options used for XYZ to RGB conversion:
  *  - gamma: should the gamma value for a Space data set be used
- *  - whitInBounds: should the returniong values be in the range 0 - 255
- *  - rounded: should the returniong values be rounded
+ *  - whitInBounds: should the returning values be in the range 0 - 255
+ *  - rounded: should the returning values be rounded
  *  - precision: number of decimals the returning value should have
  *              ( default is 6)
  */

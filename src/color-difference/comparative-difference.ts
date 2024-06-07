@@ -10,7 +10,7 @@ import { RGB } from "../interfaces/color-spaces.interface";
 
 /**
  * Gets comparative distance for a given sRBG colors
- * @param {RBG}                   - sRBG values for the frist color
+ * @param {RBG}                   - sRBG values for the first color
  * @param {RBG}                   - sRBG values for the second color
  * @returns {number}              - distance
  */

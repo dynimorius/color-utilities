@@ -146,9 +146,9 @@ export const xyzToUvw = (
  * @param {XYZ}                     - xyz values for a color
  * @param {SpaceData}               - RGB space dataset
  * @param {Function}                - function to preform companding whit
- * @param {XyzToRgbOptions}         - optional paramter to set
+ * @param {XyzToRgbOptions}         - optional parameter to set
  *              - rounded: should the returned values be rounded
- *              - presition: to what decimal should return values go to
+ *              - precision: to what decimal should return values go to
  *              - whitInBounds: should the return values be in range of 0 - 255
  *              - gamma: should the gamma value from the space data set be used
  *                while companding
