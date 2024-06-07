@@ -1,5 +1,5 @@
 {
   "name": "@dynimorius/color-utilities",
-  "version": "1.0.10",
+  "version": "1.0.11",
   "exports": "./src/public_api.ts"
 }
