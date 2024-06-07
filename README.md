@@ -8,7 +8,7 @@ Color utilities is a collection of tools used to work with colors.
 
 - Color conversions (ansi16, ansi256, cmy, cmyk, tsl, hsl, hsv, lab, luv, lch xyz ...)
 - Color blending
-- Color harmony palet creation
+- Color harmony pallet creation
 - Color mixers ( such as getting shades, tints and tones)
 - Performing Chromatic adaptation
 
@@ -111,9 +111,9 @@ console.log(color.data);
 
 | Param place | Description                           |     | Formats                                                                                                                                                                                                                                                                                                                                                                                                                                                                      |
 | ----------- | ------------------------------------- | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| 1st         | Space in wich color values are passed |     | adobe_98_rgb", "apple_rgb", "ansi16", "ansi256", "best_rgb", "beta_rgb", "bruce_rgb", "cie_rgb", "color_match_rgb", "cmy", "cmyk", "don_rgb_4", "eci_rgb_v2" "etka_space_ps5", "hcy", "hex", "hsi", "hsl", "hsv", "hunter_lab", "hwb", "lab", "lch_ab", "lch_uv", "luv", "lms", "ntsc_rgb", "pal_secam_rgb", "pro_photo_rgb", "rgb", "ryb", "tsl", "smpte_c_rgb", "wide_gamut_rgb", "uvw","xvycc", "xyy", "xyz", "ycbcr_BT601", "yccbccrc", "ycocg", "ydbdr", "yiq", "ypbpr" |
+| 1st         | Space in which color values are passed |     | adobe_98_rgb", "apple_rgb", "ansi16", "ansi256", "best_rgb", "beta_rgb", "bruce_rgb", "cie_rgb", "color_match_rgb", "cmy", "cmyk", "don_rgb_4", "eci_rgb_v2" "etka_space_ps5", "hcy", "hex", "hsi", "hsl", "hsv", "hunter_lab", "hwb", "lab", "lch_ab", "lch_uv", "luv", "lms", "ntsc_rgb", "pal_secam_rgb", "pro_photo_rgb", "rgb", "ryb", "tsl", "smpte_c_rgb", "wide_gamut_rgb", "uvw","xvycc", "xyy", "xyz", "ycbcr_BT601", "yccbccrc", "ycocg", "ydbdr", "yiq", "ypbpr" |
 | 2nd         | Color values                          |     | number, string, or color data object                                                                                                                                                                                                                                                                                                                                                                                                                                         |
-| 3rd         | optional - colors spaces to comput    |     | string [] of "all"                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
+| 3rd         | optional - colors spaces to compute    |     | string [] of "all"                                                                                                                                                                                                                                                                                                                                                                                                                                                           |
 
 - The first argument we pass is a string value and it represents the space in which color values will be passed.
 - The second argument is the actual color values and it's passed in form of an object.
@@ -264,26 +264,26 @@ Some of them might have multiple conversions and that will be stated in the tabl
 | sRgbToYiq           | Converts a colors sRGB values in to YIQ values       | RGB to YIQ               | No major data loss | { red: number, green: number, blue: number }                   |
 | sRgbToXvYcc         | Converts a colors sRGB values in to xvYCC values     | RGB to xvYCC             | No major data loss | { red: number, green: number, blue: number }                   |
 | sRgbToXyz           | Converts a colors sRGB values in to XYZ values       | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| adobeRgbToXyz       | Converts a colors Adobe 98 vaues in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| appleRgbToXyz       | Converts a colors Apple RGB vaues in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| bestRgbToXyz        | Converts a colors Best RGB vaues in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| betaRgbToXyz        | Converts a colors Beta RGB vaues in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| bruceRgbToXyz       | Converts a colors Bruce RGB vaues in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| cieRgbToXyz         | Converts a colors CIE RGB vaues in to XYZ values     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| colorMatchRgbToXyz  | Converts a colors COLOR MATCH RGB vaues in to XYZ    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| donRgb4ToXyz        | Converts a colors DON RGB 4 vaues in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| etkaSpacePs5ToXyz   | Converts a colors ETKA SPACE PS5 vaues in to XYZ     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| ntscRgbToXyz        | Converts a colors NTSC RGB vaues in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| palSecamRgbToXyz    | Converts a colors PAL/SECAM RGB vaues in to XYZ      | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| proPhotoRgbToXyz    | Converts a colors PRO PHOTO RGB vaues in to XYZ      | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| smpteCRgbToXyz      | Converts a colors SMPTE-C RGB vaues in to XYZ        | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| wideGamutRgbToXyz   | Converts a colors WIDE GAMUT RGB vaues in to XYZ     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| eciRgbV2ToXyz       | Converts a colors ECI RGB V2 vaues in to XYZ         | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
-| rybToSrgb           | Converts a colors RYB values to a sRGB values        | RYB to RGB               | No majer data loss | { red: number, green: number, blue: number }                   |
-| tslToSrgb           | Converts a colors TSL values to a sRGB values        | TSL to RGB               | No majer data loss | { red: number, green: number, blue: number }                   |
-| uvwToXyz            | Converts a colors UVW values to a XYZ values         | UVW to XYZ               | No majer data loss | { u: number, v: number, w: number }                            |
-| xvYccToYcbcrBT601   | Converts a colors xvYCC values to Y′CbCr (YUV)       | xvYCC to YCbCr           | No majer data loss | { Y: number, Cb: number, Cr: number }                          |
-| xvYccToSrgb         | Converts a colors xvYCC values to a SRGB values      | xvYCC to YCbCr to sRGB   | No majer data loss | { Y: number, Cb: number, Cr: number }                          |
+| adobeRgbToXyz       | Converts a colors Adobe 98 values in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| appleRgbToXyz       | Converts a colors Apple RGB values in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| bestRgbToXyz        | Converts a colors Best RGB values in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| betaRgbToXyz        | Converts a colors Beta RGB values in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| bruceRgbToXyz       | Converts a colors Bruce RGB values in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| cieRgbToXyz         | Converts a colors CIE RGB values in to XYZ values     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| colorMatchRgbToXyz  | Converts a colors COLOR MATCH RGB values in to XYZ    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| donRgb4ToXyz        | Converts a colors DON RGB 4 values in to XYZ values   | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| etkaSpacePs5ToXyz   | Converts a colors ETKA SPACE PS5 values in to XYZ     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| ntscRgbToXyz        | Converts a colors NTSC RGB values in to XYZ values    | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| palSecamRgbToXyz    | Converts a colors PAL/SECAM RGB values in to XYZ      | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| proPhotoRgbToXyz    | Converts a colors PRO PHOTO RGB values in to XYZ      | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| smpteCRgbToXyz      | Converts a colors SMPTE-C RGB values in to XYZ        | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| wideGamutRgbToXyz   | Converts a colors WIDE GAMUT RGB values in to XYZ     | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| eciRgbV2ToXyz       | Converts a colors ECI RGB V2 values in to XYZ         | RGB to XYZ               | No major data loss | { red: number, green: number, blue: number }                   |
+| rybToSrgb           | Converts a colors RYB values to a sRGB values        | RYB to RGB               | No major data loss | { red: number, green: number, blue: number }                   |
+| tslToSrgb           | Converts a colors TSL values to a sRGB values        | TSL to RGB               | No major data loss | { red: number, green: number, blue: number }                   |
+| uvwToXyz            | Converts a colors UVW values to a XYZ values         | UVW to XYZ               | No major data loss | { u: number, v: number, w: number }                            |
+| xvYccToYcbcrBT601   | Converts a colors xvYCC values to Y′CbCr (YUV)       | xvYCC to YCbCr           | No major data loss | { Y: number, Cb: number, Cr: number }                          |
+| xvYccToSrgb         | Converts a colors xvYCC values to a SRGB values      | xvYCC to YCbCr to sRGB   | No major data loss | { Y: number, Cb: number, Cr: number }                          |
 | xyYToXyz            | Converts colors xyY values to XYZ values             | XYY to XYZ               | No major data loss | { x: number, y: number, Y: number }                            |
 | xyzToAdobeRgb       | Converts colors XYZ values to Adobe 98 values        | XYZ to RGB               | No major data loss | { x: number, y: number, z: number }                            |
 | xyzToAppleRgb       | Converts colors XYZ values to Apple RGB values       | XYZ to RGB               | No major data loss | { x: number, y: number, z: number }                            |
@@ -308,16 +308,16 @@ Some of them might have multiple conversions and that will be stated in the tabl
 | xyzToLms            | Converts colors XYZ values to LMS values             | XYZ to LMS               | No major data loss | { x: number, y: number, z: number }                            |
 | xyzToHunterLab      | Converts colors XYZ values to Hunter's Lab values    | XYZ to LAB               | No major data loss | { x: number, y: number, z: number }                            |
 | xyzToXyY            | Converts colors XYZ values to XYY values             | XYZ to XYY               | No major data loss | { x: number, y: number, z: number }                            |
-| yCbCrBT601ToSrgb    | Converts colors Y′CbCr (YUV) values to sRGB vlues    | YCbCr to RGB             | No major data loss | { Y: number, Cb: number, Cr: number }                          |
-| yCbCrBT601ToXvYcc   | Converts colors Y′CbCr (YUV) values to xvYCC vlues   | YCbCr to xvYCC           | No major data loss | { Y: number, Cb: number, Cr: number }                          |
-| yCbCrBT601ToYPbPr   | Converts colors Y′CbCr (YUV) values to YPbPr vlues   | YCbCr to YPbPr           | No major data loss | { Y: number, Cb: number, Cr: number }                          |
-| yCbCrBT709ToSrgb    | Converts colors Y′CbCr BT.709 values to sRGB vlues   | YCbCr to RGB             | No major data loss | { Y: number, Cb: number, Cr: number }                          |
-| ycCbcCrcToSrgb      | Converts colors YcCbcCrc values to sRGB vlues        | YcCbcCrc to RGB          | No major data loss | { Yc: number, Cbc: number, Crc: number }                       |
-| yCgCoToSrgb         | Converts colors YCoCg values to sRGB vlues           | YCoCg to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
-| yDbDrToSrgb         | Converts colors YDbDr values to sRGB vlues           | YDbDr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
-| yiqToSrgb           | Converts colors YIQ values to sRGB vlues             | YIQ to RGB               | No major data loss | { Y: number, Co: number, Cg: number }                          |
-| yPbPrToSrgb         | Converts colors YPbPr values to sRGB vlues           | YPbPr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
-| yPbPrToYCbCr        | Converts colors YPbPr values to YCbCr vlues          | YPbPr to YCbCr           | No major data loss | { Y: number, Co: number, Cg: number }                          |
+| yCbCrBT601ToSrgb    | Converts colors Y′CbCr (YUV) values to sRGB values    | YCbCr to RGB             | No major data loss | { Y: number, Cb: number, Cr: number }                          |
+| yCbCrBT601ToXvYcc   | Converts colors Y′CbCr (YUV) values to xvYCC values   | YCbCr to xvYCC           | No major data loss | { Y: number, Cb: number, Cr: number }                          |
+| yCbCrBT601ToYPbPr   | Converts colors Y′CbCr (YUV) values to YPbPr values   | YCbCr to YPbPr           | No major data loss | { Y: number, Cb: number, Cr: number }                          |
+| yCbCrBT709ToSrgb    | Converts colors Y′CbCr BT.709 values to sRGB values   | YCbCr to RGB             | No major data loss | { Y: number, Cb: number, Cr: number }                          |
+| ycCbcCrcToSrgb      | Converts colors YcCbcCrc values to sRGB values        | YcCbcCrc to RGB          | No major data loss | { Yc: number, Cbc: number, Crc: number }                       |
+| yCgCoToSrgb         | Converts colors YCoCg values to sRGB values           | YCoCg to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
+| yDbDrToSrgb         | Converts colors YDbDr values to sRGB values           | YDbDr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
+| yiqToSrgb           | Converts colors YIQ values to sRGB values             | YIQ to RGB               | No major data loss | { Y: number, Co: number, Cg: number }                          |
+| yPbPrToSrgb         | Converts colors YPbPr values to sRGB values           | YPbPr to RGB             | No major data loss | { Y: number, Co: number, Cg: number }                          |
+| yPbPrToYCbCr        | Converts colors YPbPr values to YCbCr values          | YPbPr to YCbCr           | No major data loss | { Y: number, Co: number, Cg: number }                          |
 
 ## Color Converter
 
@@ -507,7 +507,7 @@ console.log(blended);
 
 With Color utilities, you can also generate a number of Harmony pallets.
 For more information about Harmonies, visit: https://simplified.com/blog/colors/color-harmony
-All Harmonies are a standalone functions and they all the a color in a HSL format ({ hue: number, saturation: number, lightness: number }) and return an array of hex values. In addition, in adition the second optional parameter is a boolean, which represents if returned hex values should start with a #.
+All Harmonies are a standalone functions and they all the a color in a HSL format ({ hue: number, saturation: number, lightness: number }) and return an array of hex values. In addition, in addition the second optional parameter is a boolean, which represents if returned hex values should start with a #.
 
 ### Analogous
 
@@ -518,12 +518,12 @@ Usage example:
 ```javascript
 import { analogousHarmony } from "@dynamize/color-utilities";
 
-const palet = analogousHarmony(
+const pallet = analogousHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Clash
@@ -535,9 +535,9 @@ Usage example:
 ```javascript
 import { clashHarmony } from "@dynamize/color-utilities";
 
-const palet = clashHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+const pallet = clashHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Complementary
@@ -549,12 +549,12 @@ Usage example:
 ```javascript
 import { complementaryHarmony } from "@dynamize/color-utilities";
 
-const palet = complementaryHarmony(
+const pallet = complementaryHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Split Complementary
@@ -566,12 +566,12 @@ Usage example:
 ```javascript
 import { splitComplementaryHarmony } from "@dynamize/color-utilities";
 
-const palet = splitComplementaryHarmony(
+const pallet = splitComplementaryHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -579,12 +579,12 @@ Usage example:
 ```javascript
 import { splitComplementaryCWHarmony } from "@dynamize/color-utilities";
 
-const palet = splitComplementaryCWHarmony(
+const pallet = splitComplementaryCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -592,12 +592,12 @@ Usage example:
 ```javascript
 import { splitComplementaryCCWHarmony } from "@dynamize/color-utilities";
 
-const palet = splitComplementaryCCWHarmony(
+const pallet = splitComplementaryCCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Four Tone
@@ -609,12 +609,12 @@ Usage example:
 ```javascript
 import { fourToneCWHarmony } from "@dynamize/color-utilities";
 
-const palet = fourToneCWHarmony(
+const pallet = fourToneCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -622,12 +622,12 @@ Usage example:
 ```javascript
 import { fourToneCCWHarmony } from "@dynamize/color-utilities";
 
-const palet = fourToneCCWHarmony(
+const pallet = fourToneCCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Five Tone
@@ -639,12 +639,12 @@ Usage example:
 ```javascript
 import { fiveToneAHarmony } from "@dynamize/color-utilities";
 
-const palet = fiveToneAHarmony(
+const pallet = fiveToneAHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -652,12 +652,12 @@ Usage example:
 ```javascript
 import { fiveToneBHarmony } from "@dynamize/color-utilities";
 
-const palet = fiveToneBHarmony(
+const pallet = fiveToneBHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -665,12 +665,12 @@ Usage example:
 ```javascript
 import { fiveToneCHarmony } from "@dynamize/color-utilities";
 
-const palet = fiveToneCHarmony(
+const pallet = fiveToneCHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -678,12 +678,12 @@ Usage example:
 ```javascript
 import { fiveToneDHarmony } from "@dynamize/color-utilities";
 
-const palet = fiveToneDHarmony(
+const pallet = fiveToneDHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -691,12 +691,12 @@ Usage example:
 ```javascript
 import { fiveToneEHarmony } from "@dynamize/color-utilities";
 
-const palet = fiveToneEHarmony(
+const pallet = fiveToneEHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Six Tone
@@ -708,12 +708,12 @@ Usage example:
 ```javascript
 import { sixToneCWHarmony } from "@dynamize/color-utilities";
 
-const palet = sixToneCWHarmony(
+const pallet = sixToneCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 Usage example:
@@ -721,12 +721,12 @@ Usage example:
 ```javascript
 import { sixToneCCWHarmony } from "@dynamize/color-utilities";
 
-const palet = sixToneCCWHarmony(
+const pallet = sixToneCCWHarmony(
   { hue: 49, saturation: 86, lightness: 52 },
   true
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Neutral
@@ -738,9 +738,9 @@ Usage example:
 ```javascript
 import { neutralHarmony } from "@dynamize/color-utilities";
 
-const palet = neutralHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+const pallet = neutralHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Square
@@ -750,9 +750,9 @@ console.log(palet);
 ```javascript
 import { squareHarmony } from "@dynamize/color-utilities";
 
-const palet = squareHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+const pallet = squareHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Tetradic
@@ -762,9 +762,9 @@ console.log(palet);
 ```javascript
 import { tetradicHarmony } from "@dynamize/color-utilities";
 
-const palet = tetradicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+const pallet = tetradicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Triadic
@@ -774,9 +774,9 @@ console.log(palet);
 ```javascript
 import { triadicHarmony } from "@dynamize/color-utilities";
 
-const palet = triadicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
+const pallet = triadicHarmony({ hue: 49, saturation: 86, lightness: 52 }, true);
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ## Color Mixes
@@ -798,7 +798,7 @@ const tones = getTones(
   { size: 10, prefixed: true }
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Tints
@@ -813,7 +813,7 @@ const tones = getTints(
   { size: 10, prefixed: true }
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ### Shades
@@ -828,7 +828,7 @@ const tones = getShades(
   { size: 10, prefixed: true }
 );
 
-console.log(palet);
+console.log(pallet);
 ```
 
 ## Chromatic adaptation
@@ -887,7 +887,7 @@ const adapted = adapter.set(
 
 console.log(adapted);
 ```
-The above example is using the "adapt" method with in the Adapter. The difference being that it takes an optional second argument, which is the desired color space of retuned color values.  
+The above example is using the "adapt" method with in the Adapter. The difference being that it takes an optional second argument, which is the desired color space of returned color values.  
 
 Example 3:
 
