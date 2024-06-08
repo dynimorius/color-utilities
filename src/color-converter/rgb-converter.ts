@@ -20,7 +20,7 @@ export class RgbConverter extends ColorConverter {
     );
   }
 
-  get(converts: RGBConSpaces): { [key: string]: number } {
+  get(converts: RGBConSpaces): any {
     return this.converterMap[converts as keyof RGBResolverMap](this.color);
   }
 }
