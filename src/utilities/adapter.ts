@@ -9,17 +9,17 @@ import {
   Adaptations,
   AdaptiveColorSpaces,
   AdaptiveColors
-} from 'types/adaptations';
+} from '../types/adaptations';
 import { XYZ } from '../interfaces/color-spaces.interface';
 import { matrixVectorMultiAsXyz } from '../helpers/matrix';
-import { AdaptiveMatrices } from 'interfaces/adaptive-matrices.interface';
+import { AdaptiveMatrices } from '../interfaces/adaptive-matrices.interface';
 import { ADAPTIVE_MATRICES } from '../constants/adaptive_matrices';
 import {
   fromXyzConverters,
   toXyzConverters
 } from '../color-converter/convertor-map';
-import { ToXyzConverters } from 'interfaces/converters.interface';
-import { XYZResolverMap } from 'interfaces/resolver.interface';
+import { ToXyzConverters } from '../interfaces/converters.interface';
+import { XYZResolverMap } from '../interfaces/resolver.interface';
 
 /**
  * Preforms a chromatic adaptation on a color in a XYZ space

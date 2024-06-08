@@ -80,7 +80,7 @@ export const bradfordChromaticAdaptation = (
  * @param {Matrix3x3}             - adaptation matrix
  * @returns {XYZ}                 - adapted xyz values
  */
-export const chromaticAdaptationPreCal = (xyz: XYZ, matrix: Matrix3x3) => {
+export const chromaticAdaptationPreCal = (xyz: XYZ, matrix: Matrix3x3): XYZ => {
   return matrixVectorMultiAsXyz(matrix, xyz);
 };
 
@@ -89,7 +89,7 @@ export const chromaticAdaptationPreCal = (xyz: XYZ, matrix: Matrix3x3) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoBAdaptation = (xyz: XYZ) => {
+export const AtoBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_B);
 };
 
@@ -98,7 +98,7 @@ export const AtoBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoCAdaptation = (xyz: XYZ) => {
+export const AtoCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_C);
 };
 
@@ -107,7 +107,7 @@ export const AtoCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoD50Adaptation = (xyz: XYZ) => {
+export const AtoD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_D50);
 };
 
@@ -116,7 +116,7 @@ export const AtoD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoD55Adaptation = (xyz: XYZ) => {
+export const AtoD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_D55);
 };
 
@@ -125,7 +125,7 @@ export const AtoD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoD65Adaptation = (xyz: XYZ) => {
+export const AtoD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_D65);
 };
 
@@ -134,7 +134,7 @@ export const AtoD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoD75Adaptation = (xyz: XYZ) => {
+export const AtoD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_D75);
 };
 
@@ -143,7 +143,7 @@ export const AtoD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoEAdaptation = (xyz: XYZ) => {
+export const AtoEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_E);
 };
 
@@ -152,7 +152,7 @@ export const AtoEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoF2Adaptation = (xyz: XYZ) => {
+export const AtoF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_F2);
 };
 
@@ -161,7 +161,7 @@ export const AtoF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoF7Adaptation = (xyz: XYZ) => {
+export const AtoF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_F7);
 };
 
@@ -170,7 +170,7 @@ export const AtoF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const AtoF11Adaptation = (xyz: XYZ) => {
+export const AtoF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.A_F11);
 };
 
@@ -179,7 +179,7 @@ export const AtoF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoAAdaptation = (xyz: XYZ) => {
+export const BtoAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_A);
 };
 
@@ -188,7 +188,7 @@ export const BtoAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoCAdaptation = (xyz: XYZ) => {
+export const BtoCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_C);
 };
 
@@ -197,7 +197,7 @@ export const BtoCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoD50Adaptation = (xyz: XYZ) => {
+export const BtoD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_D50);
 };
 
@@ -206,7 +206,7 @@ export const BtoD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoD55Adaptation = (xyz: XYZ) => {
+export const BtoD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_D55);
 };
 
@@ -215,7 +215,7 @@ export const BtoD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoD65Adaptation = (xyz: XYZ) => {
+export const BtoD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_D65);
 };
 
@@ -224,7 +224,7 @@ export const BtoD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoD75Adaptation = (xyz: XYZ) => {
+export const BtoD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_D75);
 };
 
@@ -233,7 +233,7 @@ export const BtoD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoEAdaptation = (xyz: XYZ) => {
+export const BtoEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_E);
 };
 
@@ -242,7 +242,7 @@ export const BtoEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoF2Adaptation = (xyz: XYZ) => {
+export const BtoF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_F2);
 };
 
@@ -251,7 +251,7 @@ export const BtoF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoF7Adaptation = (xyz: XYZ) => {
+export const BtoF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_F7);
 };
 
@@ -260,7 +260,7 @@ export const BtoF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const BtoF11Adaptation = (xyz: XYZ) => {
+export const BtoF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.B_F11);
 };
 
@@ -269,7 +269,7 @@ export const BtoF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoAAdaptation = (xyz: XYZ) => {
+export const CtoAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_A);
 };
 
@@ -278,7 +278,7 @@ export const CtoAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoBAdaptation = (xyz: XYZ) => {
+export const CtoBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_B);
 };
 
@@ -287,7 +287,7 @@ export const CtoBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoD50Adaptation = (xyz: XYZ) => {
+export const CtoD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_D50);
 };
 
@@ -296,7 +296,7 @@ export const CtoD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoD55Adaptation = (xyz: XYZ) => {
+export const CtoD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_D55);
 };
 
@@ -305,7 +305,7 @@ export const CtoD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoD65Adaptation = (xyz: XYZ) => {
+export const CtoD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_D65);
 };
 
@@ -314,7 +314,7 @@ export const CtoD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoD75Adaptation = (xyz: XYZ) => {
+export const CtoD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_D75);
 };
 
@@ -323,7 +323,7 @@ export const CtoD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoEAdaptation = (xyz: XYZ) => {
+export const CtoEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_E);
 };
 
@@ -332,7 +332,7 @@ export const CtoEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoF2Adaptation = (xyz: XYZ) => {
+export const CtoF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_F2);
 };
 
@@ -341,7 +341,7 @@ export const CtoF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoF7Adaptation = (xyz: XYZ) => {
+export const CtoF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_F7);
 };
 
@@ -350,7 +350,7 @@ export const CtoF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const CtoF11Adaptation = (xyz: XYZ) => {
+export const CtoF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.C_F11);
 };
 
@@ -359,7 +359,7 @@ export const CtoF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toAAdaptation = (xyz: XYZ) => {
+export const D50toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_A);
 };
 
@@ -368,7 +368,7 @@ export const D50toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toBAdaptation = (xyz: XYZ) => {
+export const D50toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_B);
 };
 
@@ -377,7 +377,7 @@ export const D50toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toCAdaptation = (xyz: XYZ) => {
+export const D50toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_C);
 };
 
@@ -386,7 +386,7 @@ export const D50toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toD55Adaptation = (xyz: XYZ) => {
+export const D50toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_D55);
 };
 
@@ -395,7 +395,7 @@ export const D50toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toD65Adaptation = (xyz: XYZ) => {
+export const D50toD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_D65);
 };
 
@@ -404,7 +404,7 @@ export const D50toD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toD75Adaptation = (xyz: XYZ) => {
+export const D50toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_D75);
 };
 
@@ -413,7 +413,7 @@ export const D50toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toEAdaptation = (xyz: XYZ) => {
+export const D50toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_E);
 };
 
@@ -422,7 +422,7 @@ export const D50toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toF2Adaptation = (xyz: XYZ) => {
+export const D50toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_F2);
 };
 
@@ -431,7 +431,7 @@ export const D50toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toF7Adaptation = (xyz: XYZ) => {
+export const D50toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_F7);
 };
 
@@ -440,7 +440,7 @@ export const D50toF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D50toF11Adaptation = (xyz: XYZ) => {
+export const D50toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D50_F11);
 };
 
@@ -449,7 +449,7 @@ export const D50toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toAAdaptation = (xyz: XYZ) => {
+export const D55toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_A);
 };
 
@@ -458,7 +458,7 @@ export const D55toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toBAdaptation = (xyz: XYZ) => {
+export const D55toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_B);
 };
 
@@ -467,7 +467,7 @@ export const D55toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toCAdaptation = (xyz: XYZ) => {
+export const D55toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_C);
 };
 
@@ -476,7 +476,7 @@ export const D55toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toD50Adaptation = (xyz: XYZ) => {
+export const D55toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_D50);
 };
 
@@ -485,7 +485,7 @@ export const D55toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toD65Adaptation = (xyz: XYZ) => {
+export const D55toD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_D65);
 };
 
@@ -494,7 +494,7 @@ export const D55toD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toD75Adaptation = (xyz: XYZ) => {
+export const D55toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_D75);
 };
 
@@ -503,7 +503,7 @@ export const D55toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toEAdaptation = (xyz: XYZ) => {
+export const D55toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_E);
 };
 
@@ -512,7 +512,7 @@ export const D55toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toF2Adaptation = (xyz: XYZ) => {
+export const D55toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_F2);
 };
 
@@ -521,7 +521,7 @@ export const D55toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toF7Adaptation = (xyz: XYZ) => {
+export const D55toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_F7);
 };
 
@@ -530,7 +530,7 @@ export const D55toF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D55toF11Adaptation = (xyz: XYZ) => {
+export const D55toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D55_F11);
 };
 
@@ -539,7 +539,7 @@ export const D55toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toAAdaptation = (xyz: XYZ) => {
+export const D65toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_A);
 };
 
@@ -548,7 +548,7 @@ export const D65toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toBAdaptation = (xyz: XYZ) => {
+export const D65toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_B);
 };
 
@@ -557,7 +557,7 @@ export const D65toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toCAdaptation = (xyz: XYZ) => {
+export const D65toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_C);
 };
 
@@ -566,7 +566,7 @@ export const D65toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toD50Adaptation = (xyz: XYZ) => {
+export const D65toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_D50);
 };
 
@@ -575,7 +575,7 @@ export const D65toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toD55Adaptation = (xyz: XYZ) => {
+export const D65toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_D55);
 };
 
@@ -584,7 +584,7 @@ export const D65toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toD75Adaptation = (xyz: XYZ) => {
+export const D65toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_D75);
 };
 
@@ -593,7 +593,7 @@ export const D65toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toEAdaptation = (xyz: XYZ) => {
+export const D65toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_E);
 };
 
@@ -602,7 +602,7 @@ export const D65toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toF2Adaptation = (xyz: XYZ) => {
+export const D65toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_F2);
 };
 
@@ -611,7 +611,7 @@ export const D65toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toF7Adaptation = (xyz: XYZ) => {
+export const D65toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_F7);
 };
 
@@ -620,7 +620,7 @@ export const D65toF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D65toF11Adaptation = (xyz: XYZ) => {
+export const D65toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D65_F11);
 };
 
@@ -629,7 +629,7 @@ export const D65toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toAAdaptation = (xyz: XYZ) => {
+export const D75toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_A);
 };
 
@@ -638,7 +638,7 @@ export const D75toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toBAdaptation = (xyz: XYZ) => {
+export const D75toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_B);
 };
 
@@ -647,7 +647,7 @@ export const D75toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toCAdaptation = (xyz: XYZ) => {
+export const D75toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_C);
 };
 
@@ -656,7 +656,7 @@ export const D75toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toD50Adaptation = (xyz: XYZ) => {
+export const D75toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_D50);
 };
 
@@ -665,7 +665,7 @@ export const D75toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toD55Adaptation = (xyz: XYZ) => {
+export const D75toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_D55);
 };
 
@@ -674,7 +674,7 @@ export const D75toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toD65Adaptation = (xyz: XYZ) => {
+export const D75toD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_D65);
 };
 
@@ -683,7 +683,7 @@ export const D75toD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toEAdaptation = (xyz: XYZ) => {
+export const D75toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_E);
 };
 
@@ -692,7 +692,7 @@ export const D75toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toF2Adaptation = (xyz: XYZ) => {
+export const D75toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_F2);
 };
 
@@ -701,7 +701,7 @@ export const D75toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toF7Adaptation = (xyz: XYZ) => {
+export const D75toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_F7);
 };
 
@@ -710,7 +710,7 @@ export const D75toF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const D75toF11Adaptation = (xyz: XYZ) => {
+export const D75toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.D75_F11);
 };
 
@@ -719,7 +719,7 @@ export const D75toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoAAdaptation = (xyz: XYZ) => {
+export const EtoAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_A);
 };
 
@@ -728,7 +728,7 @@ export const EtoAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoBAdaptation = (xyz: XYZ) => {
+export const EtoBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_B);
 };
 
@@ -737,7 +737,7 @@ export const EtoBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoCAdaptation = (xyz: XYZ) => {
+export const EtoCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_C);
 };
 
@@ -746,7 +746,7 @@ export const EtoCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoD50Adaptation = (xyz: XYZ) => {
+export const EtoD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_D50);
 };
 
@@ -755,7 +755,7 @@ export const EtoD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoD55Adaptation = (xyz: XYZ) => {
+export const EtoD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_D55);
 };
 
@@ -764,7 +764,7 @@ export const EtoD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoD65Adaptation = (xyz: XYZ) => {
+export const EtoD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_D65);
 };
 
@@ -773,7 +773,7 @@ export const EtoD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoD75Adaptation = (xyz: XYZ) => {
+export const EtoD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_D75);
 };
 
@@ -782,7 +782,7 @@ export const EtoD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoF2Adaptation = (xyz: XYZ) => {
+export const EtoF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_F2);
 };
 
@@ -791,7 +791,7 @@ export const EtoF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoF7Adaptation = (xyz: XYZ) => {
+export const EtoF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_F7);
 };
 
@@ -800,7 +800,7 @@ export const EtoF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const EtoF11Adaptation = (xyz: XYZ) => {
+export const EtoF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.E_F11);
 };
 
@@ -809,7 +809,7 @@ export const EtoF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toAAdaptation = (xyz: XYZ) => {
+export const F2toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_A);
 };
 
@@ -818,7 +818,7 @@ export const F2toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toBAdaptation = (xyz: XYZ) => {
+export const F2toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_B);
 };
 
@@ -827,7 +827,7 @@ export const F2toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toCAdaptation = (xyz: XYZ) => {
+export const F2toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_C);
 };
 
@@ -836,7 +836,7 @@ export const F2toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toD50Adaptation = (xyz: XYZ) => {
+export const F2toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_D50);
 };
 
@@ -845,7 +845,7 @@ export const F2toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toD55Adaptation = (xyz: XYZ) => {
+export const F2toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_D55);
 };
 
@@ -854,7 +854,7 @@ export const F2toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toD65Adaptation = (xyz: XYZ) => {
+export const F2toD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_D65);
 };
 
@@ -863,7 +863,7 @@ export const F2toD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toD75Adaptation = (xyz: XYZ) => {
+export const F2toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_D75);
 };
 
@@ -872,7 +872,7 @@ export const F2toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toEAdaptation = (xyz: XYZ) => {
+export const F2toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_E);
 };
 
@@ -881,7 +881,7 @@ export const F2toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toF7Adaptation = (xyz: XYZ) => {
+export const F2toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_F7);
 };
 
@@ -890,7 +890,7 @@ export const F2toF7Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F2toF11Adaptation = (xyz: XYZ) => {
+export const F2toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F2_F11);
 };
 
@@ -899,7 +899,7 @@ export const F2toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toAAdaptation = (xyz: XYZ) => {
+export const F7toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_A);
 };
 
@@ -908,7 +908,7 @@ export const F7toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toBAdaptation = (xyz: XYZ) => {
+export const F7toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_B);
 };
 
@@ -917,7 +917,7 @@ export const F7toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toCAdaptation = (xyz: XYZ) => {
+export const F7toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_C);
 };
 
@@ -926,7 +926,7 @@ export const F7toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toD50Adaptation = (xyz: XYZ) => {
+export const F7toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_D50);
 };
 
@@ -935,7 +935,7 @@ export const F7toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toD55Adaptation = (xyz: XYZ) => {
+export const F7toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_D55);
 };
 
@@ -944,7 +944,7 @@ export const F7toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7ToD65Adaptation = (xyz: XYZ) => {
+export const F7ToD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_D65);
 };
 
@@ -953,7 +953,7 @@ export const F7ToD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toD75Adaptation = (xyz: XYZ) => {
+export const F7toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_D75);
 };
 
@@ -962,7 +962,7 @@ export const F7toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toEAdaptation = (xyz: XYZ) => {
+export const F7toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_E);
 };
 
@@ -971,7 +971,7 @@ export const F7toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toF2Adaptation = (xyz: XYZ) => {
+export const F7toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_F2);
 };
 
@@ -980,7 +980,7 @@ export const F7toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F7toF11Adaptation = (xyz: XYZ) => {
+export const F7toF11Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F7_F11);
 };
 
@@ -989,7 +989,7 @@ export const F7toF11Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toAAdaptation = (xyz: XYZ) => {
+export const F11toAAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_A);
 };
 
@@ -998,7 +998,7 @@ export const F11toAAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toBAdaptation = (xyz: XYZ) => {
+export const F11toBAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_B);
 };
 
@@ -1007,7 +1007,7 @@ export const F11toBAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toCAdaptation = (xyz: XYZ) => {
+export const F11toCAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_C);
 };
 
@@ -1016,7 +1016,7 @@ export const F11toCAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toD50Adaptation = (xyz: XYZ) => {
+export const F11toD50Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_D50);
 };
 
@@ -1025,7 +1025,7 @@ export const F11toD50Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toD55Adaptation = (xyz: XYZ) => {
+export const F11toD55Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_D55);
 };
 
@@ -1034,7 +1034,7 @@ export const F11toD55Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11ToD65Adaptation = (xyz: XYZ) => {
+export const F11ToD65Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_D65);
 };
 
@@ -1043,7 +1043,7 @@ export const F11ToD65Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toD75Adaptation = (xyz: XYZ) => {
+export const F11toD75Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_D75);
 };
 
@@ -1052,7 +1052,7 @@ export const F11toD75Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toEAdaptation = (xyz: XYZ) => {
+export const F11toEAdaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_E);
 };
 
@@ -1061,7 +1061,7 @@ export const F11toEAdaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toF2Adaptation = (xyz: XYZ) => {
+export const F11toF2Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_F2);
 };
 
@@ -1070,6 +1070,6 @@ export const F11toF2Adaptation = (xyz: XYZ) => {
  * @param {XYZ}                   - color values
  * @returns {XYZ}                 - adapted xyz values
  */
-export const F11toF7Adaptation = (xyz: XYZ) => {
+export const F11toF7Adaptation = (xyz: XYZ): XYZ => {
   return chromaticAdaptationPreCal(xyz, ADAPTIVE_MATRICES.F11_F7);
 };

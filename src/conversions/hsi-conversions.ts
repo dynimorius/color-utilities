@@ -6,14 +6,14 @@
  * found at https://www.isc.org/licenses/
  */
 
-import { HSI } from "../interfaces/color-spaces.interface";
-import { hcyOrHsiToSrgb } from "./hcy-conversions";
+import { HSI, RGB } from '../interfaces/color-spaces.interface';
+import { hcyOrHsiToSrgb } from './hcy-conversions';
 
 /**
  * Converts a color form an HSI space to sRGB space
  * @param {HSI}                   - HSI values for a color
  * @returns {RGB}                 - sRGB values for a color
  */
-export const hsiToSrgb = (hsi: HSI) => {
+export const hsiToSrgb = (hsi: HSI): RGB => {
   return hcyOrHsiToSrgb(hsi);
 };

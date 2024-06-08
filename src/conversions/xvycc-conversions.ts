@@ -6,7 +6,7 @@
  * found at https://www.isc.org/licenses/
  */
 
-import { YCbCr, xvYCC } from "../public_api";
+import { RGB, YCbCr, xvYCC } from "../public_api";
 import { yCbCrBT601ToSrgb } from "./ycbcr-jpeg-conversions";
 
 /**
@@ -28,6 +28,6 @@ export const xvYccToYcbcrBT601 = ({ Y, Cb, Cr }: xvYCC): YCbCr => {
  * @param {xvYCC}                   - xvYCC values for a color
  * @returns {RGB}                   - sRGB values for a color
  */
-export const xvYccToSrgb = (xvycc: xvYCC) => {
+export const xvYccToSrgb = (xvycc: xvYCC): RGB => {
   return yCbCrBT601ToSrgb(xvYccToYcbcrBT601(xvycc));
 };

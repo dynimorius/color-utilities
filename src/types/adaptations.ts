@@ -12,7 +12,7 @@ import {
   UVW,
   XYY,
   XYZ,
-} from "interfaces/color-spaces.interface";
+} from "../interfaces/color-spaces.interface";
 
 export type Adaptations =
   | "A_B"

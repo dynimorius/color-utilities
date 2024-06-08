@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
 */
 
-import { LAB, LCH } from "interfaces/color-spaces.interface";
+import { LAB, LCH } from "../interfaces/color-spaces.interface";
 import { getDeltaChroma } from './delta-e-helpers';
 
 /**

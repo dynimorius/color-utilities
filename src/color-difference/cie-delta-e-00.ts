@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
  */
 
-import { LAB, LCH, RGB } from 'interfaces/color-spaces.interface';
+import { LAB, LCH, RGB } from '../interfaces/color-spaces.interface';
 import { degreesToRadians, radiansToDegrees } from '../helpers/formats-and-checks';
 import { getDeltaChroma } from './delta-e-helpers';
 import { sRgbToLab } from './../conversions/rgb-conversions';

@@ -6,7 +6,7 @@
  * found at https://opensource.org/license/isc-license-txt/
 */
 
-import { Matrix3x3 } from "types/math-types";
+import { Matrix3x3 } from "../types/math-types";
 
 export interface AdaptiveMatrices {
   A_B: Matrix3x3;
