@@ -181,9 +181,9 @@ there for are computed by default.
 
 If "all" is passed as a third argument, all 45 spaces will be computed (the return example is to big to show here),
 this option is computationally tasking and it's not a good option for color pickers or other use cases where there
-is a high frequency of re computation. Expediently the default (no third argument) will return values utilized in
+is a high frequency of re computation. Accidentally the default (no third argument) will return values utilized in
 a Photoshop color picker (rgb, hsv, lab, cmyk and hex).
-|
+
 
 ## Conversions
 
